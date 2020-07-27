@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
+import org.junit.Ignore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -30,11 +31,19 @@ public class BuyordersController {
 	DataSource datasource;
 
 	// 상세조회를 뺀 구매주문 내역 전체 조회
-	@RequestMapping("/getBuyordersList")
+	@RequestMapping("/getBuyordersList") @Ignore
 	public String getBuyordersList(BuyordersVO buyordersVO, Model model) {
 		model.addAttribute("buyordersList", buyordersService.getBuyordersList(buyordersVO));
 		return "admin/buyorders/buyordersList";
 	}
+	
+	//join문 map 전체 조회.
+	@RequestMapping("/getBuyordersListMap")
+	public String getBuyordersListMap(BuyordersVO buyordersVO, Model model) {
+		model.addAttribute("buyordersList", buyordersService.getBuyordersListMap(buyordersVO));
+		return "admin/buyorders/buyordersList";
+	}
+	
 
 	// 구매주문 단건조회
 	@RequestMapping("/getBuyorders")

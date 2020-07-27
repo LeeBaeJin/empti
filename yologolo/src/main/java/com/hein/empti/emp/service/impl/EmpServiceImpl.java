@@ -28,6 +28,7 @@ public class EmpServiceImpl implements EmpService {
 
 	@Override
 	public void setInsertEmp(EmpVO empVO) {
+		empVO.setHire_date(empVO.getHire_date().replace('T', ' '));
 		empMapper.setInsertEmp(empVO);
 	}
 

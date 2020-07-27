@@ -48,7 +48,7 @@ public class StocksController {
 	// 등록폼
 	@RequestMapping("/setInsertFormStocks")
 	public String setInsertFormStocks(Model model, ItemsVO itemsVO, StoragesVO storagesVO) {
-		//model.addAttribute("storages",storagesService.getStoragesList(storagesVO));
+		model.addAttribute("storages",storagesService.getStoragesList(storagesVO));
 		model.addAttribute("items", itemsService.getItemsList(itemsVO));
 		return "admin/stocks/insertStocks";
 	}
