@@ -13,16 +13,15 @@
 	</div>
 	<div class="card-body">
 		<div class="table-responsive">
-			<table class="table table-bordered" id="dataTable" width="100%"	cellspacing="0">
+			<table class="table table-bordered" id="dataTable" style="width: 100%; cellspacing=0;">
 				<thead>
 					<tr>
 						<th>주문번호</th>
 						<th>주문일자</th>
 						<th>판매합계</th>
 						<th>배송상태</th>
-						<th>사원번호</th>
-						<th>입출고 번호</th>
-						<th>거래처 코드</th>
+						<th>담당사원</th>
+						<th>거래처</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -33,7 +32,6 @@
 						<th>${saleorders.sale_sum}</th>
 						<th>${saleorders.del_status}</th>
 						<th>${saleorders.emp_id}</th>
-						<th>${saleorders.stock_no}</th>
 						<th>${saleorders.company_no}</th>
 						</tr>
 					</c:forEach>
@@ -42,14 +40,3 @@
 		</div>
 	</div>
 </div>
-
-<!-- 
-//	주문번호 order_no -number
-//	주문일자	order_date -date
-//	판매합계	sale_sum number
-//	배송상태	del_status string
-//  ---가져오는 data (fk)---
-//	사원번호	emp_id (fk) number
-//	입출고 번호	stock_no (fk) number
-//	거래처 코드	 company_no (fk) number
--->

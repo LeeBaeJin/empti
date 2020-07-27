@@ -14,7 +14,7 @@
 			tr.remove();
 		});
 	});
-	//담당 사원 검색 기능
+	//담당 사원 사번 표시 기능
 	var emp_select_value = function(select_obj) {
 		if($("#emp_name").text() == ""){
 			$("#emp_name").append(select_obj.value);
@@ -98,7 +98,7 @@
 
 </script>
 
-<div align = "center">
+<div>
 	<h1>판매주문 입력</h1>
 	<form action="setInsertSaleorders">
 		주문일자 <input type="datetime-local" name="order_date"><br/>
