@@ -33,7 +33,7 @@
 		)
 		VALUES (
 		#{order_no},
-		To_date(#{order_date}, 'yyyy-MM-dd'),
+		To_date(#{order_date}, 'yyyy-MM-dd hh24:mi'),
 		#{buy_sum},
 		#{company_no},
 		#{emp_id}
