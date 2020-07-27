@@ -27,6 +27,8 @@
        <typeAlias type="com.hein.empti.buyorders.BuyordersVO" alias="BuyordersVO"/>
        <typeAlias type="com.hein.empti.buyledger.BuyledgerVO" alias="BuyledgerVO"/>
   	   <typeAlias type="com.hein.empti.disposal.DisposalVO" alias="DisposalVO"/>
+  	   <typeAlias type="com.hein.empti.buyorderdetails.BuyorderdetailsVO" alias="BuyorderdetailsVO"/>
+  	   
   	   
    </typeAliases>
 </configuration>

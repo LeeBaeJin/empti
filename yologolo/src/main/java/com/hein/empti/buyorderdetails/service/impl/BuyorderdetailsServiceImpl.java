@@ -12,12 +12,19 @@ import com.hein.empti.buyorderdetails.service.BuyorderdetailsService;
 @Service
 public class BuyorderdetailsServiceImpl implements BuyorderdetailsService{
 	
-	@Autowired BuyorderdetailsMapper mapper;
+	@Autowired BuyorderdetailsMapper buyorderdetailsMapper;
 
 	@Override
 	public void setBuyorderdetailInsert(List<BuyorderdetailsVO> list) {
-		mapper.setBuyorderdetailInsert(list);
+		buyorderdetailsMapper.setBuyorderdetailInsert(list);
 		System.out.println("구매주문 다중 Insert 완료.");
 	}
+
+	@Override
+	public void setBuyorderdetailDelete(BuyorderdetailsVO buyorderdetailsVO) {
+		buyorderdetailsMapper.setBuyorderdetailDelete(buyorderdetailsVO);
+	}
+	
+	
 
 }

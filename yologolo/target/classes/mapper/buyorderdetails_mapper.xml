@@ -18,4 +18,9 @@
 		</foreach>
 		) "A"
 	</insert>
+	
+	<delete id="setBuyorderdetailDelete" parameterType="BuyorderdetailsVO">
+		DELETE FROM buyorderdetails WHERE order_no = #{order_no}
+	
+	</delete>
 </mapper>

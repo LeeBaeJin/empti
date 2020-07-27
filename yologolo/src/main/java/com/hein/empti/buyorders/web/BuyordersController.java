@@ -8,11 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.hein.empti.buyorderdetails.BuyorderdetailsVO;
 import com.hein.empti.buyorderdetails.service.BuyorderdetailsService;
 import com.hein.empti.buyorders.BuyordersVO;
 import com.hein.empti.buyorders.OrderMasterVO;
@@ -67,6 +69,21 @@ public class BuyordersController {
 		return "redirect:getBuyordersList";
 	}
 
+	//삭제처리(구매주문)
+	@RequestMapping("/setDeleteBuyorders/{order_no}")
+	public String setDeleteBuyorders(@PathVariable String order_no,BuyordersVO buyordersVO,BuyorderdetailsVO buyorderdetailsVO) {
+		buyorderdetailsVO.setOrder_no(order_no);
+		buyordersVO.setOrder_no(order_no);	
+		buyorderdetailsService.setBuyorderdetailDelete(buyorderdetailsVO);
+		buyordersService.setDeleteBuyorders(buyordersVO);
+		return "redirect:../getBuyordersList";
+	}
+	
+	//반품처리(구매주문)
+	//@RequestMapping("/setReturnBuyorders")
+	
+	
+	
 	/*
 	 * // pdf 출력 및 인쇄
 	 * 

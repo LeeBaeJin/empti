@@ -11,6 +11,7 @@ public interface BuyordersService {
 	public void setInsertBuyorders(OrderMasterVO mVO);
 	public void setUpdateBuyorders(BuyordersVO buyordersVO);
 	public void setDeleteBuyorders(BuyordersVO buyordersVO);
+	public void setReturnBuyorders(BuyordersVO buyordersVO);
 	
 	//시퀀스 조회
 	public String getBuySeq();

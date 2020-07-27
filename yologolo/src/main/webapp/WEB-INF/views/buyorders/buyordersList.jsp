@@ -41,22 +41,20 @@
 		document.getElementsByTagName("totalPrice").value=result;
 	}
 	
-<<<<<<< HEAD
-	$(function () {
-		$("#odInsert").on("click", function() {
-			$.ajax({
-				url: "setInsertBuyorderdetails",
-				data: {},
-				method: 'post',
-				dataType: 'json',
-			}).done(function(result) {
-				
-			
-		}
-	}}
-	
-=======
->>>>>>> branch 'master' of https://github.com/LeeBaeJin/empti.git
+	$(function(){
+		$('.btnDelete').on("click", function() {
+			var order_no = $(this).closest('tr').find('.buyorder01').text();
+			console.log(order_no);
+			var result = confirm(order_no +"번 구매주문을 삭제하시겠습니까?"); 
+			if(result)
+	            location.href="setDeleteBuyorders/" + order_no;
+		    else 
+		        	return false;
+		});
+		
+	});
+
+
 </script>
 
 <div class="card shadow mb-4">
@@ -77,6 +75,9 @@
 						<th>구매합계</th>
 						<th>사원번호</th>
 						<th>거래처 코드</th>
+						<th>반품</th>
+						<th>수정</th>
+						<th>삭제</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -87,6 +88,9 @@
 						<td>${buy.buy_sum}</td>
 						<td>${buy.emp_id}</td>
 						<td>${buy.company_no}</td>
+						<td><button type="button" class="btnReturn">반품</button></td>
+						<td><button type="button" class="btnUpdate">수정</button></td>
+						<td><button type="button" class="btnDelete">삭제</button></td>
 						</tr>
 					</c:forEach>
 				</tbody>

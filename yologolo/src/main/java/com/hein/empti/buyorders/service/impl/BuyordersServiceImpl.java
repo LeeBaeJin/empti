@@ -43,6 +43,13 @@ public class BuyordersServiceImpl implements BuyordersService{
 		buyordersMapper.setDeleteBuyorders(buyordersVO);
 	}
 	
+	
+	
+	@Override
+	public void setReturnBuyorders(BuyordersVO buyordersVO) {
+		buyordersMapper.setReturnBuyorders(buyordersVO);
+	}
+
 	//시퀀스 조회
 	@Override
 	public String getBuySeq() {
