@@ -2,6 +2,8 @@ package com.hein.empti.emp.web;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -129,4 +131,11 @@ public class EmpController {
 	mv.addObject("filename", "/reports/employees_list.jrxml");
 	return mv;
 	}
+	
+	//차트데이터
+		@RequestMapping("getChartData.do")
+		@ResponseBody
+		public List<Map<String,Object>> getDeptEmpCnt(EmpVO empvo, Model model){
+		return empService.getDeptEmpCnt(); 
+		}
 }

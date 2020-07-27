@@ -1,6 +1,7 @@
 package com.hein.empti.emp.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,6 +40,12 @@ public class EmpServiceImpl implements EmpService {
 	@Override
 	public void setDeleteEmp(EmpVO empVO) {
 		empMapper.setDeleteEmp(empVO);
+	}
+	
+	//차트데이터
+	@Override
+	public List<Map<String, Object>> getDeptEmpCnt() {
+		return empMapper.getDeptEmpCnt();
 	}
 
 }

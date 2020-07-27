@@ -1,6 +1,7 @@
 package com.hein.empti.emp.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.hein.empti.emp.EmpVO;
 
@@ -11,4 +12,6 @@ public interface EmpService {
 	public void setInsertEmp(EmpVO empVO);
 	public void setUpdateEmp(EmpVO empVO);
 	public void setDeleteEmp(EmpVO empVO);
+	public List<Map<String,Object>> getDeptEmpCnt();
+
 }
