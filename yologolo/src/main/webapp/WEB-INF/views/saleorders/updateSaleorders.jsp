@@ -7,7 +7,6 @@
 		판매합계 <input name= "sale_sum">
 		배송상태 <input name= "del_status">
 		사원번호 <input name= "emp_id">
-		입출고번호 <input name= "stock_no">
 		거래처코드 <input name= "company_no">		
 	<button type="submit">등록</button>
 	</form>

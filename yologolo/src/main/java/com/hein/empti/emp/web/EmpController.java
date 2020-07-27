@@ -124,8 +124,7 @@ public class EmpController {
 	
 	//view resolver 방식
 	@RequestMapping("employees_list.do")
-	public ModelAndView getSaleLedgerListReport(HttpServletRequest request, HttpServletResponse response) throws Exception
-	{
+	public ModelAndView getSaleLedgerListReport(HttpServletRequest request, HttpServletResponse response) throws Exception{
 	ModelAndView mv = new ModelAndView();
 	mv.setViewName("pdfView");
 	mv.addObject("filename", "/reports/employees_list.jrxml");
@@ -133,9 +132,8 @@ public class EmpController {
 	}
 	
 	//차트데이터
-		@RequestMapping("getChartData.do")
-		@ResponseBody
-		public List<Map<String,Object>> getDeptEmpCnt(EmpVO empvo, Model model){
-		return empService.getDeptEmpCnt(); 
+	@RequestMapping("getChartData")
+	public @ResponseBody List<Map<String,Object>> getDeptEmpCnt(){
+	return empService.getDeptEmpCnt(); 
 		}
 }

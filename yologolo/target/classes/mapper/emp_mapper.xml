@@ -86,9 +86,10 @@
 	</delete>
 	
 	<select id="getDeptEmpCnt" resultType="map">
-			select nvl(to_char(dept_id),'사장님')  "name", 
-						count(*) "cnt"
-			from employees
-			group by to_char(dept_id)
+			select    nvl(dept_name,'사장님') 	"dept_name",
+				      count(*) 					"cnt"
+			from   	  employees e, departments d
+			where     e.dept_id=d.dept_id(+)
+			group by  dept_name
 	</select>
 </mapper>

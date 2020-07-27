@@ -13,15 +13,15 @@
          
     	  // Create the data table.
           var data = new google.visualization.DataTable();
-          data.addColumn('string', '부서');
+          data.addColumn('string', '부서명');
           data.addColumn('number', '사원수');
 		  var chartdata = [];
           $.ajax({  
-			  url: "getChartData.do", 
+			  url: "getChartData", 
 			  async : false, 			// 비동기여부. false = 동기식
 			  success : function(result){
 				  for(i=0; i<result.length; i++){
-					  chartdata.push([result[i].name, parseInt(result[i].cnt) ]); //push : data담음
+					  chartdata.push([result[i].dept_name, parseInt(result[i].cnt) ]); //push : data담음
 				  }
 			  }
 		  });
@@ -42,13 +42,13 @@
         var chart = new google.visualization.ColumnChart(document.getElementById('columnchart_material'));
         chart.draw(data, options);
         
-        google.visualization.events.addListener(chart, 'select', selectHandler);
+/*         google.visualization.events.addListener(chart, 'select', selectHandler);
 
         function selectHandler(e) {
           var row = chart.getSelection()[0]["row"]
           var column = chart.getSelection()[0]["column"]
           console.log(data[row][0]);
-        }
+        } */
       }
     </script>
   </head>
