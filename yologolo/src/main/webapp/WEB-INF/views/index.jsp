@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
-<!-- data chart -->
+  <!-- data-chart -->
   <head>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
@@ -57,6 +57,7 @@
   <body>
     <div id="columnchart_material" style="width: 800px; height: 500px;"></div>
   </body>
+  <!-- End of data-chart -->
   
 
 
