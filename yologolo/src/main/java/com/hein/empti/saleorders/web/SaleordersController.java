@@ -18,6 +18,7 @@ import com.hein.empti.emp.EmpVO;
 import com.hein.empti.emp.service.EmpService;
 import com.hein.empti.saleorderdetails.service.SaleorderdetailsService;
 import com.hein.empti.saleorders.SaleordersVO;
+import com.hein.empti.saleorders.SorderMasterVO;
 import com.hein.empti.saleorders.service.SaleordersService;
 
 @Controller
@@ -47,10 +48,10 @@ public class SaleordersController {
 	}
 
 	// 판매주문 시퀀스
-	@RequestMapping("/getSeq")
+	@RequestMapping("/getSaleSeq")
 	@ResponseBody
-	public String getSeq(String seq) {
-		return saleordersService.getSeq();
+	public String getSaleSeq(String seq) {
+		return saleordersService.getSaleSeq();
 	}
 
 	// 판매주문 등록폼

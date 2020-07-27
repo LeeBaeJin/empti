@@ -13,5 +13,5 @@ public interface BuyordersService {
 	public void setDeleteBuyorders(BuyordersVO buyordersVO);
 	
 	//시퀀스 조회
-	public String getSeq();
+	public String getBuySeq();
 }

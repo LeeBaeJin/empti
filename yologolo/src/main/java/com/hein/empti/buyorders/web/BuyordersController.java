@@ -41,10 +41,10 @@ public class BuyordersController {
 		return "buyorders/buyorderdetails";
 	}
 	// 구매주문 시퀀스
-	@RequestMapping("/getSeq")
+	@RequestMapping("/getBuySeq")
 	@ResponseBody
-	public String getSeq(String seq) {
-		return buyordersService.getSeq();
+	public String getBuySeq(String seq) {
+		return buyordersService.getBuySeq();
 	}
 	// 등록폼
 	@RequestMapping("/setInsertFormBuyorders")

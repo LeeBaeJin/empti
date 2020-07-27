@@ -1,9 +1,8 @@
-package com.hein.empti.saleorders.web;
+package com.hein.empti.saleorders;
 
 import java.util.List;
 
 import com.hein.empti.saleorderdetails.SaleorderdetailsVO;
-import com.hein.empti.saleorders.SaleordersVO;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

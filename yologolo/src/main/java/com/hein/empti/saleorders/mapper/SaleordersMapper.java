@@ -12,5 +12,5 @@ public interface SaleordersMapper {
 	public void setDeleteSaleorders(SaleordersVO saleordersVO);
 	
 	//시퀀스 조회
-	public String getSeq();
+	public String getSaleSeq();
 }

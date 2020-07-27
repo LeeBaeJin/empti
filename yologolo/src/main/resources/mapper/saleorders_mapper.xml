@@ -22,7 +22,7 @@
 	</select>
 	
 	<!-- 판매주문 시퀀스조회 -->
-	<select id="getSeq" resultType="String">
+	<select id="getSaleSeq" resultType="String">
 		SELECT Salemaster_seq.NEXTVAL "seqval"
 		FROM dual
 	</select>

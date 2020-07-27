@@ -45,7 +45,7 @@ public class BuyordersServiceImpl implements BuyordersService{
 	
 	//시퀀스 조회
 	@Override
-	public String getSeq() {
-		return buyordersMapper.getSeq();
+	public String getBuySeq() {
+		return buyordersMapper.getBuySeq();
 	}
 }

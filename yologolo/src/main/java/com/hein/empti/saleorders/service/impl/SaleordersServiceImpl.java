@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 
 import com.hein.empti.saleorderdetails.mapper.SaleorderdetailsMapper;
 import com.hein.empti.saleorders.SaleordersVO;
+import com.hein.empti.saleorders.SorderMasterVO;
 import com.hein.empti.saleorders.mapper.SaleordersMapper;
 import com.hein.empti.saleorders.service.SaleordersService;
-import com.hein.empti.saleorders.web.SorderMasterVO;
 
 @Service
 public class SaleordersServiceImpl implements SaleordersService{
@@ -48,7 +48,7 @@ public class SaleordersServiceImpl implements SaleordersService{
 
 	//시퀀스 조회
 	@Override
-	public String getSeq() {
-		return saleordersMapper.getSeq();
+	public String getSaleSeq() {
+		return saleordersMapper.getSaleSeq();
 	}
 }

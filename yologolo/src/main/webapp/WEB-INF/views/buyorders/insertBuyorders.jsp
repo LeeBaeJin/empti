@@ -41,7 +41,7 @@
 	}
 	function seq_orderInsert() {
 		$.ajax ({
-			url: "getSeq",
+			url: "getBuySeq",
 			contentType : "application/json",
 			success: function(result) {
 				ajaxInsert(result);
