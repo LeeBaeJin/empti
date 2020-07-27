@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <div class="card shadow mb-4">
@@ -34,8 +35,15 @@
 							<td>${stocks.stock_no}</td>
 							<td>${stocks.item_no}</td>
 							<td>${stocks.stock_category}</td>
-							<td>${stocks.stock_qty}</td>
-							<td>${stocks.stock_price}</td>
+							<td>
+								<fmt:parseNumber value="${stocks.stock_qty}" var="fmt"/>
+								<fmt:formatNumber type="number" maxFractionDigits="3" value="${fmt}"/>
+							
+							</td>
+							<td>
+								<fmt:parseNumber value="${stocks.stock_price}" var="fmt"/>
+								<fmt:formatNumber type="number" maxFractionDigits="3" value="${fmt}"/>
+							</td>
 							<td>${stocks.stock_date}</td>
 							<td>${stocks.strg_no}</td>
 							<td>${stocks.detail_no}</td>
