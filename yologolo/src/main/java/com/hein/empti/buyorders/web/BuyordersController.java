@@ -56,10 +56,8 @@ public class BuyordersController {
 	@RequestMapping("/setInsertBuyorders")
 	@ResponseBody
 	public String setInsertBuyorders(@RequestBody OrderMasterVO mVO) {
-		System.out.println(mVO.getVo().getOrder_no());
-		System.out.println(mVO.getVo().getOrder_date());
 		buyordersService.setInsertBuyorders(mVO);
-		return "kkmk";
+		return "redirect:getBuyordersList";
 	}
 
 	// 수정처리(구매주문)

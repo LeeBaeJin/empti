@@ -13,7 +13,7 @@
 		from (
 		<foreach collection="list" item="item" separator="UNION ALL">
 			select 
-			#{item.item_no}, #{item.order_qty}, ${item.order_no}
+			#{item.item_no}, #{item.order_qty}, #{item.order_no}
 			from dual
 		</foreach>
 		) "A"
