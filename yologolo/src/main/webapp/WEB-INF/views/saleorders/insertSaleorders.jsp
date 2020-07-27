@@ -8,6 +8,11 @@
 			var winObj=window.open('findCompany','companies','width=300,height=auto');
 			return winObj;
 		});
+		//판매상세 테이블 초기화 버튼
+		$("#resetBtn").on("click", function() {
+			var tr = $("#tblBody").children();
+			tr.remove();
+		});
 	});
 	//담당 사원 검색 기능
 	var emp_select_value = function(select_obj) {
@@ -19,37 +24,110 @@
 			$("#emp_name").append(select_obj.value);
 		}	
 	}
+	//판매상세 테이블 추가 버튼
+	function addOrder()  {
+		if ($('[name=item_no]').val() == '') {
+			alert("품목을 선택해주십시오.");
+		} else {
+			var od_no1 = $('[name=item_no]').val();
+			var od_no2 = $('[name=order_qty]').val();
+			var od_no3 = $('[name=price]').val();
+			console.log(od_no1, od_no2, od_no3);
+			var td1 = $('<td />').text(od_no1);
+			var td2 = $('<td />').text(od_no2);
+			var td3 = $('<td />').text(od_no3);
+			var tr = $('<tr />').append(td1, td2, td3);
+				$('#buyTable').append(tr);
+				$('[name=item_no]').val('');
+				$('[name=order_qty]').val('');
+				$('[name=price]').val(''); 
+		}
+	}
+	//시퀀스 조회 후 판매주문 Insert 실행
+	function seq_sorderInsert() {
+		$.ajax ({
+			url: "getSaleSeq",
+			contentType : "application/json",
+			success: function(saleSeq) {
+				ajaxInsert(saleSeq);
+			}, error: function() {
+				alert("시퀀스 실패.");
+			}
+		});
+	}
+	//판매주문 입력 기능
+	function ajaxInsert(saleSeq) {
+		
+		//판매주문의 데이터
+		var om_no1 = $('[name=order_date]').val();
+		var om_no2 = $('[name=company_no]').val();
+		var om_no3 = $('[name=emp_id]').val();
+		var om_no4 = $('[name=sale_sum]').val();
+		var om_no5 = $('[name=del_status]').val();
+		console.log(om_no1, om_no2, om_no3, om_no4, om_no5);
+		var mObj = {'order_date':om_no1,
+				    'company_no':om_no2,
+				    'emp_id':om_no3,
+				    'sale_sum':om_no4,
+				    'del_status':om_no5,
+				    'order_no': saleSeq}
+		
+		//구매상세주문의 데이터
+		var tr = $('#tblBody').children();
+		var td = [];
+		$.each(tr, function(idx , item) {
+			var obj = {};
+			obj['order_no'] = saleSeq;
+			obj['item_no'] = $(item).children().eq(0).text(); 
+			obj['order_qty'] = $(item).children().eq(1).text();
+			td.push(obj);
+		})
+		var datas = {vo: mObj, list:td}
+			$.ajax ({
+				url: "setInsertSaleorders",
+				type: "POST",
+				data: JSON.stringify(datas),
+				contentType : "application/json",
+				success: function() {
+				alert("성공적으로 주문하였습니다.");
+			}, error: function() {
+				alert("주문을 실패하였습니다.");
+			}
+		});
+	}
+
 </script>
 
 <div align = "center">
 	<h1>판매주문 입력</h1>
 	<form action="setInsertSaleorders">
-		주문번호 <input name= "order_no"><br/>
 		주문일자 <input type="datetime-local" name="order_date"><br/>
-		판매합계 <input name= "sale_sum"><br/>
+		거래처코드 <input name="company_no" id="company_no" type="text"> <span id="company_name"></span>
+			    <button type="button" value="거래처선택" id="btnFindCompany" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" width="30px" height="30px"></button><br/>
+		판매합계 <input name= "sale_sum" type="number"><br/>
 		배송상태	<select name="del_status">
 				  <option value="배송준비중" selected>배송준비중</option>
 				  <option value="배송중">배송중</option>
 				  <option value="배송완료" >배송완료</option>
 				</select><br/>
-		사원번호<select name="emp_id" onchange="emp_select_value(this);">
+		담당사원<select name="emp_id" onchange="emp_select_value(this);">
 				<option value="" selected>==사원 선택==</option>
-				<c:forEach items="${emps}" var="emps"> 
-				<option value="${emps.name}">${emps.emp_id}</option>
+				<c:forEach items="${emps}" var="emp"> 
+				<option value="${emp.emp_id}">${emp.name}</option>
 				</c:forEach>
 				</select>
 				<span id="emp_name"></span>
 				<br/>
-		입출고번호 <input name= "stock_no"><br/>
-		거래처코드 <input name="company_no" id="company_no" type="text"> <span id="company_name"></span>
-			    <button type="button" value="거래처선택" id="btnFindCompany" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" width="30px" hight="30px"></button>
+		품목   <input name="item_no"> <br>
+		수량 	<input name="order_qty" type="number"> <br>
+		단가	<input name="price" type="number"> <br>
 	<br/>
 	<button type="button" onclick="addOrder()">추가</button>
 	<button type="button" id="resetBtn">초기화</button>
-	<!-- 구매상세주문 테이블 -->
+	<!-- 판매상세주문 테이블 -->
 	<table border="1" id="buyTable" style="width: 40%;">
 		<thead>
-			<tr style="align-items: center;">
+			<tr align="center">
 				<th>품목</th><th>수량</th><th>단가</th>
 			</tr>
 		</thead>
@@ -58,27 +136,6 @@
 		</tbody>
 	</table>
 	
-	<button type="button" onclick="seq_orderInsert()">주문입력</button>
-	<button type="submit">등록</button>
+	<button type="button" onclick="seq_sorderInsert()">주문입력</button>
 	</form>
 </div>
-
-
-
-
-
-
-
-
-
-
-<!-- 
-//	주문번호 order_no -number
-//	주문일자	order_date -date
-//	판매합계	sale_sum number
-//	배송상태	del_status string
-//  ---가져오는 data (fk)---
-//	사원번호	emp_id (fk) number
-//	입출고 번호	stock_no (fk) number
-//	거래처 코드	 company_no (fk) number
--->
