@@ -1,0 +1,94 @@
+package com.hein.empti.saleorders.web;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.hein.empti.emp.EmpVO;
+import com.hein.empti.emp.service.EmpService;
+import com.hein.empti.saleorders.SaleordersVO;
+import com.hein.empti.saleorders.service.SaleordersService;
+
+@Controller
+public class SaleordersController {
+
+	@Autowired
+	SaleordersService saleordersService;
+	
+	@Autowired
+	EmpService empService; 
+	
+	// for report
+		@Autowired
+		@Qualifier("dataSourceSpied") 
+		DataSource datasource; 	
+	
+	//단건조회
+	@RequestMapping("/getSaleordersList/{order_no}")
+	public String getSaleorders(@PathVariable String order_no){
+		return "admin/saleorders/saleordersList";
+	}
+		
+	
+	//전체조회
+	@RequestMapping("/getSaleordersList")
+	public String getSaleordersList(Model model, SaleordersVO saleordersVO) {
+		model.addAttribute("saleordersList", saleordersService.getSaleordersList(saleordersVO));
+		return "admin/saleorders/saleordersList";
+	}
+	
+	
+	//판매주문 등록폼
+	@RequestMapping("/setInsertFormSaleorders")
+	public String setInsertFormSaleorders(SaleordersVO vo, Model model, EmpVO empVO) {
+		model.addAttribute("emps",empService.getEmpList(empVO));
+		return "admin/saleorders/insertSaleorders";
+	}
+	
+	//판매주문 등록 처리
+	@RequestMapping("/setInsertSaleorders")
+	public String setInsertSaleorders(Model model, SaleordersVO saleordersVO) {
+		saleordersService.setInsertSaleorders(saleordersVO);
+		return "redirect:getSaleordersList";
+	}
+	
+	//수정폼
+	@RequestMapping("/setUpdateFormSaleorders")
+	public String setUpdateFormSaleorders(SaleordersVO saleordersVO) {
+		return "admin/saleorders/UpdateSaleorders";
+	}
+	
+	//수정처리
+	@RequestMapping("/setUpdateSaleorders")
+	public String setUpdateFormSaleorders(Model model, SaleordersVO saleordersVO) {
+		return "redirect:getSaleordersList";
+	}
+	
+	/*
+	 * //판매주문 단건조회
+	 * 
+	 * @RequestMapping() public String getSaleorders("/getSaleorders/{orders_no}")
+	 * return "admin/home";
+	 * 
+	 * //서비스 호출
+	 */	
+
+	
+	//view resolver 방식
+			@RequestMapping("saleorders_list.do")
+			public ModelAndView getSaleLedgerListReport(HttpServletRequest request, HttpServletResponse response) throws Exception
+			{
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("pdfView");
+			mv.addObject("filename", "/reports/saleorders_list.jrxml");
+			return mv;
+			}
+}

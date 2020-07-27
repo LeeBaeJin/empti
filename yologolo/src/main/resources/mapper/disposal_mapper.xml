@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- empti_mapper.xml -->
+<mapper namespace="com.hein.empti.disposal.mapper.DisposalMapper">
+	
+	<!-- 폐기불량  전체조회 --> 
+		<select id="getDisposalList" resultType="DisposalVO" parameterType="DisposalVO">
+			SELECT * 
+			FROM disposal
+			ORDER BY disposal_no
+		</select> 
+	 
+	
+	<!-- 폐기불량  등록  -->
+		<insert id="setInsertDisposal" parameterType="DisposalVO">
+		   INSERT INTO Disposal  ( 	disposal_no,
+									disposal_qty,
+									price,
+									disposal_date,
+									category,
+									strg_no,
+									item_no
+
+									 )
+							VALUES(
+									#{disposal_no},
+									#{disposal_qty},
+									#{price},
+									To_date(#{disposal_date},'yyyy-MM-dd hh24:mi:ss'),
+									#{category},
+									#{strg_no},
+									#{item_no}
+									)
+		</insert>
+
+	<!--폐기불량 수정  --> 
+		<update id="setUpdateDisposal" parameterType="DisposalVO">
+	 	<!-- null체크 후 변경 . 동적 쿼리 -->
+			
+			UPDATE Disposal 
+				 <set> 	   
+				      <if test="disposal_qty != null">disposal_qty=#{disposal_qty},</if>
+				      <if test="price != null">price=#{price},</if>
+				      <if test="disposal_date != null">disposal_date=To_date(#{disposal_date},'yyyy-MM-dd hh24:mi:ss'),</if>
+				      <if test="category != null">category=#{category},</if>
+				      <if test="strg_no != null">strg_no=#{strg_no},</if>
+				      <if test="item_no != null">item_no=#{item_no}</if>
+				</set>
+				 WHERE 			    	disposal_no=#{disposal_no}
+		</update>
+
+	<!-- 폐기불량  단건조회 -->
+		<select id="getDisposal" resultType="DisposalVO" parameterType="DisposalVO">
+			SELECT * FROM Disposal WHERE disposal_no = #{disposal_no}
+		</select>
+	
+</mapper>

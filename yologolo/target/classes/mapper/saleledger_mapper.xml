@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper	namespace="com.hein.empti.saleledger.mapper.SaleledgerMapper">
+	<!-- 판매주문단건조회 -->
+	<select id="getSaleledger" parameterType="SaleledgerVO" resultType="SaleledgerVO">
+		SELECT *
+		FROM saleledger
+		WHERE ldgr_no = #{ldgr_no}
+	</select>
+
+	<!-- 판매주문전체조회 list -->
+	<select id="getSaleledgerList" resultType="SaleledgerVO">
+		SELECT *
+		FROM saleledger
+		ORDER BY ldgr_no
+	</select>
+
+	<!-- 판매주문등록 -->
+	<insert id="setInsertSaleledger" parameterType="SaleledgerVO">
+		INSERT INTO saleledger (
+		ldgr_no,
+		ldgr_date,
+		total_amount,
+		condition,
+		order_no,
+		note
+		)
+		VALUES (
+		( SELECT NVL(MAX(ldgr_no),0)+1 FROM saleledger ),
+		To_date(#{ldgr_date},'yyyy-MM-dd hh24:mi:ss'),
+		#{total_amount},
+		#{condition},
+		#{order_no},
+		#{note}
+		)
+	</insert>
+
+	<!-- 판매주문수정 -->
+	<update id="setUpdateSaleledger" parameterType="SaleledgerVO">
+		UPDATE saleledger
+		<set>
+			<if test="ldgr_date != null">ldgr_date = To_date(#{ldgr_date},'yyyy-MM-dd hh24:mi:ss'),</if>
+			<if test="total_amount != null">total_amount = #{total_amount},</if>
+			<if test="condition != null">condition = #{condition},</if>
+			<if test="order_no != null">order_no = #{order_no},</if>
+			<if test="note != null">note = #{note}</if>
+		</set>
+		WHERE
+		ldgr_no = #{ldgr_no}
+	</update>
+
+	<delete id="setDeleteSaleledger" parameterType="SaleledgerVO"> 
+		DELETE FROM	saleledger 
+		WHERE ldgr_no = #{ldgr_no}
+	</delete>
+
+</mapper>

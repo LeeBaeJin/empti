@@ -1,0 +1,13 @@
+package com.hein.empti.menu;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+public class MenuVO {
+	String menu_no;
+	String menu_name;
+	String menu_addr;
+	String menu_order;
+}

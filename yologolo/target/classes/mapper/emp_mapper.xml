@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- <mapper namespace="com.dbal.app.emp.mapper.EmpDAO"> -->
+<mapper namespace="com.hein.empti.emp.mapper.EmpMapper">
+<!-- #{}, test 는 VO에 있는 필드를 가져오는거다 -->
+	<select id="getEmp" parameterType="EmpVO" resultType="EmpVO">
+		SELECT *
+		FROM employees
+		WHERE emp_id= #{emp_id}
+		order by emp_id
+	</select>
+
+	<select id="getEmpList" resultType="EmpVO" parameterType="EmpVO">
+		SELECT * 
+		FROM emplist_view
+		ORDER BY emp_id
+	</select>
+	
+<!-- 	<select id="login" resultType="EmpVO" parameterType="EmpVO">
+		Select * 
+		from employees
+		where emp_id = ${emp_id} and pwd = ${pwd}
+	
+	</select> -->
+
+	<insert id="setInsertEmp" parameterType="EmpVO">
+		INSERT INTO EMPLOYEES (emp_id, 
+							   name, 
+							   pwd,
+							   phone,
+							   address,
+							   email,
+							   hire_date,
+							   salary,
+							   position,
+							   status,
+							   bank_name,
+							   account_no,
+							   dept_id,
+							   profile)
+						VALUES(
+							   #{emp_id},
+							   #{name},
+							   #{pwd},
+							   #{phone},
+							   #{address},
+							   #{email},
+							   TO_DATE(#{hire_date},'yyyy-MM-dd HH24:mi:ss'),
+							   #{salary},
+							   #{position},
+							   #{status},
+							   #{bank_name},
+							   #{account_no},
+							   #{dept_id},
+							   #{profile}
+							   )
+	</insert>
+	
+	<update id="setUpdateEmp" parameterType="EmpVO">
+		UPDATE EMPLOYEES
+		<set>
+		<if test="emp_id != null">emp_id=#{emp_id},</if>
+		<if test="name != null">name=#{name},</if>
+		<if test="pwd != null">pwd=#{pwd},</if>
+		<if test="phone != null">phone=#{phone},</if>
+		<if test="address != null">address=#{address},</if>
+		<if test="email != null">email=#{email},</if>
+		<if test="hire_date != null">hire_date=TO_DATE(#{hire_date},'yyyy-MM-dd HH24:mi:ss'),</if>
+		<if test="salary != null">salary=#{salary},</if>
+		<if test="position != null">position=#{position},</if>
+		<if test="status != null">status=#{status},</if>
+		<if test="bank_name != null">bank_name=#{bank_name},</if>
+		<if test="account_no != null">account_no=#{account_no},</if>
+		<if test="dept_id != null">dept_id=#{dept_id},</if>
+		<if test="profile != null">profile=#{profile}</if>
+		</set>
+		WHERE
+		emp_id = #{emp_id}
+	</update>
+
+	<delete id="setDeleteEmp" parameterType="EmpVO">
+		DELETE FROM EMPLOYEES WHERE
+		emp_id = #{emp_id}
+	</delete>
+
+</mapper>

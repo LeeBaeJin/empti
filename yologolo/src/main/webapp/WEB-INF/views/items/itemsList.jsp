@@ -1,0 +1,49 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+
+<div class="card shadow mb-4">
+	<div class="card-header py-3">
+		<h6 class="m-0 font-weight-bold text-primary">
+		<a href="getItemsList">품목 목록</a> | 
+		<a href="setInsertFormItems">품목 입력</a> |
+		<a href="items_list.do">PDF</a>
+		
+		</h6>
+	</div>
+
+
+
+	<div class="card-body">
+		<div class="table-responsive">
+			<table class="table table-bordered" id="dataTable" width="100%"	cellspacing="0">
+				<thead>
+					<tr>
+						<th>품목코드</th>
+						<th>품목명</th>
+						<th>품목유형</th>
+						<th>단위</th>
+						<th>유통기한</th>
+						<th>가공품 원가</th>
+						<th>수정</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${itemsList}" var="items">
+						<tr>
+							<td>${items.item_no}</td>
+							<td>${items.item_name}</td>
+							<td>${items.category}</td>
+							<td>${items.unit}</td>
+							<td>${items.exp_date}일</td>
+							<td>${items.item_price}</td>
+							<td><a href="setUpdateFormItems?item_no=${items.item_no}">수정</a></td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

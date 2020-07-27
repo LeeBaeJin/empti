@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper	namespace="com.hein.empti.buyorders.mapper.BuyordersMapper">
+	<!-- 구매주문 전체조회 -->
+	<select id="getBuyordersList" resultType="BuyordersVO">
+		SELECT *
+		FROM BUYORDERS
+		ORDER BY order_no
+	</select>
+
+	<!-- 구매주문 단건조회 -->
+	<select id="getBuyorders" resultType="BuyordersVO">
+		SELECT *
+		FROM BUYORDERS
+		WHERE order_no = #{order_no}
+	</select>
+	
+	<!-- 구매주문 시퀀스조회 -->
+	<select id="getSeq" resultType="String">
+		SELECT Buymaster_seq.NEXTVAL "seqval"
+		FROM dual
+	</select>
+	
+	<!-- 구매주문 등록 -->
+	<insert id="setInsertBuyorders" parameterType="BuyordersVO">
+		INSERT INTO	BUYORDERS
+		(order_no,
+		order_date,
+		buy_sum,
+		company_no,
+		emp_id
+		)
+		VALUES (
+		#{order_no},
+		To_date(#{order_date}, 'yyyy-MM-dd'),
+		#{buy_sum},
+		#{company_no},
+		#{emp_id}
+		)
+	</insert>
+
+	<!-- 구매주문수정 -->
+	<update id="setUpdateBuyorders" parameterType="BuyordersVO">
+		UPDATE BUYORDERS
+		<set>
+			<if test="order_date != null">order_date = To_date(#{order_date},'yyyy-MM-dd hh24:mi'),
+			</if>
+			<if test="buy_sum != null">buy_sum = #{buy_sum},</if>
+			<if test="company_no != null">company_no = #{company_no},</if>
+			<if test="emp_id != null">emp_id = #{emp_id}</if>
+		</set>
+		WHERE order_no = #{order_no}
+	</update>
+
+	<delete id="setDeleteBuyorders" parameterType="BuyordersVO">
+		DELETE FROM	BUYORDERS
+		WHERE order_no = #{order_no}
+	</delete>
+</mapper>
