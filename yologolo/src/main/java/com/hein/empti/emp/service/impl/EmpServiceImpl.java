@@ -48,5 +48,4 @@ public class EmpServiceImpl implements EmpService {
 	public List<Map<String, Object>> getDeptEmpCnt() {
 		return empMapper.getDeptEmpCnt();
 	}
-
 }

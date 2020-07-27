@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <link href="resources/common/css/modal.css" rel="stylesheet" type="text/css">
@@ -83,7 +84,10 @@
 					<c:forEach items="${buyordersList}" var="buy">
 						<tr>
 						<td>${buy.order_date}</td>
-						<td>${buy.buy_sum}</td>
+						<td>
+						<fmt:parseNumber value="${buy.buy_sum}" var="fmt"/>
+						<fmt:formatNumber type="number" maxFractionDigits="3" value="${fmt}"/>
+						</td>
 						<td>${buy.name}</td>
 						<td>${buy.company_name}</td>
 						<td><button type="button" class="btnReturn">반품</button></td>
