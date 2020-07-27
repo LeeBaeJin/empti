@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <div class="card shadow mb-4">
@@ -16,7 +16,6 @@
 			<table class="table table-bordered" id="dataTable" style="width: 100%; cellspacing=0;">
 				<thead>
 					<tr>
-						<th>주문번호</th>
 						<th>주문일자</th>
 						<th>판매합계</th>
 						<th>배송상태</th>
@@ -25,14 +24,16 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${saleordersList}" var="saleorders">
+					<c:forEach items="${saleordersMap}" var="sale">
 						<tr>
-						<th>${saleorders.order_no}</th>
-						<th>${saleorders.order_date}</th>
-						<th>${saleorders.sale_sum}</th>
-						<th>${saleorders.del_status}</th>
-						<th>${saleorders.emp_id}</th>
-						<th>${saleorders.company_no}</th>
+						<td>${sale.order_date}</td>
+						<td>
+						<fmt:parseNumber value="${sale.sale_sum}" var="fmt"/>
+						<fmt:formatNumber type="number" maxFractionDigits="3" value="${fmt}"/>
+						</td>
+						<td>${sale.del_status}</td>
+						<td>${sale.name}</td>
+						<td>${sale.company_name}</td>
 						</tr>
 					</c:forEach>
 				</tbody>

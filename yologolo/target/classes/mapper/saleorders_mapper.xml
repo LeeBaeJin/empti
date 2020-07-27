@@ -10,15 +10,25 @@
 		SELECT *
 		FROM SALEORDERS
 		WHERE ORDER_NO = #{order_no}
-		ORDER BY
-		ORDER_NO
 	</select>
-
+	
 	<!-- 판매주문전체조회 list -->
 	<select id="getSaleordersList" resultType="SaleordersVO">
 		SELECT *
 		FROM SALEORDERS
 		ORDER BY ORDER_NO
+	</select>
+	
+	<!-- 판매주문전체조회 Map -->
+	<select id="getSaleordersListMap" parameterType="SaleordersVO" resultType="map">
+		SELECT TO_CHAR(s.order_date, 'yyyy-MM-dd hh24:mi') "order_date", 
+				s.sale_sum "sale_sum", s.del_status "del_status",
+				e.name "name",
+				 c.company_name "company_name"
+		FROM employees e 
+		JOIN saleorders s ON (e.emp_id = s.emp_id)
+		JOIN companies c ON (s.company_no = c.company_no)
+		ORDER BY order_date DESC
 	</select>
 	
 	<!-- 판매주문 시퀀스조회 -->

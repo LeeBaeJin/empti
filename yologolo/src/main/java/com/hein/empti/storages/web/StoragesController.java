@@ -46,7 +46,7 @@ public class StoragesController {
 	} */
 	
 	@RequestMapping("/getStoragesListMap")
-	public String getStoragesList(Model model, StoragesVO storagesVO) {
+	public String getStoragesListMap(Model model, StoragesVO storagesVO) {
 		model.addAttribute("storagesList", storagesService.getStoragesListMap(storagesVO));
 		return "admin/storages/storagesList"; 
 	}

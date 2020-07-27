@@ -18,9 +18,6 @@ public class StoragesServiceImpl implements StoragesService{
 	@Autowired
 	StoragesMapper storagesMapper;
 
-	
-	
-	
 	@Override
 	public StoragesVO getStorages(StoragesVO storagesVO) {
 		return storagesMapper.getStorages(storagesVO);

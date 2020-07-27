@@ -8,7 +8,7 @@
 		FROM BUYORDERS
 		ORDER BY order_no
 	</select>
-
+	
 	<!-- 구매주문 단건조회 -->
 	<select id="getBuyorders" resultType="BuyordersVO">
 		SELECT *

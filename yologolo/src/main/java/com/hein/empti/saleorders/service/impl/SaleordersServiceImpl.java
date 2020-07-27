@@ -1,6 +1,7 @@
 package com.hein.empti.saleorders.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,6 @@ public class SaleordersServiceImpl implements SaleordersService{
 	
 	@Autowired SaleordersMapper saleordersMapper;
 	@Autowired SaleorderdetailsMapper saleorderdetailsMapper;
-	
 	
 	@Override
 	public List<SaleordersVO> getSaleordersList(SaleordersVO saleordersVO) {
@@ -50,5 +50,11 @@ public class SaleordersServiceImpl implements SaleordersService{
 	@Override
 	public String getSaleSeq() {
 		return saleordersMapper.getSaleSeq();
+	}
+	
+	//판매주문(JOIN name, company_name) Map 객체에 담아서 조회
+	@Override
+	public List<Map<String, Object>> getSaleordersListMap(SaleordersVO saleordersVO) {
+		return saleordersMapper.getSaleordersListMap(saleordersVO);
 	}
 }
