@@ -35,7 +35,6 @@
 		SALE_SUM,
 		DEL_STATUS,
 		EMP_ID,
-		STOCK_NO,
 		COMPANY_NO
 		) 
 		VALUES (
@@ -44,7 +43,6 @@
 		#{sale_sum},
 		#{del_status},
 		#{emp_id},
-		#{stock_no},
 		#{company_no})
 	</insert>
 
@@ -57,7 +55,6 @@
 			<if test="sale_sum != null">SALE_SUM = #{sale_sum},</if>
 			<if test="del_status != null">DEL_STATUS = #{del_status},</if>
 			<if test="emp_id != null">EMP_ID = #{emp_id},</if>
-			<if test="emp_id != null">STOCK_NO = #{stock_no},</if>
 			<if test="company_no != null">COMPANY_NO = #{company_no},</if>
 		</set>
 		WHERE
