@@ -35,18 +35,18 @@ public class StoragesController {
 	public String setInsertStorages(StoragesVO storagesVO) {
 	
 		storagesService.setInsertStorages(storagesVO);
-		return "redirect:getStoragesList";
+		return "redirect:getStoragesListMap";
 	} 
 	
 	//전체조회
-/*	@RequestMapping("/getStoragesList")
+	//@RequestMapping("/getStoragesList")
 	public String getStoragesList(Model model, StoragesVO storagesVO) {
 		model.addAttribute("storagesList", storagesService.getStoragesList(storagesVO));
 		return "admin/storages/storagesList"; 
-	} */
+	} 
 	
 	@RequestMapping("/getStoragesListMap")
-	public String getStoragesList(Model model, StoragesVO storagesVO) {
+	public String getStoragesListMap(Model model, StoragesVO storagesVO) {
 		model.addAttribute("storagesList", storagesService.getStoragesListMap(storagesVO));
 		return "admin/storages/storagesList"; 
 	}
@@ -70,7 +70,7 @@ public class StoragesController {
 	@RequestMapping("/setUpdateStorages")
 		public String setUpdateStorages(Model model, StoragesVO storagesVO) {
 			storagesService.setUpdateStorages(storagesVO);
-			return "redirect:getStoragesList";
+			return "redirect:getStoragesListMap";
 		}
 	//view resolver 방식
 	@RequestMapping("storages.do")

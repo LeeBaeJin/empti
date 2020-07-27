@@ -3,10 +3,15 @@
 
 <mapper	namespace="com.hein.empti.buyorders.mapper.BuyordersMapper">
 	<!-- 구매주문 전체조회 -->
-	<select id="getBuyordersList" resultType="BuyordersVO">
-		SELECT *
-		FROM BUYORDERS
-		ORDER BY order_no
+	<select id="getBuyordersList" resultType="map">
+		SELECT  	order_date			"order_date",
+					buy_sum 			"buy_sum",
+					name				"name", 	
+					company_name		"company_name"
+		FROM 		buyorders bo, companies p, employees e
+		WHERE	 	bo.company_no = p.company_no and 
+					bo.emp_id 	  = e.emp_id
+		ORDER BY	order_date			
 	</select>
 
 	<!-- 구매주문 단건조회 -->

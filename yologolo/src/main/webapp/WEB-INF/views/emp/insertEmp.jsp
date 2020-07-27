@@ -29,7 +29,7 @@ var dept_select_value = function(select_obj) {
 		<label>입사일</label>		<input name="hire_date" type="datetime-local"> <br/>
 		<label>급여</label>		<input name="salary"> <br/>
 		<label>계약유형</label>	<select name="position"> 
-									<option value="" selected disabled hidden> ==선택하세요== </option>
+									<option value="" selected> ==선택하세요== </option>
 									<option>정직원</option>
 									<option>계약직</option>
 									<option>일용직</option>
@@ -41,9 +41,9 @@ var dept_select_value = function(select_obj) {
 								</select> <br/>
 		<label>거래은행</label>	<input name="bank_name"> <br/>
 		<label>은행계좌</label>	<input name="account_no"> <br/>
-		<label>부서번호</label>	<select name="dept_id" onchange="dept_select_value(this);"> 
+		<label>부서이름</label>	<select name="dept_id" onchange="dept_select_value(this);"> 
 									<c:forEach items="${dept}" var="dept">
-										<option value="${dept.dept_name}">${dept.dept_id}</option>
+										<option value="${dept.dept_id}">${dept.dept_name}</option>
 									</c:forEach>
 								</select>
 								<span id="dept_name"></span>
