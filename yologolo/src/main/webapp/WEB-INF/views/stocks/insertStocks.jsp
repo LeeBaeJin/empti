@@ -13,7 +13,7 @@
 			/* 창고번호를 선택했을때 옆에 창고이름이 나오는 '그 자리'를 찾아가는 함수   */
 	var storages_select_value = function(select_obj) {
 		if($("#storages_name").text() == ""){	/* id값이 storage_name인 자리의 text가 공백이면 */
-		$("#storages_name").append(select_obj.value);	/* 그 곳을 찾아가서 select_obj.value값, value="${storages.strg_category}"를 그 자리에 넣음. */
+		$("#storages_name").append(select_obj.value);	<%-- 그 곳을 찾아가서 select_obj.value값, value="${storages.strg_category}"를 그 자리에 넣음. --%>
 		}
 		else {
 		$("#storages_name").empty();			/* 그 자리가 공백이 아니면, 일단 비운다. */
