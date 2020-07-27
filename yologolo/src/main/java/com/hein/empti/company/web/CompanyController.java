@@ -52,7 +52,7 @@ public class CompanyController {
 	@RequestMapping("/findCompany")
 	public String findComapny(Model model, CompanyVO companyVO) {
 		model.addAttribute("findCompanyList", companyService.findCompany(companyVO));
-		return "saleorders/findCompany";
+		return "common/findCompany";
 	}
 	
 	// 등록폼

@@ -14,5 +14,4 @@ public interface BuyordersService {
 	
 	//시퀀스 조회
 	public String getSeq();
-	
 }

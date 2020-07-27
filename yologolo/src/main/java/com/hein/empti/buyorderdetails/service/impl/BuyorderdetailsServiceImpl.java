@@ -17,7 +17,7 @@ public class BuyorderdetailsServiceImpl implements BuyorderdetailsService{
 	@Override
 	public void setBuyorderdetailInsert(List<BuyorderdetailsVO> list) {
 		mapper.setBuyorderdetailInsert(list);
-		System.out.println("다중 Insert 완료");
+		System.out.println("구매주문 다중 Insert 완료.");
 	}
 
 }

@@ -84,5 +84,11 @@
 		DELETE FROM EMPLOYEES WHERE
 		emp_id = #{emp_id}
 	</delete>
-
+	
+	<select id="getDeptEmpCnt" resultType="map">
+			select nvl(to_char(dept_id),'사장님')  "name", 
+						count(*) "cnt"
+			from employees
+			group by to_char(dept_id)
+	</select>
 </mapper>

@@ -72,7 +72,7 @@ public class ItemsController {
 		@RequestMapping("/findItems")
 		public String findItems(ItemsVO itemsVO, Model model) {
 			model.addAttribute("findItems", itemsService.getItemsList(itemsVO));
-			return "items/findItems";
+			return "common/findItems";
 		}
 		
 		//view resolver 방식

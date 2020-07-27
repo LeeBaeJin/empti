@@ -93,14 +93,14 @@
 <div align="left">
 	<h1>구매주문 입력</h1>
 	<form id="buyOrd">
-	<label>주문날짜: </label> <input type="datetime-local" name="order_date"> <br>
-	<label>거래처: </label> <input name="company_no">
-	<span id="company_name"></span><input type="button" value="거래처선택" id="btnFindCompany"><br>
-	<label>품목: </label> <input name="item_no"> <br>
-	<label>수량: </label> <input type="number" name="order_qty"> <br>
-	<label>단가: </label> <input type="number" name="price"> <br>
-	<label>담당자: </label> <input name="emp_id"> <br>
-	<label>구매합계: </label> <input type="number" name="buy_sum"> <br>
+	<label>주문날짜: </label>	 <input type="datetime-local" name="order_date"> <br>
+	<label>거래처코드: </label> <input name="company_no" id="company_no" type="text"> <span id="company_name"></span>
+			    			<button type="button" value="거래처선택" id="btnFindCompany" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" width="30px" hight="30px"></button><br/>
+	<label>품목: </label>	    <input name="item_no"> <br>
+	<label>수량: </label> 	<input type="number" name="order_qty"> <br>
+	<label>단가: </label> 	<input type="number" name="price"> <br>
+	<label>담당자: </label> 	<input name="emp_id"> <br>
+	<label>구매합계: </label> 	<input type="number" name="buy_sum"> <br>
 	<button type="button" onclick="addOrder()">추가</button>
 	<button type="button" id="resetBtn">초기화</button>
 	<!-- 구매상세주문 테이블 -->
