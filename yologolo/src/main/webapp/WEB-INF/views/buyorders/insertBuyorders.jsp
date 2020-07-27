@@ -93,7 +93,7 @@
 <div align="left">
 	<h1>구매주문 입력</h1>
 	<form id="buyOrd">
-	<label>주문날짜: </label>	 <input type="date" name="order_date"> <br>
+	<label>주문날짜: </label>	 <input type="datetime-local" name="order_date"> <br>
 	<label>거래처코드: </label> <input name="company_no" id="company_no" type="text"> <span id="company_name"></span>
 			    			<button type="button" value="거래처선택" id="btnFindCompany" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" width="30px" hight="30px"></button><br/>
 	<label>품목: </label>	    <input name="item_no"> <br>

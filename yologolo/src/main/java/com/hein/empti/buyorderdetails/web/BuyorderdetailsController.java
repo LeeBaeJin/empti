@@ -18,6 +18,7 @@ public class BuyorderdetailsController {
 	
 	@Autowired BuyorderdetailsService service;
 	
+	//테스트 해볼려고 넣은 경로 (삭제해도 무방)
 	@RequestMapping("/Buydetail")
 	public String goBuyorderdetails() {
 		return "buyorderdetails/buyorderdetails";

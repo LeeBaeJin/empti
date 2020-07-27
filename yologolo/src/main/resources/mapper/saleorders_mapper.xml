@@ -20,7 +20,13 @@
 		FROM SALEORDERS
 		ORDER BY ORDER_NO
 	</select>
-
+	
+	<!-- 판매주문 시퀀스조회 -->
+	<select id="getSeq" resultType="String">
+		SELECT Salemaster_seq.NEXTVAL "seqval"
+		FROM dual
+	</select>
+	
 	<!-- 판매주문등록 -->
 	<insert id="setInsertSaleorders" parameterType="SaleordersVO">
 		INSERT INTO saleorders (
