@@ -21,7 +21,8 @@
 	
 	<!-- 판매주문전체조회 Map -->
 	<select id="getSaleordersListMap" parameterType="SaleordersVO" resultType="map">
-		SELECT TO_CHAR(s.order_date, 'yyyy-MM-dd hh24:mi') "order_date", 
+		SELECT  s.order_no "order_no",
+				TO_CHAR(s.order_date, 'yyyy-MM-dd hh24:mi') "order_date", 
 				s.sale_sum "sale_sum", s.del_status "del_status",
 				e.name "name",
 				 c.company_name "company_name"

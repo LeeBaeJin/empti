@@ -20,4 +20,9 @@ public class SaleorderdetailsServiceImpl implements SaleorderdetailsService{
 		System.out.println("판매주문 다중 Insert 완료.");
 	}
 
+	@Override
+	public List<SaleorderdetailsVO> getSaleorderdetailList(SaleorderdetailsVO vo) {
+		return mapper.getSaleorderdetailList(vo);
+	}
+
 }

@@ -26,7 +26,9 @@
 				<tbody>
 					<c:forEach items="${saleordersMap}" var="sale">
 						<tr>
-						<td>${sale.order_date}</td>
+						<td>
+						${sale.order_date}
+						</td>
 						<td>
 						<fmt:parseNumber value="${sale.sale_sum}" var="fmt"/>
 						<fmt:formatNumber type="number" maxFractionDigits="3" value="${fmt}"/>
