@@ -84,7 +84,7 @@
             <a class="collapse-item" href="getCompanyList">거래처관리</a>
             <a class="collapse-item" href="getItemsList">품목관리</a>
             <a class="collapse-item" href="getStocksList">입/출고관리</a>
-            <a class="collapse-item" href="getStoragesList">창고관리</a>
+            <a class="collapse-item" href="getStoragesListMap">창고관리</a>
             <a class="collapse-item" href="getDisposalList">폐기/불량</a>
           </div>
         </div>
@@ -99,7 +99,7 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">거래</h6>
             <a class="collapse-item" href="getBuyordersList">구매관리</a>
-            <a class="collapse-item" href="getSaleordersList">판매관리</a>
+            <a class="collapse-item" href="getSaleordersListMap">판매관리</a>
           </div>
         </div>
 	 </li>

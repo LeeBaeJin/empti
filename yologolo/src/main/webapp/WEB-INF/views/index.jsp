@@ -54,14 +54,8 @@
       }
     </script>
   </head>
-  <body>
-    <div id="columnchart_material" style="width: 800px; height: 500px;"></div>
-  </body>
-  <!-- End of data-chart -->
-  
-
-
-<div>사원이름: ${login.name} &nbsp;&nbsp;</div>
+    <div id="columnchart_material" style="width: 400px; height: 320px;"></div>
+    <div>사원이름: ${login.name} &nbsp;&nbsp;</div>
 <a href="getBuyledgerList">매입장부현황</a>
 <a href="setInsertFormBuyledger">매입장부등록</a><br/>
 
@@ -90,7 +84,7 @@
 <a href="setInsertFormDisposal">폐기/불량 등록</a><br/>
 <a href="setInsertFormStocks">입출고등록</a><br/>
 
-<a href="getSaleordersList">판매주문현황</a>
+<a href="getSaleordersListMap">판매주문현황</a>
 <a href="setInsertFormSaleorders">판매주문등록</a><br/>
 
 <a href="getBuyordersList">구매주문현황</a>
@@ -103,3 +97,5 @@
 <a href="logout">로그아웃</a>
 </c:if>
 
+  <!-- End of data-chart -->
+ 

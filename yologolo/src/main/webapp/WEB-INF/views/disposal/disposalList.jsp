@@ -8,8 +8,8 @@
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
 		<h6 class="m-0 font-weight-bold text-primary">
-			<a href="getSaleordersList">폐기 내역 </a> | <a
-				href="setInsertFormSaleorders">폐기 입력</a> | <a
+			<a href="getDisposalList">폐기 내역 </a> | <a
+				href="setInsertFormDisposal">폐기 입력</a> | <a
 				href="disposal_list.do">PDF</a>
 		</h6>
 	</div>

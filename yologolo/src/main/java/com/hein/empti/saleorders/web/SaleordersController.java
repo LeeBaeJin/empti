@@ -20,6 +20,7 @@ import com.hein.empti.saleorderdetails.service.SaleorderdetailsService;
 import com.hein.empti.saleorders.SaleordersVO;
 import com.hein.empti.saleorders.SorderMasterVO;
 import com.hein.empti.saleorders.service.SaleordersService;
+import com.hein.empti.storages.StoragesVO;
 
 @Controller
 public class SaleordersController {
@@ -41,10 +42,17 @@ public class SaleordersController {
 	}
 
 	// 상세조회를 뺀 판매주문 내역 전체 조회
-	@RequestMapping("/getSaleordersList")
-	public String getSaleordersList(Model model, SaleordersVO saleordersVO) {
-		model.addAttribute("saleordersList", saleordersService.getSaleordersList(saleordersVO));
-		return "admin/saleorders/saleordersList";
+//	@RequestMapping("/getSaleordersList")
+//	public String getSaleordersList(Model model, SaleordersVO saleordersVO) {
+//		model.addAttribute("saleordersList", saleordersService.getSaleordersList(saleordersVO));
+//		return "admin/saleorders/saleordersList";
+//	}
+	
+	// 판매주문 전체조회 Map
+	@RequestMapping("/getSaleordersListMap")
+	public String getSaleordersListMap(Model model, SaleordersVO saleordersVO) {
+		model.addAttribute("saleordersMap", saleordersService.getSaleordersListMap(saleordersVO));
+		return "admin/saleorders/saleordersList"; 
 	}
 
 	// 판매주문 시퀀스

@@ -1,6 +1,7 @@
 package com.hein.empti.buyorders.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,11 @@ public class BuyordersServiceImpl implements BuyordersService{
 	@Autowired BuyordersMapper buyordersMapper;
 	@Autowired BuyorderdetailsMapper buyorderdetailsMapper;
 	
+	@Override
+	public List<Map<String, Object>> getBuyordersListMap(BuyordersVO buyordersVO) {
+		return buyordersMapper.getBuyordersListMap(buyordersVO);
+	}
+
 	@Override
 	public List<BuyordersVO> getBuyordersList(BuyordersVO buyordersVO) {
 		return buyordersMapper.getBuyordersList(buyordersVO);

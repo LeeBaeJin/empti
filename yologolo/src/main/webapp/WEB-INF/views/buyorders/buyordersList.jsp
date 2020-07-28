@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <link href="resources/common/css/modal.css" rel="stylesheet" type="text/css">
@@ -70,11 +71,10 @@
 			<table class="table table-bordered" id="dataTable" width="100%"	cellspacing="0">
 				<thead>
 					<tr>
-						<th>주문번호</th>
 						<th>주문일자</th>
 						<th>구매합계</th>
-						<th>사원번호</th>
-						<th>거래처 코드</th>
+						<th>담당사원</th>
+						<th>거래처</th>
 						<th>반품</th>
 						<th>수정</th>
 						<th>삭제</th>
@@ -83,11 +83,13 @@
 				<tbody>
 					<c:forEach items="${buyordersList}" var="buy">
 						<tr>
-						<td><a class="buyorder01" href="getBuyorders?order_no=${buy.order_no}">${buy.order_no}</a></td>
 						<td>${buy.order_date}</td>
-						<td>${buy.buy_sum}</td>
-						<td>${buy.emp_id}</td>
-						<td>${buy.company_no}</td>
+						<td>
+						<fmt:parseNumber value="${buy.buy_sum}" var="fmt"/>
+						<fmt:formatNumber type="number" maxFractionDigits="3" value="${fmt}"/>
+						</td>
+						<td>${buy.name}</td>
+						<td>${buy.company_name}</td>
 						<td><button type="button" class="btnReturn">반품</button></td>
 						<td><button type="button" class="btnUpdate">수정</button></td>
 						<td><button type="button" class="btnDelete">삭제</button></td>
