@@ -4,7 +4,7 @@
 <mapper	namespace="com.hein.empti.buyorders.mapper.BuyordersMapper">
 	<!-- 구매주문 전체조회 -->
 	<select id="getBuyordersList" resultType="map">
-		SELECT  	order_date			"order_date",
+		SELECT  TO_CHAR(order_date, 'yyyy-MM-dd hh24:mi') "order_date",
 					buy_sum 			"buy_sum",
 					name				"name", 	
 					company_name		"company_name"
