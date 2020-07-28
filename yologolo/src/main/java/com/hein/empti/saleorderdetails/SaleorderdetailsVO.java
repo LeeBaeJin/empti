@@ -10,4 +10,8 @@ public class SaleorderdetailsVO {
 	String order_no;
 	String order_qty;
 	String item_no;
+	
+	//ITEMS JOIN
+	String item_name;
+	String item_price;
 }

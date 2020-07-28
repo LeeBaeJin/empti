@@ -1,6 +1,7 @@
 package com.hein.empti.saleorderdetails.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,8 +22,9 @@ public class SaleorderdetailsServiceImpl implements SaleorderdetailsService{
 	}
 
 	@Override
-	public List<SaleorderdetailsVO> getSaleorderdetailList(SaleorderdetailsVO vo) {
+	public List<Map<String, Object>> getSaleorderdetailList(SaleorderdetailsVO vo) {
 		return mapper.getSaleorderdetailList(vo);
 	}
+
 
 }
