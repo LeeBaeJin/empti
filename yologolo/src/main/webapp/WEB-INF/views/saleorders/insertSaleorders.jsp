@@ -50,6 +50,7 @@
 			contentType : "application/json",
 			success: function(saleSeq) {
 				ajaxInsert(saleSeq);
+				return "";
 			}, error: function() {
 				alert("시퀀스 실패.");
 			}
