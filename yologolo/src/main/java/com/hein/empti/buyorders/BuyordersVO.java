@@ -12,4 +12,7 @@ public class BuyordersVO {
 	String buy_sum;
 	String company_no;
 	String emp_id;
+	
+	//반품일
+	String return_date;
 }

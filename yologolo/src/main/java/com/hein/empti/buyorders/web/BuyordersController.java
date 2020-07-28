@@ -1,5 +1,7 @@
 package com.hein.empti.buyorders.web;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
@@ -12,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -88,9 +91,21 @@ public class BuyordersController {
 		return "redirect:../getBuyordersList";
 	}
 	
-	//반품처리(구매주문)
-	//@RequestMapping("/setReturnBuyorders")
+	//반품리스트(구매주문)
+	@RequestMapping(value = "/getReturnBuyordersList", method=RequestMethod.GET)
+	@ResponseBody
+	public List<BuyordersVO> getReturnBuyordersList(BuyordersVO buyordersVO) {
+		return buyordersService.getReturnBuyordersList(buyordersVO);
+	}
 	
+	//반품
+	@RequestMapping(value= "/setUpdateBuyordersRetrun/{order_no}", method=RequestMethod.GET)
+	@ResponseBody
+	public BuyordersVO setUpdateBuyordersRetrun(@PathVariable String order_no, @RequestBody BuyordersVO buyordersVO, Model model) {
+		buyordersVO.setOrder_no(order_no);
+		buyordersService.setUpdateBuyordersRetrun(buyordersVO);
+		return buyordersVO;
+	}
 	
 	
 	/*
