@@ -38,7 +38,7 @@ public class SaleordersController {
 	@RequestMapping("/getSaleorderdetailList")
 	public String getSaleorders(SaleorderdetailsVO vo, Model model) {
 		model.addAttribute("details",saleorderdetailsService.getSaleorderdetailList(vo));
-		return "admin/saleorderdetails/saleorderdetailList";
+		return "saleorderdetails/saleorderdetailList";
 	}
 
 	// 상세조회를 뺀 판매주문 내역 전체 조회

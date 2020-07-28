@@ -3,6 +3,17 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<html>
+<head>
+<script type="text/javascript">
+	function orderDetails(order_no) {
+		window.open('getSaleorderdetailList?order_no=' + order_no,
+					'saleorderdetails',
+					'width=800, height=250, left=150, top=250, location=no, status=no, scrollbars=yes');
+		return false;
+	}
+</script>
+</head>
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
 		<h6 class="m-0 font-weight-bold text-primary">
@@ -27,7 +38,7 @@
 					<c:forEach items="${saleordersMap}" var="sale">
 						<tr>
 						<td>
-						${sale.order_date}
+						 <a href="javascript:void(0);" onclick="orderDetails(${sale.order_no});">${sale.order_date}</a>
 						</td>
 						<td>
 						<fmt:parseNumber value="${sale.sale_sum}" var="fmt"/>
@@ -43,3 +54,4 @@
 		</div>
 	</div>
 </div>
+</html>

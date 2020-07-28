@@ -2,10 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hein.empti.saleorderdetails.mapper.SaleorderdetailsMapper">
 	
-	<select id="getSaleorderdetailList" parameterType="com.hein.empti.saleorderdetails.SaleorderdetailsVO">
-	  SELECT *
-	  FROM saleorderdetails
-	  WHERE order_no = #{order_no}
+	<select id="getSaleorderdetailList" parameterType="SaleorderdetailsVO" resultType="map">
+	  SELECT i.item_name "item_name", s.order_qty "order_qty", i.item_price "item_price"
+		FROM items i JOIN saleorderdetails s
+		ON   (i.item_no = s.item_no)
+		WHERE s.order_no = ${order_no}
 	</select>
 	
 	<insert id="setSaleorderdetailInsert" parameterType="java.util.List">
