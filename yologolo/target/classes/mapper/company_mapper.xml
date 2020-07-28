@@ -5,13 +5,20 @@
 <mapper namespace="com.hein.empti.company.mapper.CompanyMapper">
    <!-- #{}, test 는 VO에 있는 필드를 가져오는거다 -->
 
-   <!-- 전체조회 -->
+   <!-- 단건조회 -->
    <select id="getCompany" parameterType="CompanyVO" resultType="CompanyVO">
       SELECT *
       FROM Companies
       WHERE company_no = #{company_no}
    </select>
-	
+   
+   <!-- 전체조회 Map (Excel) -->
+   <select id="getCompanyMap" parameterType="CompanyVO" resultType="map">
+      SELECT *
+      FROM Companies
+      ORDER BY company_no
+   </select>
+   
 	<!-- 회사코드, 회사명만 조회. -->
 	<select id="findCompany" parameterType="companyVO" resultType="companyVO">
 		SELECT company_no, company_name
