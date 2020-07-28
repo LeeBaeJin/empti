@@ -7,7 +7,7 @@ import com.hein.empti.buyorders.BuyordersVO;
 import com.hein.empti.buyorders.OrderMasterVO;
 
 public interface BuyordersService {
-	public List<BuyordersVO> getBuyordersList(BuyordersVO buyordersVO);
+	//public List<BuyordersVO> getBuyordersList(BuyordersVO buyordersVO);
 	public BuyordersVO getBuyorders(BuyordersVO buyordersVO);
 	public void setInsertBuyorders(OrderMasterVO mVO);
 	public void setUpdateBuyorders(BuyordersVO buyordersVO);

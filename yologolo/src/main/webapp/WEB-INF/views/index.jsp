@@ -87,7 +87,7 @@
 <a href="getSaleordersListMap">판매주문현황</a>
 <a href="setInsertFormSaleorders">판매주문등록</a><br/>
 
-<a href="getBuyordersList">구매주문현황</a>
+<a href="getBuyordersListForm">구매주문현황</a>
 <a href="setInsertFormBuyorders">구매주문등록</a><br/>
 
 <a href="Buydetail">구매상세주문-테스트-</a><br/>

@@ -6,7 +6,7 @@ import java.util.Map;
 import com.hein.empti.buyorders.BuyordersVO;
 
 public interface BuyordersMapper {
-	public List<BuyordersVO> getBuyordersList(BuyordersVO buyordersVO);
+	//public List<BuyordersVO> getBuyordersList(BuyordersVO buyordersVO);
 	public BuyordersVO getBuyorders(BuyordersVO buyordersVO);
 	public void setInsertBuyorders(BuyordersVO buyordersVO);
 	public void setUpdateBuyorders(BuyordersVO buyordersVO);

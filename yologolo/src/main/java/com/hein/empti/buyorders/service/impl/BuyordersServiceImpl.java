@@ -23,10 +23,10 @@ public class BuyordersServiceImpl implements BuyordersService{
 		return buyordersMapper.getBuyordersListMap(buyordersVO);
 	}
 
-	@Override
-	public List<BuyordersVO> getBuyordersList(BuyordersVO buyordersVO) {
-		return buyordersMapper.getBuyordersList(buyordersVO);
-	}
+//	@Override
+//	public List<BuyordersVO> getBuyordersList(BuyordersVO buyordersVO) {
+//		return buyordersMapper.getBuyordersList(buyordersVO);
+//	}
 
 	@Override
 	public BuyordersVO getBuyorders(BuyordersVO buyordersVO) {

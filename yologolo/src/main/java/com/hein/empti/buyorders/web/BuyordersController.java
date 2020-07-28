@@ -1,12 +1,13 @@
 package com.hein.empti.buyorders.web;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-import org.junit.Ignore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -34,17 +35,16 @@ public class BuyordersController {
 	DataSource datasource;
 
 	// 상세조회를 뺀 구매주문 내역 전체 조회
-	@RequestMapping("/getBuyordersList") @Ignore
+	@RequestMapping("/getBuyordersListForm")
 	public String getBuyordersList(BuyordersVO buyordersVO, Model model) {
-		model.addAttribute("buyordersList", buyordersService.getBuyordersList(buyordersVO));
 		return "admin/buyorders/buyordersList";
 	}
 	
 	//join문 map 전체 조회.
-	@RequestMapping("/getBuyordersListMap")
-	public String getBuyordersListMap(BuyordersVO buyordersVO, Model model) {
-		model.addAttribute("buyordersList", buyordersService.getBuyordersListMap(buyordersVO));
-		return "admin/buyorders/buyordersList";
+	@RequestMapping(value= "/getBuyordersListMap", method=RequestMethod.GET)
+	@ResponseBody
+	public List<Map<String, Object>> getBuyordersListMap(BuyordersVO buyordersVO, Model model) {
+		return buyordersService.getBuyordersListMap(buyordersVO);
 	}
 	
 
@@ -82,13 +82,16 @@ public class BuyordersController {
 	}
 
 	//삭제처리(구매주문)
-	@RequestMapping("/setDeleteBuyorders/{order_no}")
-	public String setDeleteBuyorders(@PathVariable String order_no,BuyordersVO buyordersVO,BuyorderdetailsVO buyorderdetailsVO) {
+	@RequestMapping(value = "/setDeleteBuyorders/{order_no}", method=RequestMethod.DELETE)
+	@ResponseBody
+	public Map setDeleteBuyorders(@PathVariable String order_no,BuyordersVO buyordersVO,BuyorderdetailsVO buyorderdetailsVO) {
 		buyorderdetailsVO.setOrder_no(order_no);
 		buyordersVO.setOrder_no(order_no);	
 		buyorderdetailsService.setBuyorderdetailDelete(buyorderdetailsVO);
 		buyordersService.setDeleteBuyorders(buyordersVO);
-		return "redirect:../getBuyordersList";
+		Map map = new HashMap<String, Object>();
+		map.put("result", Boolean.TRUE);
+		return map;
 	}
 	
 	//반품리스트(구매주문)
@@ -99,9 +102,9 @@ public class BuyordersController {
 	}
 	
 	//반품
-	@RequestMapping(value= "/setUpdateBuyordersRetrun/{order_no}", method=RequestMethod.GET)
+	@RequestMapping(value= "/setUpdateBuyordersRetrun/{order_no}", method=RequestMethod.PUT)
 	@ResponseBody
-	public BuyordersVO setUpdateBuyordersRetrun(@PathVariable String order_no, @RequestBody BuyordersVO buyordersVO, Model model) {
+	public BuyordersVO setUpdateBuyordersRetrun(@PathVariable String order_no, BuyordersVO buyordersVO, Model model) {
 		buyordersVO.setOrder_no(order_no);
 		buyordersService.setUpdateBuyordersRetrun(buyordersVO);
 		return buyordersVO;

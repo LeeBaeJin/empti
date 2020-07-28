@@ -6,12 +6,44 @@
 <script>
 	
 	$(function(){
+		buyorderSelect();
+		
 		buyorderDelete();
 		
 		returnList();
 		
 		retrunUpdate();
 	});
+	
+	//전체 조회
+	function buyorderSelect() {
+		$.ajax({
+			url: 'getBuyordersListMap',
+			type: 'GET',
+			dataType: 'json',
+			success: BuyordersResult,
+			error:function(xhr,status, msg){
+				alert("전체 상태값: " + status + " 에러 메세지: "+ msg)
+			}
+		});
+	}
+	
+	function BuyordersResult(data) {
+		$('#tbodyBuyorders').empty();
+		$.each(data, function(inx, item){
+	         $('<tr>')
+	         .append($('<td>').html(item.order_date))
+	         .append($('<td>').html(item.buy_sum))
+	         .append($('<td>').html(item.name))
+	         .append($('<td>').html(item.company_name))
+	         .append($('<td>').html('<button id=\'btnReturn\'>반품</button>'))
+	         .append($('<td>').html('<button id=\'btnUpdate\'>수정</button>'))
+	         .append($('<td>').html('<button id=\'btnDelete\'>삭제</button>'))
+	         .append($('<td style="display:none;" id=\'hidden_order_no\'>').val(item.order_no))
+	         .appendTo('#tbodyBuyorders');
+		});
+		
+	}
 	
 	//반품조회 처리
 	function returnList() {
@@ -21,7 +53,7 @@
 			dataType: 'json',
 			success: BuyordersReturnResult,
 			error:function(xhr,status, msg){
-				alert("상태값: " + status + " 에러 메세지: "+ msg)
+				alert("반품 상태값: " + status + " 에러 메세지: "+ msg)
 			}
 		});
 	
@@ -29,18 +61,19 @@
 	
 	//반품 버튼
 	function retrunUpdate() {
-		$('.btnReturn').on('click', function(){
-			var order_no = $('#tbodyReturn').find("#hidden_order_no").val();
+		$('#tbodyBuyorders').on('click', '#btnReturn', function(){
+			var order_no = $(this).closest('tr').find('#hidden_order_no').val();
 			console.log(order_no);
 			$.ajax({
 				url: "setUpdateBuyordersRetrun/" + order_no,
-				type: 'GET',
+				type: 'PUT',
 				dataType: 'json',
 				success:  function(data){
+					buyorderSelect();
 					returnList();
 				}						
 			});	
-		});
+		})
 	}	
 	
 	//반품조회
@@ -53,30 +86,37 @@
 	         .append($('<td>').html(item.buy_sum))
 	         .append($('<td>').html(item.company_no))
 	         .append($('<td>').html(item.emp_id))
-	         .append($('<input type=\'hidden\' id=\'hidden_order_no\'>').val(item.order_no))
+	         .append($('<td style="display:none;" id=\'hidden_order_no\'>').val(item.order_no))
 	         .appendTo('#tbodyReturn');
 		});
 	}
 
-
-
-	
-		
-	
 	//삭제 버튼
-		function buyorderDelete(){
-		$('.btnDelete').on("click", function() {
-			var order_no = $(this).closest('tr').find('.buyorder01').text();
+	function buyorderDelete(){
+		$('#tbodyBuyorders').on('click','#btnDelete', function() {
+			var order_no = $(this).closest('tr').find('#hidden_order_no').val();
 			console.log(order_no);
 			var result = confirm(order_no +"번 구매주문을 삭제하시겠습니까?"); 
-			if(result)
-	            location.href="setDeleteBuyorders/" + order_no;
-		    else 
-		        	return false;
+			if(result){
+				$.ajax({
+					url: 'setDeleteBuyorders/' + order_no,
+					type: 'DELETE',
+					contentType:'application/json;charset=utf-8',
+					dataType:'json',
+					success: function(data) {
+						console.log(data.result);
+						buyorderSelect();
+						returnList();			
+					}
+					
+				});
+			}
+		    else {
+		    	return false;
+		    }
+		        	
 		});
 	}
-		
-
 	
 
 
@@ -99,35 +139,22 @@
 						<th>구매합계</th>
 						<th>담당사원</th>
 						<th>거래처</th>
+						<th style="display:none;">주문번호</th>
 						<th>반품</th>
 						<th>수정</th>
 						<th>삭제</th>
 					</tr>
 				</thead>
-				<tbody>
-					<c:forEach items="${buyordersList}" var="buy">
-						<tr>
-						<td>${buy.order_date}</td>
-						<td>
-						<fmt:parseNumber value="${buy.buy_sum}" var="fmt"/>
-						<fmt:formatNumber type="number" maxFractionDigits="3" value="${fmt}"/>
-						</td>
-						<td>${buy.name}</td>
-						<td>${buy.company_name}</td>
-						<input type="hidden" value="${buy.order_no}" class="hidden_order_no">
-						<td><button type="button" class="btnReturn">반품</button></td>
-						<td><button type="button" class="btnUpdate">수정</button></td>
-						<td><button type="button" class="btnDelete">삭제</button></td>
-						</tr>
-					</c:forEach>
-				</tbody>
+				<tbody id="tbodyBuyorders">	</tbody>
 			</table>
+		</div>
+	</div>
 			<hr/>
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
 		<div class="card-body">
 			<div class="table-responsive">
-				<table class="table table-bordered" id="dataTable">
+				<table class="table table-bordered">
 					<thead>
 						<tr>
 							<th>주문일자</th>
