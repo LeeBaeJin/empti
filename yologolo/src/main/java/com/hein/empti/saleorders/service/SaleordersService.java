@@ -10,7 +10,7 @@ public interface SaleordersService {
 	public List<SaleordersVO> getSaleordersList(SaleordersVO saleordersVO);	
 	public SaleordersVO getSaleorders(SaleordersVO saleordersVO);
 	public void setInsertSaleorders(SorderMasterVO sorderMasterVO);
-	public void setUpdateSaleorders(SaleordersVO saleordersVO);
+	public void setUpdateSaleorders(List<SaleordersVO> sList);
 	public void setDeleteSaleorders(SaleordersVO saleordersVO);
 	
 	//시퀀스 조회

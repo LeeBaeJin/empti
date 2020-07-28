@@ -6,6 +6,42 @@
 <html>
 <head>
 <script type="text/javascript">
+	//페이지 로드
+	$(function(){
+		//데이터 테이블 주문일자 역 정렬
+		$('#dataTable').DataTable({
+			  order: [[0, 'desc']],
+			  ordering: true,
+			  serverSide: false
+		});
+		//옵션 태그의 값을 입력받아서 전체 수정
+		var tr = $('#tblBody').children();
+		console.log(tr.children());
+		var selDel = [];
+		$.each(tr, function(idx , item) {
+			var obj = {};
+			obj['order_no'] = $('input[name=order_no]').val();
+			console.log(obj['order_no']);
+			obj['sale_del'] = $('select[name="sale_del"] option:selected').val();  
+			selDel.push(obj);
+		});
+		console.log(selDel);
+		var datas = {list: selDel}
+		$('#delUpdate').on('click', function(order_no) {
+				$.ajax ({
+					url: "setUpdateDelstatus",
+					type: "POST",
+					data: JSON.stringify(datas),
+					contentType : "application/json",
+					success: function() {
+					alert("성공적으로 수정하였습니다.");
+				}, error: function() {
+					alert("수정을 실패하였습니다.");
+				}
+			});
+		});
+	});
+	//주문일자를 누르면 상세정보를 새창으로 띄워주는 소스
 	function orderDetails(order_no) {
 		window.open('getSaleorderdetailList?order_no=' + order_no,
 					'saleorderdetails',
@@ -14,10 +50,11 @@
 	}
 </script>
 </head>
+
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
 		<h6 class="m-0 font-weight-bold text-primary">
-			<a href="getSaleordersList">판매주문 내역 </a> | 
+			<a href="getSaleordersListMap">판매주문 내역 </a> | 
 			<a href="setInsertFormSaleorders">판매주문 입력</a> |
 			<a href="saleorders_list.do">PDF</a>
 		</h6>
@@ -29,12 +66,12 @@
 					<tr>
 						<th>주문일자</th>
 						<th>판매합계</th>
-						<th>배송상태</th>
+						<th>배송상태&nbsp;<button class="btn btn-success btn-sm" type="button" id="delUpdate" style="">수정</button></th>
 						<th>담당사원</th>
 						<th>거래처</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody id="tblBody">
 					<c:forEach items="${saleordersMap}" var="sale">
 						<tr>
 						<td>
@@ -44,9 +81,15 @@
 						<fmt:parseNumber value="${sale.sale_sum}" var="fmt"/>
 						<fmt:formatNumber type="number" maxFractionDigits="3" value="${fmt}"/>
 						</td>
-						<td>${sale.del_status}</td>
+						<td><select name="sale_del">
+						<option>${sale.del_status}</option>
+						<option value="배송준비중">배송준비중</option>
+						<option value="배송중">배송중</option>
+						<option value="배송완료">배송완료</option>
+						</select></td>
 						<td>${sale.name}</td>
 						<td>${sale.company_name}</td>
+						<input type="hidden" name="order_no" value="${sale.order_no}">  <!--다중 업데이트의 조건을 받기위한 히든 데이터 -->
 						</tr>
 					</c:forEach>
 				</tbody>

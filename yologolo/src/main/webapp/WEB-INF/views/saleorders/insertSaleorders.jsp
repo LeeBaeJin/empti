@@ -50,7 +50,7 @@
 			contentType : "application/json",
 			success: function(saleSeq) {
 				ajaxInsert(saleSeq);
-				return "";
+				return window.location.href="getSaleordersListMap";
 			}, error: function() {
 				alert("시퀀스 실패.");
 			}
@@ -73,7 +73,7 @@
 				    'del_status':om_no5,
 				    'order_no': saleSeq}
 		
-		//구매상세주문의 데이터
+		//판매상세주문의 데이터
 		var tr = $('#tblBody').children();
 		var td = [];
 		$.each(tr, function(idx , item) {
@@ -83,6 +83,7 @@
 			obj['order_qty'] = $(item).children().eq(1).text();
 			td.push(obj);
 		})
+		//판매주문의 데이터는 vo객체에, 판매상세주문의 데이터는 List에 담아서 Insert
 		var datas = {vo: mObj, list:td}
 			$.ajax ({
 				url: "setInsertSaleorders",
@@ -96,9 +97,7 @@
 			}
 		});
 	}
-
 </script>
-
 <div>
 	<h1>판매주문 입력</h1>
 	<form action="setInsertSaleorders">

@@ -1,5 +1,7 @@
 package com.hein.empti.saleorders.web;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
@@ -77,15 +79,11 @@ public class SaleordersController {
 		return "redirect:getSaleordersList";
 	}
 
-	// 수정폼
-	@RequestMapping("/setUpdateFormSaleorders")
-	public String setUpdateFormSaleorders(SaleordersVO saleordersVO) {
-		return "admin/saleorders/UpdateSaleorders";
-	}
-
 	// 수정처리
 	@RequestMapping("/setUpdateSaleorders")
-	public String setUpdateFormSaleorders(Model model, SaleordersVO saleordersVO) {
+	@ResponseBody
+	public String setUpdateSaleorders(@RequestBody List<SaleordersVO> sList) {
+		saleordersService.setUpdateSaleorders(sList);
 		return "redirect:getSaleordersList";
 	}
 

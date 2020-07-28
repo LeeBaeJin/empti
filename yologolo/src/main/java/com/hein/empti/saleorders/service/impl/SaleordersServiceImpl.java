@@ -36,9 +36,8 @@ public class SaleordersServiceImpl implements SaleordersService{
 	}
 	
 	@Override
-	public void setUpdateSaleorders(SaleordersVO saleordersVO) {
-		saleordersVO.setOrder_date(saleordersVO.getOrder_date().replace('T', ' '));
-		saleordersMapper.setUpdateSaleorders(saleordersVO);
+	public void setUpdateSaleorders(List<SaleordersVO> sList) {
+		saleordersMapper.setUpdateSaleorders(sList);
 	}
 
 	@Override
