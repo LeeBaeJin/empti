@@ -47,14 +47,14 @@ public class CompanyController {
 		model.addAttribute("companyList", companyService.getCompanyList(companyVO));
 		return "admin/company/companyList";
 	}
-	
+
 	// 회사코드, 회사명만 조회.
 	@RequestMapping("/findCompany")
 	public String findComapny(Model model, CompanyVO companyVO) {
 		model.addAttribute("findCompanyList", companyService.findCompany(companyVO));
 		return "common/findCompany";
 	}
-	
+
 	// 등록폼
 	@RequestMapping("/setInsertFormCompany")
 	public String setInsertFormCompany(CompanyVO companyVO) {
@@ -107,15 +107,26 @@ public class CompanyController {
 	 * conn); JasperExportManager.exportReportToPdfStream(jasperPrint,
 	 * response.getOutputStream()); }
 	 */
-	
-	//view resolver 방식 pdf 출력
+
+	// view resolver 방식 pdf 출력
 	@RequestMapping("companyPdf.do")
-	public ModelAndView getSaleLedgerListReport(HttpServletRequest request, HttpServletResponse response) throws Exception
-	{
-	ModelAndView mv = new ModelAndView();
-	mv.setViewName("pdfView");
-	mv.addObject("filename", "/reports/companyPdf.jrxml");
-	return mv;
+	public ModelAndView getSaleLedgerListReport(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("pdfView");
+		mv.addObject("filename", "/reports/companyPdf.jrxml");
+		return mv;
 	}
-	
+
+	// excel 출력
+	@RequestMapping("companyexcel.do")
+	public ModelAndView companyexcel(CompanyVO vo) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("commonExcelView");
+		mv.addObject("datas", companyService.getCompanyMap(vo));// Map객체를 조회해서 시트를 생성한다.
+		mv.addObject("filename", "companylist");// 파일이름을 바꿔준다.
+		//mv.addObject("headers", new String[] { "company_no", "company_name","phone","address","ceo_name","bank_name","account_no","dealer_name","dealer_phone","note" }); // 헤더의 값만 출력된다.
+		return mv;
+	}
+
 }
