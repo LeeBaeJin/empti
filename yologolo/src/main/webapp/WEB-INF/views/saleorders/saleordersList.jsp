@@ -6,6 +6,8 @@
 <html>
 <head>
 <script type="text/javascript">
+	
+	var selDel = [];
 	//페이지 로드
 	$(function(){
 		//데이터 테이블 주문일자 역 정렬
@@ -16,31 +18,40 @@
 		});
 		//옵션 태그의 값을 입력받아서 전체 수정
 		var tr = $('#tblBody').children();
-		console.log(tr.children());
-		var selDel = [];
+		
 		$.each(tr, function(idx , item) {
 			var obj = {};
-			obj['order_no'] = $('input[name=order_no]').val();
-			console.log(obj['order_no']);
-			obj['sale_del'] = $('select[name="sale_del"] option:selected').val();  
+			obj['order_no'] = $(item).children().eq(5).children().val();
+			obj['del_status'] = $(item).children().eq(2).children().val();  
+			console.log(obj['del_status']);
 			selDel.push(obj);
 		});
 		console.log(selDel);
-		var datas = {list: selDel}
-		$('#delUpdate').on('click', function(order_no) {
+		$('#tblhead').on('click', '#delUpdate', function() {
 				$.ajax ({
-					url: "setUpdateDelstatus",
+					url: "setUpdateSaleorders",
 					type: "POST",
-					data: JSON.stringify(datas),
+					data: JSON.stringify(selDel),
 					contentType : "application/json",
 					success: function() {
 					alert("성공적으로 수정하였습니다.");
-				}, error: function() {
+				},  error: function() {
 					alert("수정을 실패하였습니다.");
 				}
 			});
 		});
+		
 	});
+	function selChk(orderNo, orderDel) {
+		var orId = orderNo;
+		var orSta = $(orderDel).val();
+		for (var i=0; i<selDel.length; i++) {
+			if(selDel[i].order_no == orId) {
+				selDel[i].del_status = orSta; 
+			}
+		}
+		console.log(selDel);
+	}
 	//주문일자를 누르면 상세정보를 새창으로 띄워주는 소스
 	function orderDetails(order_no) {
 		window.open('getSaleorderdetailList?order_no=' + order_no,
@@ -62,13 +73,14 @@
 	<div class="card-body">
 		<div class="table-responsive">
 			<table class="table table-bordered" id="dataTable" style="width: 100%; cellspacing=0;">
-				<thead>
+				<thead id="tblhead">
 					<tr>
 						<th>주문일자</th>
 						<th>판매합계</th>
 						<th>배송상태&nbsp;<button class="btn btn-success btn-sm" type="button" id="delUpdate" style="">수정</button></th>
 						<th>담당사원</th>
 						<th>거래처</th>
+						<th style="display: none;"/>
 					</tr>
 				</thead>
 				<tbody id="tblBody">
@@ -81,7 +93,7 @@
 						<fmt:parseNumber value="${sale.sale_sum}" var="fmt"/>
 						<fmt:formatNumber type="number" maxFractionDigits="3" value="${fmt}"/>
 						</td>
-						<td><select name="sale_del">
+						<td><select id="del_status" name="del_status" onchange="selChk(${sale.order_no}, this)">
 						<option>${sale.del_status}</option>
 						<option value="배송준비중">배송준비중</option>
 						<option value="배송중">배송중</option>
@@ -89,7 +101,10 @@
 						</select></td>
 						<td>${sale.name}</td>
 						<td>${sale.company_name}</td>
-						<input type="hidden" name="order_no" value="${sale.order_no}">  <!--다중 업데이트의 조건을 받기위한 히든 데이터 -->
+						<!--다중 업데이트의 조건을 받기위한 히든 데이터 -->
+						<td style="display: none;">
+						<input type="hidden" name="order_no" value="${sale.order_no}">  
+						</td>
 						</tr>
 					</c:forEach>
 				</tbody>
