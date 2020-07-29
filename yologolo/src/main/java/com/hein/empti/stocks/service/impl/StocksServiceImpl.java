@@ -18,6 +18,8 @@ public class StocksServiceImpl implements StocksService {
 	//단건조회
 	@Override
 	public StocksVO getStocks(StocksVO stocksVO) {
+		
+
 		return stocksMapper.getStocks(stocksVO);
 	}
 	
@@ -37,6 +39,7 @@ public class StocksServiceImpl implements StocksService {
 	//수정
 	@Override
 	public void setUpdateStocks(StocksVO stocksVO) {
+		stocksVO.setStock_date(stocksVO.getStock_date().replace('T', ' '));
 			stocksMapper.setUpdateStocks(stocksVO);
 	}
 

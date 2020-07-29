@@ -23,10 +23,10 @@ public class BuyordersServiceImpl implements BuyordersService{
 		return buyordersMapper.getBuyordersListMap(buyordersVO);
 	}
 
-	@Override
-	public List<BuyordersVO> getBuyordersList(BuyordersVO buyordersVO) {
-		return buyordersMapper.getBuyordersList(buyordersVO);
-	}
+//	@Override
+//	public List<BuyordersVO> getBuyordersList(BuyordersVO buyordersVO) {
+//		return buyordersMapper.getBuyordersList(buyordersVO);
+//	}
 
 	@Override
 	public BuyordersVO getBuyorders(BuyordersVO buyordersVO) {
@@ -51,9 +51,15 @@ public class BuyordersServiceImpl implements BuyordersService{
 	
 	
 	
+	//반품
 	@Override
-	public void setReturnBuyorders(BuyordersVO buyordersVO) {
-		buyordersMapper.setReturnBuyorders(buyordersVO);
+	public List<BuyordersVO> getReturnBuyordersList(BuyordersVO buyordersVO) {
+		return buyordersMapper.getReturnBuyordersList(buyordersVO);
+	}
+
+	@Override
+	public void setUpdateBuyordersRetrun(BuyordersVO buyordersVO) {
+		buyordersMapper.setUpdateBuyordersRetrun(buyordersVO);
 	}
 
 	//시퀀스 조회

@@ -3,7 +3,6 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.hein.empti.saleorders.mapper.SaleordersMapper">
-	<!-- #{}, test 는 VO에 있는 필드를 가져오는거다 -->
 
 	<!-- 판매주문단건조회 -->
 	<select id="getSaleorders" parameterType="SaleordersVO"	resultType="SaleordersVO">
@@ -29,7 +28,7 @@
 		FROM employees e 
 		JOIN saleorders s ON (e.emp_id = s.emp_id)
 		JOIN companies c ON (s.company_no = c.company_no)
-		ORDER BY order_date DESC
+		ORDER BY 2 DESC
 	</select>
 	
 	<!-- 판매주문 시퀀스조회 -->
@@ -56,22 +55,16 @@
 		#{emp_id},
 		#{company_no})
 	</insert>
-
-	<!-- 판매주문수정 -->
-	<update id="setUpdateSaleorders" parameterType="SaleordersVO">
-		UPDATE SALEORDERS
-		<set>
-			<if test="order_no != null">ORDER_NO = #{order_no},</if>
-			<if test="order_date != null">ORDER_DATE = #{order_date},</if>
-			<if test="sale_sum != null">SALE_SUM = #{sale_sum},</if>
-			<if test="del_status != null">DEL_STATUS = #{del_status},</if>
-			<if test="emp_id != null">EMP_ID = #{emp_id},</if>
-			<if test="company_no != null">COMPANY_NO = #{company_no},</if>
-		</set>
-		WHERE
-		ORDER_NO = #{order_no}
+	
+	<!-- 판매주문 배송상태 수정 -->
+	<update id="setUpdateSaleorders" parameterType="java.util.List">
+	    <foreach collection="list" item="item" separator=";" open="DECLARE BEGIN" close="; END;">
+			UPDATE saleorders
+			SET del_status = #{item.del_status}
+			WHERE order_no = #{item.order_no}
+		</foreach>
 	</update>
-
+	
 	<!-- 판매주문삭제 -->
 	<!-- <delete id="setDeleteSaleorders" parameterType="SaleordersVO"> DELETE 
 		FROM SALEORDERS WHERE ORDER_NO = #{order_no} </delete> -->
