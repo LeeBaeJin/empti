@@ -8,7 +8,7 @@
 		<a href="getCompanyList">거래처 목록</a> | 
 		<a href="setInsertFormCompany">거래처 입력</a> |
 		<a href="companyPdf.do">PDF</a> |
-		<a href="companyexcel.do">EXCEL</a>
+		<a href="company_excel.do">EXCEL</a>
 		</h6>
 	</div>
 	<div class="card-body">

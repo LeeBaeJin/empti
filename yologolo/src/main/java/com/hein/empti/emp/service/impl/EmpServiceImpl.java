@@ -48,4 +48,9 @@ public class EmpServiceImpl implements EmpService {
 	public List<Map<String, Object>> getDeptEmpCnt() {
 		return empMapper.getDeptEmpCnt();
 	}
+
+	@Override
+	public List<Map<String, Object>> getEmpMap(EmpVO vo) {
+		return empMapper.getEmpMap(vo);
+	}
 }

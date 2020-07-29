@@ -7,7 +7,8 @@
 		<h6 class="m-0 font-weight-bold text-primary">
 		<a href="getDeptList">부서 목록</a> | 
 		<a href="setInsertFormDept">부서 입력</a> |
-		<a href="departments_list.do">PDF</a>
+		<a href="departments_list.do">PDF</a> |
+		<a href="dept_excel.do">EXCEL</a>
 		
 		</h6>
 	</div>

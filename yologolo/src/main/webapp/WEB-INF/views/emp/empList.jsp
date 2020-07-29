@@ -43,7 +43,8 @@ $(function() {
 		<h6 class="m-0 font-weight-bold text-primary">
 		<a href="getEmpList">사원 목록</a> | 
 		<a href="setInsertFormEmp">사원 등록</a> |
-		<a href="employees_list.do">PDF</a>
+		<a href="employees_list.do">PDF</a> |
+		<a href="emp_excel.do">EXCEL</a> 
 		
 		</h6>
 	</div>

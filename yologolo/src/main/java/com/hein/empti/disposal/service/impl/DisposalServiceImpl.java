@@ -1,9 +1,11 @@
 package com.hein.empti.disposal.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 import com.hein.empti.disposal.DisposalVO;
 import com.hein.empti.disposal.mapper.DisposalMapper;
@@ -35,6 +37,13 @@ public class DisposalServiceImpl implements DisposalService{
 	public void setUpdateDisposal(DisposalVO disposalVO) {
 		disposalMapper.setUpdateDisposal(disposalVO);
 	}
+
+	@Override
+	public List<Map<String, Object>> getDisposalMap(DisposalVO vo) {
+		
+		return disposalMapper.getDisposalMap(vo);
+	}
+
 
 	
 		

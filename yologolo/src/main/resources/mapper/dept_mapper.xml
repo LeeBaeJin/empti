@@ -11,6 +11,11 @@
 		ORDER BY dept_id
 	</select>
 	
+	<!-- dept_view 전체조회 Map(Excel) -->
+	<select id="getDeptMap"  resultType="map" parameterType="DeptVO">
+		select*from dept_view
+	</select>
+	
 	<select id="getDeptList"  resultType="DeptVO" parameterType="DeptVO">
 		select * 
 		from departments

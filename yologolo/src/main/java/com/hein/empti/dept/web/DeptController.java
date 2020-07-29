@@ -1,7 +1,6 @@
 package com.hein.empti.dept.web;
 
-import java.io.InputStream;
-import java.sql.Connection;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,11 +19,7 @@ import com.hein.empti.dept.service.DeptService;
 import com.hein.empti.emp.EmpVO;
 import com.hein.empti.emp.service.EmpService;
 
-import net.sf.jasperreports.engine.JasperExportManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.util.JRLoader;
+
 
 @Controller
 public class DeptController {
@@ -99,5 +94,16 @@ public class DeptController {
 	mv.addObject("filename", "/reports/departments_list.jrxml");
 	return mv;
 	}
+	
+	// excel 출력
+		@RequestMapping("dept_excel.do")
+		public ModelAndView deptexcel(DeptVO vo) {
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("commonExcelView");
+			mv.addObject("datas", deptService.getDeptMap(vo));// Map객체를 조회해서 시트를 생성한다.
+			mv.addObject("filename", "deptlist");// 파일이름을 바꿔준다.
+			mv.addObject("headers", new String[] { "부서번호", "부서명","부서장사원번호","부서장성명","사원수"}); // 헤더의 값만 출력된다.
+			return mv;
+		}
 
 }
