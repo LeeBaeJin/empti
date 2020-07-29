@@ -54,6 +54,15 @@ public class BuyordersController {
 		model.addAttribute("buyorders", buyordersService.getBuyorders(buyordersVO));
 		return "buyorders/buyorderdetails";
 	}
+	
+	//상세정보 새창
+	@RequestMapping("/getBuyorderdetailList")
+	public String getBuyorderdetailList(BuyorderdetailsVO buyorderdetailsVO, Model model) {
+		model.addAttribute("buyDetails", buyorderdetailsService.getBuyorderdetailList(buyorderdetailsVO));
+		return "buyorderdetails/buyorderdetailList";
+	}
+	
+	
 	// 구매주문 시퀀스
 	@RequestMapping("/getBuySeq")
 	@ResponseBody
