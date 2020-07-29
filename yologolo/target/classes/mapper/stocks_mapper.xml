@@ -44,7 +44,7 @@
 			UPDATE stocks 
 				 <set> 	   
 				      <if test="stock_qty != null">stock_qty=#{stock_qty},</if>
-				      <if test="stock_date != null">stock_date=To_date(#{stock_date},'yyyy-MM-dd hh24:mi:ss'),</if>
+				      <if test="stock_date != null">stock_date=To_date(#{stock_date},'yyyy-MM-dd hh24:mi'),</if>
 				      <if test="note != null">note=#{note},</if>
 				      <if test="stock_price != null">stock_price=#{stock_price},</if>
 				      <if test="stock_category != null">stock_category=#{stock_category},</if>

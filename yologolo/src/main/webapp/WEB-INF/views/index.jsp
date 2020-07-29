@@ -77,7 +77,7 @@
 <a href="getStoragesListMap">창고목록</a>
 <a href="setInsertFormStorages">창고등록</a><br/>
 
-<a href="getStocksList">입출고내역</a>
+<a href="setStocksForm">입출고내역</a>
 <a href="setInsertFormStocks">입출고등록</a><br/>
 
 <a href="getDisposalList">폐기/불량 목록</a>
