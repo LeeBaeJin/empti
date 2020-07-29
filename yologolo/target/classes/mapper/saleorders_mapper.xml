@@ -58,11 +58,11 @@
 	
 	<!-- 판매주문 배송상태 수정 -->
 	<update id="setUpdateSaleorders" parameterType="java.util.List">
-	    <foreach collection="list" item="item" index="index" separator=";">
-	        UPDATE saleorders 
-	        SET del_status = #{item.del_status} 
-	        WHERE order_no = #{item.order_no}
-	    </foreach>
+	    <foreach collection="list" item="item" separator=";" open="DECLARE BEGIN" close="; END;">
+			UPDATE saleorders
+			SET del_status = #{item.del_status}
+			WHERE order_no = #{item.order_no}
+		</foreach>
 	</update>
 	
 	<!-- 판매주문삭제 -->

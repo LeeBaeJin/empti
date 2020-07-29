@@ -4,7 +4,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <script>
-	
 	$(function(){
 		buyorderSelect();
 		
@@ -32,7 +31,7 @@
 		$('#tbodyBuyorders').empty();
 		$.each(data, function(inx, item){
 	         $('<tr>')
-	         .append($('<td>').html(item.order_date))
+	         .append($('<td>').append($('<a>').attr({'href':"javascript:void(0)", "onclick":"orderDetails("+item.order_no+")"}).html(item.order_date)))
 	         .append($('<td>').html(item.buy_sum))
 	         .append($('<td>').html(item.name))
 	         .append($('<td>').html(item.company_name))
@@ -56,23 +55,28 @@
 				alert("반품 상태값: " + status + " 에러 메세지: "+ msg)
 			}
 		});
-	
 	}
 	
 	//반품 버튼
 	function retrunUpdate() {
 		$('#tbodyBuyorders').on('click', '#btnReturn', function(){
 			var order_no = $(this).closest('tr').find('#hidden_order_no').val();
+			var result = confirm(order_no +"번 구매주문을 반품하시겠습니까?"); 
 			console.log(order_no);
-			$.ajax({
-				url: "setUpdateBuyordersRetrun/" + order_no,
-				type: 'PUT',
-				dataType: 'json',
-				success:  function(data){
-					buyorderSelect();
-					returnList();
-				}						
-			});	
+			if(result){
+				$.ajax({
+					url: "setUpdateBuyordersRetrun/" + order_no,
+					type: 'PUT',
+					dataType: 'json',
+					success:  function(data){
+						buyorderSelect();
+						returnList();
+					}						
+				});	
+			} else {
+				return false;
+			}
+			
 		})
 	}	
 	
@@ -81,7 +85,7 @@
 		$('#tbodyReturn').empty();
 		$.each(data, function(inx, item){
 	         $('<tr>')
-	         .append($('<td>').html(item.order_date))
+	         .append($('<td>').append($('<a>').attr({'href':"javascript:void(0)", "onclick":"orderDetails("+item.order_no+")"}).html(item.order_date)))
 	         .append($('<td>').html(item.return_date))
 	         .append($('<td>').html(item.buy_sum))
 	         .append($('<td>').html(item.company_no))
@@ -118,6 +122,13 @@
 		});
 	}
 	
+	//주문일자를 누르면 상세정보를 새창으로 띄워주는 소스
+	function orderDetails(order_no) {
+		window.open('getBuyorderdetailList?order_no=' + order_no,
+					'buyorderdetails',
+					'width=800, height=250, left=150, top=250, location=no, status=no, scrollbars=yes');
+		return false;
+	}
 
 
 </script>

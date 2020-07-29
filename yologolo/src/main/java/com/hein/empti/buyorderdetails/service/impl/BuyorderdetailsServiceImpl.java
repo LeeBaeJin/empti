@@ -1,6 +1,7 @@
 package com.hein.empti.buyorderdetails.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,12 @@ public class BuyorderdetailsServiceImpl implements BuyorderdetailsService{
 	public void setBuyorderdetailDelete(BuyorderdetailsVO buyorderdetailsVO) {
 		buyorderdetailsMapper.setBuyorderdetailDelete(buyorderdetailsVO);
 	}
+
+	@Override
+	public List<Map<String, Object>> getBuyorderdetailList(BuyorderdetailsVO buyorderdetailsVO) {
+		return buyorderdetailsMapper.getBuyorderdetailList(buyorderdetailsVO);
+	}
+	
 	
 	
 
