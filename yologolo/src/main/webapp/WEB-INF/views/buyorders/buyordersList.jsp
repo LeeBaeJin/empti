@@ -61,16 +61,22 @@
 	function retrunUpdate() {
 		$('#tbodyBuyorders').on('click', '#btnReturn', function(){
 			var order_no = $(this).closest('tr').find('#hidden_order_no').val();
+			var result = confirm(order_no +"번 구매주문을 반품하시겠습니까?"); 
 			console.log(order_no);
-			$.ajax({
-				url: "setUpdateBuyordersRetrun/" + order_no,
-				type: 'PUT',
-				dataType: 'json',
-				success:  function(data){
-					buyorderSelect();
-					returnList();
-				}						
-			});	
+			if(result){
+				$.ajax({
+					url: "setUpdateBuyordersRetrun/" + order_no,
+					type: 'PUT',
+					dataType: 'json',
+					success:  function(data){
+						buyorderSelect();
+						returnList();
+					}						
+				});	
+			} else {
+				return false;
+			}
+			
 		})
 	}	
 	
@@ -79,8 +85,7 @@
 		$('#tbodyReturn').empty();
 		$.each(data, function(inx, item){
 	         $('<tr>')
-	         .append($('<td>')
-	        		 .append($('<a href="javascript:void(0);" onclick="orderDetails('+item.order_no+')">')).html(item.order_date))
+	         .append($('<td>').append($('<a>').attr({'href':"javascript:void(0)", "onclick":"orderDetails("+item.order_no+")"}).html(item.order_date)))
 	         .append($('<td>').html(item.return_date))
 	         .append($('<td>').html(item.buy_sum))
 	         .append($('<td>').html(item.company_no))
