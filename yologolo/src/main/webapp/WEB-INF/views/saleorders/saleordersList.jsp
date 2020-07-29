@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
@@ -94,10 +95,9 @@
 						<fmt:formatNumber type="number" maxFractionDigits="3" value="${fmt}"/>
 						</td>
 						<td><select id="del_status" name="del_status" onchange="selChk(${sale.order_no}, this)">
-						<option>${sale.del_status}</option>
-						<option value="배송준비중">배송준비중</option>
-						<option value="배송중">배송중</option>
-						<option value="배송완료">배송완료</option>
+						<option value="배송준비중" <c:if test="${fn:contains(sale.del_status,'배송준비중')}">selected="selected"</c:if>>배송준비중</option>
+						<option value="배송중" <c:if test="${fn:contains(sale.del_status,'배송중')}">selected="selected"</c:if>>배송중</option>
+						<option value="배송완료" <c:if test="${fn:contains(sale.del_status,'배송완료')}">selected="selected"</c:if>>배송완료</option>
 						</select></td>
 						<td>${sale.name}</td>
 						<td>${sale.company_name}</td>
