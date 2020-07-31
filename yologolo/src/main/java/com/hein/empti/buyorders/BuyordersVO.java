@@ -15,4 +15,8 @@ public class BuyordersVO {
 	
 	//반품일
 	String return_date;
+	
+	//Join
+	String name;
+	String company_name;
 }

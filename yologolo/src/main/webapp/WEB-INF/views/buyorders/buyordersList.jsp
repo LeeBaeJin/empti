@@ -88,8 +88,8 @@
 	         .append($('<td>').append($('<a>').attr({'href':"javascript:void(0)", "onclick":"orderDetails("+item.order_no+")"}).html(item.order_date)))
 	         .append($('<td>').html(item.return_date))
 	         .append($('<td>').html(item.buy_sum))
-	         .append($('<td>').html(item.company_no))
-	         .append($('<td>').html(item.emp_id))
+	         .append($('<td>').html(item.company_name))
+	         .append($('<td>').html(item.name))
 	         .append($('<td style="display:none;" id=\'hidden_order_no\'>').val(item.order_no))
 	         .appendTo('#tbodyReturn');
 		});

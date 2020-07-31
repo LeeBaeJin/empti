@@ -22,6 +22,7 @@
 						<th>상태</th>
 						<th>주문번호</th>
 						<th>비고</th>
+						<th>수정</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -37,7 +38,6 @@
 							<td>${saleledger.order_no}</td>
 							<td>${saleledger.note}</td>
 							<td><a href="setUpdateFormSaleledger?ldgr_no=${saleledger.ldgr_no}">수정</a></td>
-							
 						</tr>
 					</c:forEach>
 				</tbody>
