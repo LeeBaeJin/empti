@@ -35,13 +35,13 @@ public class BuyordersServiceImpl implements BuyordersService{
 
 	@Override
 	public void setInsertBuyorders(OrderMasterVO mVO) {
-		mVO.getVo().setOrder_date(mVO.getVo().getOrder_date().replace('T', ' '));
+		mVO.getVo().setBorder_date(mVO.getVo().getBorder_date().replace('T', ' '));
 		buyordersMapper.setInsertBuyorders(mVO.getVo());
 		buyorderdetailsMapper.setBuyorderdetailInsert(mVO.getList());
 	}
 	@Override
 	public void setUpdateBuyorders(BuyordersVO buyordersVO) {
-		buyordersVO.setOrder_date(buyordersVO.getOrder_date().replace('T', ' '));
+		buyordersVO.setBorder_date(buyordersVO.getBorder_date().replace('T', ' '));
 		buyordersMapper.setUpdateBuyorders(buyordersVO);
 	}
 	@Override
