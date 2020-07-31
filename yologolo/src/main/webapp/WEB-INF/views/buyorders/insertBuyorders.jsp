@@ -77,18 +77,25 @@
 			console.log($(item).children().eq(0).text());
 			td.push(obj);
 		})
+		//구매주문의 데이터는 vo객체에, 구매상세주문의 데이터는 List에 담아서 Insert
 		var datas = {vo: mObj, list:td}
-			$.ajax ({
-				url: "setInsertBuyorders",
-				type: "POST",
-				data: JSON.stringify(datas),
-				contentType : "application/json",
-				success: function() {
-				alert("성공적으로 주문하였습니다.");
-			}, error: function() {
-				alert("주문을 실패하였습니다.");
-			}
-		});
+		var result = confirm("주문하시겠습니까?");
+		if (result) {
+				$.ajax ({
+					url: "setInsertBuyorders",
+					type: "POST",
+					data: JSON.stringify(datas),
+					contentType : "application/json",
+					success: function() {
+					alert("성공적으로 주문하였습니다.");
+					window.location.href = "getBuyordersListForm";
+				}, error: function() {
+					alert("주문을 실패하였습니다.");
+				}
+			});
+		} else {
+			return false;
+		}
 	}
 </script>
 <div align="left">

@@ -85,18 +85,23 @@
 		})
 		//판매주문의 데이터는 vo객체에, 판매상세주문의 데이터는 List에 담아서 Insert
 		var datas = {vo: mObj, list:td}
-			$.ajax ({
-				url: "setInsertSaleorders",
-				type: "POST",
-				data: JSON.stringify(datas),
-				contentType : "application/json",
-				success: function() {
-				alert("성공적으로 주문하였습니다.");
-				return window.location.href="getSaleordersListMap";
-			}, error: function() {
-				alert("주문을 실패하였습니다.");
-			}
-		});
+		var result = confirm("주문하시겠습니까?");
+		if (result) {
+				$.ajax ({
+					url: "setInsertSaleorders",
+					type: "POST",
+					data: JSON.stringify(datas),
+					contentType : "application/json",
+					success: function() {
+					alert("성공적으로 주문하였습니다.");
+					window.location.href = "getSaleordersListMap";
+				}, error: function() {
+					alert("주문을 실패하였습니다.");
+				}
+			});
+		} else {
+			return false;
+		}
 	}
 </script>
 <div>

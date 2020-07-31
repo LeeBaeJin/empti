@@ -140,7 +140,7 @@ public class BuyordersController {
 	
 	// view resolver 방식 pdf 출력
 	@RequestMapping("buyorders_list_pdf.do")
-	public ModelAndView getSaleLedgerListReport(HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView getBuyorderListReport(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("pdfView");
