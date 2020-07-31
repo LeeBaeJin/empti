@@ -64,8 +64,9 @@ public class DeptController {
 	
 	//수정폼
 	@RequestMapping("/setUpdateFormDept")
-	public String setUpdateFormDept(DeptVO deptVO, Model model) {
+	public String setUpdateFormDept(DeptVO deptVO, EmpVO empVO, Model model) {
 		model.addAttribute("deptUp", deptService.getDept(deptVO));
+		model.addAttribute("empList", empService.getEmpList(empVO));
 		return "admin/dept/updateDept";
 	}
 	

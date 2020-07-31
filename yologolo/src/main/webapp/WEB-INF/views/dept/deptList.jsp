@@ -19,15 +19,17 @@
 					<tr>
 						<th>부서번호</th>
 						<th>부서명</th>
-						<th>매니저번호</th>
+						<th>매니저</th>
+						<th>삭제</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach items="${deptList}" var="dept">
 						<tr>
 							<td>${dept.dept_id}</td>
-							<td>${dept.dept_name}</td>
-							<td>${dept.emp_id}</td>
+							<td><a href="setUpdateFormDept?dept_id=${dept.dept_id}">${dept.dept_name}</a></td>
+							<td>${dept.name}</td>
+							<td><a href="setDeleteDept?dept_id=${dept.dept_id}">삭제</a></td>
 						</tr>
 						
 					</c:forEach>
