@@ -352,6 +352,7 @@
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">${login.name}님&nbsp;</span>
                 <!-- 프로필 사진 -->
                 <c:if test="${not empty login.profile}">
+                
                 <img class="img-profile rounded-circle" src="download?name=${login.profile}">
               	</c:if>
               	<c:if test="${empty login.profile}">
