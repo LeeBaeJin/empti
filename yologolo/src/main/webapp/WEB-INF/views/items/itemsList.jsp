@@ -8,7 +8,8 @@
 		<h6 class="m-0 font-weight-bold text-primary">
 		<a href="getItemsList">품목 목록</a> | 
 		<a href="setInsertFormItems">품목 입력</a> |
-		<a href="items_list.do">PDF</a>
+		<a href="items_list.do">PDF</a> |
+		<a href="items_excel.do">EXCEL</a>
 		</h6>
 	</div>
 

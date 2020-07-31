@@ -7,8 +7,10 @@
 	<div class="card-header py-3">
 		<h6 class="m-0 font-weight-bold text-primary">
 		<a href="getStoragesListMap">창고 목록</a> | 
-		<a href="setInsertFormStorages">창고 등록</a>
-		<a href="storages.do">PDF</a>
+		<a href="setInsertFormStorages">창고 등록</a> |
+		<a href="storages.do">PDF</a> |
+		<a href="storages_excel.do">EXCEL</a>
+		
 		</h6>
 	</div>
 	<div class="card-body">

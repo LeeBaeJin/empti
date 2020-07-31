@@ -13,4 +13,7 @@ public interface StoragesMapper {
 	public void setUpdateStorages(StoragesVO storagesVO);
 	
 	public List<Map<String, Object>> getStoragesListMap(StoragesVO storagesVO);
+	
+	//창고 (map)엑셀
+	public List<Map<String,Object>> getStoragesExcelMap(StoragesVO vo);
 }

@@ -9,7 +9,8 @@
 		<h6 class="m-0 font-weight-bold text-primary">
 		<a href="getStocksList">입출고 내역</a> | 
 		<a href="setInsertFormStocks">입출고 입력</a> |
-		<a href="stocks_list.do">PDF</a>
+		<a href="stocks_list.do">PDF</a> |
+		<a href="stocks_excel.do">EXCEL</a>
 		</h6>
 	</div>
 	<div class="card-body">

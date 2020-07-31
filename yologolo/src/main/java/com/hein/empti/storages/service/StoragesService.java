@@ -14,4 +14,6 @@ public interface StoragesService {
 	public void setUpdateStorages(StoragesVO storagesVO);
 	
 	public List<Map<String, Object>> getStoragesListMap(StoragesVO storagesVO);
+	
+	public List<Map<String, Object>> getStoragesExcelMap(StoragesVO vo);
 }

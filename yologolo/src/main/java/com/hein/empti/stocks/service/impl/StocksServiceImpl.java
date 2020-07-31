@@ -1,6 +1,7 @@
 package com.hein.empti.stocks.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,6 +42,11 @@ public class StocksServiceImpl implements StocksService {
 	public void setUpdateStocks(StocksVO stocksVO) {
 		stocksVO.setStock_date(stocksVO.getStock_date().replace('T', ' '));
 			stocksMapper.setUpdateStocks(stocksVO);
+	}
+
+	@Override
+	public List<Map<String, Object>> getStocksMap(StocksVO vo) {
+		return stocksMapper.getStocksMap(vo);
 	}
 
 }

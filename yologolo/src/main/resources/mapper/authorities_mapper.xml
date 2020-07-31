@@ -4,25 +4,29 @@
 
 <mapper	namespace="com.hein.empti.authorities.mapper.AuthoritiesMapper">
 	<!-- 권한 단건조회 -->
-	<select id="getAuthorities" parameterType="com.hein.empti.authorities.AuthoritiesVO"
-		resultType="com.hein.empti.authorities.AuthoritiesVO">
+	<select id="getAuthorities" parameterType="AuthoritiesVO"
+		resultType="AuthoritiesVO">
 		SELECT *
 		FROM Authorities
 		WHERE dept_id = #{dept_id}
 	</select>
 	
-	<select id="getAuthMenuList" parameterType="com.hein.empti.authorities.AuthoritiesVO"
-		resultType="com.hein.empti.authorities.AuthoritiesVO">
+	<select id="getAuthMenuList" parameterType="AuthoritiesVO"
+		resultType="AuthoritiesVO">
 		SELECT a.dept_id, a.menu_no, m.menu_name, m.menu_addr
 		FROM menu m JOIN authorities a
 		ON (m.menu_no = a.menu_no)
 	</select>
 
 	<!-- 권한 전체조회 -->
-	<select id="getAuthoritiesList" resultType="com.hein.empti.authorities.AuthoritiesVO">
+	<select id="getAuthoritiesList" resultType="AuthoritiesVO">
 		SELECT *
 		FROM Authorities
 	</select>
 	
-	
+	<!-- 롤(LOL) 조회 -->
+	<select id="getRoleList" resultType="com.hein.empti.authorities.RoleVO">
+		SELECT * 
+		FROM role
+	</select>
 </mapper>

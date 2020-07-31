@@ -1,6 +1,8 @@
 package com.hein.empti.stocks.service;
 
 import java.util.List;
+import java.util.Map;
+
 
 import com.hein.empti.stocks.StocksVO;
 
@@ -10,4 +12,8 @@ public interface StocksService {
 	public List<StocksVO> getStocksList(StocksVO stocksVO);
 	public void setInsertStocks(StocksVO stocksVO);
 	public void setUpdateStocks(StocksVO stocksVO);
+	//stock_view (Map) 엑셀
+	public List<Map<String, Object>> getStocksMap(StocksVO vo);
+	
+	
 }
