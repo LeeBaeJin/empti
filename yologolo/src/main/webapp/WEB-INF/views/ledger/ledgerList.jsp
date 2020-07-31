@@ -25,7 +25,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${saleledgerList}" var="saleledger">
+					<c:forEach items="${saleledgerList}" var="Ledger">
 						<tr>
 							<td>${saleledger.ldgr_no}</td>
 							<td>${saleledger.ldgr_date}</td>

@@ -85,7 +85,7 @@ public class StocksControllerAjax {
 	//전체조회
 	@RequestMapping(value="/adminStocks", method=RequestMethod.GET)
 	@ResponseBody
-	public List<StocksVO> getWorkerList(Model model, StocksVO stocksVO) {
+	public List<StocksVO> SaleledgerList(Model model, StocksVO stocksVO) {
 		return  stocksService.getStocksList(stocksVO);	
 	}	
 	

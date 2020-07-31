@@ -2,57 +2,63 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper	namespace="com.hein.empti.saleledger.mapper.SaleledgerMapper">
-	<!-- 판매주문단건조회 -->
-	<select id="getSaleledger" parameterType="SaleledgerVO" resultType="SaleledgerVO">
+<mapper	namespace="com.hein.empti.ledger.mapper.LedgerMapper">
+	<!-- 장부 단건조회 -->
+	<select id="getLedger" parameterType="LedgerVO" resultType="LedgerVO">
 		SELECT *
-		FROM saleledger
+		FROM ledger
 		WHERE ldgr_no = #{ldgr_no}
-	</select>
+	</select> 
 
-	<!-- 판매주문전체조회 list -->
-	<select id="getSaleledgerList" resultType="SaleledgerVO">
+	<!-- 장부전체조회 list -->
+	<select id="getLedgerList" resultType="LedgerVO">
 		SELECT *
-		FROM saleledger
+		FROM Ledger
 		ORDER BY ldgr_no
 	</select>
 
-	<!-- 판매주문등록 -->
-	<insert id="setInsertSaleledger" parameterType="SaleledgerVO">
-		INSERT INTO saleledger (
+	<!-- 장부등록 -->
+	<insert id="setInsertLedger" parameterType="LedgerVO">
+		INSERT INTO Ledger (
 		ldgr_no,
 		ldgr_date,
 		total_amount,
 		condition,
-		order_no,
+		border_no,
+		sorder_no,
+		status,
 		note
 		)
 		VALUES (
-		( SELECT NVL(MAX(ldgr_no),0)+1 FROM saleledger ),
+		( SELECT NVL(MAX(ldgr_no),0)+1 FROM Ledger ),
 		To_date(#{ldgr_date},'yyyy-MM-dd hh24:mi:ss'),
 		#{total_amount},
 		#{condition},
-		#{order_no},
+		#{border_no},
+		#{sorder_no},
+		#{status},
 		#{note}
 		)
 	</insert>
 
-	<!-- 판매주문수정 -->
-	<update id="setUpdateSaleledger" parameterType="SaleledgerVO">
-		UPDATE saleledger
+	<!-- 장부수정 -->
+	<update id="setUpdateLedger" parameterType="LedgerVO">
+		UPDATE Ledger
 		<set>
 			<if test="ldgr_date != null">ldgr_date = To_date(#{ldgr_date},'yyyy-MM-dd hh24:mi:ss'),</if>
 			<if test="total_amount != null">total_amount = #{total_amount},</if>
 			<if test="condition != null">condition = #{condition},</if>
-			<if test="order_no != null">order_no = #{order_no},</if>
+			<if test="border_no != null">border_no = #{border_no},</if>
+			<if test="sorder_no != null">sorder_no = #{sorder_no},</if>
+			<if test="status != null">status = #{status},</if>
 			<if test="note != null">note = #{note}</if>
 		</set>
 		WHERE
 		ldgr_no = #{ldgr_no}
 	</update>
 
-	<delete id="setDeleteSaleledger" parameterType="SaleledgerVO"> 
-		DELETE FROM	saleledger 
+	<delete id="setDeleteLedger" parameterType="LedgerVO"> 
+		DELETE FROM	Ledger 
 		WHERE ldgr_no = #{ldgr_no}
 	</delete>
 
