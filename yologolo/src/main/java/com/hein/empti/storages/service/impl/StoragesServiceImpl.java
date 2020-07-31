@@ -42,6 +42,11 @@ public class StoragesServiceImpl implements StoragesService{
 	public void setUpdateStorages(StoragesVO storagesVO) {
 		storagesMapper.setUpdateStorages(storagesVO);
 	}
+
+	@Override
+	public List<Map<String, Object>> getStoragesExcelMap(StoragesVO vo) {
+		return storagesMapper.getStoragesExcelMap(vo);
+	}
 	
 	
 }

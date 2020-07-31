@@ -7,12 +7,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class BuyordersVO {
 	//Buyorders
-	String order_no;
-	String order_date;
+	String border_no;
+	String border_date;
 	String buy_sum;
 	String company_no;
 	String emp_id;
 	
 	//반품일
 	String return_date;
+	
+	//Join
+	String name;
+	String company_name;
 }

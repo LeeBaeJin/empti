@@ -1,6 +1,7 @@
 package com.hein.empti.dept.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,6 +39,11 @@ public class DeptServiceImpl implements DeptService {
 	@Override
 	public void setDeleteDept(DeptVO deptVO) {
 		deptMapper.setDeleteDept(deptVO);
+	}
+
+	@Override
+	public List<Map<String, Object>> getDeptMap(DeptVO vo) {
+		return deptMapper.getDeptMap(vo);
 	}
 
 }

@@ -1,8 +1,6 @@
 package com.hein.empti.company.web;
 
-import java.io.InputStream;
-import java.sql.Connection;
-import java.util.HashMap;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,11 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.hein.empti.company.CompanyVO;
 import com.hein.empti.company.service.CompanyService;
 
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperExportManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
+
 
 @Controller // Bean등록, Dispatcher Servlet이 인식할 수 있는 Controller로 변환// @Component상속
 public class CompanyController {
@@ -119,13 +113,13 @@ public class CompanyController {
 	}
 
 	// excel 출력
-	@RequestMapping("companyexcel.do")
+	@RequestMapping("company_excel.do")
 	public ModelAndView companyexcel(CompanyVO vo) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("commonExcelView");
 		mv.addObject("datas", companyService.getCompanyMap(vo));// Map객체를 조회해서 시트를 생성한다.
 		mv.addObject("filename", "companylist");// 파일이름을 바꿔준다.
-		//mv.addObject("headers", new String[] { "company_no", "company_name","phone","address","ceo_name","bank_name","account_no","dealer_name","dealer_phone","note" }); // 헤더의 값만 출력된다.
+		mv.addObject("headers", new String[] { "회사번호", "회사명", "전화번호", "주소", "대표자명", "거래은행", "계좌번호", "담당자명", "담당자전화번호","비고" }); // 헤더의 값만 출력된다.
 		return mv;
 	}
 

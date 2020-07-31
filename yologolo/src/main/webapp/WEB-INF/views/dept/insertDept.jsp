@@ -22,10 +22,10 @@ var emp_select_value = function(select_obj) {
 	<form action="setInsertDept">
 		<label>부서번호</label>	 <input name="dept_id"> <br/>
 		<label>부서이름</label>	 <input name="dept_name"> <br/>
-		<label>매니저아이디</label>	 <select name="emp_id" onchange="emp_select_value(this);"> 
+		<label>매니저</label>	 <select name="emp_id" onchange="emp_select_value(this);"> 
+									<option value="" selected> ==선택하세요== </option>
 									<c:forEach items="${emp}" var="emp" >
-										<option value="" selected> ==선택하세요== </option>
-										<option value="${emp.name}">${emp.emp_id}</option>
+										<option value="${emp.emp_id}">${emp.name}</option>
 									</c:forEach>
 								 </select>
 								 <span id="emp_name"></span>

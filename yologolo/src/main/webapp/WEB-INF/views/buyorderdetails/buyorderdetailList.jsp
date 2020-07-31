@@ -23,7 +23,7 @@
 			<tr>
 				<td>${status.count}</td>
 				<td>${detail.item_name}</td>
-				<td>${detail.order_qty}</td>
+				<td>${detail.border_qty}</td>
 				<td>${detail.item_price}</td>
 			</tr>
 			</c:forEach>

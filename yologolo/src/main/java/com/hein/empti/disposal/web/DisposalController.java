@@ -1,5 +1,10 @@
 package com.hein.empti.disposal.web;
 
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
@@ -103,6 +108,30 @@ public class DisposalController {
 	mv.addObject("filename", "/reports/disposal_list.jrxml");
 	return mv;
 	}
+	
+	// excel 출력
+	@RequestMapping("disposal_excel.do")
+	public ModelAndView disposalexcel(DisposalVO vo) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("commonExcelView");
+		mv.addObject("datas", disposalService.getDisposalMap(vo));// Map객체를 조회해서 시트를 생성한다.
+		mv.addObject("filename", "diposallist");// 파일이름을 바꿔준다.
+		mv.addObject("headers", new String[] { "폐기/불량번호", "품목명","수량","단가","손실금액","폐기일","창고번호","구분"}); // 헤더의 값만 출력된다.
+		return mv;
+	}
+	
+	// excel 출력
+//	@RequestMapping("/disposal_excel.do")
+//	public ModelAndView excelView(DisposalVO vo, HttpServletResponse response) throws IOException{
+//		List<Map<String, Object>> list = disposalService.getDisposalMap(vo);
+//		HashMap<String, Object> map = new HashMap<String, Object>();
+//		String[] header = {"폐기불량 번호", "품목명","수량","단가","손실금액","폐기일","창고번호","구분"};
+//		map.put("headers", header);
+//		map.put("filename", "diposallist");
+//		map.put("datas", list);
+//		return new ModelAndView("commonExcelView", map);
+//	}
+	
 	
 		
 }

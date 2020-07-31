@@ -1,6 +1,7 @@
 package com.hein.empti.dept.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import com.hein.empti.dept.DeptVO;
 
@@ -12,6 +13,7 @@ public interface DeptMapper {
 	public void setUpdateDept(DeptVO deptVO);
 	public void setDeleteDept(DeptVO deptVO);
 	
-	
+	//폐기 불량 리스트(Map) 엑셀
+	public List<Map<String, Object>> getDeptMap(DeptVO vo);
 	
 }

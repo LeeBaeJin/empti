@@ -24,11 +24,6 @@ public class LoginController {
 	@Autowired EmpMapper empMapper;
 	@Autowired AuthoritiesMapper authoritiesMapper;
 	
-	//로그인폼
-	@RequestMapping("/loginForm")
-	public String loginForm(EmpVO empVO) {
-		return "admin/login";
-	}
 	
   	//로그인 처리
 	@RequestMapping(value = "/login", method=RequestMethod.POST)
@@ -56,6 +51,6 @@ public class LoginController {
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "admin/index";
+		return "common/login";
 	}
 }

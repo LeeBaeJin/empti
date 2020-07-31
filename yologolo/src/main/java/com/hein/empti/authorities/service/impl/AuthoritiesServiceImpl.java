@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hein.empti.authorities.AuthoritiesVO;
+import com.hein.empti.authorities.RoleVO;
 import com.hein.empti.authorities.mapper.AuthoritiesMapper;
 import com.hein.empti.authorities.service.AuthoritiesService;
 
@@ -27,5 +28,10 @@ public class AuthoritiesServiceImpl implements AuthoritiesService{
 	@Override
 	public List<AuthoritiesVO> getAuthMenuList(AuthoritiesVO authoritiesVO) {
 		return authoritiesMapper.getAuthMenuList(authoritiesVO);
+	}
+
+	@Override
+	public List<RoleVO> getRoleList(RoleVO roleVO) {
+		return authoritiesMapper.getRoleList(roleVO);
 	}
 }

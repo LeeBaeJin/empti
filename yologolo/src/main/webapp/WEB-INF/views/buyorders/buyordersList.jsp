@@ -31,14 +31,14 @@
 		$('#tbodyBuyorders').empty();
 		$.each(data, function(inx, item){
 	         $('<tr>')
-	         .append($('<td>').append($('<a>').attr({'href':"javascript:void(0)", "onclick":"orderDetails("+item.order_no+")"}).html(item.order_date)))
+	         .append($('<td>').append($('<a>').attr({'href':"javascript:void(0)", "onclick":"orderDetails("+item.border_no+")"}).html(item.border_date)))
 	         .append($('<td>').html(item.buy_sum))
 	         .append($('<td>').html(item.name))
 	         .append($('<td>').html(item.company_name))
 	         .append($('<td>').html('<button id=\'btnReturn\'>반품</button>'))
 	         .append($('<td>').html('<button id=\'btnUpdate\'>수정</button>'))
 	         .append($('<td>').html('<button id=\'btnDelete\'>삭제</button>'))
-	         .append($('<td style="display:none;" id=\'hidden_order_no\'>').val(item.order_no))
+	         .append($('<td style="display:none;" id=\'hidden_border_no\'>').val(item.border_no))
 	         .appendTo('#tbodyBuyorders');
 		});
 		
@@ -60,12 +60,12 @@
 	//반품 버튼
 	function retrunUpdate() {
 		$('#tbodyBuyorders').on('click', '#btnReturn', function(){
-			var order_no = $(this).closest('tr').find('#hidden_order_no').val();
-			var result = confirm(order_no +"번 구매주문을 반품하시겠습니까?"); 
-			console.log(order_no);
+			var border_no = $(this).closest('tr').find('#hidden_border_no').val();
+			var result = confirm(border_no +"번 구매주문을 반품하시겠습니까?"); 
+			console.log(border_no);
 			if(result){
 				$.ajax({
-					url: "setUpdateBuyordersRetrun/" + order_no,
+					url: "setUpdateBuyordersRetrun/" + border_no,
 					type: 'PUT',
 					dataType: 'json',
 					success:  function(data){
@@ -85,12 +85,12 @@
 		$('#tbodyReturn').empty();
 		$.each(data, function(inx, item){
 	         $('<tr>')
-	         .append($('<td>').append($('<a>').attr({'href':"javascript:void(0)", "onclick":"orderDetails("+item.order_no+")"}).html(item.order_date)))
+	         .append($('<td>').append($('<a>').attr({'href':"javascript:void(0)", "onclick":"orderDetails("+item.border_no+")"}).html(item.border_date)))
 	         .append($('<td>').html(item.return_date))
 	         .append($('<td>').html(item.buy_sum))
-	         .append($('<td>').html(item.company_no))
-	         .append($('<td>').html(item.emp_id))
-	         .append($('<td style="display:none;" id=\'hidden_order_no\'>').val(item.order_no))
+	         .append($('<td>').html(item.name))
+	         .append($('<td>').html(item.company_name))
+	         .append($('<td style="display:none;" id=\'hidden_border_no\'>').val(item.border_no))
 	         .appendTo('#tbodyReturn');
 		});
 	}
@@ -98,12 +98,12 @@
 	//삭제 버튼
 	function buyorderDelete(){
 		$('#tbodyBuyorders').on('click','#btnDelete', function() {
-			var order_no = $(this).closest('tr').find('#hidden_order_no').val();
-			console.log(order_no);
-			var result = confirm(order_no +"번 구매주문을 삭제하시겠습니까?"); 
+			var border_no = $(this).closest('tr').find('#hidden_border_no').val();
+			console.log(border_no);
+			var result = confirm(border_no +"번 구매주문을 삭제하시겠습니까?"); 
 			if(result){
 				$.ajax({
-					url: 'setDeleteBuyorders/' + order_no,
+					url: 'setDeleteBuyorders/' + border_no,
 					type: 'DELETE',
 					contentType:'application/json;charset=utf-8',
 					dataType:'json',
@@ -123,8 +123,8 @@
 	}
 	
 	//주문일자를 누르면 상세정보를 새창으로 띄워주는 소스
-	function orderDetails(order_no) {
-		window.open('getBuyorderdetailList?order_no=' + order_no,
+	function orderDetails(border_no) {
+		window.open('getBuyorderdetailList?border_no=' + border_no,
 					'buyorderdetails',
 					'width=800, height=250, left=150, top=250, location=no, status=no, scrollbars=yes');
 		return false;
@@ -143,12 +143,12 @@
 	</div>
 	<div class="card-body">
 		<div class="table-responsive">
-			<table class="table table-bordered" id="dataTable" width="100%"	cellspacing="0">
+			<table class="table table-bordered" id="dataTable" style="width: 100%;">
 				<thead>
 					<tr>
 						<th>주문일자</th>
 						<th>구매합계</th>
-						<th>담당사원</th>
+						<th>주문담당</th>
 						<th>거래처</th>
 						<th style="display:none;">주문번호</th>
 						<th>반품</th>
@@ -171,7 +171,7 @@
 							<th>주문일자</th>
 							<th>반품일자</th>
 							<th>구매합계</th>
-							<th>담당사원</th>
+							<th>주문담당</th>
 							<th>거래처</th>
 						</tr>
 					</thead>

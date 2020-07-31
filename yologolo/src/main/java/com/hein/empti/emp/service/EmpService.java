@@ -13,5 +13,8 @@ public interface EmpService {
 	public void setUpdateEmp(EmpVO empVO);
 	public void setDeleteEmp(EmpVO empVO);
 	public List<Map<String,Object>> getDeptEmpCnt();
+	
+	//emp (Map) 엑셀
+	public List<Map<String, Object>> getEmpMap(EmpVO vo);
 
 }

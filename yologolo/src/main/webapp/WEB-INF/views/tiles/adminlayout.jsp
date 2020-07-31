@@ -33,7 +33,7 @@
     <ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/empti/">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="main">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
@@ -98,7 +98,7 @@
         <div id="collapseTrade" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">거래</h6>
-            <a class="collapse-item" href="getBuyordersList">구매관리</a>
+            <a class="collapse-item" href="getBuyordersListForm">구매관리</a>
             <a class="collapse-item" href="getSaleordersListMap">판매관리</a>
           </div>
         </div>
@@ -340,6 +340,11 @@
             </li>
 
             <div class="topbar-divider d-none d-sm-block"></div>
+			
+			<c:if test="${login != null}">
+			<li class="nav-item dropdown no-arrow">
+			<a class="nav-link dropdown-toggle" href="logout" style="color:black">로그아웃</a></li>
+			</c:if>
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
