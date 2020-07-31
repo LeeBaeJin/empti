@@ -340,6 +340,11 @@
             </li>
 
             <div class="topbar-divider d-none d-sm-block"></div>
+			
+			<c:if test="${login != null}">
+			<li class="nav-item dropdown no-arrow">
+			<a class="nav-link dropdown-toggle" href="logout" style="color:black">로그아웃</a></li>
+			</c:if>
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">

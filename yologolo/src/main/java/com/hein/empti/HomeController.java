@@ -12,6 +12,11 @@ public class HomeController {
 
 	@RequestMapping("/")
 	public String home(Model model) {
+		return "common/login";
+	}
+	
+	@RequestMapping("/main")
+	public String main(Model model) {
 		return "admin/index";
 	}
 }

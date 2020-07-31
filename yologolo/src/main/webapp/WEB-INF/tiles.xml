@@ -16,6 +16,8 @@ Configuration 2.1//EN"
 	<definition name="admin/*" template="WEB-INF/views/tiles/adminlayout.jsp">
 		<put-attribute name="content" value="/WEB-INF/views/{1}.jsp" />
 	</definition>
+	
+	
 
 	<!--  사용자  -->
 <!-- 	<definition name="*/*" extends="userTemplate">

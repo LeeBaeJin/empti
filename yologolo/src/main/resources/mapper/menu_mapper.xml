@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hein.empti.menu.mapper.MenuMapper">
+
+	<select id="getMenu" resultType="MenuVO" parameterType="MenuVO">
+		SELECT * 
+		FROM menu 
+		WHERE menu_no = #{menu_no}
+	</select>
+	
+	<select id="getMenuList" resultType="MenuVO" parameterType="MenuVO">
+		SELECT *
+		FROM menu
+		ORDER BY menu_no
+	</select>
+	
+</mapper>
