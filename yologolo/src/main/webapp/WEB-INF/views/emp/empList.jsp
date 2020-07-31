@@ -32,6 +32,15 @@ $(function() {
 		     return wo;
 		})
 	});
+	
+	function authoritiesCheck(){
+		$('.authorities').on('click', function() {
+			window.open('getRoleList',
+					'saleorderdetails',
+					'width=800, height=250, left=150, top=250, location=no, status=no, scrollbars=yes');
+		return false;
+		});
+	}
 });
 
 
@@ -61,6 +70,7 @@ $(function() {
 						<th>부서명</th>
 						<th>부서매니저</th>
 						<th>수정</th>
+						<th>권한부여</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -73,6 +83,7 @@ $(function() {
 							<td>${emp.dept_name}</td>
 							<td>${emp.manager}</td>
 							<td><a href="setUpdateFormEmp?emp_id=${emp.emp_id}">수정</a></td>
+							<td><button class="authorities">권한부여</button>
 						</tr>
 					</c:forEach>
 				</tbody>

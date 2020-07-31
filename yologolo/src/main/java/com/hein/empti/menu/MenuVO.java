@@ -9,5 +9,6 @@ public class MenuVO {
 	String menu_no;
 	String menu_name;
 	String menu_addr;
-	String menu_order;
+	String group_name
+	;
 }
