@@ -1,6 +1,7 @@
 package com.hein.empti.items.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,5 +35,12 @@ public class ItemsServiceImpl implements ItemsService {
 	public void setUpdateItems(ItemsVO itemsVO) {
 		itemsMapper.setUpdateItems(itemsVO);
 	}
+
+	@Override
+	public List<Map<String, Object>> getItemsMap(ItemsVO vo) {
+		return itemsMapper.getItemsMap(vo);
+	}
+
+
 
 }
