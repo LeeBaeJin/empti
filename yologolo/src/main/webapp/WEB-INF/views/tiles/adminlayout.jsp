@@ -112,8 +112,7 @@
         <div id="collapseMoney" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">장부</h6>
-            <a class="collapse-item" href="getBuyledgerList">매입 관리</a>
-            <a class="collapse-item" href="getSaleledgerList">매출 관리</a>
+            <a class="collapse-item" href="getLedgerList">매입/매출 관리</a>
           </div>
         </div>
 	 </li>

@@ -6,8 +6,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class SaleordersVO {
-	String order_no;
-	String order_date;
+	String sorder_no;
+	String sorder_date;
 	String sale_sum;
 	String del_status;
 	String emp_id;

@@ -30,7 +30,7 @@
 			alert("품목을 선택해주십시오.");
 		} else {
 			var od_no1 = $('[name=item_no]').val();
-			var od_no2 = $('[name=order_qty]').val();
+			var od_no2 = $('[name=sorder_qty]').val();
 			var od_no3 = $('[name=price]').val();
 			console.log(od_no1, od_no2, od_no3);
 			var td1 = $('<td />').text(od_no1);
@@ -39,7 +39,7 @@
 			var tr = $('<tr />').append(td1, td2, td3);
 				$('#buyTable').append(tr);
 				$('[name=item_no]').val('');
-				$('[name=order_qty]').val('');
+				$('[name=sorder_qty]').val('');
 				$('[name=price]').val(''); 
 		}
 	}
@@ -50,7 +50,7 @@
 			contentType : "application/json",
 			success: function(saleSeq) {
 				ajaxInsert(saleSeq);
-				return window.location.href="getSaleordersListMap";
+				
 			}, error: function() {
 				alert("시퀀스 실패.");
 			}
@@ -60,27 +60,27 @@
 	function ajaxInsert(saleSeq) {
 		
 		//판매주문의 데이터
-		var om_no1 = $('[name=order_date]').val();
+		var om_no1 = $('[name=sorder_date]').val();
 		var om_no2 = $('[name=company_no]').val();
 		var om_no3 = $('[name=emp_id]').val();
 		var om_no4 = $('[name=sale_sum]').val();
 		var om_no5 = $('[name=del_status]').val();
 		console.log(om_no1, om_no2, om_no3, om_no4, om_no5);
-		var mObj = {'order_date':om_no1,
+		var mObj = {'sorder_date':om_no1,
 				    'company_no':om_no2,
 				    'emp_id':om_no3,
 				    'sale_sum':om_no4,
 				    'del_status':om_no5,
-				    'order_no': saleSeq}
+				    'sorder_no': saleSeq}
 		
 		//판매상세주문의 데이터
 		var tr = $('#tblBody').children();
 		var td = [];
 		$.each(tr, function(idx , item) {
 			var obj = {};
-			obj['order_no'] = saleSeq;
+			obj['sorder_no'] = saleSeq;
 			obj['item_no'] = $(item).children().eq(0).text(); 
-			obj['order_qty'] = $(item).children().eq(1).text();
+			obj['sorder_qty'] = $(item).children().eq(1).text();
 			td.push(obj);
 		})
 		//판매주문의 데이터는 vo객체에, 판매상세주문의 데이터는 List에 담아서 Insert
@@ -92,6 +92,7 @@
 				contentType : "application/json",
 				success: function() {
 				alert("성공적으로 주문하였습니다.");
+				return window.location.href="getSaleordersListMap";
 			}, error: function() {
 				alert("주문을 실패하였습니다.");
 			}
@@ -101,7 +102,7 @@
 <div>
 	<h1>판매주문 입력</h1>
 	<form action="setInsertSaleorders">
-		주문일자 <input type="datetime-local" name="order_date"><br/>
+		주문일자 <input type="datetime-local" name="sorder_date"><br/>
 		거래처코드 <input name="company_no" id="company_no" type="text"> <span id="company_name"></span>
 			    <button type="button" value="거래처선택" id="btnFindCompany" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" width="30px" height="30px"></button><br/>
 		판매합계 <input name= "sale_sum" type="number"><br/>
@@ -119,7 +120,7 @@
 				<span id="emp_name"></span>
 				<br/>
 		품목   <input name="item_no"> <br>
-		수량 	<input name="order_qty" type="number"> <br>
+		수량 	<input name="sorder_qty" type="number"> <br>
 		단가	<input name="price" type="number"> <br>
 	<br/>
 	<button type="button" onclick="addOrder()">추가</button>

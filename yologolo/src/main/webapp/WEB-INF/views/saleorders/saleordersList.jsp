@@ -22,7 +22,7 @@
 		
 		$.each(tr, function(idx , item) {
 			var obj = {};
-			obj['order_no'] = $(item).children().eq(5).children().val();
+			obj['sorder_no'] = $(item).children().eq(5).children().val();
 			obj['del_status'] = $(item).children().eq(2).children().val();  
 			console.log(obj['del_status']);
 			selDel.push(obj);
@@ -43,19 +43,19 @@
 		});
 		
 	});
-	function selChk(orderNo, orderDel) {
-		var orId = orderNo;
-		var orSta = $(orderDel).val();
+	function selChk(sorderNo, sorderDel) {
+		var orId = sorderNo;
+		var orSta = $(sorderDel).val();
 		for (var i=0; i<selDel.length; i++) {
-			if(selDel[i].order_no == orId) {
+			if(selDel[i].sorder_no == orId) {
 				selDel[i].del_status = orSta; 
 			}
 		}
 		console.log(selDel);
 	}
 	//주문일자를 누르면 상세정보를 새창으로 띄워주는 소스
-	function orderDetails(order_no) {
-		window.open('getSaleorderdetailList?order_no=' + order_no,
+	function orderDetails(sorder_no) {
+		window.open('getSaleorderdetailList?sorder_no=' + sorder_no,
 					'saleorderdetails',
 					'width=800, height=250, left=150, top=250, location=no, status=no, scrollbars=yes');
 		return false;
@@ -88,13 +88,13 @@
 					<c:forEach items="${saleordersMap}" var="sale">
 						<tr>
 						<td>
-						 <a href="javascript:void(0);" onclick="orderDetails(${sale.order_no});">${sale.order_date}</a>
+						 <a href="javascript:void(0);" onclick="orderDetails(${sale.sorder_no});">${sale.sorder_date}</a>
 						</td>
 						<td>
 						<fmt:parseNumber value="${sale.sale_sum}" var="fmt"/>
 						<fmt:formatNumber type="number" maxFractionDigits="3" value="${fmt}"/>
 						</td>
-						<td><select id="del_status" name="del_status" onchange="selChk(${sale.order_no}, this)">
+						<td><select id="del_status" name="del_status" onchange="selChk(${sale.sorder_no}, this)">
 						<option value="배송준비중" <c:if test="${fn:contains(sale.del_status,'배송준비중')}">selected="selected"</c:if>>배송준비중</option>
 						<option value="배송중" <c:if test="${fn:contains(sale.del_status,'배송중')}">selected="selected"</c:if>>배송중</option>
 						<option value="배송완료" <c:if test="${fn:contains(sale.del_status,'배송완료')}">selected="selected"</c:if>>배송완료</option>
@@ -103,7 +103,7 @@
 						<td>${sale.company_name}</td>
 						<!--다중 업데이트의 조건을 받기위한 히든 데이터 -->
 						<td style="display: none;">
-						<input type="hidden" name="order_no" value="${sale.order_no}">  
+						<input type="hidden" name="sorder_no" value="${sale.sorder_no}">  
 						</td>
 						</tr>
 					</c:forEach>

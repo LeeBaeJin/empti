@@ -7,21 +7,21 @@
 	<!-- 판매주문단건조회 -->
 	<select id="getSaleorders" parameterType="SaleordersVO"	resultType="SaleordersVO">
 		SELECT *
-		FROM SALEORDERS
-		WHERE ORDER_NO = #{order_no}
+		FROM saleorders
+		WHERE sorder_no = #{sorder_no}
 	</select>
 	
 	<!-- 판매주문전체조회 list -->
 	<select id="getSaleordersList" resultType="SaleordersVO">
 		SELECT *
-		FROM SALEORDERS
-		ORDER BY ORDER_NO
+		FROM saleorders
+		ORDER BY sorder_no
 	</select>
 	
 	<!-- 판매주문전체조회 Map -->
 	<select id="getSaleordersListMap" parameterType="SaleordersVO" resultType="map">
-		SELECT  s.order_no "order_no",
-				TO_CHAR(s.order_date, 'yyyy-MM-dd hh24:mi') "order_date", 
+		SELECT  s.sorder_no "sorder_no",
+				TO_CHAR(s.sorder_date, 'yyyy-MM-dd hh24:mi') "sorder_date", 
 				s.sale_sum "sale_sum", s.del_status "del_status",
 				e.name "name",
 				 c.company_name "company_name"
@@ -40,16 +40,16 @@
 	<!-- 판매주문등록 -->
 	<insert id="setInsertSaleorders" parameterType="SaleordersVO">
 		INSERT INTO saleorders (
-		ORDER_NO,
-		ORDER_DATE,
-		SALE_SUM,
-		DEL_STATUS,
-		EMP_ID,
-		COMPANY_NO
+		sorder_no,
+		sorder_date,
+		sale_sum,
+		del_status,
+		emp_id,
+		company_no
 		) 
 		VALUES (
-		#{order_no},
-		To_date(#{order_date}, 'yyyy-MM-dd hh24:mi:ss'),
+		#{sorder_no},
+		To_date(#{sorder_date}, 'yyyy-MM-dd hh24:mi:ss'),
 		#{sale_sum},
 		#{del_status},
 		#{emp_id},
@@ -61,12 +61,11 @@
 	    <foreach collection="list" item="item" separator=";" open="DECLARE BEGIN" close="; END;">
 			UPDATE saleorders
 			SET del_status = #{item.del_status}
-			WHERE order_no = #{item.order_no}
+			WHERE sorder_no = #{item.sorder_no}
 		</foreach>
 	</update>
 	
 	<!-- 판매주문삭제 -->
-	<!-- <delete id="setDeleteSaleorders" parameterType="SaleordersVO"> DELETE 
-		FROM SALEORDERS WHERE ORDER_NO = #{order_no} </delete> -->
-
+	<!-- <delete id="setDeleteSaleorders" parameterType="SaleordersVO"> 
+		DELETE FROM saleorders WHERE sorder_no = #{sorder_no} </delete> -->
 </mapper>

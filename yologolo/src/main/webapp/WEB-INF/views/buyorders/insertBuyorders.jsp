@@ -23,7 +23,7 @@
 			alert("품목을 선택해주십시오.");
 		} else {
 			var od_no1 = $('[name=item_no]').val();
-			var od_no2 = $('[name=ㅠbrder_qty]').val();
+			var od_no2 = $('[name=border_qty]').val();
 			var od_no3 = $('[name=price]').val();
 			console.log(od_no1, od_no2, od_no3);
 			var td1 = $('<td />').text(od_no1);
