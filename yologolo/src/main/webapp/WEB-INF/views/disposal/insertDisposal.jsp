@@ -30,7 +30,10 @@
 				<label>폐기 수량</label>	<input name="disposal_qty"><br/>
 				<label>단가</label>	<input name="price"><br/>
 				<label>폐기일</label>	<input type="datetime-local" name="disposal_date"><br/>
-				<label>구분</label>	<input name="category"><br/>
+				<label>구분</label>	<select name="category">
+										<option value="매출">매출</option>
+										<option value="매입">매입</option>
+									</select><br/>
 				<label>창고</label>	
 				
 				<select name="strg_no" class="selectBox" onchange="storages_select_value(this);">

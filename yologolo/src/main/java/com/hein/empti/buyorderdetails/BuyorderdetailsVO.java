@@ -6,8 +6,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class BuyorderdetailsVO {
-	String orderdetail_no;
-	String order_no;
+	String borderdetail_no;
+	String border_no;
 	String item_no;
-	String order_qty;
+	String border_qty;
 }

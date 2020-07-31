@@ -1,10 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<script src="https://code.jquery.com/jquery-3.5.1.js"
-	integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-	crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
 		<h6 class="m-0 font-weight-bold text-primary">
@@ -16,8 +13,7 @@
 	</div>
 	<div class="card-body">
 		<div class="table-responsive">
-			<table class="table table-bordered" id="dataTable" width="100%"
-				cellspacing="0">
+			<table class="table table-bordered" id="dataTable" style="width: 100%;">
 				<thead>
 					<tr>
 						<th>폐기/불량 번호</th>
@@ -39,8 +35,9 @@
 							<td>${disposal.category}</td>
 							<td>${disposal.strg_no}</td>
 							<td>${disposal.item_no}</td>
-							<td><a
-								href="setUpdateFormDisposal?disposal_no=${disposal.disposal_no}">수정</a></td>
+							<td>
+							<a href="setUpdateFormDisposal?disposal_no=${disposal.disposal_no}">수정</a>
+							</td>
 
 						</tr>
 					</c:forEach>

@@ -46,7 +46,6 @@ public class BuyordersController {
 	public List<Map<String, Object>> getBuyordersListMap(BuyordersVO buyordersVO, Model model) {
 		return buyordersService.getBuyordersListMap(buyordersVO);
 	}
-	
 
 	// 구매주문 단건조회
 	@RequestMapping("/getBuyorders")
@@ -71,7 +70,7 @@ public class BuyordersController {
 	}
 	// 등록폼
 	@RequestMapping("/setInsertFormBuyorders")
-	public String setInsertFormBuyorders(BuyordersVO buyordersVO) {
+	public String setInsertFormBuyorders(BuyordersVO vo) {
 		return "admin/buyorders/insertBuyorders";
 	}
 
@@ -94,8 +93,8 @@ public class BuyordersController {
 	@RequestMapping(value = "/setDeleteBuyorders/{order_no}", method=RequestMethod.DELETE)
 	@ResponseBody
 	public Map setDeleteBuyorders(@PathVariable String order_no,BuyordersVO buyordersVO,BuyorderdetailsVO buyorderdetailsVO) {
-		buyorderdetailsVO.setOrder_no(order_no);
-		buyordersVO.setOrder_no(order_no);	
+		buyorderdetailsVO.setBorder_no(order_no);
+		buyordersVO.setBorder_no(order_no);	
 		buyorderdetailsService.setBuyorderdetailDelete(buyorderdetailsVO);
 		buyordersService.setDeleteBuyorders(buyordersVO);
 		Map map = new HashMap<String, Object>();
@@ -114,7 +113,7 @@ public class BuyordersController {
 	@RequestMapping(value= "/setUpdateBuyordersRetrun/{order_no}", method=RequestMethod.PUT)
 	@ResponseBody
 	public BuyordersVO setUpdateBuyordersRetrun(@PathVariable String order_no, BuyordersVO buyordersVO, Model model) {
-		buyordersVO.setOrder_no(order_no);
+		buyordersVO.setBorder_no(order_no);
 		buyordersService.setUpdateBuyordersRetrun(buyordersVO);
 		return buyordersVO;
 	}
