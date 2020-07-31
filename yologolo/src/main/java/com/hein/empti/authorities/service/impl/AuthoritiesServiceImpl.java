@@ -34,7 +34,4 @@ public class AuthoritiesServiceImpl implements AuthoritiesService{
 	public List<RoleVO> getRoleList(RoleVO roleVO) {
 		return authoritiesMapper.getRoleList(roleVO);
 	}
-	
-	
-	
 }
