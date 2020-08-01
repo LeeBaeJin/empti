@@ -2,6 +2,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script>
+	//거래처 상세조회
+	function compDetail(company_no) {
+		location.href = "getCompanyList/" + company_no
+	}
+	
+	//수정폼으로 이동
+	function upFrom(companyNo) {
+		location.href = "setUpdateFormCompany?company_no=" + companyNo
+	}
+</script>
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
 		<h6 class="m-0 font-weight-bold text-primary">
@@ -13,38 +24,30 @@
 	</div>
 	<div class="card-body">
 		<div class="table-responsive">
-			<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+			<table class="table table-bordered" id="dataTable" style="width: 100%;">
 				<thead>
 					<tr>
-						<th>거래처 넘버</th>
 						<th>거래처 명</th>
-						<th>대표번호</th>
 						<th>주소</th>
 						<th>대표자 성명</th>
-						<th>담당자명</th>
-						<th>담당자 전화번호</th>
-						<th>거래은행</th>
-						<th>계좌번호</th>
-						<th>비고</th>
-<!-- 						<th>수정</th>
-						<th>삭제</th> -->
+						<th>담당자 성명</th>
+						<th>담당자 번호</th>
+						<th>수정</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach items="${companyList}" var="company">
 						<tr>
-							<td>${company.company_no}</td>
-							<td>${company.company_name}</td>
-							<td>${company.phone}</td>
-							<td>${company.address}</td>
+							<td><a href="#" onclick="compDetail(${company.company_no});">${company.company_name}</a></td>
+							<td>
+							${company.zip_code}<br>
+							${company.address}<br>
+							${company.address_detail}
+							</td>
 							<td>${company.ceo_name}</td>
 							<td>${company.dealer_name}</td>
 							<td>${company.dealer_phone}</td>
-							<td>${company.bank_name}</td>
-							<td>${company.account_no}</td>
-							<td>${company.note}</td>
-<%-- 							<td><a href="setUpdateFormCompany?company_no=${company.company_no}">수정ㄱㄱ</a></td>
-							<td><a href="setDeleteCompany?company_no=${company.company_no}">삭제</a></td> --%>
+ 							<td><button type="button" onclick="upFrom(${company.company_no})" class="btn btn-primary">수정</button></td>
 						</tr>
 					</c:forEach>
 				</tbody>
