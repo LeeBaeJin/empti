@@ -6,10 +6,11 @@
 <mapper namespace="com.hein.empti.emp.mapper.EmpMapper">
 	<!-- #{}, test 는 VO에 있는 필드를 가져오는거다 -->
 	<select id="getEmp" parameterType="EmpVO" resultType="EmpVO">
-		SELECT *
-		FROM employees
-		WHERE emp_id= #{emp_id}
-		order by emp_id
+		SELECT emp_id, name, pwd, phone, address, email, to_char(hire_date, 'yyyy-MM-dd') "hire_date",
+      		   bank_name, account_no, salary, status, position, mgr_id, dept_id, profile, resign_date
+		FROM   employees
+		WHERE  emp_id = #{emp_id}
+		ORDER BY emp_id
 	</select>
 
 	<!-- emp Map(Excel) -->
@@ -49,7 +50,7 @@
 		#{phone},
 		#{address},
 		#{email},
-		TO_DATE(#{hire_date},'yyyy-MM-dd HH24:mi'),
+		TO_DATE(#{hire_date},'yyyy-MM-dd'),
 		#{salary},
 		#{position},
 		#{status},
@@ -69,7 +70,7 @@
 			<if test="phone != null">phone=#{phone},</if>
 			<if test="address != null">address=#{address},</if>
 			<if test="email != null">email=#{email},</if>
-			<if test="hire_date != null">hire_date=TO_DATE(#{hire_date},'yyyy-MM-dd HH24:mi'),
+			<if test="hire_date != null">hire_date=TO_DATE(#{hire_date},'yyyy-MM-dd'),
 			</if>
 			<if test="salary != null">salary=#{salary},</if>
 			<if test="position != null">position=#{position},</if>

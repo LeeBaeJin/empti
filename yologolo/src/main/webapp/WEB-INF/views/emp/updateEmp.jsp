@@ -24,7 +24,7 @@ var dept_select_value = function(select_obj) {
 		<label>전화번호</label>	<input name="phone" value="${empUp.phone}"> <br/>
 		<label>주소</label>		<input name="address" value="${empUp.address}"> <br/>
 		<label>이메일</label>		<input name="email" value="${empUp.email}"> <br/>
-		<label>입사일</label>		<input name="hire_date" value="${empUp.hire_date}" type="datetime-local"> <br/>
+		<label>입사일</label>		<input name="hire_date" value="${empUp.hire_date}" type="date"> <br/>
 		<label>급여</label>		<input name="salary" value="${empUp.salary}"> <br/>
 		<label>계약유형</label>	<input name="position" value="${empUp.position}"> <br/>
 		<label>상태</label>		<input name="status" value="${empUp.status}"> <br/>

@@ -31,14 +31,12 @@ public class EmpServiceImpl implements EmpService {
 	//등록
 	@Override
 	public void setInsertEmp(EmpVO empVO) {
-		empVO.setHire_date(empVO.getHire_date().replace('T', ' '));
 		empMapper.setInsertEmp(empVO);
 	}
 
 	//수정
 	@Override
 	public void setUpdateEmp(EmpVO empVO) {
-		empVO.setHire_date(empVO.getHire_date().replace('T', ' '));
 		empMapper.setUpdateEmp(empVO);
 	}
 

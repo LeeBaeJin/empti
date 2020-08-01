@@ -15,6 +15,28 @@ var dept_select_value = function(select_obj) {
 	}	
 }
 
+$(function (){
+	$('.pw').focusout(function() {
+		var pwd1 = $("#pwd").val();
+		var pwd2 = $("#pwd2").val();
+		if (pwd1 != '' && pwd2 == '') {
+
+		} else if (pwd1 != "" || pwd2 != "") {
+			if (pwd1 == pwd2) {
+				$('#pw').empty()
+				$('#pw')
+				.append($('<span>')).text(" 비밀번호가 일치합니다.")
+			} else {
+				$('#pw').empty()
+				$('#pw')
+				.append($('<span>')).text("비밀번호가 일치하지 않습니다.")
+				
+			}
+		}
+	});
+	
+});
+
 </script>    
     
 <div align="center">
@@ -22,11 +44,13 @@ var dept_select_value = function(select_obj) {
 	<form action="setInsertEmp" method="post" enctype="multipart/form-data">
 		<label>사원아이디</label>	<input name="emp_id"> <br/>
 		<label>이름</label>		<input name="name"> <br/>
-		<label>패스워드</label>	<input type="password" name="pwd"> <br/>
+		<label>패스워드</label>	<input type="password" name="pwd" id="pwd" class="pw"> <br/>
+		<label>패스워드 확인</label>	<input type="password" name="pwd2" id="pwd2" class="pw"> <br/>
+		<div id="pw"></div>
 		<label>전화번호</label>	<input name="phone"> <br/>
 		<label>주소</label>		<input name="address"> <br/>
 		<label>이메일</label>		<input name="email"> <br/>
-		<label>입사일</label>		<input name="hire_date" type="datetime-local"> <br/>
+		<label>입사일</label>		<input name="hire_date" type="date"> <br/>
 		<label>급여</label>		<input name="salary"> <br/>
 		<label>계약유형</label>	<select name="position"> 
 									<option value="" selected> ==선택하세요== </option>
@@ -52,3 +76,5 @@ var dept_select_value = function(select_obj) {
 	<button type="submit">등록</button>
 	</form>
 </div>
+
+
