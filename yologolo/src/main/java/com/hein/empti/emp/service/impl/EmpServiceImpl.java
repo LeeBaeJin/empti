@@ -16,28 +16,33 @@ public class EmpServiceImpl implements EmpService {
 	@Autowired
 	EmpMapper empMapper;
 	
+	//단건
 	@Override
 	public EmpVO getEmp(EmpVO empVO) {
 		return empMapper.getEmp(empVO);
 	}
 
+	//전체
 	@Override
 	public List<EmpVO> getEmpList(EmpVO empVO) {
 		return empMapper.getEmpList(empVO);
 	}
 
+	//등록
 	@Override
 	public void setInsertEmp(EmpVO empVO) {
 		empVO.setHire_date(empVO.getHire_date().replace('T', ' '));
 		empMapper.setInsertEmp(empVO);
 	}
 
+	//수정
 	@Override
 	public void setUpdateEmp(EmpVO empVO) {
+		empVO.setHire_date(empVO.getHire_date().replace('T', ' '));
 		empMapper.setUpdateEmp(empVO);
-
 	}
 
+	//삭제
 	@Override
 	public void setDeleteEmp(EmpVO empVO) {
 		empMapper.setDeleteEmp(empVO);

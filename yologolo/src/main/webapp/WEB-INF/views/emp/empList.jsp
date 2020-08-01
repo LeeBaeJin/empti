@@ -43,6 +43,9 @@ $(function() {
 	return false;
 		});
 	
+	function empUpdate(emp_id) {
+		location.href = "setUpdateFormEmp/" + emp_id;
+	}
 	
 });
 </script>
@@ -79,7 +82,7 @@ $(function() {
 							<td>${emp.position}</td>
 							<td>${emp.dept_name}</td>
 							<td>${emp.manager}</td>
-							<td><a href="setUpdateFormEmp?emp_id=${emp.emp_id}">수정</a></td>
+							<td><a href="#" onclick="empUpdate(${emp.emp_id})" >수정</a></td>
 							<td><button class="authorities" onclick="authoritiesCheck">권한부여</button>
 						</tr>
 					</c:forEach>

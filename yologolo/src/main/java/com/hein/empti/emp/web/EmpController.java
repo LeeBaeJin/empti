@@ -85,9 +85,28 @@ public class EmpController {
 	}
 	
 	//수정폼
-	@RequestMapping("/setUpdateFormEmp")
-	public String setUpdateFormEmp(EmpVO empVO, Model model) {
+	@RequestMapping("/setUpdateFormEmp/{emp_id}")
+	public String setUpdateFormEmp(@PathVariable String emp_id,EmpVO empVO, Model model, DeptVO deptVO) {
+		empVO.setEmp_id(emp_id);
+		empVO = empService.getEmp(empVO);
+		if (empVO.getHire_date() != null) 
+			empVO.setHire_date((empVO.getHire_date().replace(' ', 'T')));
+		empVO.setHire_date(empVO.getHire_date().substring(0, 16)); 	
 		model.addAttribute("empUp", empService.getEmp(empVO));
+		model.addAttribute("deptList", deptService.getDeptList(deptVO));
+		return "admin/emp/updateEmp";
+	}
+	
+	@RequestMapping("/mySetUpdateFormEmp/{emp_id}")
+	public String setUpdateFormEmp(EmpVO empVO, Model model, DeptVO deptVO) {
+//		emp
+//		empVO.setEmp_id(emp_id);
+		empVO = empService.getEmp(empVO);
+		if (empVO.getHire_date() != null) 
+			empVO.setHire_date((empVO.getHire_date().replace(' ', 'T')));
+		empVO.setHire_date(empVO.getHire_date().substring(0, 16)); 	
+		model.addAttribute("empUp", empService.getEmp(empVO));
+		model.addAttribute("deptList", deptService.getDeptList(deptVO));
 		return "admin/emp/updateEmp";
 	}
 	
