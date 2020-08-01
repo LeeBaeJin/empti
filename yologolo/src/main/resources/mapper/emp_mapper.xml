@@ -18,8 +18,7 @@
 	</select>
 
 	<select id="getEmpList" resultType="EmpVO" parameterType="EmpVO">
-		SELECT
-		*
+		SELECT emp_id, name, to_char(hire_date, 'yyyy-MM-dd') "hire_date",  dept_name, position, manager 
 		FROM emplist_view
 		ORDER BY emp_id
 	</select>
