@@ -5,12 +5,21 @@
 <head>
 <script>
 $(function(){
+	$('#ledgerDiv').on('click', '#btnFindItem', function() {
+		var status = $('#status option:selected').val();
+		
+		var wo = window.open('findItems/status','item', 'width=800, hight=800');
+		return wo;
+	});		
+});
+$(function(){
 		ledgerList();
 		ledgerInsert();
 		ledgerUpdate(); 
 		ledgerSelect();
 		init();
 	});
+	
 	
 	//초기화
 	function init() {
@@ -47,7 +56,7 @@ $(function(){
 	
 	
 	// 조회 요청
-	function LedgerSelect() {
+	function ledgerSelect() {
 		//조회 버튼 클릭
 		$('body').on('click','#btnSelect',function(){
 			var ldgrNo = $(this).closest('tr').find('#hidden_ldgr_no').val();
@@ -71,9 +80,21 @@ $(function(){
 		$('[name="ldgr_date"]').val(ledgers.ldgr_date);
 		$('input:text[name="total_amount"]').val(ledgers.total_amount);
 		$('select[name="condition"]').val(ledgers.condition).attr("selected", "selected");
-		$('input:text[name="border_no"]').val(ledgers.border_no);
-		$('input:text[name="sorder_no"]').val(ledgers.sorder_no);
-		$('select[name="satus"]').val(ledgers.status).attr("selected", "selected");
+		$('select[id="status"]').val(ledgers.status).attr("selected", "selected");
+		console.log((ledgers.status));
+		if(ledgers.status == "매입") {
+			$('#order_no').empty();
+			$('#order_no')
+			.append($('<label>').text("구매주문번호"))
+			.append($('<input id=\'border_no\'>').val(ledgers.border_no)) 
+		} else if (ledgers.status == "매출"){
+ 			$('#order_no').empty();
+			$('#order_no')
+			.append($('<label>').text("판매주문번호"))
+			.append($('<input id=\'sorder_no\'>').val(ledgers.sorder_no)); 
+		} else {
+			$('#order_no').empty();
+		}
 		$('input:text[name="note"]').val(ledgers.note);
 		
 	}//userSelectResult
@@ -87,9 +108,9 @@ $(function(){
 			var ldgrDate = $('[name="ldgr_date"]').val();
 			var totalAmnt = $('[name="total_amount"]').val();
 			var con = $('[name="condition"]').val();
-			var borderNo = $('[name="border_no"]').val();
-			var sorderNo = $('[name="sorder_no"]').val();
-			var sts = $('[name="status"]').val();
+			var borderNo = $('[id="border_no"]').val();
+			var sorderNo = $('[id="sorder_no"]').val();
+			var sts = $('[id="status"]').val();
 			var note = $('[name="note"]').val();
 			$.ajax({ 
 			    url: "ledgers", 
@@ -140,6 +161,32 @@ $(function(){
 			.appendTo('tbody');
 		});//each
 	}//userListResult
+	
+	
+	$(function() {
+			$('#order_no').empty();
+		$('#status').change(function() {
+			var status = $('#status option:selected').val();
+			if(status == "매입") {
+				$('#order_no').empty();
+				$('#order_no')
+				.append($('<label>').text("구매주문번호"))
+				.append($('<input id=\'border_no\'>'))
+				.append($('<button id=\'btnFindItem\'>').append('<img src="resources/images/Glass.png" width="30px" height="30px">'))
+			} else if (status == "매출"){
+				$('#order_no').empty();
+				$('#order_no')
+				.append($('<label>').text("판매주문번호"))
+				.append($('<input id=\'sorder_no\'>'))
+				.append($('<button id=\'btnFindItem\'>').append('<img src="resources/images/Glass.png" width="30px" height="30px">'))
+
+			} else {
+				$('#order_no').empty();
+			}
+		});
+	});
+
+
 </script>
 
 </head>
@@ -149,18 +196,22 @@ $(function(){
 		<label>장부번호</label><input name="ldgr_no" id="ldgr_no" readonly> <br>
 		<label>날짜</label>	<input name="ldgr_date" type="datetime-local"> <br>
 		<label>금액</label>	<input name="total_amount"> <br>
+		<label>구분</label> 	<select id="status">
+								<option value="" selected> == 매출/매입 선택 == </option>
+								<option value="매입">매입</option>
+								<option value="매출">매출</option>
+							</select><br>
+			
+
+		<div id="order_no">
+		
+		</div>
+		
 		<label>상태</label>	<select name="condition">
 							<option value="" selected> ==선택하세요== </option>
 							<option value="완납">완납</option>
 							<option value="미수">미수</option>	
 							</select> <br>
-		<label>구매주문 번호</label><input name="border_no"> <br>
-		<label>판매주문 번호</label><input name="sorder_no"> <br>
-		<label>상태</label> 	<select name="status">
-							<option value="" selected> == 선택하세요 == </option>
-							<option value="매입">매입</option>
-							<option value="매출">매출</option>
-							</select>
 		<label>비고</label>	<input name="note"> <br>
 					<div class="btn-group">
 						<input type="button"  class="btn btn-primary" value="등록"  id="btnInsert" /> 
