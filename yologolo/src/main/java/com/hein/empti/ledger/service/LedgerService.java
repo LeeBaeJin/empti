@@ -1,6 +1,7 @@
 package com.hein.empti.ledger.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.hein.empti.ledger.LedgerVO;
 
@@ -9,4 +10,7 @@ public interface LedgerService {
 	public LedgerVO getLedger(LedgerVO ledgerVO);
 	public void setInsertLedger(LedgerVO ledgerVO);
 	public void setUpdateLedger(LedgerVO ledgerVO);
+	
+	//엑셀
+	public List<Map<String, Object>> getLdgrExcelMap(LedgerVO vo);
 }

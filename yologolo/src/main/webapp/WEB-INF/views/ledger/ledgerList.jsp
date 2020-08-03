@@ -8,7 +8,8 @@
 		<h6 class="m-0 font-weight-bold text-primary">
 		<a href="getSaleledgerList">장부 내역</a> | 
 		<a href="setInsertFormSaleledger">장부 입력</a> |
-		<a href="saleledger_list.do">PDF</a>
+		<a href="saleledger_list.do">PDF</a> |
+		<a href="ldgrexcel.do">EXCEL</a>
 		</h6>
 	</div>
 	<div class="card-body">

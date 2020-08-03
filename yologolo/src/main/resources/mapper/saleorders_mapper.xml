@@ -21,7 +21,7 @@
 		ORDER BY sorder_no
 	</select>
 
-	<!-- 판매주문 전체조회 Map(Excel) -->
+  	<!-- 판매주문 전체조회 Map(Excel) -->
 	<select id="getSaleOrdersExcelMap" resultType="map"
 		parameterType="SaleordersVO">
 		select* from
@@ -86,7 +86,7 @@
 			WHERE sorder_no = #{item.sorder_no}
 		</foreach>
 	</update>
-
+	
 	<!-- 판매주문삭제 -->
 	<!-- <delete id="setDeleteSaleorders" parameterType="SaleordersVO"> DELETE 
 		FROM saleorders WHERE sorder_no = #{sorder_no} </delete> -->

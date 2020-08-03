@@ -45,6 +45,7 @@ public class LedgerController {
 	public Map setInsertLedger(LedgerVO ledgerVO, Model model) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		ledgerService.setInsertLedger(ledgerVO);
+		
 		map.put("result", true);
 		map.put("kkk", "ok");
 		return map;
@@ -94,6 +95,17 @@ public class LedgerController {
 		mv.setViewName("pdfView");
 		mv.addObject("filename", "/reports/ledger_list.jrxml");
 		return mv;
+	}
+	
+	// excel 출력
+	@RequestMapping("LdgrExcel.do")
+	public ModelAndView buyordersexcel(LedgerVO vo) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("commonExcelView");
+		mv.addObject("datas", ledgerService.getLdgrExcelMap(vo));// Map객체를 조회해서 시트를 생성한다.
+		mv.addObject("filename", "ledgerlist");// 파일이름을 바꿔준다.
+		mv.addObject("headers", new String[] { "장부번호", "날짜", "금액", "상태", "주문번호", "비고"}); // 헤더의 값만 출력된다.
+		return mv;    //장부번호, 날짜, 금액, 상태, 주문번호, 비고
 	}
 
 }

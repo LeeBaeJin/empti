@@ -1,6 +1,7 @@
 package com.hein.empti.ledger.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,6 +36,11 @@ public class LedgerServiceImpl implements LedgerService {
 	public void setUpdateLedger(LedgerVO ledgerVO) {
 		ledgerVO.setLdgr_date(ledgerVO.getLdgr_date().replace('T', ' '));
 		ledgerMapper.setUpdateLedger(ledgerVO);
+	}
+
+	@Override
+	public List<Map<String, Object>> getLdgrExcelMap(LedgerVO vo) {
+		return ledgerMapper.getLdgrExcelMap(vo);
 	}
 
 	

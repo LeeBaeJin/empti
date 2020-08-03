@@ -83,13 +83,21 @@ public class SaleordersController {
 		return "redirect:getSaleordersList";
 	}
 
-	// 수정처리
-	@RequestMapping("/setUpdateSaleorders")
+	// 수정처리 (배송상태만)
+	@RequestMapping("/setUpdateSaleDel")
 	@ResponseBody
-	public String setUpdateSaleorders(@RequestBody List<SaleordersVO> sList) {
-		saleordersService.setUpdateSaleorders(sList);
+	public String setUpdateSaleDel(@RequestBody List<SaleordersVO> sList) {
+		saleordersService.setUpdateSaleDel(sList);
 		return "redirect:getSaleordersList";
 	}
+	
+	// 주문번호조회
+		@RequestMapping("/findSaleorderNo")
+		public String findSaleorderNo(SaleordersVO saleordersVO, Model model) {
+			model.addAttribute("findSaleorderNo", saleordersService.getSaleordersListMap(saleordersVO));
+			return "common/findSaleorderNo";
+		}
+	
 
 	/*
 	 * //판매주문 단건조회

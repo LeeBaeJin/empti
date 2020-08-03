@@ -36,8 +36,8 @@ public class SaleordersServiceImpl implements SaleordersService{
 	}
 	
 	@Override
-	public void setUpdateSaleorders(List<SaleordersVO> sList) {
-		saleordersMapper.setUpdateSaleorders(sList);
+	public void setUpdateSaleDel(List<SaleordersVO> sList) {
+		saleordersMapper.setUpdateSaleDel(sList);
 	}
 
 	@Override

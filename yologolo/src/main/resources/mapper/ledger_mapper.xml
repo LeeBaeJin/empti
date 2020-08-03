@@ -2,20 +2,31 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper	namespace="com.hein.empti.ledger.mapper.LedgerMapper">
+<mapper
+	namespace="com.hein.empti.ledger.mapper.LedgerMapper">
 	<!-- 장부 단건조회 -->
-	<select id="getLedger" parameterType="LedgerVO" resultType="LedgerVO">
+	<select id="getLedger" parameterType="LedgerVO"
+		resultType="LedgerVO">
 		SELECT *
 		FROM ledger
 		WHERE ldgr_no = #{ldgr_no}
-	</select> 
+	</select>
 
 	<!-- 장부전체조회 list -->
 	<select id="getLedgerList" resultType="LedgerVO">
 		SELECT *
 		FROM Ledger
-		ORDER BY ldgr_no
+		ORDER
+		BY ldgr_no
 	</select>
+
+	<!-- 장부 전체조회 Map(Excel) -->
+	<select id="LdgrExcel.do" resultType="map"
+		parameterType="LedgerVO">
+		select *from ldgrexcel_view
+		order by 장부번호;
+	</select>
+	
 
 	<!-- 장부등록 -->
 	<insert id="setInsertLedger" parameterType="LedgerVO">
@@ -45,7 +56,9 @@
 	<update id="setUpdateLedger" parameterType="LedgerVO">
 		UPDATE Ledger
 		<set>
-			<if test="ldgr_date != null">ldgr_date = To_date(#{ldgr_date},'yyyy-MM-dd hh24:mi:ss'),</if>
+			<if test="ldgr_date != null">ldgr_date = To_date(#{ldgr_date},'yyyy-MM-dd
+				hh24:mi:ss'),
+			</if>
 			<if test="total_amount != null">total_amount = #{total_amount},</if>
 			<if test="condition != null">condition = #{condition},</if>
 			<if test="border_no != null">border_no = #{border_no},</if>
@@ -57,8 +70,8 @@
 		ldgr_no = #{ldgr_no}
 	</update>
 
-	<delete id="setDeleteLedger" parameterType="LedgerVO"> 
-		DELETE FROM	Ledger 
+	<delete id="setDeleteLedger" parameterType="LedgerVO">
+		DELETE FROM Ledger
 		WHERE ldgr_no = #{ldgr_no}
 	</delete>
 

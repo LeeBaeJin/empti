@@ -9,7 +9,7 @@ public interface SaleordersMapper {
 	public List<SaleordersVO> getSaleordersList(SaleordersVO saleordersVO);	
 	public SaleordersVO getSaleorders(SaleordersVO saleordersVO);
 	public void setInsertSaleorders(SaleordersVO saleordersVO);
-	public void setUpdateSaleorders(List<SaleordersVO> sList);
+	
 	public void setDeleteSaleorders(SaleordersVO saleordersVO);
 	
 	//시퀀스 조회
@@ -20,4 +20,6 @@ public interface SaleordersMapper {
 	
 	//엑셀
 	public List<Map<String, Object>> getSaleOrdersExcelMap(SaleordersVO vo);
+	//수정처리(배송상태만)
+	public void setUpdateSaleDel(List<SaleordersVO> sList);
 }

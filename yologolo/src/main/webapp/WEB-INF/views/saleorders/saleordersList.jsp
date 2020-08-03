@@ -7,7 +7,6 @@
 <html>
 <head>
 <script type="text/javascript">
-	
 	var selDel = [];
 	//페이지 로드
 	$(function(){
@@ -30,7 +29,7 @@
 		console.log(selDel);
 		$('#tblhead').on('click', '#delUpdate', function() {
 				$.ajax ({
-					url: "setUpdateSaleorders",
+					url: "setUpdateSaleDel",
 					type: "POST",
 					data: JSON.stringify(selDel),
 					contentType : "application/json",
@@ -43,6 +42,7 @@
 		});
 		
 	});
+	//Select 박스의 옵션 값을 바꿀때 마다 값을 onchange하는 기능
 	function selChk(sorderNo, sorderDel) {
 		var orId = sorderNo;
 		var orSta = $(sorderDel).val();
@@ -66,7 +66,7 @@
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
 		<h6 class="m-0 font-weight-bold text-primary">
-			<a href="getSaleordersListMap">판매주문 내역 </a> | 
+			<a href="getSaleordersListMap">판매주문 조회</a> | 
 			<a href="setInsertFormSaleorders">판매주문 입력</a> |
 			<a href="saleorders_list.do">PDF</a> |
 			<a href="sorderexcel.do">EXCEL</a>
@@ -74,12 +74,15 @@
 	</div>
 	<div class="card-body">
 		<div class="table-responsive">
+		<a href="getSaleordersListMap">주문내역</a> | <a href="#">반품내역</a>
 			<table class="table table-bordered" id="dataTable" style="width: 100%; cellspacing=0;">
 				<thead id="tblhead">
 					<tr>
 						<th>주문일자</th>
 						<th>판매합계</th>
-						<th>배송상태&nbsp;<button class="btn btn-success btn-sm" type="button" id="delUpdate" style="">수정</button></th>
+						<th style="width: 200px;">배송상태&nbsp;
+						<button class="btn btn-success btn-sm" type="button" id="delUpdate" style="">수정</button>
+						</th>
 						<th>담당사원</th>
 						<th>거래처</th>
 						<th style="display: none;"/>
@@ -91,7 +94,7 @@
 						<td>
 						 <a href="javascript:void(0);" onclick="orderDetails(${sale.sorder_no});">${sale.sorder_date}</a>
 						</td>
-						<td>
+						<td align="right">
 						<fmt:parseNumber value="${sale.sale_sum}" var="fmt"/>
 						<fmt:formatNumber type="number" maxFractionDigits="3" value="${fmt}"/>
 						</td>
