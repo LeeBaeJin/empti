@@ -86,10 +86,10 @@ public class EmpController {
 	
 	//수정폼
 	@RequestMapping("/setUpdateFormEmp/{emp_id}")
-	public String setUpdateFormEmp(@PathVariable String emp_id,EmpVO empVO, Model model, DeptVO deptVO) {
+	public String setUpdateFormEmp(@PathVariable String emp_id,Model model, EmpVO empVO, DeptVO deptVO) {
 		empVO.setEmp_id(emp_id);
-		empVO = empService.getEmp(empVO); 	
-		model.addAttribute("empUp", empService.getEmp(empVO));
+		empVO = empService.getEmp(empVO);
+		model.addAttribute("empUp", empVO);
 		model.addAttribute("deptList", deptService.getDeptList(deptVO));
 		return "admin/emp/updateEmp";
 	}
@@ -105,7 +105,6 @@ public class EmpController {
 		model.addAttribute("deptList", deptService.getDeptList(deptVO));
 		return "admin/emp/updateEmp";
 	}
-	
 	
 	//수정처리
 	@RequestMapping("/setUpdateEmp")

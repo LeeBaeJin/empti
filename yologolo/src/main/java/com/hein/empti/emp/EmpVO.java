@@ -13,7 +13,9 @@ public class EmpVO {
 	String pwd;
 	String pwd2;
 	String phone;
+	String zip_code;
 	String address;
+	String address_detail;
 	String email;
 	String hire_date;
 	String salary;
@@ -29,6 +31,4 @@ public class EmpVO {
 //	emplist_view의 VO
 	String dept_name;
 	String manager;
-
-
 }

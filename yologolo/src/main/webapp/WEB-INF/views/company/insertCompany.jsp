@@ -60,24 +60,24 @@ function execPostCode() {
     }).open();
 }
 </script>
-<div align="center">
+<div class="col-sm-12 my-auto">
 	<h3>거래처등록</h3>
 	<form id="cpFrm" action="setInsertCompany" class="from-group">
-		<label>회사코드</label> <input class="form-control" name="company_no" style="width: 40%; display: inline;"> <br/>
-		<label>회사명</label> <input class="form-control"name="company_name" style="width: 40%; display: inline;"> <br/>
-		<label>대표 전화번호</label> <input class="form-control" name="phone" style="width: 40%; display: inline;"> <br/>
-		<label>대표 이름</label> <input class="form-control" name="ceo_name" style="width: 40%; display: inline;"> <br/>
-		<label>주소</label>	<input class="form-control" name="zip_code" id="addr1" readonly="readonly" style="width: 40%; display: inline;" placeholder="우편번호">
-							<button class="btn btn-default" type="button"  onclick="execPostCode();"><i class="fa fa-search"></i> 우편번호 찾기</button>                               
-							<input class="form-control" name="address" id="addr2" readonly="readonly" style="top: 5px; width: 60%; display: inline;" placeholder="도로명 주소" />
-							<input class="form-control" name="address_detail" id="addr3" style="width: 60%; display: inline;" placeholder="상세주소" />
-							 <br/>
-		<label>담당자 전화번호</label>	<input class="form-control" name="dealer_phone" style="width: 40%; display: inline;"> <br/>
-		<label>담당자 이름</label>	<input class="form-control" name="dealer_name" style="width: 40%; display: inline;"> <br/>
-		<label>은행</label> <input class="form-control" name="bank_name" style="width: 40%; display: inline;"> <br/>
-		<label>계좌</label> <input class="form-control" name="account_no" style="width: 40%; display: inline;"> <br/>
-		<label>비고</label> <input class="form-control" name="note" style="width: 40%; display: inline;"> <br/><br/>
-	<div align="right">	
+		<label>회사코드</label> <input class="form-control" name="company_no" style="width: 250px; display: inline;"> <br/>
+		<label>회사명</label> <input class="form-control"name="company_name" style="width: 250px; display: inline;"> <br/>
+		<label>대표 전화번호</label> <input class="form-control" name="phone" style="width: 250px; display: inline;"> <br/>
+		<label>대표 이름</label> <input class="form-control" name="ceo_name" style="width: 250px; display: inline;"> <br/>
+		<label>주소</label>	<input class="form-control" name="zip_code" id="addr1" readonly="readonly" style="width: 10%; display: inline;" placeholder="우편번호">
+							<button class="btn btn-default" type="button"  onclick="execPostCode();"><i class="fa fa-search"></i> 우편번호 찾기</button><br/>                             
+							<input class="form-control" name="address" id="addr2" readonly="readonly" style="top: 5px; width: 35%; display: inline;" placeholder="도로명 주소"><br/>
+							<input class="form-control" name="address_detail" id="addr3" style="width: 35%; display: inline;" placeholder="상세주소">
+							<br/>
+		<label>담당자 전화번호</label>	<input class="form-control" name="dealer_phone" style="width: 250px; display: inline;"> <br/>
+		<label>담당자 이름</label>	<input class="form-control" name="dealer_name" style="width: 250px; display: inline;"> <br/>
+		<label>은행</label> <input class="form-control" name="bank_name" style="width: 250px; display: inline;"> <br/>
+		<label>계좌</label> <input class="form-control" name="account_no" style="width: 250px; display: inline;"> <br/>
+		<label>비고</label> <input class="form-control" name="note" style="width: 250px; display: inline;"> <br/><br/>
+	<div class="col-sm-12 my-auto">	
 	<button class="btn btn-success" id="subBtn" type="button">등록</button>
 	</div>
 	</form>
