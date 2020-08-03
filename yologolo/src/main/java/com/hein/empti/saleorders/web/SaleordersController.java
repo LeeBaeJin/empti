@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.hein.empti.buyorders.BuyordersVO;
 import com.hein.empti.emp.EmpVO;
 import com.hein.empti.emp.service.EmpService;
 import com.hein.empti.saleorderdetails.SaleorderdetailsVO;
@@ -26,10 +27,13 @@ import com.hein.empti.saleorders.service.SaleordersService;
 @Controller
 public class SaleordersController {
 
-	@Autowired SaleordersService saleordersService;
-	@Autowired SaleorderdetailsService saleorderdetailsService;
+	@Autowired
+	SaleordersService saleordersService;
+	@Autowired
+	SaleorderdetailsService saleorderdetailsService;
 
-	@Autowired EmpService empService;
+	@Autowired
+	EmpService empService;
 
 	// for report
 	@Autowired
@@ -39,7 +43,7 @@ public class SaleordersController {
 	// 판매주문번호 조회하여 판매상세정보List 출력
 	@RequestMapping("/getSaleorderdetailList")
 	public String getSaleorders(SaleorderdetailsVO vo, Model model) {
-		model.addAttribute("details",saleorderdetailsService.getSaleorderdetailList(vo));
+		model.addAttribute("details", saleorderdetailsService.getSaleorderdetailList(vo));
 		return "saleorderdetails/saleorderdetailList";
 	}
 
@@ -49,12 +53,12 @@ public class SaleordersController {
 //		model.addAttribute("saleordersList", saleordersService.getSaleordersList(saleordersVO));
 //		return "admin/saleorders/saleordersList";
 //	}
-	
+
 	// 판매주문 전체조회 Map
 	@RequestMapping("/getSaleordersListMap")
 	public String getSaleordersListMap(Model model, SaleordersVO saleordersVO) {
 		model.addAttribute("saleordersMap", saleordersService.getSaleordersListMap(saleordersVO));
-		return "admin/saleorders/saleordersList"; 
+		return "admin/saleorders/saleordersList";
 	}
 
 	// 판매주문 시퀀스
@@ -104,5 +108,17 @@ public class SaleordersController {
 		mv.setViewName("pdfView");
 		mv.addObject("filename", "/reports/saleorders_list.jrxml");
 		return mv;
+	}
+
+	// excel 출력
+	@RequestMapping("sorderexcel.do")
+	public ModelAndView saleordersexcel(SaleordersVO vo) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("commonExcelView");
+		mv.addObject("datas", saleordersService.getSaleOrdersExcelMap(vo));// Map객체를 조회해서 시트를 생성한다.
+		mv.addObject("filename", "saleorderlist");// 파일이름을 바꿔준다.
+		mv.addObject("headers", new String[] { "판매번호", "판매일자", "품목", "수량", "단가", "판매합계", "거래처", "담당자" }); // 헤더의 값만
+																											// 출력된다.
+		return mv; // 판매번호, 판매일자, 품목, 수량, 단가, 판매합계, 거래처, 담당자
 	}
 }

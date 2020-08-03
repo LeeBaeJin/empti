@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.hein.empti.buyorders.BuyordersVO;
 import com.hein.empti.buyorders.OrderMasterVO;
+import com.hein.empti.company.CompanyVO;
 
 public interface BuyordersService {
 	//public List<BuyordersVO> getBuyordersList(BuyordersVO buyordersVO);
@@ -22,4 +23,9 @@ public interface BuyordersService {
 	
 	//시퀀스 조회
 	public String getBuySeq();
-}
+	
+	//엑셀
+	public List<Map<String, Object>> getBuyordersexcelMap(BuyordersVO vo);
+
+	}
+

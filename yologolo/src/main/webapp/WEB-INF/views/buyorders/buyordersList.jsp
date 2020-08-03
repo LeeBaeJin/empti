@@ -138,7 +138,8 @@
 		<h6 class="m-0 font-weight-bold text-primary">
 			<a href="getBuyordersList">구매주문 내역 </a> | 
 			<a href="setInsertFormBuyorders">구매주문 입력</a> |
-			<a href="buyorders_list_pdf.do">PDF</a>
+			<a href="buyorders_list_pdf.do">PDF</a> |
+			<a href="buyOrdersexcel.do">EXCEL</a>
 		</h6>
 	</div>
 	<div class="card-body">

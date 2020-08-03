@@ -22,4 +22,7 @@ public interface BuyordersMapper {
 	
 	//시퀀스 조회
 	public String getBuySeq();
+	
+	//엑셀
+	public List<Map<String, Object>> getBuyordersexcelMap(BuyordersVO vo);
 }

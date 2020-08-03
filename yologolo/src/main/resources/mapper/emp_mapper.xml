@@ -17,6 +17,7 @@
 	<select id="getEmpMap" resultType="map" parameterType="EmpVO">
 		SELECT *
 		FROM empexcel_view
+		order by 사원번호
 	</select>
 
 	<select id="getEmpList" resultType="EmpVO" parameterType="EmpVO">

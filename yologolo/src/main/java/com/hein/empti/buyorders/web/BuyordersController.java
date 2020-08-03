@@ -24,6 +24,7 @@ import com.hein.empti.buyorderdetails.service.BuyorderdetailsService;
 import com.hein.empti.buyorders.BuyordersVO;
 import com.hein.empti.buyorders.OrderMasterVO;
 import com.hein.empti.buyorders.service.BuyordersService;
+import com.hein.empti.company.CompanyVO;
 
 @Controller
 public class BuyordersController {
@@ -147,4 +148,16 @@ public class BuyordersController {
 		mv.addObject("filename", "/reports/buyorders_list_pdf.jrxml");
 		return mv;
 	}
+	
+	// excel 출력
+	@RequestMapping("buyOrdersexcel.do")
+	public ModelAndView buyordersexcel(BuyordersVO vo) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("commonExcelView");
+		mv.addObject("datas", buyordersService.getBuyordersexcelMap(vo));// Map객체를 조회해서 시트를 생성한다.
+		mv.addObject("filename", "buyorderlist");// 파일이름을 바꿔준다.
+		mv.addObject("headers", new String[] { "주문번호", "주문일자", "품목", "수량", "단가", "구매합계", "거래처", "담당자"}); // 헤더의 값만 출력된다.
+		return mv;    //주문번호, 주문일자, 품목, 수량, 단가, 구매합계, 거래처, 담당자
+	}
+	
 }

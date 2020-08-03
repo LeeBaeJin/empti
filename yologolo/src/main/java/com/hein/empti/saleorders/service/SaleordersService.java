@@ -18,4 +18,7 @@ public interface SaleordersService {
 	
 	//판매주문(JOIN name, company_name) Map 객체에 담아서 조회
 	public List<Map<String, Object>> getSaleordersListMap(SaleordersVO saleordersVO);
+	
+	//엑셀
+	public List<Map<String, Object>> getSaleOrdersExcelMap(SaleordersVO vo);
 }

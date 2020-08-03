@@ -67,4 +67,10 @@ public class BuyordersServiceImpl implements BuyordersService{
 	public String getBuySeq() {
 		return buyordersMapper.getBuySeq();
 	}
+
+	@Override
+	public List<Map<String, Object>> getBuyordersexcelMap(BuyordersVO vo) {
+		// TODO Auto-generated method stub
+		return buyordersMapper.getBuyordersexcelMap(vo);
+	}
 }

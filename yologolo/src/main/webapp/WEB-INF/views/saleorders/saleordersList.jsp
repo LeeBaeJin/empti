@@ -68,7 +68,8 @@
 		<h6 class="m-0 font-weight-bold text-primary">
 			<a href="getSaleordersListMap">판매주문 내역 </a> | 
 			<a href="setInsertFormSaleorders">판매주문 입력</a> |
-			<a href="saleorders_list.do">PDF</a>
+			<a href="saleorders_list.do">PDF</a> |
+			<a href="sorderexcel.do">EXCEL</a>
 		</h6>
 	</div>
 	<div class="card-body">

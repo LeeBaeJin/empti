@@ -56,4 +56,9 @@ public class SaleordersServiceImpl implements SaleordersService{
 	public List<Map<String, Object>> getSaleordersListMap(SaleordersVO saleordersVO) {
 		return saleordersMapper.getSaleordersListMap(saleordersVO);
 	}
+
+	@Override
+	public List<Map<String, Object>> getSaleOrdersExcelMap(SaleordersVO vo) {
+		return saleordersMapper.getSaleOrdersExcelMap(vo);
+	}
 }
