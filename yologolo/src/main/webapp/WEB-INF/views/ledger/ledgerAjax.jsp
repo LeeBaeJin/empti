@@ -75,17 +75,17 @@ $(function(){
 			var ledgerNo = $('#ledgerDiv').find('#ldgr_no').val();
 			var ldgrDate = $('[name="ldgr_date"]').val();
 			var totalAmnt = $('[name="total_amount"]').val();
-			var con = $('[name="condition"]').val();
+			var sts = $('[id="status"]').val();
 			var borderNo = $('[id="border_no"]').val();
 			var sorderNo = $('[id="sorder_no"]').val();
-			var sts = $('[id="status"]').val();
+			var con = $('[name="condition"]').val();
 			var note = $('[name="note"]').val();
 			$.ajax({ 
 			    url: "ledgers", 
 			    type: 'PUT', 
 			    dataType: 'json', 
-			    data : JSON.stringify({ldgr_no:ledgerNo, ldgr_date: ldgrDate, total_amount:totalAmnt, condition: con,
-		    							border_no: borderNo, sorder_no : sorderNo, status: sts, note: note}),
+			    data : JSON.stringify({ldgr_no:ledgerNo, ldgr_date: ldgrDate, total_amount:totalAmnt, status: sts, 
+		    							border_no: borderNo, sorder_no : sorderNo, condition: con, note: note}),
 			    contentType:'application/json;charset=utf-8',
 			    success: function(data) { 
 			    	console.log(data);
@@ -123,14 +123,12 @@ $(function(){
 		$('input:text[name="ldgr_no"]').val(ledgers.ldgr_no);
 		$('[name="ldgr_date"]').val(ledgers.ldgr_date);
 		$('input:text[name="total_amount"]').val(ledgers.total_amount);
-		$('select[name="condition"]').val(ledgers.condition).attr("selected", "selected");
 		$('select[id="status"]').val(ledgers.status).attr("selected", "selected");
-		console.log((ledgers.status));
 		if(ledgers.status == "매입") {
 			$('#order_no').empty();
 			$('#order_no')
 			.append($('<label>').text("구매주문번호"))
-			.append($('<input id=\'border_no\'>').val(ledgers.border_no)) 
+			.append($('<input id=\'border_no\'>').val(ledgers.border_no)); 
 		} else if (ledgers.status == "매출"){
  			$('#order_no').empty();
 			$('#order_no')
@@ -139,6 +137,7 @@ $(function(){
 		} else {
 			$('#order_no').empty();
 		}
+		$('select[name="condition"]').val(ledgers.condition).attr("selected", "selected");
 		$('input:text[name="note"]').val(ledgers.note);
 		
 	}
@@ -165,10 +164,10 @@ $(function(){
 			.append($('<td>').html(item.ldgr_no))
 			.append($('<td>').html(item.ldgr_date))
 			.append($('<td>').html(item.total_amount))
-			.append($('<td>').html(item.condition))
+			.append($('<td>').html(item.status))
 			.append($('<td>').html(item.border_no))
 			.append($('<td>').html(item.sorder_no))
-			.append($('<td>').html(item.status))
+			.append($('<td>').html(item.condition))
 			.append($('<td>').html(item.note))
 			.append($('<td>').html('<button id=\'btnSelect\'>조회</button>'))
 			.append($('<input type=\'hidden\' id=\'hidden_ldgr_no\'>').val(item.ldgr_no))
@@ -185,14 +184,16 @@ $(function(){
 				$('#order_no').empty();
 				$('#order_no')
 				.append($('<label>').text("구매주문번호"))
-				.append($('<input id=\'border_no\'>'))
+				.append($('<input id=\'border_no\' name=\'border_no\'>'))
+				.append($('<input id=\'sorder_no\' name=\'sorder_no\' hidden>'))
 				.append($('<button type="button" id=\'btnFindOrderNo\'>')
 				.append('<img src="resources/images/Glass.png" width="30px" height="30px">'))
 			} else if (status == "매출"){
 				$('#order_no').empty();
 				$('#order_no')
 				.append($('<label>').text("판매주문번호"))
-				.append($('<input id=\'sorder_no\'>'))
+				.append($('<input id=\'sorder_no\' name=\'sorder_no\'>'))
+				.append($('<input id=\'border_no\' name=\'border_no\' hidden>'))
 				.append($('<button type="button" id=\'btnFindOrderNo\'>')
 				.append('<img src="resources/images/Glass.png" width="30px" height="30px">'))
 
@@ -215,7 +216,7 @@ $(function(){
 					<th class="text-center">장부번호</th>
 					<th class="text-center">날짜</th>
 					<th class="text-center">금액</th>
-					<th class="text-center">상태</th>
+					<th class="text-center">구분</th>
 					<th class="text-center">구매주문번호</th>
 					<th class="text-center">판매주문번호</th>
 					<th class="text-center">상태</th>
@@ -231,29 +232,27 @@ $(function(){
 	<div class="col-lg-5 col-md-12 ">
 		<div id="ledgerDiv" class="ml-5">
 			<form id="ledgerForm">  
-				<label>장부번호</label><input name="ldgr_no" id="ldgr_no" readonly>
-				<br> <label>날짜</label> <input name="ldgr_date"
-					type="datetime-local"> <br> <label>금액</label> <input
-					name="total_amount"> <br> <label>구분</label> <select
-					id="status">
-					<option value="" selected>== 매출/매입 선택 ==</option>
-					<option value="매입">매입</option>
-					<option value="매출">매출</option>
-				</select><br>
-		
-		
+				<label>장부번호</label>	<input name="ldgr_no" id="ldgr_no" readonly><br> 
+				<label>날짜</label> 		<input name="ldgr_date" type="datetime-local"> <br> 
+				<label>금액</label> 		<input name="total_amount"> <br> 
+				<label>구분</label> 		<select name="status" id="status">
+											<option value="" selected>== 매출/매입 선택 ==</option>
+											<option value="매입">매입</option>
+											<option value="매출">매출</option>
+										</select><br>
+				
 				<div id="order_no"></div>
-		
-				<label>상태</label> <select name="condition">
-					<option value="" selected>==선택하세요==</option>
-					<option value="완납">완납</option>
-					<option value="미수">미수</option>
-				</select> <br> <label>비고</label> <input name="note"> <br>
+				
+					<label>상태</label> 	<select name="condition">
+											<option value="" selected>==선택하세요==</option>
+											<option value="완납">완납</option>
+											<option value="미수">미수</option>
+									   	</select> <br> 
+				<label>비고</label> 		<input name="note"> <br>
 				<div class="btn-group">
-					<input type="button" class="btn btn-primary" value="등록"
-						id="btnInsert" /> <input type="button" class="btn btn-primary"
-						value="수정" id="btnUpdate" /> <input type="button"
-						class="btn btn-primary" value="초기화" id="btnInit" />
+					<input type="button" class="btn btn-primary" value="등록" id="btnInsert" /> 
+					<input type="button" class="btn btn-primary" value="수정" id="btnUpdate" /> 
+					<input type="button" class="btn btn-primary" value="초기화" id="btnInit" />
 				</div>
 			</form>
 		</div>

@@ -23,20 +23,20 @@
 		ldgr_no,
 		ldgr_date,
 		total_amount,
-		condition,
+		status,
 		border_no,
 		sorder_no,
-		status,
+		condition,
 		note
 		)
 		VALUES (
 		( SELECT NVL(MAX(ldgr_no),0)+1 FROM Ledger ),
 		To_date(#{ldgr_date},'yyyy-MM-dd hh24:mi:ss'),
 		#{total_amount},
-		#{condition},
+		#{status},
 		#{border_no},
 		#{sorder_no},
-		#{status},
+		#{condition},
 		#{note}
 		)
 	</insert>

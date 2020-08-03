@@ -43,9 +43,8 @@ public class LedgerController {
 	@RequestMapping(value = "/ledgers", method = RequestMethod.POST)
 	@ResponseBody
 	public Map setInsertLedger(LedgerVO ledgerVO, Model model) {
-		Map<String, Object> map = new HashMap<String, Object>();
 		ledgerService.setInsertLedger(ledgerVO);
-		
+		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("result", true);
 		map.put("kkk", "ok");
 		return map;
