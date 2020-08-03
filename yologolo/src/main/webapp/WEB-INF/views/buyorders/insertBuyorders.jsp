@@ -126,7 +126,6 @@
 		</tbody>
 	</table>
 	
-	<p></p>
 	<button type="button" onclick="seq_orderInsert()">주문입력</button>
 	</form>
 </div>
