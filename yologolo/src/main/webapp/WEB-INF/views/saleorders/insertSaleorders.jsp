@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <script type="text/javaScript">
 	var sum = 0;
@@ -7,8 +8,13 @@
 	$(function(){
 		//거래처 검색 기능
 		$('#btnFindCompany').on('click',function(){
-			var winObj=window.open('findCompany','companies','width=300,height=auto');
+			var winObj = window.open('findCompany','companies','width=300, height=auto');
 			return winObj;
+		});
+		//품목 검색 기능
+		$('#btnFindItem').on('click', function() {
+			var wo = window.open('findItems','item', 'width=800, height=800');
+			return wo;
 		});
 		//판매상세 테이블 초기화 버튼
 		$("#resetBtn").on("click", function() {
@@ -32,22 +38,25 @@
 			alert("품목을 선택해주십시오.");
 		} else {
 			var od_no1 = $('[name=item_no]').val();
-			var od_no2 = $('[name=sorder_qty]').val();
-			var od_no3 = $('[name=price]').val();
-			console.log(od_no1, od_no2, od_no3);
+			var od_no2 = $('[name=item_name]').val();
+			var od_no3 = $('[name=sorder_qty]').val();
+			var od_no4 = $('[name=price]').val();
+			console.log(od_no1, od_no2, od_no3, od_no4);
 			var td1 = $('<td />').text(od_no1);
 			var td2 = $('<td />').text(od_no2);
 			var td3 = $('<td />').text(od_no3);
-			var tr = $('<tr />').append(td1, td2, td3);
+			var td4 = $('<td />').text(od_no4);
+			var tr = $('<tr />').append(td1, td2, td3, td4);
 				$('#buyTable').append(tr);
 				$('[name=item_no]').val('');
+				$('[name=item_name]').val('');
 				$('[name=sorder_qty]').val('');
 				$('[name=price]').val('');
 			
 			//추가한 상세주문 데이터의 '수량'*'단가'를 합산하여 sale_sum에 출력
 			$.each($('#tblBody tr'), function(idx, item) {
-				var qty = $(item).children().eq(1).text();
-				var price = $(item).children().eq(2).text();
+				var qty = $(item).children().eq(2).text();
+				var price = $(item).children().eq(3).text();
 				multi = parseInt(qty) * parseInt(price);
 				sum = sum + multi;
 			});
@@ -62,7 +71,6 @@
 			contentType : "application/json",
 			success: function(saleSeq) {
 				ajaxInsert(saleSeq);
-				
 			}, error: function() {
 				alert("시퀀스 실패.");
 			}
@@ -119,18 +127,22 @@
 	
 </script>
 <div>
-	<h1>판매주문 입력</h1>
+	<h1 class="h1">판매주문 입력</h1>
 	<form action="setInsertSaleorders">
-		주문일자 <input type="datetime-local" name="sorder_date"><br/>
-		거래처코드 <input name="company_no" id="company_no" type="text"> <span id="company_name"></span>
+		주문일자 <input type="datetime-local" name="sorder_date" class="form-control" style="width: 300px; display: inline;"><br/>
+		
+		거래처코드 <input name="company_no" id="company_no" class="form-control" style="width: 250px; display: inline;"> <span id="company_name"></span>
 			    <button type="button" value="거래처선택" id="btnFindCompany" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" width="30px" height="30px"></button><br/>
-		판매합계 <input name="sale_sum"><br/>
-		배송상태	<select name="del_status">
+			    
+		판매합계 <input name="sale_sum" class="form-control" style="width: 250px; display: inline;"><br/>
+		
+		배송상태	<select name="del_status" class="form-control" style="width: 250px; display: inline;">
 				  <option value="배송준비중" selected>배송준비중</option>
 				  <option value="배송중">배송중</option>
 				  <option value="배송완료" >배송완료</option>
 				</select><br/>
-		담당사원<select name="emp_id" onchange="emp_select_value(this);">
+				
+		담당사원<select name="emp_id" class="form-control" style="width: 250px; display: inline;" onchange="emp_select_value(this);">
 				<option value="" selected>==사원 선택==</option>
 				<c:forEach items="${emps}" var="emp"> 
 				<option value="${emp.emp_id}">${emp.name}</option>
@@ -138,17 +150,22 @@
 				</select>
 				<span id="emp_name"></span>
 				<br/>
-		품목   <input name="item_no"> <br>
-		수량 	<input name="sorder_qty" type="number"> <br>
-		단가	<input name="price" type="number"> <br>
-	<br/>
-	<button type="button" onclick="addOrder()">추가</button>
-	<button type="button" id="resetBtn">초기화</button>
+				
+		품목		<input name="item_no" id="item_no" class="form-control" style="width: 100px; display: inline;"> <input id="item_name" name="item_name" class="form-control" style="width: 250px; display: inline;">
+				<button type="button" value="품목선택" id="btnFindItem" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" width="30px" height="30px"></button><br/>
+				
+		수량 	<input name="sorder_qty" type="number" class="form-control" style="width: 250px; display: inline;"> <br>
+		
+		단가	<input name="price" type="number" class="form-control" style="width: 250px; display: inline;"><br><br>
+		
+	<button type="button" onclick="addOrder()" class="btn btn-primary">추가</button>
+	<button type="button" id="resetBtn" class="btn btn-warning">초기화</button><br>
+	
 	<!-- 판매상세주문 테이블 -->
-	<table border="1" id="buyTable" style="width: 40%;">
+	<table border="1" id="buyTable" class="table table-bordered" style="width: 40%;">
 		<thead>
 			<tr align="center">
-				<th>품목</th><th>수량</th><th>단가</th>
+				<th>품목코드</th><th>품목명</th><th>수량</th><th>단가</th>
 			</tr>
 		</thead>
 		<tbody id="tblBody">
@@ -156,6 +173,6 @@
 		</tbody>
 	</table>
 	
-	<button type="button" onclick="seq_sorderInsert()">주문입력</button>
+	<button type="button" onclick="seq_sorderInsert()" class="btn btn-success">주문입력</button>
 	</form>
 </div>

@@ -22,7 +22,10 @@ public interface SaleordersService {
 
 	//엑셀
 	public List<Map<String, Object>> getSaleOrdersExcelMap(SaleordersVO vo);
-
+	
+	//반품 조회
+	public List<SaleordersVO> getReturnSaleordersList(SaleordersVO saleordersVO);
+	
 	//수정처리(배송상태만)
 	public void setUpdateSaleDel(List<SaleordersVO> sList);
 }

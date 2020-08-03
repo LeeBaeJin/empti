@@ -49,9 +49,7 @@ public class BuyordersServiceImpl implements BuyordersService{
 		buyordersMapper.setDeleteBuyorders(buyordersVO);
 	}
 	
-	
-	
-	//반품
+    //반품
 	@Override
 	public List<BuyordersVO> getReturnBuyordersList(BuyordersVO buyordersVO) {
 		return buyordersMapper.getReturnBuyordersList(buyordersVO);
@@ -67,7 +65,8 @@ public class BuyordersServiceImpl implements BuyordersService{
 	public String getBuySeq() {
 		return buyordersMapper.getBuySeq();
 	}
-
+	
+	// 엑셀
 	@Override
 	public List<Map<String, Object>> getBuyordersexcelMap(BuyordersVO vo) {
 		// TODO Auto-generated method stub

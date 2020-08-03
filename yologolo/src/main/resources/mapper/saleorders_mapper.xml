@@ -87,6 +87,16 @@
 		</foreach>
 	</update>
 	
+	<!-- 반품 조회 -->
+	<select id="getReturnSaleordersList" parameterType="SaleordersVO" resultType="SaleordersVO">
+		SELECT s.sorder_date "sorder_date", s.return_date "return_date", s.sale_sum "sale_sum", 
+				e.name "name", c.company_name "company_name"
+		FROM saleorders s JOIN employees e 	ON (s.emp_id = e.emp_id)
+		JOIN companies c 					ON (s.company_no = c.company_no)
+		<![CDATA[WHERE sale_sum < 0 ]]>
+		ORDER by s.sorder_no
+	</select>
+	
 	<!-- 판매주문삭제 -->
 	<!-- <delete id="setDeleteSaleorders" parameterType="SaleordersVO"> DELETE 
 		FROM saleorders WHERE sorder_no = #{sorder_no} </delete> -->

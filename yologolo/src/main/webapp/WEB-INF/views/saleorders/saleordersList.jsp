@@ -4,7 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-<html>
 <head>
 <script type="text/javascript">
 	var selDel = [];
@@ -21,7 +20,7 @@
 		
 		$.each(tr, function(idx , item) {
 			var obj = {};
-			obj['sorder_no'] = $(item).children().eq(5).children().val();
+			obj['sorder_no'] = $(item).children().eq(7).children().val();
 			obj['del_status'] = $(item).children().eq(2).children().val();  
 			console.log(obj['del_status']);
 			selDel.push(obj);
@@ -57,12 +56,12 @@
 	function orderDetails(sorder_no) {
 		window.open('getSaleorderdetailList?sorder_no=' + sorder_no,
 					'saleorderdetails',
-					'width=800, height=250, left=150, top=250, location=no, status=no, scrollbars=yes');
+					'width=800, height=300, left=150, top=250, location=no, status=no, scrollbars=yes');
 		return false;
 	}
 </script>
 </head>
-
+<body>
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
 		<h6 class="m-0 font-weight-bold text-primary">
@@ -74,7 +73,8 @@
 	</div>
 	<div class="card-body">
 		<div class="table-responsive">
-		<a href="getSaleordersListMap">주문내역</a> | <a href="#">반품내역</a>
+			<a href="getSaleordersListMap" class="btn btn-outline-primary">주문내역</a> | 
+			<a href="getReturnSaleordersList" class="btn btn-outline-primary">반품내역</a> <br><br>
 			<table class="table table-bordered" id="dataTable" style="width: 100%; cellspacing=0;">
 				<thead id="tblhead">
 					<tr>
@@ -85,35 +85,47 @@
 						</th>
 						<th>담당사원</th>
 						<th>거래처</th>
-						<th style="display: none;"/>
+						<th style="width: 80px;">반품</th>
+						<th style="width: 80px;">삭제</th>
+						<th style="display: none;"></th>
 					</tr>
 				</thead>
 				<tbody id="tblBody">
 					<c:forEach items="${saleordersMap}" var="sale">
-						<tr>
+					<tr>
 						<td>
 						 <a href="javascript:void(0);" onclick="orderDetails(${sale.sorder_no});">${sale.sorder_date}</a>
 						</td>
+						
 						<td align="right">
 						<fmt:parseNumber value="${sale.sale_sum}" var="fmt"/>
 						<fmt:formatNumber type="number" maxFractionDigits="3" value="${fmt}"/>
 						</td>
+						
 						<td><select id="del_status" name="del_status" onchange="selChk(${sale.sorder_no}, this)">
 						<option value="배송준비중" <c:if test="${fn:contains(sale.del_status,'배송준비중')}">selected="selected"</c:if>>배송준비중</option>
 						<option value="배송중" <c:if test="${fn:contains(sale.del_status,'배송중')}">selected="selected"</c:if>>배송중</option>
 						<option value="배송완료" <c:if test="${fn:contains(sale.del_status,'배송완료')}">selected="selected"</c:if>>배송완료</option>
 						</select></td>
+						
 						<td>${sale.name}</td>
 						<td>${sale.company_name}</td>
+						
+						<td><button id="returnBtn" type="button" class="btn btn-outline-dark">반품</button></td>
+						<td><button id="deleteBtn" type="button" class="btn btn-outline-danger">삭제</button></td>
+						
 						<!--다중 업데이트의 조건을 받기위한 히든 데이터 -->
 						<td style="display: none;">
 						<input type="hidden" name="sorder_no" value="${sale.sorder_no}">  
 						</td>
-						</tr>
+					</tr>
 					</c:forEach>
 				</tbody>
 			</table>
 		</div>
 	</div>
 </div>
-</html>
+<script>
+	
+</script>
+</body>

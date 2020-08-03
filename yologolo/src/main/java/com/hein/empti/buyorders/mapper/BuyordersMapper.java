@@ -19,7 +19,6 @@ public interface BuyordersMapper {
 	//반품 업데이트
 	public void setUpdateBuyordersRetrun(BuyordersVO buyordersVO);
 
-	
 	//시퀀스 조회
 	public String getBuySeq();
 	

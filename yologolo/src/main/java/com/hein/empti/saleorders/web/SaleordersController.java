@@ -92,21 +92,18 @@ public class SaleordersController {
 	}
 	
 	// 주문번호조회
-		@RequestMapping("/findSaleorderNo")
-		public String findSaleorderNo(SaleordersVO saleordersVO, Model model) {
-			model.addAttribute("findSaleorderNo", saleordersService.getSaleordersListMap(saleordersVO));
-			return "common/findSaleorderNo";
-		}
+	@RequestMapping("/findSaleorderNo")
+	public String findSaleorderNo(SaleordersVO saleordersVO, Model model) {
+		model.addAttribute("findSaleorderNo", saleordersService.getSaleordersListMap(saleordersVO));
+		return "common/findSaleorderNo";
+	}
 	
-
-	/*
-	 * //판매주문 단건조회
-	 * 
-	 * @RequestMapping() public String getSaleorders("/getSaleorders/{orders_no}")
-	 * return "admin/home";
-	 * 
-	 * //서비스 호출
-	 */
+	// 반품목록 조회
+	@RequestMapping("/getReturnSaleordersList")
+	public String getReturnSaleordersList(SaleordersVO vo, Model model) {
+		model.addAttribute("returnSorders", saleordersService.getReturnSaleordersList(vo));
+		return "admin/saleorders/returnSaleLordersList";
+	}
 
 	// view resolver 방식
 	@RequestMapping("saleorders_list.do")

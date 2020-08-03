@@ -35,6 +35,7 @@ public class SaleordersServiceImpl implements SaleordersService{
 		saleorderdetailsMapper.setSaleorderdetailInsert(sVO.getList());
 	}
 	
+	//수정처리 (배송상태만)
 	@Override
 	public void setUpdateSaleDel(List<SaleordersVO> sList) {
 		saleordersMapper.setUpdateSaleDel(sList);
@@ -56,9 +57,16 @@ public class SaleordersServiceImpl implements SaleordersService{
 	public List<Map<String, Object>> getSaleordersListMap(SaleordersVO saleordersVO) {
 		return saleordersMapper.getSaleordersListMap(saleordersVO);
 	}
-
+	
+    //엑셀
 	@Override
 	public List<Map<String, Object>> getSaleOrdersExcelMap(SaleordersVO vo) {
 		return saleordersMapper.getSaleOrdersExcelMap(vo);
+	}
+	
+	//반품 조회
+	@Override
+	public List<SaleordersVO> getReturnSaleordersList(SaleordersVO saleordersVO) {
+		return saleordersMapper.getReturnSaleordersList(saleordersVO);
 	}
 }
