@@ -45,6 +45,7 @@ public class LedgerController {
 	public Map setInsertLedger(LedgerVO ledgerVO, Model model) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		ledgerService.setInsertLedger(ledgerVO);
+		
 		map.put("result", true);
 		map.put("kkk", "ok");
 		return map;

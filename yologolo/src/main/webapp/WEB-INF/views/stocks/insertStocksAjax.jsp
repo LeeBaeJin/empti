@@ -6,7 +6,7 @@
 <script>
 $(function(){
 	$('#btnFindItem').on('click', function() {
-		var wo = window.open('findItems','item', 'width=800, hight=800');
+		var wo = window.open('findItems','item', 'width=800, height=800');
 		return wo;
 	});
 });

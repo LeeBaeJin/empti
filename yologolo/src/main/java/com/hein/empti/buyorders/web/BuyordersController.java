@@ -24,6 +24,7 @@ import com.hein.empti.buyorderdetails.service.BuyorderdetailsService;
 import com.hein.empti.buyorders.BuyordersVO;
 import com.hein.empti.buyorders.OrderMasterVO;
 import com.hein.empti.buyorders.service.BuyordersService;
+import com.hein.empti.items.ItemsVO;
 
 @Controller
 public class BuyordersController {
@@ -118,6 +119,13 @@ public class BuyordersController {
 		return buyordersVO;
 	}
 	
+	
+	// 주문번호조회
+		@RequestMapping("/findBuyorderNo")
+		public String findBuyorderNo(BuyordersVO buyordersVO, Model model) {
+			model.addAttribute("findBuyorderNo", buyordersService.getBuyordersListMap(buyordersVO));
+			return "common/findBuyorderNo";
+		}
 	
 	/*
 	 * // pdf 출력 및 인쇄

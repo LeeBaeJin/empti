@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.hein.empti.buyorders.BuyordersVO;
 import com.hein.empti.emp.EmpVO;
 import com.hein.empti.emp.service.EmpService;
 import com.hein.empti.saleorderdetails.SaleorderdetailsVO;
@@ -86,6 +87,14 @@ public class SaleordersController {
 		saleordersService.setUpdateSaleorders(sList);
 		return "redirect:getSaleordersList";
 	}
+	
+	// 주문번호조회
+		@RequestMapping("/findSaleorderNo")
+		public String findSaleorderNo(SaleordersVO saleordersVO, Model model) {
+			model.addAttribute("findSaleorderNo", saleordersService.getSaleordersListMap(saleordersVO));
+			return "common/findSaleorderNo";
+		}
+	
 
 	/*
 	 * //판매주문 단건조회
