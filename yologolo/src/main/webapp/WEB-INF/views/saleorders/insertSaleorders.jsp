@@ -2,6 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <script type="text/javaScript">
+	var sum = 0;
+	var multi = 0;
 	$(function(){
 		//거래처 검색 기능
 		$('#btnFindCompany').on('click',function(){
@@ -40,8 +42,18 @@
 				$('#buyTable').append(tr);
 				$('[name=item_no]').val('');
 				$('[name=sorder_qty]').val('');
-				$('[name=price]').val(''); 
+				$('[name=price]').val('');
+			
+			//추가한 상세주문 데이터의 '수량'*'단가'를 합산하여 sale_sum에 출력
+			$.each($('#tblBody tr'), function(idx, item) {
+				var qty = $(item).children().eq(1).text();
+				var price = $(item).children().eq(2).text();
+				multi = parseInt(qty) * parseInt(price);
+				sum = sum + multi;
+			});
+			$('[name=sale_sum]').val(sum);
 		}
+		
 	}
 	//시퀀스 조회 후 판매주문 Insert 실행
 	function seq_sorderInsert() {
@@ -82,7 +94,7 @@
 			obj['item_no'] = $(item).children().eq(0).text(); 
 			obj['sorder_qty'] = $(item).children().eq(1).text();
 			td.push(obj);
-		})
+		});
 		//판매주문의 데이터는 vo객체에, 판매상세주문의 데이터는 List에 담아서 Insert
 		var datas = {vo: mObj, list:td}
 		var result = confirm("주문하시겠습니까?");
@@ -103,6 +115,8 @@
 			return false;
 		}
 	}
+	
+	
 </script>
 <div>
 	<h1>판매주문 입력</h1>
@@ -110,7 +124,7 @@
 		주문일자 <input type="datetime-local" name="sorder_date"><br/>
 		거래처코드 <input name="company_no" id="company_no" type="text"> <span id="company_name"></span>
 			    <button type="button" value="거래처선택" id="btnFindCompany" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" width="30px" height="30px"></button><br/>
-		판매합계 <input name= "sale_sum" type="number"><br/>
+		판매합계 <input name="sale_sum"><br/>
 		배송상태	<select name="del_status">
 				  <option value="배송준비중" selected>배송준비중</option>
 				  <option value="배송중">배송중</option>

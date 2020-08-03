@@ -10,7 +10,7 @@ public interface SaleordersService {
 	public List<SaleordersVO> getSaleordersList(SaleordersVO saleordersVO);	
 	public SaleordersVO getSaleorders(SaleordersVO saleordersVO);
 	public void setInsertSaleorders(SorderMasterVO sorderMasterVO);
-	public void setUpdateSaleorders(List<SaleordersVO> sList);
+	
 	public void setDeleteSaleorders(SaleordersVO saleordersVO);
 	
 	//시퀀스 조회
@@ -18,4 +18,7 @@ public interface SaleordersService {
 	
 	//판매주문(JOIN name, company_name) Map 객체에 담아서 조회
 	public List<Map<String, Object>> getSaleordersListMap(SaleordersVO saleordersVO);
+	
+	//수정처리(배송상태만)
+	public void setUpdateSaleDel(List<SaleordersVO> sList);
 }
