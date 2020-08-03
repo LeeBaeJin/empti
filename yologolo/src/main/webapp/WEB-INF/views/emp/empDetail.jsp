@@ -1,6 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <h2 align="center">사원 상세 보기</h2>
 	<img src="download?name=${getEmp.profile}" 
 	style="width:500px" onerror="this.src='resources/images/profile.jpg'"/> <br/>
