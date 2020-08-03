@@ -15,11 +15,11 @@
 </script>
 
 
-<c:forEach items="${findItems}" var="findItems">
+<c:forEach items="${findItems}" var="items">
 	<table>
 		<tr>
-			<td><input type="button" class="clickItem" value="${findItems.item_no}"></td>
-			<td>${findItems.item_name}</td>
+			<td><input type="button" class="clickItem" value="${items.item_no}"></td>
+			<td>${items.item_name}</td>
 		</tr>
 	</table>
 </c:forEach>

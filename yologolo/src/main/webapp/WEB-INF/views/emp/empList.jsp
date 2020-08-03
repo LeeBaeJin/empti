@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
 <script type="text/javascript">
 $(function() {
 	//직원 상세정보
@@ -33,6 +34,7 @@ $(function() {
 		     return wo;
 		})
 	});
+	
 	//권한부여 새창
 	$('.authorities').on('click', function() {
 		window.open('getRoleList',
@@ -41,6 +43,9 @@ $(function() {
 	return false;
 		});
 	
+	function empUpdate(emp_id) {
+		location.href = "setUpdateFormEmp/" + emp_id;
+	}
 	
 });
 </script>
@@ -77,7 +82,7 @@ $(function() {
 							<td>${emp.position}</td>
 							<td>${emp.dept_name}</td>
 							<td>${emp.manager}</td>
-							<td><a href="setUpdateFormEmp?emp_id=${emp.emp_id}">수정</a></td>
+							<td><a href="#" onclick="empUpdate(${emp.emp_id})" >수정</a></td>
 							<td><button class="authorities" onclick="authoritiesCheck">권한부여</button>
 						</tr>
 					</c:forEach>

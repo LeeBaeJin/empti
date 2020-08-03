@@ -9,8 +9,10 @@ public class CompanyVO {
 	String company_no;
 	String company_name;
 	String phone;
-	String address;
 	String ceo_name;
+	String zip_code;
+	String address;
+	String address_detail;
 	String dealer_name;
 	String dealer_phone;
 	String bank_name;

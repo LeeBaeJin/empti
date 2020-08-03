@@ -3,24 +3,24 @@
 <mapper namespace="com.hein.empti.saleorderdetails.mapper.SaleorderdetailsMapper">
 	
 	<select id="getSaleorderdetailList" parameterType="SaleorderdetailsVO" resultType="map">
-	  SELECT i.item_name "item_name", s.order_qty "order_qty", i.item_price "item_price"
+	  SELECT i.item_name "item_name", s.sorder_qty "sorder_qty", i.item_price "item_price"
 		FROM items i JOIN saleorderdetails s
 		ON   (i.item_no = s.item_no)
-		WHERE s.order_no = ${order_no}
+		WHERE s.sorder_no = #{sorder_no}
 	</select>
 	
 	<insert id="setSaleorderdetailInsert" parameterType="java.util.List">
 		INSERT INTO saleorderdetails (
-		orderdetail_no,
+		sorderdetail_no,
 		item_no,
-		order_qty,
-		order_no
+		sorder_qty,
+		sorder_no
 		)
 		SELECT saledetail_seq.nextval, A.*
 		from (
 		<foreach collection="list" item="item" separator="UNION ALL">
 			select 
-			#{item.item_no}, #{item.order_qty}, #{item.order_no}
+			#{item.item_no}, #{item.sorder_qty}, #{item.sorder_no}
 			from dual
 		</foreach>
 		) "A"

@@ -30,7 +30,7 @@ public class SaleordersServiceImpl implements SaleordersService{
 
 	@Override
 	public void setInsertSaleorders(SorderMasterVO sVO) {
-		sVO.getVo().setOrder_date(sVO.getVo().getOrder_date().replace('T', ' '));
+		sVO.getVo().setSorder_date(sVO.getVo().getSorder_date().replace('T', ' '));
 		saleordersMapper.setInsertSaleorders(sVO.getVo());
 		saleorderdetailsMapper.setSaleorderdetailInsert(sVO.getList());
 	}

@@ -31,8 +31,9 @@ public class CompanyController {
 
 	// 단건조회
 	@RequestMapping("/getCompanyList/{company_no}") // getEmp?employeeId=aaa
-	public String getCompany(@PathVariable String company_no) {
-		return "admin/company/companyList";
+	public String getCompany(@PathVariable String company_no, CompanyVO companyVO, Model model) {
+		model.addAttribute("company", companyService.getCompany(companyVO));
+		return "company/companyDetail";
 	}
 
 	// 목록조회

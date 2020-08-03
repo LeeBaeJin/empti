@@ -12,7 +12,8 @@ public class HomeController {
 
 	@RequestMapping("/")
 	public String home(Model model) {
-		return "common/login";
+		//return "common/login";
+		return "admin/index";
 	}
 	
 	@RequestMapping("/main")

@@ -23,7 +23,7 @@ public class DisposalServiceImpl implements DisposalService{
 	}
 
 	@Override
-	public List<DisposalVO> getDisposalList(DisposalVO disposalVO) {
+	public List<Map<String, Object>> getDisposalList(DisposalVO disposalVO) {
 		return disposalMapper.getDisposalList(disposalVO);
 	}
 
@@ -40,11 +40,6 @@ public class DisposalServiceImpl implements DisposalService{
 
 	@Override
 	public List<Map<String, Object>> getDisposalMap(DisposalVO vo) {
-		
 		return disposalMapper.getDisposalMap(vo);
 	}
-
-
-	
-		
 }
