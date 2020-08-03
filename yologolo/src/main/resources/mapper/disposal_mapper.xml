@@ -29,10 +29,9 @@
 		category,
 		strg_no,
 		item_no
-
 		)
 		VALUES(
-		#{disposal_no},
+		( SELECT NVL(MAX(disposal_no),0)+1 FROM disposal ),
 		#{disposal_qty},
 		#{price},
 		To_date(#{disposal_date},'yyyy-MM-dd hh24:mi:ss'),
@@ -50,8 +49,7 @@
 		<set>
 			<if test="disposal_qty != null">disposal_qty=#{disposal_qty},</if>
 			<if test="price != null">price=#{price},</if>
-			<if test="disposal_date != null">disposal_date=To_date(#{disposal_date},'yyyy-MM-dd
-				hh24:mi:ss'),</if>
+			<if test="disposal_date != null">disposal_date=To_date(#{disposal_date},'yyyy-MM-dd hh24:mi:ss'),</if>
 			<if test="category != null">category=#{category},</if>
 			<if test="strg_no != null">strg_no=#{strg_no},</if>
 			<if test="item_no != null">item_no=#{item_no}</if>

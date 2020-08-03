@@ -37,34 +37,34 @@ public class DisposalController {
 	DataSource datasource; 	
 	
 	//등록폼
-	@RequestMapping("/setInsertFormDisposal")
+	//@RequestMapping("/setInsertFormDisposal")
 	public String setInsertFormDisposal(DisposalVO vo, Model model, StoragesVO storagesVO) {
 		model.addAttribute("storages", storeageService.getStoragesList(storagesVO));
 		return "admin/disposal/insertDisposal";
 	}
 	
 	//등록처리
-	@RequestMapping("/setInsertDisposal")
+	//@RequestMapping("/setInsertDisposal")
 	public String setInsertDisopsal(DisposalVO vo){
 		disposalService.setInsertDisposal(vo);
 		return "redirect:getDisposalList";
 	}
 	
 	//전체조회
-	@RequestMapping("/getDisposalList")
+	//@RequestMapping("/getDisposalList")
 	public String getDisposalList(Model model, DisposalVO vo) {
 		model.addAttribute("disposalList", disposalService.getDisposalList(vo));
 		return "admin/disposal/disposalList";
 	}
 	
 	//단건조회
-	@RequestMapping("/getDisposal/{disposal_no}")
+	//@RequestMapping("/getDisposal/{disposal_no}")
 	public String getDisposal(@PathVariable String disposal_no) {
 		return "admin/home";
 	}
 	
 	//수정폼
-	@RequestMapping("/setUpdateFormDisposal")
+	//@RequestMapping("/setUpdateFormDisposal")
 	public String setUpdateFormDisposal(Model model, DisposalVO vo) {
 		model.addAttribute("updateList", disposalService.getDisposal(vo));
 		return "admin/disposal/updateDisposal";
@@ -72,7 +72,7 @@ public class DisposalController {
 	}
 	
 	//수정처리
-	@RequestMapping("/setUpdateDisposal")
+	//@RequestMapping("/setUpdateDisposal")
 	public String setUpdateDisposal(Model model, DisposalVO vo) {
 		disposalService.setUpdateDisposal(vo);
 		return "redirect:getDisposalList";
@@ -100,7 +100,7 @@ public class DisposalController {
 		}*/
 		
 	//view resolver 방식
-	@RequestMapping("disposal_list.do")
+	//@RequestMapping("disposal_list.do")
 	public ModelAndView getDisposalListReport(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 	ModelAndView mv = new ModelAndView();
@@ -110,7 +110,7 @@ public class DisposalController {
 	}
 	
 	// excel 출력
-	@RequestMapping("disposal_excel.do")
+	//@RequestMapping("disposal_excel.do")
 	public ModelAndView disposalexcel(DisposalVO vo) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("commonExcelView");

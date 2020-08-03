@@ -35,6 +35,7 @@ public class DisposalServiceImpl implements DisposalService{
 
 	@Override
 	public void setUpdateDisposal(DisposalVO disposalVO) {
+		disposalVO.setDisposal_date(disposalVO.getDisposal_date().replace('T', ' '));
 		disposalMapper.setUpdateDisposal(disposalVO);
 	}
 
