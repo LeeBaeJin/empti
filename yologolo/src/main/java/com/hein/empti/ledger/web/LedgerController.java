@@ -98,7 +98,7 @@ public class LedgerController {
 	
 	// excel 출력
 	@RequestMapping("LdgrExcel.do")
-	public ModelAndView buyordersexcel(LedgerVO vo) {
+	public ModelAndView ldgrexcel(LedgerVO vo) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("commonExcelView");
 		mv.addObject("datas", ledgerService.getLdgrExcelMap(vo));// Map객체를 조회해서 시트를 생성한다.
