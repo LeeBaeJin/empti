@@ -6,7 +6,7 @@
 <mapper namespace="com.hein.empti.emp.mapper.EmpMapper">
 	<!-- #{}, test 는 VO에 있는 필드를 가져오는거다 -->
 	<select id="getEmp" parameterType="EmpVO" resultType="EmpVO">
-		SELECT emp_id, name, pwd, phone, address, email, to_char(hire_date, 'yyyy-MM-dd') "hire_date",
+		SELECT emp_id, name, pwd, phone, zip_code, address, address_detail, email, to_char(hire_date, 'yyyy-MM-dd') "hire_date",
       		   bank_name, account_no, salary, status, position, mgr_id, dept_id, profile, resign_date
 		FROM   employees
 		WHERE  emp_id = #{emp_id}
@@ -15,7 +15,8 @@
 
 	<!-- emp Map(Excel) -->
 	<select id="getEmpMap" resultType="map" parameterType="EmpVO">
-		select*from empexcel_view
+		SELECT *
+		FROM empexcel_view
 	</select>
 
 	<select id="getEmpList" resultType="EmpVO" parameterType="EmpVO">
@@ -33,7 +34,9 @@
 		name,
 		pwd,
 		phone,
+		zip_code,
 		address,
+		address_detail,
 		email,
 		hire_date,
 		salary,
@@ -48,7 +51,9 @@
 		#{name},
 		#{pwd},
 		#{phone},
+		#{zip_code},
 		#{address},
+		#{address_detail},
 		#{email},
 		TO_DATE(#{hire_date},'yyyy-MM-dd'),
 		#{salary},
@@ -68,7 +73,9 @@
 			<if test="name != null">name=#{name},</if>
 			<if test="pwd != null">pwd=#{pwd},</if>
 			<if test="phone != null">phone=#{phone},</if>
+			<if test="zip_code != null">zip_code=#{zip_code},</if>
 			<if test="address != null">address=#{address},</if>
+			<if test="address_detail != null">address_detail=#{address_detail},</if>
 			<if test="email != null">email=#{email},</if>
 			<if test="hire_date != null">hire_date=TO_DATE(#{hire_date},'yyyy-MM-dd'),
 			</if>

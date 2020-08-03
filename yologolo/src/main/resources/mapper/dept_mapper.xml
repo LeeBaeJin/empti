@@ -25,7 +25,6 @@
 		ON     d.emp_id = e.emp_id
 	</select>
 
-
 	<insert id="setInsertDept" parameterType="DeptVO">
 		insert into departments
 		(dept_id,
