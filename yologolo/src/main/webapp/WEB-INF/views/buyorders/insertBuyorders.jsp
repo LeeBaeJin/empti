@@ -107,9 +107,8 @@
 			    			<button type="button" value="거래처선택" id="btnFindCompany" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" width="30px" hight="30px"></button><br/>
 	<label>담당자: </label> 	<input name="emp_id" value="${login.emp_id}"> <br>
 	<label>구매합계: </label> 	<input type="number" name="buy_sum"> <br>
-	<label>품목코드: </label>	<input name="item_no" id="item_no" type="text">
-							<button type="button" value="품목선택" id="btnFindItem" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" width="30px" height="30px"></button><br/>
-	<label>품목명: </label>	<input id="item_name" name="item_name"> <br>
+	<label>품목: </label>		<input name="item_no" id="item_no" type="text"> <input id="item_name" name="item_name">
+							<button type="button" value="품목선택" id="btnFindItem" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" width="30px" height="30px"></button>
 	<label>수량: </label> 	<input type="number" name="border_qty"> <br>
 	<label>단가: </label> 	<input type="number" name="price"> <br>
 	<button type="button" onclick="addOrder()">추가</button>

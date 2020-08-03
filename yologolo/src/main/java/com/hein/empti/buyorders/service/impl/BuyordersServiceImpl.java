@@ -49,8 +49,6 @@ public class BuyordersServiceImpl implements BuyordersService{
 		buyordersMapper.setDeleteBuyorders(buyordersVO);
 	}
 	
-	
-	
 	//반품
 	@Override
 	public List<BuyordersVO> getReturnBuyordersList(BuyordersVO buyordersVO) {
