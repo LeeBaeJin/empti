@@ -86,6 +86,8 @@ public class CommonExcelView extends AbstractXlsxView {
 		headerFont.setColor(IndexedColors.DARK_GREEN.getIndex());
 		headerFont.setBold(true);
 
+		
+		
 		mergeRowStyle1.setFont(headerFont);
 
 		// Header 출력

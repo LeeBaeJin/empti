@@ -40,6 +40,15 @@ public class PdfView extends AbstractView {
 		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, conn);
 		JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream()); }
 
-	
+//		
+//		int pdfNum= 0;
+//		String[]  pdfNums = (String[]) model.get("pdfNums");
+//		if (PdfNums != null) {
+//			for (int i=0; i<list.size(); i++)
+//				row = sheet.createRow(i + 1);
+//				
+//			}
+//		}
+		
 
 }
