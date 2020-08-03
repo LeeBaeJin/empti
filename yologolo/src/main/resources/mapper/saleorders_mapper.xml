@@ -57,7 +57,7 @@
 	</insert>
 	
 	<!-- 판매주문 배송상태 수정 -->
-	<update id="setUpdateSaleorders" parameterType="java.util.List">
+	<update id="setUpdateSaleDel" parameterType="java.util.List">
 	    <foreach collection="list" item="item" separator=";" open="DECLARE BEGIN" close="; END;">
 			UPDATE saleorders
 			SET del_status = #{item.del_status}

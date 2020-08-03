@@ -151,9 +151,9 @@
 						<th>주문담당</th>
 						<th>거래처</th>
 						<th style="display:none;">주문번호</th>
-						<th>반품</th>
-						<th>수정</th>
-						<th>삭제</th>
+						<th style="width: 80px;">반품</th>
+						<th style="width: 80px;">수정</th>
+						<th style="width: 80px;">삭제</th>
 					</tr>
 				</thead>
 				<tbody id="tbodyBuyorders">	</tbody>

@@ -79,11 +79,11 @@ public class SaleordersController {
 		return "redirect:getSaleordersList";
 	}
 
-	// 수정처리
-	@RequestMapping("/setUpdateSaleorders")
+	// 수정처리 (배송상태만)
+	@RequestMapping("/setUpdateSaleDel")
 	@ResponseBody
-	public String setUpdateSaleorders(@RequestBody List<SaleordersVO> sList) {
-		saleordersService.setUpdateSaleorders(sList);
+	public String setUpdateSaleDel(@RequestBody List<SaleordersVO> sList) {
+		saleordersService.setUpdateSaleDel(sList);
 		return "redirect:getSaleordersList";
 	}
 
