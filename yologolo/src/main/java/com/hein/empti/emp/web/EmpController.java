@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.hein.empti.dept.DeptVO;
 import com.hein.empti.dept.service.DeptService;
-import com.hein.empti.disposal.DisposalVO;
 import com.hein.empti.emp.EmpVO;
 import com.hein.empti.emp.FileRenamePolicy;
 import com.hein.empti.emp.service.EmpService;
@@ -63,7 +63,7 @@ public class EmpController {
 	}
 	
 	//등록폼
-	@RequestMapping("setInsertFormEmp")
+	@RequestMapping("/setInsertFormEmp")
 	public String setInsertFormEmp(EmpVO empVO, Model model, DeptVO deptVO) {
 		model.addAttribute("dept", deptService.getDeptList(deptVO));
 		return "admin/emp/insertEmp";
@@ -85,9 +85,24 @@ public class EmpController {
 	}
 	
 	//수정폼
-	@RequestMapping("/setUpdateFormEmp")
-	public String setUpdateFormEmp(EmpVO empVO, Model model) {
+	@RequestMapping("/setUpdateFormEmp/{emp_id}")
+	public String setUpdateFormEmp(@PathVariable String emp_id,EmpVO empVO, Model model, DeptVO deptVO) {
+		empVO.setEmp_id(emp_id);
+		empVO = empService.getEmp(empVO); 	
 		model.addAttribute("empUp", empService.getEmp(empVO));
+		model.addAttribute("deptList", deptService.getDeptList(deptVO));
+		return "admin/emp/updateEmp";
+	}
+	
+	@RequestMapping("/mySetUpdateFormEmp")
+	public String setUpdateFormEmp(EmpVO empVO, Model model, DeptVO deptVO,HttpSession session) {
+
+		//Object login = session.getAttribute("login");
+		EmpVO login =(EmpVO) session.getAttribute("login");
+		empVO.setEmp_id(login.getEmp_id());
+		empVO = empService.getEmp(empVO);
+		model.addAttribute("empUp", empService.getEmp(empVO));
+		model.addAttribute("deptList", deptService.getDeptList(deptVO));
 		return "admin/emp/updateEmp";
 	}
 	

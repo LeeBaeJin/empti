@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
   <!-- data-chart -->
   <head>
@@ -28,8 +28,6 @@
 			  }
 		  });
           data.addRows(chartdata);
-
-          
           
           // Set chart options
           var options = {'title':'부서별 인원수',
@@ -56,11 +54,7 @@
   </head>
     <div id="columnchart_material" style="width: 400px; height: 320px;"></div>
     <div>사원이름: ${login.name} &nbsp;&nbsp;</div>
-<a href="getBuyledgerList">매입장부현황</a>
-<a href="setInsertFormBuyledger">매입장부등록</a><br/>
-
-<a href="getSaleledgerList">매출장부현황</a>
-<a href="setInsertFormSaleledger">매출장부등록</a><br/>
+<a href="getLedgerList">장부현황</a>
 
 <a href="getCompanyList">거래처목록</a>
 <a href="setInsertFormCompany">거래처 등록</a><br/>
@@ -82,7 +76,6 @@
 
 <a href="getDisposalList">폐기/불량 목록</a>
 <a href="setInsertFormDisposal">폐기/불량 등록</a><br/>
-<a href="setInsertFormStocks">입출고등록</a><br/>
 
 <a href="getSaleordersListMap">판매주문현황</a>
 <a href="setInsertFormSaleorders">판매주문등록</a><br/>
@@ -90,7 +83,6 @@
 <a href="getBuyordersListForm">구매주문현황</a>
 <a href="setInsertFormBuyorders">구매주문등록</a><br/>
 
-<a href="Buydetail">구매상세주문-테스트-</a><br/>
 
 <a href="loginForm">로그인</a>
 <c:if test="${login != null}">

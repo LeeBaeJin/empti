@@ -32,9 +32,9 @@ public class DisposalController {
 	StoragesService storeageService;
 	
 	// for report
-			@Autowired
-			@Qualifier("dataSourceSpied") 
-			DataSource datasource; 	
+	@Autowired
+	@Qualifier("dataSourceSpied") 
+	DataSource datasource; 	
 	
 	//등록폼
 	@RequestMapping("/setInsertFormDisposal")
@@ -101,7 +101,7 @@ public class DisposalController {
 		
 	//view resolver 방식
 	@RequestMapping("disposal_list.do")
-	public ModelAndView getSaleLedgerListReport(HttpServletRequest request, HttpServletResponse response) throws Exception
+	public ModelAndView getDisposalListReport(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 	ModelAndView mv = new ModelAndView();
 	mv.setViewName("pdfView");

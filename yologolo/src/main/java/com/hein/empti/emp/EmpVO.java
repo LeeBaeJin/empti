@@ -11,6 +11,7 @@ public class EmpVO {
 	String emp_id;
 	String name;
 	String pwd;
+	String pwd2;
 	String phone;
 	String address;
 	String email;

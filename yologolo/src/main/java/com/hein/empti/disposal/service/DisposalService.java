@@ -8,7 +8,7 @@ import com.hein.empti.disposal.DisposalVO;
 public interface DisposalService {
 
 	public DisposalVO getDisposal(DisposalVO disposalVO);
-	public List<DisposalVO> getDisposalList(DisposalVO disposalVO);
+	public List<Map<String, Object>> getDisposalList(DisposalVO disposalVO);
 	public void setInsertDisposal(DisposalVO disposalVO);
 	public void setUpdateDisposal(DisposalVO disposalVO);
 	

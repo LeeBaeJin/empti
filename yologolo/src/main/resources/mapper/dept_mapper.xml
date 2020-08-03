@@ -5,10 +5,11 @@
 <mapper namespace="com.hein.empti.dept.mapper.DeptMapper">
 
 	<select id="getDept" resultType="DeptVO" parameterType="DeptVO">
-		SELECT *
-		FROM departments
-		where dept_id = #{dept_id}
-		ORDER BY dept_id
+		SELECT 	 d.*, e.name "name" 
+		FROM 	 departments d, employees e
+		WHERE    d.emp_id = e.emp_id
+		AND	     d.dept_id  = #{dept_id}
+		ORDER BY d.dept_id
 	</select>
 
 	<!-- dept_view 전체조회 Map(Excel) -->
@@ -18,11 +19,11 @@
 		order by 부서번호
 	</select>
 
-	<select id="getDeptList" resultType="DeptVO"
-		parameterType="DeptVO">
-		select *
-		from departments
-		order by dept_id
+	<select id="getDeptList"  resultType="DeptVO" parameterType="DeptVO">
+		SELECT d.*, e.name "name"
+		FROM   departments d LEFT OUTER JOIN employees e
+		ON     d.emp_id = e.emp_id
+	</select>
 	</select>
 
 	<insert id="setInsertDept" parameterType="DeptVO">

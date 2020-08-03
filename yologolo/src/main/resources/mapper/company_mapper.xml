@@ -1,76 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hein.empti.company.mapper.CompanyMapper">
-	<!-- #{}, test 는 VO에 있는 필드를 가져오는거다 -->
-
 	<!-- 단건조회 -->
-	<select id="getCompany" parameterType="CompanyVO"
-		resultType="CompanyVO">
+	<select id="getCompany" parameterType="CompanyVO" resultType="CompanyVO">
 		SELECT *
 		FROM Companies
 		WHERE company_no = #{company_no}
 	</select>
-
-	<!-- 전체조회 Map (Excel) -->
-	<select id="getCompanyMap" parameterType="CompanyVO"
-		resultType="map">
-		select*from companyexcel_view order by 회사번호
-	</select>
-
-	<!-- 회사코드, 회사명만 조회. -->
-	<select id="findCompany" parameterType="companyVO"
-		resultType="companyVO">
-		SELECT company_no, company_name
-		FROM companies
-		order by
-		company_no
-
-	</select>
-
-
-	<!-- 검색 -->
+	
+	<!-- 전체조회 -->
 	<select id="getCompanyList" parameterType="companyVO"
 		resultType="companyVO">
 		SELECT *
 		FROM Companies
-		<where>
-			<if test="company_no != null">
-				company_no = #{company_no}
-			</if>
-			<if test="company_name != null">
-				company_name = #{company_name}
-			</if>
-			<if test="dealer_phone != null">
-				dealer_phone = #{dealer_phone}
-			</if>
-			<if test="dealer_name != null">
-				dealer_name = #{dealer_name}
-			</if>
-			<if test="phone != null">
-				phone = #{phone}
-			</if>
-			<if test="address != null">
-				address = #{address}
-			</if>
-			<if test="ceo_name != null">
-				ceo_name = #{ceo_name}
-			</if>
-			<if test="bank_name != null">
-				bank_name = #{bank_name}
-			</if>
-			<if test="account_no != null">
-				account_no = #{account_no}
-			</if>
-			<if test="note != null">
-				note = #{note}
-			</if>
-		</where>
 		ORDER BY COMPANY_NO
 	</select>
 
-	<!-- 업체등록 -->
+	<!-- 전체조회 Map (Excel) -->
+	<select id="getCompanyMap" parameterType="CompanyVO" resultType="map">
+		select*from companyexcel_view
+	</select>
+
+	<!-- 회사코드, 회사명만 조회. -->
+	<select id="findCompany" parameterType="companyVO" resultType="companyVO">
+		SELECT company_no, company_name
+		FROM companies
+		ORBER BY company_no
+	</select>
+
+	<!-- 입력 -->
 	<insert id="setInsertCompany" parameterType="CompanyVO">
 		INSERT INTO
 		Companies (company_no,
@@ -78,7 +36,9 @@
 		dealer_phone,
 		dealer_name,
 		phone,
+		zip_code,
 		address,
+		address_detail,
 		ceo_name,
 		bank_name,
 		account_no,
@@ -90,14 +50,16 @@
 		#{dealer_phone},
 		#{dealer_name},
 		#{phone},
+		#{zip_code},
 		#{address},
+		#{address_detail},
 		#{ceo_name},
 		#{bank_name},
 		#{account_no},
 		#{note})
 	</insert>
 
-	<!-- 업체수정 -->
+	<!-- 수정 -->
 	<update id="setUpdateCompany" parameterType="CompanyVO">
 		UPDATE Companies
 		<set>
@@ -105,17 +67,18 @@
 			<if test="dealer_phone != null">dealer_phone = #{dealer_phone},</if>
 			<if test="dealer_name != null">dealer_name = #{dealer_name},</if>
 			<if test="phone != null">phone = #{phone},</if>
+			<if test="zip_code != null">zip_code = #{zip_code},</if>
 			<if test="address != null">address = #{address},</if>
+			<if test="address_detail != null">address_detail = #{address_detail},</if>
 			<if test="ceo_name != null">ceo_name = #{ceo_name},</if>
 			<if test="bank_name != null">bank_name = #{bank_name},</if>
 			<if test="account_no != null">account_no = #{account_no},</if>
 			<if test="note != null">note = #{note},</if>
 		</set>
-		WHERE
-		company_no = #{company_no}
+		WHERE company_no = #{company_no}
 	</update>
 
-	<!-- 업체삭제 -->
+	<!-- 삭제 -->
 	<delete id="setDeleteCompany" parameterType="CompanyVO">
 		DELETE FROM Companies
 		WHERE company_no = #{company_no}

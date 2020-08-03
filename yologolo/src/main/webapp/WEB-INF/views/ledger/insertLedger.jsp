@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div align="center">
 	<h1>매출장부 등록</h1>
-	<form action="setInsertSaleledger">
+	<form action="setInsertLedger">
 		<label>장부번호</label><input name="ldgr_no"> <br>
 		<label>날짜</label>	<input name="ldgr_date" type="datetime-lacal"> <br>
 		<label>금액</label>	<input name="total_amount"> <br>

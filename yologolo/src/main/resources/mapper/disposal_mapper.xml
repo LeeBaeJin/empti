@@ -5,11 +5,13 @@
 <mapper namespace="com.hein.empti.disposal.mapper.DisposalMapper">
 
 	<!-- 폐기불량 전체조회 -->
-	<select id="getDisposalList" resultType="DisposalVO"
-		parameterType="DisposalVO">
-		SELECT *
-		FROM disposal
-		ORDER BY disposal_no
+	<select id="getDisposalList" resultType="map" parameterType="DisposalVO">
+		SELECT d.disposal_no "disposal_no", d.disposal_qty "disposal_qty", d.price "price", d.category "category", d.strg_no "strg_no", d.item_no "item_no",
+				s.strg_category "strg_category", i.item_name "item_name",
+				TO_CHAR(d.disposal_date, 'yyyy-MM-dd hh24:mm') "disposal_date"
+		FROM disposal d JOIN storages s ON (d.strg_no = s.strg_no)
+						JOIN items i ON (d.item_no = i.item_no)
+		ORDER BY disposal_no 
 	</select>
 
 	<!-- 폐기불량 전체조회 Map(Excel) -->

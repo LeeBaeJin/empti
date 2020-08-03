@@ -33,7 +33,7 @@
     <ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/empti/">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="main">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
@@ -98,7 +98,7 @@
         <div id="collapseTrade" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">거래</h6>
-            <a class="collapse-item" href="getBuyordersList">구매관리</a>
+            <a class="collapse-item" href="getBuyordersListForm">구매관리</a>
             <a class="collapse-item" href="getSaleordersListMap">판매관리</a>
           </div>
         </div>
@@ -112,8 +112,7 @@
         <div id="collapseMoney" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">장부</h6>
-            <a class="collapse-item" href="getBuyledgerList">매입 관리</a>
-            <a class="collapse-item" href="getSaleledgerList">매출 관리</a>
+            <a class="collapse-item" href="getLedgerList">매입/매출 관리</a>
           </div>
         </div>
 	 </li>
@@ -341,10 +340,10 @@
 
             <div class="topbar-divider d-none d-sm-block"></div>
 			
-			<c:if test="${login != null}">
+			<%-- <c:if test="${login != null}">
 			<li class="nav-item dropdown no-arrow">
 			<a class="nav-link dropdown-toggle" href="logout" style="color:black">로그아웃</a></li>
-			</c:if>
+			</c:if> --%>
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
@@ -352,7 +351,6 @@
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">${login.name}님&nbsp;</span>
                 <!-- 프로필 사진 -->
                 <c:if test="${not empty login.profile}">
-                
                 <img class="img-profile rounded-circle" src="download?name=${login.profile}">
               	</c:if>
               	<c:if test="${empty login.profile}">
@@ -361,21 +359,13 @@
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+                <a href="mySetUpdateFormEmp?emp_id=${login.emp_id}">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Settings
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Activity Log
-                </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                <a href="logout" >
+                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Logout
                 </a>
               </div>

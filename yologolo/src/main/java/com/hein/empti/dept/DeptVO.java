@@ -10,4 +10,6 @@ public class DeptVO {
 	String dept_name;
 	String emp_id;
 
+	//조인
+	String name;
 }

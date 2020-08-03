@@ -1,15 +1,19 @@
-package com.hein.empti.saleledger;
+package com.hein.empti.ledger;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class SaleledgerVO {
+public class LedgerVO {
 	String ldgr_no;
 	String ldgr_date;
 	String total_amount;
 	String condition;
-	String order_no;
+	String border_no;
+	String sorder_no;
 	String note;
+	String status;
+	
+	
 }

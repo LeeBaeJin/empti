@@ -23,10 +23,9 @@
        <typeAlias type="com.hein.empti.items.ItemsVO" alias="ItemsVO"/>
        <typeAlias type="com.hein.empti.storages.StoragesVO" alias="StoragesVO"/>
        <typeAlias type="com.hein.empti.saleorders.SaleordersVO" alias="SaleordersVO"/>
-       <typeAlias type="com.hein.empti.saleledger.SaleledgerVO" alias="SaleledgerVO"/>
        <typeAlias type="com.hein.empti.buyorders.BuyordersVO" alias="BuyordersVO"/>
-       <typeAlias type="com.hein.empti.buyledger.BuyledgerVO" alias="BuyledgerVO"/>
   	   <typeAlias type="com.hein.empti.disposal.DisposalVO" alias="DisposalVO"/>
+  	   <typeAlias type="com.hein.empti.ledger.LedgerVO" alias="LedgerVO"/>
   	   <typeAlias type="com.hein.empti.buyorderdetails.BuyorderdetailsVO" alias="BuyorderdetailsVO"/>
   	   <typeAlias type="com.hein.empti.saleorderdetails.SaleorderdetailsVO" alias="SaleorderdetailsVO"/>
   	   <typeAlias type="com.hein.empti.menu.MenuVO" alias="MenuVO"/>
