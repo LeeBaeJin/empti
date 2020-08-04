@@ -4,17 +4,13 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <script type="text/javascript">
 $(function() {
-	
-	
 	//권한부여 새창
 	$('.authorities').on('click', function() {
 		window.open('getRoleList',
 				'saleorderdetails',
 				'width=1700, height=600, left=150, top=100, location=no, status=no, scrollbars=yes');
 	return false;
-		});
-	
-	
+		});	
 });
 </script>
 <div class="card shadow mb-4">

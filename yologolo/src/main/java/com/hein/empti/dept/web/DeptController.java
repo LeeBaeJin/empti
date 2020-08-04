@@ -75,9 +75,15 @@ public class DeptController {
 
 	// 삭제처리
 	@RequestMapping("/setDeleteDept")
-	public String setDeleteDept(DeptVO deptVO) {
-		deptService.setDeleteDept(deptVO);
-		return "redirect:getDeptList";
+	public String setDeleteDept(DeptVO deptVO, Model model) {
+		if(deptService.getDeptCount(deptVO) > 0) {
+			model.addAttribute("msg", "삭제 할 수 없습니다.");
+			model.addAttribute("loc", "getDeptList");
+			return "common/msg";
+		} else {
+			deptService.setDeleteDept(deptVO);
+			return "redirect:getDeptList";		
+		}
 	}
 
 	// view resolver 방식

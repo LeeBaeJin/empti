@@ -12,6 +12,7 @@ public interface DeptMapper {
 	public void setInsertDept(DeptVO deptVO);
 	public void setUpdateDept(DeptVO deptVO);
 	public void setDeleteDept(DeptVO deptVO);
+	public int getDeptCount(DeptVO deptVO);
 	
 	//폐기 불량 리스트(Map) 엑셀
 	public List<Map<String, Object>> getDeptMap(DeptVO vo);

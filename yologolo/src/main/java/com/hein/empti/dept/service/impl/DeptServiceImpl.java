@@ -46,4 +46,11 @@ public class DeptServiceImpl implements DeptService {
 		return deptMapper.getDeptMap(vo);
 	}
 
+	@Override
+	public int getDeptCount(DeptVO deptVO) {
+		return deptMapper.getDeptCount(deptVO);
+	}
+	
+	
+
 }
