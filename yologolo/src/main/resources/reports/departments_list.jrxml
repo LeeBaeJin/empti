@@ -5,6 +5,7 @@
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="empti"/>
 	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="519"/>
 	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="469"/>
+	<property name="net.sf.jasperreports.print.create.bookmarks" value="true"/>
 	<queryString language="SQL">
 		<![CDATA[select  d.dept_id, dept_name , d.emp_id , e.name , c.cnt
 from  departments d, employees e, (select dept_id, count(*) cnt 
@@ -39,10 +40,6 @@ and  e.mgr_id=e.emp_id
 	<title>
 		<band height="181">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
-			<image>
-				<reportElement x="-20" y="-20" width="595" height="190" uuid="3e3b0240-5b9a-428c-af67-8723d6b821c5"/>
-				<imageExpression><![CDATA["images/pdf_image05.jpg"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement mode="Opaque" x="263" y="93" width="235" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="78823cf4-5e6a-4599-a670-c15cee97ff50">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7ab5b1f5-f07b-46d5-8af7-32249693c294"/>
@@ -147,7 +144,7 @@ and  e.mgr_id=e.emp_id
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="31" splitType="Stretch">
+		<band height="30" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<textField>
 				<reportElement x="10" y="0" width="100" height="30" uuid="4b70c45b-16c1-46d8-92a3-446e2c506641">
@@ -163,7 +160,7 @@ and  e.mgr_id=e.emp_id
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="맑은고딕"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{DEPT_ID}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{DEPT_ID} == null ? "" : $F{DEPT_ID}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="110" y="0" width="120" height="30" uuid="6e79e3c3-f54d-43bd-b987-85a5e99c8e06">
@@ -179,7 +176,7 @@ and  e.mgr_id=e.emp_id
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="맑은고딕"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{DEPT_NAME}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{DEPT_NAME} == null ? "" : $F{DEPT_NAME}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="330" y="0" width="100" height="30" uuid="b8c09d9e-e5e5-4f76-a3b8-51f2c5a5ffc0">
@@ -195,7 +192,7 @@ and  e.mgr_id=e.emp_id
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="맑은고딕"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{NAME}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{NAME}== null ? "" : $F{NAME}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="430" y="0" width="100" height="30" uuid="876d099b-1391-4f39-86c2-f2feacebdcc7">
@@ -211,7 +208,7 @@ and  e.mgr_id=e.emp_id
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="맑은고딕"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{CNT}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{CNT}== null ? "" : $F{CNT}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="230" y="0" width="100" height="30" uuid="fc31a213-46fc-499f-b918-07a95c4e016d">
@@ -227,7 +224,7 @@ and  e.mgr_id=e.emp_id
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="맑은고딕"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{EMP_ID}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{EMP_ID}== null ? "" : $F{EMP_ID}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

@@ -14,7 +14,7 @@
 	<style name="속성값스타일" hTextAlign="Center" vTextAlign="Middle" markup="none" fontSize="10"/>
 	<queryString language="SQL">
 		<![CDATA[select e.emp_id, e.name, d.dept_name, e.phone, e.account_no, e.email, e.position
-from employees e join departments d on e.dept_id=d.dept_id]]>
+from employees e join departments d on e.dept_id=d.dept_id order by e.emp_id]]>
 	</queryString>
 	<field name="EMP_ID" class="java.math.BigDecimal">
 		<property name="com.jaspersoft.studio.field.label" value="EMP_ID"/>
@@ -185,7 +185,7 @@ from employees e join departments d on e.dept_id=d.dept_id]]>
 				<textElement>
 					<font fontName="나눔고딕" size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{NAME}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{NAME}== null ? "" : $F{NAME}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement style="속성값스타일" x="160" y="0" width="80" height="30" uuid="8d57ef38-f436-4ce0-978d-0cae4828553a">
@@ -201,7 +201,7 @@ from employees e join departments d on e.dept_id=d.dept_id]]>
 				<textElement>
 					<font fontName="나눔고딕" size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{DEPT_NAME}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{DEPT_NAME}== null ? "" : $F{DEPT_NAME}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement style="속성값스타일" x="20" y="0" width="60" height="30" uuid="96604264-674e-4979-99ca-1416beaa441d">
@@ -217,7 +217,7 @@ from employees e join departments d on e.dept_id=d.dept_id]]>
 				<textElement>
 					<font fontName="나눔고딕" size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{EMP_ID}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{EMP_ID}== null ? "" : $F{EMP_ID}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement style="속성값스타일" x="240" y="0" width="80" height="30" uuid="58d649f7-e82c-4a49-8d53-26fd002cc4a3">
@@ -233,7 +233,7 @@ from employees e join departments d on e.dept_id=d.dept_id]]>
 				<textElement>
 					<font fontName="나눔고딕" size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{PHONE}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{PHONE}== null ? "" : $F{PHONE}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement style="속성값스타일" x="320" y="0" width="80" height="30" uuid="0e97a639-df74-42f7-91b1-54d18d8762da">
@@ -249,7 +249,7 @@ from employees e join departments d on e.dept_id=d.dept_id]]>
 				<textElement>
 					<font fontName="나눔고딕" size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{ACCOUNT_NO}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ACCOUNT_NO}== null ? "" : $F{ACCOUNT_NO}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement style="속성값스타일" x="400" y="0" width="80" height="30" uuid="90adbc29-bb28-4420-b5b1-8fd1f7299cd6">
@@ -265,7 +265,7 @@ from employees e join departments d on e.dept_id=d.dept_id]]>
 				<textElement>
 					<font fontName="나눔고딕" size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{EMAIL}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{EMAIL}== null ? "" : $F{EMAIL}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement style="속성값스타일" x="480" y="0" width="50" height="30" uuid="aed00ae9-9104-4d30-a302-ccf1d866f86e">
@@ -281,7 +281,7 @@ from employees e join departments d on e.dept_id=d.dept_id]]>
 				<textElement>
 					<font fontName="나눔고딕" size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{POSITION}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{POSITION}== null ? "" : $F{POSITION}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

@@ -280,7 +280,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="나눔고딕" size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{COMPANY_NO}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{COMPANY_NO}== null ? "" : $F{COMPANY_NO}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="30" y="0" width="59" height="30" uuid="6d952d90-82e0-4b06-81e8-c1eb8ba38c2f">
@@ -296,7 +296,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="나눔고딕" size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{COMPANY_NAME}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{COMPANY_NAME}== null ? "" : $F{COMPANY_NAME}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="90" y="0" width="50" height="30" uuid="623fecd3-e140-4baa-b4b7-e4e5b6c618a6">
@@ -312,7 +312,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="나눔고딕" size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{PHONE}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{PHONE}== null ? "" : $F{PHONE}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="140" y="0" width="100" height="30" uuid="17f76d32-1695-487c-8b01-a47e680e69b2">
@@ -328,7 +328,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="나눔고딕" size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{ADDRESS}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ADDRESS}== null ? "" : $F{ADDRESS}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="240" y="0" width="40" height="30" uuid="ac6d1307-9482-4f60-82cd-0b731121173d">
@@ -344,7 +344,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="나눔고딕" size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{CEO_NAME}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{CEO_NAME}== null ? "" : $F{CEO_NAME}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="280" y="0" width="40" height="30" uuid="93a34d3e-d3dc-495d-8f1c-d7e464ec2b22">
@@ -360,7 +360,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="나눔고딕" size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{BANK_NAME}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{BANK_NAME}== null ? "" : $F{BANK_NAME}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="320" y="0" width="60" height="30" uuid="036fb9fd-de1f-4661-bf43-88b4a85f946d">
@@ -376,7 +376,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="나눔고딕" size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{ACCOUNT_NO}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ACCOUNT_NO}== null ? "" : $F{ACCOUNT_NO}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="380" y="0" width="50" height="30" uuid="12454655-bbe3-4464-971b-7012683ff523">
@@ -392,7 +392,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="나눔고딕" size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{DEALER_NAME}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{DEALER_NAME}== null ? "" : $F{DEALER_NAME}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="430" y="0" width="60" height="30" uuid="ec90adb7-1691-4d82-a243-29737a980cd7">
@@ -408,7 +408,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="나눔고딕" size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{DEALER_PHONE}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{DEALER_PHONE}== null ? "" : $F{DEALER_PHONE}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="490" y="0" width="39" height="30" uuid="a64ec0b4-cd0f-48bf-8e4e-886642fbcc2c">
@@ -424,7 +424,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="나눔고딕" size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{NOTE}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{NOTE}== null ? "" : $F{NOTE}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

@@ -190,7 +190,7 @@ order by "거래일자"]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="나눔고딕" size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{거래일자}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{거래일자}== null ? "" : $F{거래일자}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="81" y="1" width="79" height="30" uuid="a61a602a-bd34-4d98-9a18-7aa8936c55c4">
@@ -206,7 +206,7 @@ order by "거래일자"]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="나눔고딕" size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{거래처명}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{거래처명}== null ? "" : $F{거래처명}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="160" y="1" width="79" height="30" uuid="b18b136c-79ab-4c33-acf9-b6aae07bb465">
@@ -222,7 +222,7 @@ order by "거래일자"]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="나눔고딕" size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{품목}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{품목}== null ? "" : $F{품목}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="239" y="1" width="79" height="30" uuid="da2e0e2f-6a3f-40af-87ab-026fcc7970d6">
@@ -238,7 +238,7 @@ order by "거래일자"]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="나눔고딕" size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{매입장부}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{매입장부}== null ? "" : $F{매입장부}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="318" y="1" width="79" height="30" uuid="713afb70-5f2e-48b6-b32c-920892281d0f">
@@ -254,7 +254,7 @@ order by "거래일자"]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="나눔고딕" size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{매출장부}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{매출장부}== null ? "" : $F{매출장부}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="397" y="1" width="79" height="30" uuid="29b5eab5-39ba-49d2-8792-972154ae291b">
@@ -270,7 +270,7 @@ order by "거래일자"]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="나눔고딕" size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{결제현황}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{결제현황}== null ? "" : $F{결제현황}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="476" y="1" width="64" height="30" uuid="9473072e-9d6e-4881-b8b9-521729caf9ca">
@@ -286,7 +286,7 @@ order by "거래일자"]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="나눔고딕" size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{미수/미납금액}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{미수/미납금액}== null ? "" : $F{미수/미납금액}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

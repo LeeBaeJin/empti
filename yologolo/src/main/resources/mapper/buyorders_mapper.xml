@@ -84,4 +84,9 @@
 		WHERE border_no = #{border_no}
 	</update>
 	
+	<!-- buyorder 전체조회 Map(Excel) -->
+	<select id="getBuyordersexcelMap" resultType="map" parameterType="DeptVO">
+		select*from buyordersexcel_view
+		order by 주문번호
+	</select>
 </mapper>
