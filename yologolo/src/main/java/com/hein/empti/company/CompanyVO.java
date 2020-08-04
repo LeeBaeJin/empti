@@ -18,4 +18,5 @@ public class CompanyVO {
 	String bank_name;
 	String account_no;
 	String note;
+	
 }

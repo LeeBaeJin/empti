@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hein.empti.dept.DeptVO;
 import com.hein.empti.emp.EmpVO;
 import com.hein.empti.emp.mapper.EmpMapper;
 import com.hein.empti.emp.service.EmpService;
@@ -56,4 +57,10 @@ public class EmpServiceImpl implements EmpService {
 	public List<Map<String, Object>> getEmpMap(EmpVO vo) {
 		return empMapper.getEmpMap(vo);
 	}
+	
+	@Override
+	public int getDeptCount(DeptVO deptVO) {
+		return empMapper.getDeptCount(deptVO);
+	}
+	
 }

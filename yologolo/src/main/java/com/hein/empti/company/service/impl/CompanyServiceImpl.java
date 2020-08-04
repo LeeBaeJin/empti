@@ -49,4 +49,17 @@ public class CompanyServiceImpl implements CompanyService {
 	public List<Map<String, Object>> getCompanyMap(CompanyVO vo) {
 		return companyMapper.getCompanyMap(vo);
 	}
+	
+	//삭제 count
+	@Override
+	public int getBuyCount(CompanyVO companyVO) {
+		return companyMapper.getBuyCount(companyVO);
+	}
+
+	@Override
+	public int getSaleCount(CompanyVO companyVO) {
+		return companyMapper.getSaleCount(companyVO);
+	}
+
+	
 }

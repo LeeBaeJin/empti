@@ -12,6 +12,8 @@ public interface DeptService {
 	public void setInsertDept(DeptVO deptVO);
 	public void setUpdateDept(DeptVO deptVO);
 	public void setDeleteDept(DeptVO deptVO);
+	public int getDeptCount(DeptVO deptVO);
+
 	
 	//Dept_view (Map) 엑셀
 	public List<Map<String, Object>> getDeptMap(DeptVO vo);

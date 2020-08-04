@@ -29,6 +29,12 @@
 		FROM dual
 	</select>
 	
+	<!-- 구매주문 count -->
+	<select id="getBuyCount" resultType="BuyordersVO" parameterType="int">
+		SELECT count(*) "cnt"
+		FROM buyorders
+		WHERE BORDER_NO = #{border_no}
+	</select>
 	<!-- 구매주문 등록 -->
 	<insert id="setInsertBuyorders" parameterType="BuyordersVO">
 		INSERT INTO	BUYORDERS

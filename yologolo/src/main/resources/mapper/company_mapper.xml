@@ -28,6 +28,18 @@
 		FROM companies
 		ORDER BY company_no
 	</select>
+	
+	<select id="getBuyCount" parameterType="companyVO" resultType="int">
+		SELECT   count(*) "cnt"
+		FROM     buyorders
+		WHERE    border_no = #{border_no}
+	</select>
+	
+	<select id="getSaleCount" parameterType="companyVO" resultType="int">
+		SELECT   count(*) "cnt"
+		FROM     saleorders
+		WHERE    sorder_no = #{sorder_no}
+	</select>
 
 	<!-- 입력 -->
 	<insert id="setInsertCompany" parameterType="CompanyVO">

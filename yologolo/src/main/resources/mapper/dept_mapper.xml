@@ -22,6 +22,12 @@
 		FROM   departments d LEFT OUTER JOIN employees e
 		ON     d.emp_id = e.emp_id
 	</select>
+	
+	<select id="getDeptCount" parameterType="DeptVO" resultType="int">
+		SELECT   count(*) "cnt"
+		FROM     employees
+		WHERE    dept_id = #{dept_id}
+	</select>
 
 	<insert id="setInsertDept" parameterType="DeptVO">
 		insert into departments
