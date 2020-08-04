@@ -168,7 +168,10 @@ $(function(){
 <div class="row">
 	<!-- 목록 시작 -->
 	<div class="col-lg-7 col-md-12">
-		<h2>장부목록</h2>
+		<h2>폐기/불량 목록</h2>
+		 <input type="radio"  name="status" value="" checked><span> 전체조회</span>
+		 <input type="radio"  name="status" value="매입"><span> 폐기</span>
+		 <input type="radio"  name="status" value="매출" ><span> 불량</span>
 		<table class="table text-center">
 			<thead>
 				<tr>

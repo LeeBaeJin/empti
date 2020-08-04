@@ -12,19 +12,17 @@
 		WHERE ldgr_no = #{ldgr_no}
 	</select>
 
-	<!-- 장부상태로  단건조회 -->
+	<!-- 장부상태로 (전체 및 조건)조회 -->
 		<select id="getLedgerList" parameterType="LedgerVO"
 			resultType="LedgerVO">
 			SELECT *
 			FROM ledger
 		<where>
-		<if test="status !=null and status !='' ">	<!-- test "" 값도 VO 값과 일치 -->
+		<if test="status !=null and status !='' ">	
 			status = #{status}
 		</if>
-
 		</where>
 			order by ldgr_no
-
 		</select>
 
 	
