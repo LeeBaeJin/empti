@@ -11,6 +11,12 @@ public interface StoragesMapper {
 	public List<StoragesVO> getStoragesList(StoragesVO storagesVO);
 	public void setInsertStorages(StoragesVO storagesVO);
 	public void setUpdateStorages(StoragesVO storagesVO);
+	public void setDeleteStorages(StoragesVO storagesVO);
+	
+	//삭제처리 조건
+	public int getDisposalCount(StoragesVO storagesVO);
+	public int getStocksCount(StoragesVO storagesVO);
+	
 	
 	public List<Map<String, Object>> getStoragesListMap(StoragesVO storagesVO);
 	

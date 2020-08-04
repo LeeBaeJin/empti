@@ -71,6 +71,19 @@ public class StoragesController {
 		storagesService.setUpdateStorages(storagesVO);
 		return "redirect:getStoragesListMap";
 	}
+	
+	//삭제처리
+	@RequestMapping("/setDeleteStorages")
+	public String setDeleteStorages(Model model, StoragesVO storagesVO) {
+		if(storagesService.getDisposalCount(storagesVO) > 0 || storagesService.getStocksCount(storagesVO) >0) {
+			model.addAttribute("msg", "삭제할 수 없습니다.");
+			model.addAttribute("loc", "getStoragesListMap");
+			return "common/msg";
+		} else {
+			storagesService.setDeleteStorages(storagesVO);
+			return "redirect:getStoragesListMap";		
+		}
+	}
 
 	// view resolver 방식
 	@RequestMapping("storages.do")

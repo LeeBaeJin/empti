@@ -49,7 +49,7 @@
 							<td>${company.dealer_name}</td>
 							<td>${company.dealer_phone}</td>
  							<td><button type="button" onclick="upFrom(${company.company_no})" class="btn btn-primary">수정</button></td>
-							<td><a href="setDeleteCompany?company_no=${company.company_no}" class="btn btn-primary">삭제</button></td>
+							<td><a href="setDeleteCompany?company_no=${company.company_no}" class="btn btn-primary">삭제</a></td>
 						</tr>
 					</c:forEach>
 				</tbody>

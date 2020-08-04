@@ -42,6 +42,21 @@ public class StoragesServiceImpl implements StoragesService{
 	public void setUpdateStorages(StoragesVO storagesVO) {
 		storagesMapper.setUpdateStorages(storagesVO);
 	}
+	
+	@Override
+	public void setDeleteStorages(StoragesVO storagesVO) {
+		storagesMapper.setDeleteStorages(storagesVO);
+	}
+
+	@Override
+	public int getDisposalCount(StoragesVO storagesVO) {
+		return storagesMapper.getDisposalCount(storagesVO);
+	}
+
+	@Override
+	public int getStocksCount(StoragesVO storagesVO) {
+		return storagesMapper.getStocksCount(storagesVO);
+	}
 
 	@Override
 	public List<Map<String, Object>> getStoragesExcelMap(StoragesVO vo) {

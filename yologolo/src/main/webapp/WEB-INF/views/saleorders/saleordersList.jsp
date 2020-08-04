@@ -43,7 +43,15 @@
 			}
 		});
 	});
+	
+/* $(function() { //line-through 가운데 줄
+	$('#del_status option').each(function(){
+
+	})
+	
+}) */
 </script>
+
 </head>
 <body>
 <div class="card shadow mb-4">
@@ -76,7 +84,7 @@
 				</thead>
 				<tbody id="tblBody">
 					<c:forEach items="${saleordersMap}" var="sale">
-					<tr>
+					<tr class="returnCss">
 						<td>
 						 <a href="javascript:void(0);" onclick="orderDetails(${sale.sorder_no});">${sale.sorder_date}</a>
 						</td>
@@ -86,11 +94,14 @@
 						<fmt:formatNumber type="number" maxFractionDigits="3" value="${fmt}"/>
 						</td>
 						
-						<td><select id="del_status" name="del_status" onchange="selChk(${sale.sorder_no}, this)">
-						<option value="배송준비중" <c:if test="${fn:contains(sale.del_status,'배송준비중')}">selected="selected"</c:if>>배송준비중</option>
-						<option value="배송중" <c:if test="${fn:contains(sale.del_status,'배송중')}">selected="selected"</c:if>>배송중</option>
-						<option value="배송완료" <c:if test="${fn:contains(sale.del_status,'배송완료')}">selected="selected"</c:if>>배송완료</option>
-						</select></td>
+						<td>
+						<select id="del_status" name="del_status" onchange="selChk(${sale.sorder_no}, this)">
+							<option value="배송준비중" <c:if test="${fn:contains(sale.del_status,'배송준비중')}">selected="selected"</c:if>>배송준비중</option>
+							<option value="배송중" <c:if test="${fn:contains(sale.del_status,'배송중')}">selected="selected"</c:if>>배송중</option>
+							<option value="배송완료" <c:if test="${fn:contains(sale.del_status,'배송완료')}">selected="selected"</c:if>>배송완료</option>
+							<option value="반품" <c:if test="${fn:contains(sale.del_status,'반품')}">selected="selected"</c:if>>반품</option>
+						</select>
+						</td>
 						
 						<td>${sale.name}</td>
 						<td>${sale.company_name}</td>

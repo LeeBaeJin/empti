@@ -22,6 +22,7 @@
 						<th>창고유형</th>
 						<th>담당사원</th>
 						<th>수정</th>
+						<th>삭제</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -31,6 +32,7 @@
 							<td>${storages.strg_category}</td>
 							<td>${storages.name}</td>
 							<td><a href="setUpdateFormStorages?strg_no=${storages.strg_no}">수정</a></td>
+							<td><a href="setDeleteStorages?strg_no=${storages.strg_no}">삭제</a></td>
 						</tr>
 					</c:forEach>
 				</tbody>

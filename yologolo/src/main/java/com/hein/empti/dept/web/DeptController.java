@@ -77,7 +77,7 @@ public class DeptController {
 	@RequestMapping("/setDeleteDept")
 	public String setDeleteDept(DeptVO deptVO, Model model) {
 		if(deptService.getDeptCount(deptVO) > 0) {
-			model.addAttribute("msg", "삭제 할 수 없습니다.");
+			model.addAttribute("msg", "삭제할 수 없습니다.");
 			model.addAttribute("loc", "getDeptList");
 			return "common/msg";
 		} else {

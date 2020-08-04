@@ -30,6 +30,18 @@
 		s.emp_id = e.emp_id
 		ORDER BY strg_no
 	</select>
+	
+	<select id="getDisposalCount" parameterType="StoragesVO" resultType="int">
+		SELECT   count(*) "cnt"
+		FROM     disposal
+		WHERE    strg_no = #{strg_no}
+	</select>
+	
+	<select id="getStocksCount" parameterType="StoragesVO" resultType="int">
+		SELECT   count(*) "cnt"
+		FROM     stocks
+		WHERE    strg_no = #{strg_no}
+	</select>
 
 
 	<!-- 창고 등록 -->
@@ -58,6 +70,12 @@
 		</set>
 		WHERE strg_no=#{strg_no}
 	</update>
+	
+	<delete id="setDeleteStorages" parameterType="StoragesVO">
+		DELETE FROM storages
+		WHERE  strg_no=#{strg_no}
+	</delete>
+
 
 	<!-- 창고 단건조회 -->
 	<select id="getStorages" resultType="StoragesVO"
