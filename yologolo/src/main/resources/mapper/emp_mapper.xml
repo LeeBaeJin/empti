@@ -3,11 +3,12 @@
 <mapper namespace="com.hein.empti.emp.mapper.EmpMapper">
 	<!-- #{}, test 는 VO에 있는 필드를 가져오는거다 -->
 	<select id="getEmp" parameterType="EmpVO" resultType="EmpVO">
-		SELECT emp_id, name, pwd, phone, zip_code, address, address_detail, email, to_char(hire_date, 'yyyy-MM-dd') "hire_date",
-      		   bank_name, account_no, salary, status, position, mgr_id, dept_id, profile, resign_date
-		FROM   employees
-		WHERE  emp_id = #{emp_id}
-		ORDER BY emp_id
+		SELECT e.emp_id, e.name, e.pwd, e.pwd2, e.phone, e.zip_code, e.address, e.address_detail, e.email, to_char(e.hire_date, 'yyyy-MM-dd') "hire_date",
+      		   e.bank_name, e.account_no, e.salary, e.status, e.position, e.mgr_id, e.dept_id, e.profile, e.resign_date, d.dept_name
+		FROM   employees e, departments d
+		WHERE  e.dept_id = d.dept_id
+		AND    e.emp_id = #{emp_id}
+		ORDER BY emp_id;
 	</select>
 
 	<!-- emp Map(Excel) -->
@@ -70,6 +71,7 @@
 			<if test="emp_id != null">emp_id=#{emp_id},</if>
 			<if test="name != null">name=#{name},</if>
 			<if test="pwd != null">pwd=#{pwd},</if>
+			<if test="pwd2 != null">pwd2=#{pwd2},</if>
 			<if test="phone != null">phone=#{phone},</if>
 			<if test="zip_code != null">zip_code=#{zip_code},</if>
 			<if test="address != null">address=#{address},</if>

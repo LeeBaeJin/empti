@@ -84,10 +84,19 @@ public class EmpController {
 		return "redirect:getEmpList";
 	}
 	
+	/*
+	 * //수정폼
+	 * 
+	 * @RequestMapping("/setUpdateFormEmp/{emp_id}") public String
+	 * setUpdateFormEmp(@PathVariable String emp_id,Model model, EmpVO empVO, DeptVO
+	 * deptVO) { empVO.setEmp_id(emp_id); empVO = empService.getEmp(empVO);
+	 * model.addAttribute("empUp", empVO); model.addAttribute("deptList",
+	 * deptService.getDeptList(deptVO)); return "admin/emp/updateEmp"; }
+	 */
+	
 	//수정폼
-	@RequestMapping("/setUpdateFormEmp/{emp_id}")
-	public String setUpdateFormEmp(@PathVariable String emp_id,Model model, EmpVO empVO, DeptVO deptVO) {
-		empVO.setEmp_id(emp_id);
+	@RequestMapping("/setUpdateFormEmp")
+	public String setUpdateFormEmp(Model model, EmpVO empVO, DeptVO deptVO) {
 		empVO = empService.getEmp(empVO);
 		model.addAttribute("empUp", empVO);
 		model.addAttribute("deptList", deptService.getDeptList(deptVO));
