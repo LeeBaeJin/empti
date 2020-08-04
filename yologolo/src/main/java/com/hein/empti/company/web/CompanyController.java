@@ -79,9 +79,15 @@ public class CompanyController {
 
 	// 뭔가 크게 의미 없는 삭제처리
 	@RequestMapping("/setDeleteCompany")
-	public String setDeleteCompany(CompanyVO companyVO) {
-		companyService.setDeleteCompany(companyVO);
-		return "redirect:getCompanyList";
+	public String setDeleteCompany(CompanyVO companyVO, Model model) {
+		if(companyService.getBuyCount(companyVO) > 0 || companyService.getSaleCount(companyVO) >0) {
+			model.addAttribute("msg", "삭제 할 수 없습니다.");
+			model.addAttribute("loc", "getCompanyList");
+			return "common/msg";
+		} else {
+			companyService.setDeleteCompany(companyVO);
+			return "redirect:getCompanyList";		
+		}
 	}
 
 	/*

@@ -33,6 +33,7 @@
 						<th>담당자 성명</th>
 						<th>담당자 번호</th>
 						<th>수정</th>
+						<th>삭제</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -48,6 +49,7 @@
 							<td>${company.dealer_name}</td>
 							<td>${company.dealer_phone}</td>
  							<td><button type="button" onclick="upFrom(${company.company_no})" class="btn btn-primary">수정</button></td>
+							<td><a href="setDeleteCompany?company_no=${company.company_no}" class="btn btn-primary">삭제</button></td>
 						</tr>
 					</c:forEach>
 				</tbody>

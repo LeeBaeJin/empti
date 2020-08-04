@@ -43,8 +43,8 @@ $(function (){
 	<form action="setUpdateEmp" method="post" enctype="multipart/form-data">
 		<label>사원아이디</label>	 <input name="emp_id" value="${empUp.emp_id}" readonly> <br/>
 		<label>이름</label>		 <input name="name" value="${empUp.name}"> <br/>
-		<label>패스워드</label>	 <input type="password" name="pwd" class="pw" value="${empUp.pwd}"> <br/>
-		<label>패스워드 확인</label> <input type="password" name="pwd2" class="pw" value="${empUp.pwd2}"> <br/>
+		<label>패스워드</label>	 <input type="password" name="pwd" id="pwd" class="pw" value="${empUp.pwd}"> <br/>
+		<label>패스워드 확인</label> <input type="password" name="pwd2" id="pwd2" class="pw" value="${empUp.pwd2}"> <br/>
 		<div id="pw"></div>
 		<label>전화번호</label>	 <input name="phone" value="${empUp.phone}"> <br/>
 		<label>주소</label>		 <input class="form-control" name="zip_code" id="addr1" readonly="readonly" style="width: 15%; display: inline;" placeholder="우편번호" value="${empUp.zip_code}">
