@@ -9,7 +9,6 @@ public interface SaleordersMapper {
 	public List<SaleordersVO> getSaleordersList(SaleordersVO saleordersVO);	
 	public SaleordersVO getSaleorders(SaleordersVO saleordersVO);
 	public void setInsertSaleorders(SaleordersVO saleordersVO);
-	
 	public void setDeleteSaleorders(SaleordersVO saleordersVO);
 	
 	//시퀀스 조회
@@ -24,6 +23,9 @@ public interface SaleordersMapper {
 	//반품 조회
 	public List<SaleordersVO> getReturnSaleordersList(SaleordersVO saleordersVO);
 
+	//반품 처리(Insert)
+	public void setInsertSaleordersRetrun(SaleordersVO vo);
+	
 	//수정처리(배송상태만)
 	public void setUpdateSaleDel(List<SaleordersVO> sList);
 }

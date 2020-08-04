@@ -9,7 +9,6 @@
 	var selDel = [];
 	//페이지 로드
 	$(function(){
-		
 		//데이터 테이블 주문일자 역 정렬
 		$('#dataTable').DataTable({
 			  order: [[0, 'desc']],
@@ -44,39 +43,6 @@
 			}
 		});
 	});
-	//Select 박스의 옵션 값을 바꿀때 마다 값을 onchange하는 기능
-	function selChk(sorderNo, sorderDel) {
-		var orId = sorderNo;
-		var orSta = $(sorderDel).val();
-		for (var i=0; i<selDel.length; i++) {
-			if(selDel[i].sorder_no == orId) {
-				selDel[i].del_status = orSta; 
-			}
-		}
-		console.log(selDel);
-	}
-	//주문일자를 누르면 상세정보를 새창으로 띄워주는 소스
-	function orderDetails(sorder_no) {
-		window.open('getSaleorderdetailList?sorder_no=' + sorder_no,
-					'saleorderdetails',
-					'width=800, height=300, left=150, top=250, location=no, status=no, scrollbars=yes');
-		return false;
-	}
-	//판매 주문 삭제(상세정보 포함)
-	function delSorder(sorderNo) {
-		var result = confirm("정말로 삭제하시겠습니까?");
-		if (result) {
-			alert("삭제하였습니다.");
-			window.location.href = "setDeleteSaleorders?sorder_no="+sorderNo;
-		} else {
-			return false;
-		}
-	}
-	
-	//반품
-	function reSorder() {
-		
-	}
 </script>
 </head>
 <body>
@@ -129,7 +95,7 @@
 						<td>${sale.name}</td>
 						<td>${sale.company_name}</td>
 						
-						<td><a id="returnBtn" class="btn btn-outline-dark" href="#" onclick="reSorder();">반품</a></td>
+						<td><a id="returnBtn" class="btn btn-outline-dark" href="#" onclick="reSorder(${sale.sorder_no});">반품</a></td>
 						<td><a id="deleteBtn" class="btn btn-outline-danger" href="#" onclick="delSorder(${sale.sorder_no});">삭제</a></td>
 						
 						<!--다중 업데이트의 조건을 받기위한 히든 데이터 -->
@@ -144,6 +110,60 @@
 	</div>
 </div>
 <script>
-	
+//Select 박스의 옵션 값을 바꿀때 마다 값을 onchange하는 기능
+function selChk(sorderNo, sorderDel) {
+	var orId = sorderNo;
+	var orSta = $(sorderDel).val();
+	for (var i=0; i<selDel.length; i++) {
+		if(selDel[i].sorder_no == orId) {
+			selDel[i].del_status = orSta; 
+		}
+	}
+	console.log(selDel);
+}
+//주문일자를 누르면 상세정보를 새창으로 띄워주는 소스
+function orderDetails(sorder_no) {
+	window.open('getSaleorderdetailList?sorder_no=' + sorder_no,
+				'saleorderdetails',
+				'width=800, height=300, left=150, top=250, location=no, status=no, scrollbars=yes');
+	return false;
+}
+//판매 주문 삭제(상세정보 포함)
+function delSorder(sorderNo) {
+	var result = confirm("정말로 삭제하시겠습니까?");
+	if (result) {
+		alert("삭제하였습니다.");
+		window.location.href = "setDeleteSaleorders?sorder_no="+sorderNo;
+	} else {
+		return false;
+	}
+}
+function reSorder(sorder_no) {
+	$.ajax ({
+		url: "getSaleorders",
+		contentType : "application/json",
+		success: function(datas) {
+			var sorderNo = datas.sorder_no;
+			var sorderDate = datas.sorder_date;
+			var saleSum = datas.sale_sum;
+			var empId = datas.emp_id; 
+			var companyNo = datas.company_no;
+			
+			
+			
+		}, error: function() {
+		}
+	});
+}
+function returnOrder() {
+	var result = confirm("반품하시겠습니까?");
+	if (result) {
+		
+		
+		window.location.href = "setInsertSaleordersRetrun";
+	} else {
+		return false;
+	}
+}
 </script>
 </body>

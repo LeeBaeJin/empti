@@ -19,7 +19,12 @@ $(function(){
 <body>
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
-		<h6 class="m-0 font-weight-bold text-primary"></h6>
+				<h6 class="m-0 font-weight-bold text-primary">
+			<a href="getSaleordersListMap">판매주문 조회</a> | 
+			<a href="setInsertFormSaleorders">판매주문 입력</a> |
+			<a href="saleorders_list.do">PDF</a> |
+			<a href="sorderexcel.do">EXCEL</a>
+		</h6>
 	</div>
 	<div class="card-body">
 		<div class="table-responsive">
@@ -41,12 +46,12 @@ $(function(){
 					<tr>
 						<td>${rs.sorder_date}</td>
 						
+						<td>${rs.return_date}</td>
+						
 						<td align="right">
 						<fmt:parseNumber value="${rs.sale_sum}" var="fmt"/>
 						<fmt:formatNumber type="number" maxFractionDigits="3" value="${fmt}"/>
 						</td>
-						
-						<td>${rs.sale_sum}</td>
 						
 						<td>${rs.name}</td>
 						

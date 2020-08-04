@@ -43,9 +43,16 @@ public class SaleordersController {
 
 	// 판매주문번호 조회하여 판매상세정보List 출력
 	@RequestMapping("/getSaleorderdetailList")
-	public String getSaleorders(SaleorderdetailsVO vo, Model model) {
+	public String getSaleorderdetailList(SaleorderdetailsVO vo, Model model) {
 		model.addAttribute("details", saleorderdetailsService.getSaleorderdetailList(vo));
 		return "saleorderdetails/saleorderdetailList";
+	}
+	
+	//단건조회
+	@RequestMapping("/getSaleorders")
+	@ResponseBody
+	public SaleordersVO getSaleorders(SaleordersVO vo) {
+		return saleordersService.getSaleorders(vo);
 	}
 
 	// 상세조회를 뺀 판매주문 내역 전체 조회
@@ -110,6 +117,13 @@ public class SaleordersController {
 	@RequestMapping("/getReturnSaleordersList")
 	public String getReturnSaleordersList(SaleordersVO vo, Model model) {
 		model.addAttribute("returnSorders", saleordersService.getReturnSaleordersList(vo));
+		return "admin/saleorders/returnSaleLordersList";
+	}
+	
+	//반품처리(Insert)
+	@RequestMapping("/setInsertSaleordersRetrun")
+	public String setInsertSaleordersRetrun(SaleordersVO vo) {
+		saleordersService.setInsertSaleordersRetrun(vo);
 		return "admin/saleorders/returnSaleLordersList";
 	}
 

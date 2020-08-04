@@ -129,8 +129,6 @@
 					'width=800, height=250, left=150, top=250, location=no, status=no, scrollbars=yes');
 		return false;
 	}
-
-
 </script>
 
 <div class="card shadow mb-4">
@@ -185,4 +183,3 @@
 		</div>
 	</div>
 </div>
-
