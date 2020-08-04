@@ -23,7 +23,6 @@
 		order by 판매번호
 	</select>
 
-
 	<!-- 판매주문전체조회 Map -->
 	<select id="getSaleordersListMap" parameterType="SaleordersVO" resultType="map">
 		SELECT s.sorder_no "sorder_no",
@@ -35,9 +34,8 @@
 		c.company_name "company_name"
 		FROM employees e
 		JOIN saleorders s ON (e.emp_id = s.emp_id)
-		JOIN
-		companies c ON
-		(s.company_no = c.company_no)
+		JOIN companies c ON (s.company_no = c.company_no)
+		<![CDATA[WHERE sale_sum >= 0 ]]>
 		ORDER BY 2 DESC
 	</select>
 
@@ -89,26 +87,16 @@
 		ORDER by s.sorder_no
 	</select>
 	
-	<!-- 반품 입력 -->
-	<insert id="setInsertSaleordersRetrun" parameterType="SaleordersVO">
-		INSERT INTO saleorders (
-		sorder_no,
-		sorder_date,
-		sale_sum,
-		emp_id,
-		company_no,
-		return_date,
-		return_no
-		)
-		VALUES (
-		Salemaster_seq.NEXTVAL,
-		#{sorder_date},
-		#{sale_sum}*-1,
-		#{emp_id},
-		#{company_no},
-		SYSDATE,
+	<!-- 반품 입력 및 원래 주문 배송상태 수정 -->
+	<insert id="setInsertSaleordersRetrun" statementType="CALLABLE">
+		{call return_saleorder(
+		#{sorder_no, mode=OUT, jdbcType=VARCHAR},
+		#{sorder_date, mode=OUT, jdbcType=VARCHAR},
+		#{sale_sum, mode=OUT, jdbcType=VARCHAR},
+		#{emp_id, mode=OUT, jdbcType=VARCHAR},
+		#{company_no, mode=OUT, jdbcType=VARCHAR},
 		#{return_no}
-		)
+		) }
 	</insert>
 	
 	<!-- 판매주문삭제 -->

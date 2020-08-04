@@ -139,28 +139,9 @@ function delSorder(sorderNo) {
 	}
 }
 function reSorder(sorder_no) {
-	$.ajax ({
-		url: "getSaleorders",
-		contentType : "application/json",
-		success: function(datas) {
-			var sorderNo = datas.sorder_no;
-			var sorderDate = datas.sorder_date;
-			var saleSum = datas.sale_sum;
-			var empId = datas.emp_id; 
-			var companyNo = datas.company_no;
-			
-			
-			
-		}, error: function() {
-		}
-	});
-}
-function returnOrder() {
 	var result = confirm("반품하시겠습니까?");
 	if (result) {
-		
-		
-		window.location.href = "setInsertSaleordersRetrun";
+		window.location.href = "setInsertSaleordersRetrun?sorder_no="+sorder_no;
 	} else {
 		return false;
 	}
