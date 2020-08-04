@@ -6,7 +6,7 @@
 	<queryString language="SQL">
 		<![CDATA[select item_no, item_name, unit, item_price, exp_date, category
 from items
-order by item_no desc]]>
+order by item_no]]>
 	</queryString>
 	<field name="ITEM_NO" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="ITEM_NO"/>

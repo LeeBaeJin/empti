@@ -1,38 +1,42 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper	namespace="com.hein.empti.buyorders.mapper.BuyordersMapper">
+<mapper
+	namespace="com.hein.empti.buyorders.mapper.BuyordersMapper">
 	<!-- 구매주문 전체조회 -->
 	<select id="getBuyordersListMap" resultType="map">
-		SELECT  TO_CHAR(border_date, 'yyyy-MM-dd hh24:mi') "border_date",
-					buy_sum 			"buy_sum",
-					name				"name", 	
-					company_name		"company_name",
-					border_no			"border_no"
-		FROM 		buyorders bo, companies p, employees e
-		WHERE	 	bo.company_no = p.company_no and 
-					bo.emp_id 	  = e.emp_id
+		SELECT TO_CHAR(border_date, 'yyyy-MM-dd hh24:mi') "border_date",
+		buy_sum "buy_sum",
+		name "name",
+		company_name "company_name",
+		border_no "border_no"
+		FROM buyorders bo, companies p, employees e
+		WHERE
+		bo.company_no = p.company_no and
+		bo.emp_id = e.emp_id
 					<![CDATA[and buy_sum >= 0 ]]>
-		ORDER BY	border_date			
+		ORDER BY border_date
 	</select>
-	
+
 	<!-- 구매주문 단건조회 -->
 	<select id="getBuyorders" resultType="BuyordersVO">
 		SELECT *
 		FROM BUYORDERS
 		WHERE border_no = #{border_no}
 	</select>
-	
+
 	<!-- 구매주문 시퀀스조회 -->
 	<select id="getBuySeq" resultType="String">
-		SELECT Buymaster_seq.NEXTVAL "seqval"
+		SELECT Buymaster_seq.NEXTVAL
+		"seqval"
 		FROM dual
 	</select>
-	
-	
+
+
 	<!-- 구매주문 등록 -->
 	<insert id="setInsertBuyorders" parameterType="BuyordersVO">
-		INSERT INTO	BUYORDERS
+		INSERT INTO
+		BUYORDERS
 		(border_no,
 		border_date,
 		buy_sum,
@@ -52,7 +56,8 @@
 	<update id="setUpdateBuyorders" parameterType="BuyordersVO">
 		UPDATE BUYORDERS
 		<set>
-			<if test="border_date != null">border_date = To_date(#{border_date},'yyyy-MM-dd hh24:mi'),
+			<if test="border_date != null">border_date = To_date(#{border_date},'yyyy-MM-dd
+				hh24:mi'),
 			</if>
 			<if test="buy_sum != null">buy_sum = #{buy_sum},</if>
 			<if test="company_no != null">company_no = #{company_no},</if>
@@ -62,27 +67,40 @@
 	</update>
 
 	<delete id="setDeleteBuyorders" parameterType="BuyordersVO">
-		DELETE FROM	BUYORDERS
+		DELETE FROM
+		BUYORDERS
 		WHERE border_no = #{border_no}
 	</delete>
-	
-	
+
+
 	<!-- 반품 조회 -->
-	<select id="getReturnBuyordersList" parameterType="BuyordersVO" resultType="BuyordersVO">
-		SELECT b.border_date "border_date", b.return_date "return_date", b.buy_sum "buy_sum", e.name "name", c.company_name "company_name"
-		FROM buyorders b JOIN employees e 	ON (b.emp_id = e.emp_id)
-		JOIN companies c 					ON (b.company_no = c.company_no)
+	<select id="getReturnBuyordersList" parameterType="BuyordersVO"
+		resultType="BuyordersVO">
+		SELECT b.border_date "border_date", b.return_date "return_date",
+		b.buy_sum "buy_sum", e.name "name", c.company_name "company_name"
+		FROM
+		buyorders b JOIN employees e ON (b.emp_id = e.emp_id)
+		JOIN companies c
+		ON (b.company_no = c.company_no)
 		<![CDATA[where buy_sum < 0 ]]>
 		ORDER by border_no
 	</select>
-	
+
 	<!-- 반품 업데이트 -->
-	<update id="setUpdateBuyordersRetrun" parameterType="BuyordersVO">
-		UPDATE buyorders 
+	<update id="setUpdateBuyordersRetrun"
+		parameterType="BuyordersVO">
+		UPDATE buyorders
 		SET
 		buy_sum = -1 * buy_sum,
 		return_date = sysdate
-		WHERE border_no = #{border_no}
+		WHERE border_no =
+		#{border_no}
 	</update>
-	
+
+	<!-- buyorder 전체조회 Map(Excel) -->
+	<select id="getBuyordersexcelMap" resultType="map" parameterType="DeptVO">
+		select*from buyordersexcel_view
+		order by 주문번호
+	</select>
+
 </mapper>

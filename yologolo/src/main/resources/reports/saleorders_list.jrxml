@@ -4,7 +4,7 @@
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="empti"/>
 	<queryString language="SQL">
-		<![CDATA[select * from saleorderlist_view]]>
+		<![CDATA[select * from saleorderlist_view order by 주문번호]]>
 	</queryString>
 	<field name="주문번호" class="java.math.BigDecimal">
 		<property name="com.jaspersoft.studio.field.label" value="주문번호"/>

@@ -24,4 +24,7 @@ public interface BuyordersMapper {
 	
 	//엑셀
 	public List<Map<String, Object>> getBuyordersexcelMap(BuyordersVO vo);
+	
+	//pdf
+	//public List<>
 }
