@@ -4,22 +4,30 @@
 
 <mapper
 	namespace="com.hein.empti.ledger.mapper.LedgerMapper">
-	<!-- 장부 단건조회 -->
-	<select id="getLedger" parameterType="LedgerVO"
+	<!-- 장부번호로 단건조회 -->
+	<select id="getLedgerNo" parameterType="LedgerVO"
 		resultType="LedgerVO">
 		SELECT *
 		FROM ledger
 		WHERE ldgr_no = #{ldgr_no}
 	</select>
 
-	<!-- 장부전체조회 list -->
-	<select id="getLedgerList" resultType="LedgerVO">
-		SELECT *
-		FROM Ledger
-		ORDER
-		BY ldgr_no
-	</select>
+	<!-- 장부상태로  단건조회 -->
+		<select id="getLedgerList" parameterType="LedgerVO"
+			resultType="LedgerVO">
+			SELECT *
+			FROM ledger
+		<where>
+		<if test="status !=null and status !='' ">	<!-- test "" 값도 VO 값과 일치 -->
+			status = #{status}
+		</if>
 
+		</where>
+			order by ldgr_no
+
+		</select>
+
+	
 	<!-- 장부 전체조회 Map(Excel) -->
 	<select id="getLdgrExcelMap" resultType="map"
 		parameterType="LedgerVO">

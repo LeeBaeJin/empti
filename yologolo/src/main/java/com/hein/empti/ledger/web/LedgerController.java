@@ -28,7 +28,7 @@ import com.hein.empti.saleorders.service.SaleordersService;
 public class LedgerController {
 
 	@Autowired	LedgerService ledgerService;
-	@Autowired	SaleordersService saleordersService;
+	@Autowired	SaleordersService saleordersService; 
 	@Autowired	BuyordersService buyordersService;
 
 	// 등록폼
@@ -60,25 +60,28 @@ public class LedgerController {
 		return ledgerVO;
 	}
 
-	// 단건조회
+	// 장부번호 조건 조회
 	@RequestMapping(value = "/ledgers/{ldgr_no}", method = RequestMethod.GET)
 	@ResponseBody
-	public LedgerVO getLedger(@PathVariable String ldgr_no, LedgerVO ledgerVO, Model model) {
+	public LedgerVO getLedgerNo(@PathVariable String ldgr_no, LedgerVO ledgerVO, Model model) {
 
 		ledgerVO.setLdgr_no(ldgr_no);
-		ledgerVO = ledgerService.getLedger(ledgerVO);
+		ledgerVO = ledgerService.getLedgerNo(ledgerVO);
 		if (ledgerVO.getLdgr_date() != null)
 			ledgerVO.setLdgr_date(ledgerVO.getLdgr_date().replace(' ', 'T'));
 		ledgerVO.setLdgr_date(ledgerVO.getLdgr_date().substring(0, 16));
 		return ledgerVO;
 	}
 
+	
+	
 	// 전체조회
 	@RequestMapping(value = "/ledgers", method = RequestMethod.GET)
 	@ResponseBody
 	public List<LedgerVO> LedgerList(Model model, LedgerVO ledgerVO) {
 		return ledgerService.getLedgerList(ledgerVO);
 	}
+	
 
 	// 내역 조회
 	@RequestMapping("/getLedgerList")

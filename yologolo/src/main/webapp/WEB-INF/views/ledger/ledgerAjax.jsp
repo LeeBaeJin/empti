@@ -9,6 +9,7 @@
 
 
 $(function(){
+		allLedgerList();
 		ledgerList();
 		ledgerInsert();
 		ledgerUpdate();  
@@ -16,6 +17,8 @@ $(function(){
 		init();
 		fnc_findOrderNo();
 		fnc_selectOrderNo();
+		
+		$('[name="status"]:eq(0)').click();	//radio 첫번째꺼 자동클릭.
 	});
 	
 	//주문번호 조회
@@ -99,7 +102,7 @@ $(function(){
 	}
 	
 	
-	// 조회 요청
+	// 단건조회 요청
 	function ledgerSelect() {
 		//조회 버튼 클릭
 		$('body').on('click','#btnSelect',function(){
@@ -118,7 +121,7 @@ $(function(){
 		}); //조회 버튼 클릭
 	}
 	
-	// 조회 응답
+	// 등록폼 조회 응답
 	function ledgerSelectResult(ledgers) {
 		$('input:text[name="ldgr_no"]').val(ledgers.ldgr_no);
 		$('[name="ldgr_date"]').val(ledgers.ldgr_date);
@@ -143,8 +146,9 @@ $(function(){
 	}
 	
 	
-	// 목록 조회 요청
-	function ledgerList() {
+	// 전체목록 조회 요청
+	function allLedgerList() {
+		$('#allLedger').change(function() {
 		$.ajax({
 			url:'ledgers',
 			type:'GET',			
@@ -154,9 +158,28 @@ $(function(){
 			},
 			success:ledgerListResult
 		});
-	}
+	});
+};
 	
-	// 장부 내역 목록 뿌려줌
+
+	// 전체조회요청
+	function ledgerList() {
+		$('[name="status"]').on('click',function() {
+		var status = this.value;
+		console.log(status);
+		$.ajax({
+			url:'ledgers',
+			data: {status :status},
+			type:'GET',			
+			dataType:'json',
+			error:function(xhr,status,msg){
+				alert("상태값 :" + status + " 에러 메세지:"+msg);
+			},
+			success:ledgerListResult
+		});
+	});
+};
+	// 조회 응답 . 리스트 뿌려줌.
 	function ledgerListResult(data) {
 		$("tbody").empty();
 		$.each(data,function(idx,item){
@@ -173,12 +196,12 @@ $(function(){
 			.append($('<input type=\'hidden\' id=\'hidden_ldgr_no\'>').val(item.ldgr_no))
 			.appendTo('tbody');
 		});//each
-	}//userListResult
+	};//userListResult
 	
 	
 	// 구분에 따른 구매/판매 주문번호 조회
 	function fnc_selectOrderNo(){
-	$('#status').change(function() {
+		$('#ledgerForm').on('change', '#status', function() {
 			var status = $('#status option:selected').val();
 			if(status == "매입") {
 				$('#order_no').empty();
@@ -203,6 +226,7 @@ $(function(){
 		});
 	};
 
+	
 
 </script>
 
@@ -210,6 +234,9 @@ $(function(){
 	<!-- 목록 시작 -->
 	<div class="col-lg-7 col-md-12">
 		<h2>장부목록</h2>
+	 <input type="radio"  name="status" value="" checked><span> 전체조회</span>
+	 <input type="radio"  name="status" value="매입"><span> 매입</span>
+	 <input type="radio"  name="status" value="매출" ><span> 매출</span>
 		<table class="table text-center">
 			<thead>
 				<tr>
@@ -232,10 +259,10 @@ $(function(){
 	<div class="col-lg-5 col-md-12 ">
 		<div id="ledgerDiv" class="ml-5">
 			<form id="ledgerForm">  
-				<label>장부번호</label>	<input name="ldgr_no" id="ldgr_no" readonly><br> 
-				<label>날짜</label> 		<input name="ldgr_date" type="datetime-local"> <br> 
-				<label>금액</label> 		<input name="total_amount"> <br> 
-				<label>구분</label> 		<select name="status" id="status">
+				<label>장부번호</label>	<input class="form-control" name="ldgr_no" id="ldgr_no" readonly><br> 
+				<label>날짜</label> 		<input class="form-control" name="ldgr_date" type="datetime-local"> <br> 
+				<label>금액</label> 		<input class="form-control" name="total_amount"> <br> 
+				<label>구분</label> 		<select class="form-control" name="status" id="status">
 											<option value="" selected>== 매출/매입 선택 ==</option>
 											<option value="매입">매입</option>
 											<option value="매출">매출</option>
@@ -243,13 +270,13 @@ $(function(){
 				
 				<div id="order_no"></div>
 				
-					<label>상태</label> 	<select name="condition">
+					<label>상태</label> 	<select class="form-control" name="condition">
 											<option value="" selected>==선택하세요==</option>
 											<option value="완납">완납</option>
 											<option value="미수">미수</option>
 									   	</select> <br> 
-				<label>비고</label> 		<input name="note"> <br>
-				<div class="btn-group">
+				<label>비고</label> 		<input name="note" class="form-control" > <br>
+				<div class="btn-group" >
 					<input type="button" class="btn btn-primary" value="등록" id="btnInsert" /> 
 					<input type="button" class="btn btn-primary" value="수정" id="btnUpdate" /> 
 					<input type="button" class="btn btn-primary" value="초기화" id="btnInit" />

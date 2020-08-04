@@ -21,8 +21,14 @@ public class LedgerServiceImpl implements LedgerService {
 	}
 
 	@Override
-	public LedgerVO getLedger(LedgerVO ledgerVO) {
-		return ledgerMapper.getLedger(ledgerVO);
+	public LedgerVO getLedgerNo(LedgerVO ledgerVO) {
+		return ledgerMapper.getLedgerNo(ledgerVO);
+	}
+
+	@Override
+	public LedgerVO getLedgerStatus(LedgerVO ledgerVO) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
