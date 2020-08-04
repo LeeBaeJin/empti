@@ -72,4 +72,9 @@ public class SaleordersServiceImpl implements SaleordersService {
 	public List<SaleordersVO> getReturnSaleordersList(SaleordersVO saleordersVO) {
 		return saleordersMapper.getReturnSaleordersList(saleordersVO);
 	}
+
+	@Override
+	public void setInsertSaleordersRetrun(SaleordersVO vo) {
+		saleordersMapper.setInsertSaleordersRetrun(vo);
+	}
 }

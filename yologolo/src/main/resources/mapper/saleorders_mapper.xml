@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
-<mapper
-	namespace="com.hein.empti.saleorders.mapper.SaleordersMapper">
-
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hein.empti.saleorders.mapper.SaleordersMapper">
 	<!-- 판매주문단건조회 -->
 	<select id="getSaleorders" parameterType="SaleordersVO"
 		resultType="SaleordersVO">
@@ -16,14 +12,12 @@
 	<!-- 판매주문전체조회 list -->
 	<select id="getSaleordersList" resultType="SaleordersVO">
 		SELECT *
-		FROM
-		saleorders
+		FROM saleorders
 		ORDER BY sorder_no
 	</select>
 
   	<!-- 판매주문 전체조회 Map(Excel) -->
-	<select id="getSaleOrdersExcelMap" resultType="map"
-		parameterType="SaleordersVO">
+	<select id="getSaleOrdersExcelMap" resultType="map" parameterType="SaleordersVO">
 		select* from
 		sorderexcel_view
 		order by 판매번호
@@ -31,8 +25,7 @@
 
 
 	<!-- 판매주문전체조회 Map -->
-	<select id="getSaleordersListMap" parameterType="SaleordersVO"
-		resultType="map">
+	<select id="getSaleordersListMap" parameterType="SaleordersVO" resultType="map">
 		SELECT s.sorder_no "sorder_no",
 		TO_CHAR(s.sorder_date,
 		'yyyy-MM-dd hh24:mi') "sorder_date",
@@ -78,8 +71,7 @@
 
 	<!-- 판매주문 배송상태 수정 -->
 	<update id="setUpdateSaleDel" parameterType="java.util.List">
-		<foreach collection="list" item="item" separator=";"
-			open="DECLARE BEGIN" close="; END;">
+		<foreach collection="list" item="item" separator=";" open="DECLARE BEGIN" close="; END;">
 			UPDATE saleorders
 			SET del_status =
 			#{item.del_status}
@@ -96,6 +88,28 @@
 		<![CDATA[WHERE sale_sum < 0 ]]>
 		ORDER by s.sorder_no
 	</select>
+	
+	<!-- 반품 입력 -->
+	<insert id="setInsertSaleordersRetrun" parameterType="SaleordersVO">
+		INSERT INTO saleorders (
+		sorder_no,
+		sorder_date,
+		sale_sum,
+		emp_id,
+		company_no,
+		return_date,
+		return_no
+		)
+		VALUES (
+		Salemaster_seq.NEXTVAL,
+		#{sorder_date},
+		#{sale_sum}*-1,
+		#{emp_id},
+		#{company_no},
+		SYSDATE,
+		#{return_no}
+		)
+	</insert>
 	
 	<!-- 판매주문삭제 -->
 	<delete id="setDeleteSaleorders" parameterType="SaleordersVO"> 

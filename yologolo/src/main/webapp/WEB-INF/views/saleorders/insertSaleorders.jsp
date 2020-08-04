@@ -8,7 +8,7 @@
 	$(function(){
 		//거래처 검색 기능
 		$('#btnFindCompany').on('click',function(){
-			var winObj = window.open('findCompany','companies','width=300, height=auto');
+			var winObj = window.open('findCompany','companies', 'width=500, height=700, left=400, top=100');
 			return winObj;
 		});
 		//품목 검색 기능
@@ -123,18 +123,16 @@
 			return false;
 		}
 	}
-	
-	
 </script>
 <div>
 	<h1 class="h1">판매주문 입력</h1>
 	<form action="setInsertSaleorders">
-		주문일자 <input type="datetime-local" name="sorder_date" class="form-control" style="width: 300px; display: inline;"><br/>
+		주문일자 	<input type="datetime-local" name="sorder_date" class="form-control" style="width: 300px; display: inline;"><br/>
 		
 		거래처코드 <input name="company_no" id="company_no" class="form-control" style="width: 250px; display: inline;"> <span id="company_name"></span>
 			    <button type="button" value="거래처선택" id="btnFindCompany" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" width="30px" height="30px"></button><br/>
 			    
-		판매합계 <input name="sale_sum" class="form-control" style="width: 250px; display: inline;"><br/>
+		판매합계 	<input name="sale_sum" class="form-control" style="width: 250px; display: inline;"><br/>
 		
 		배송상태	<select name="del_status" class="form-control" style="width: 250px; display: inline;">
 				  <option value="배송준비중" selected>배송준비중</option>
@@ -142,11 +140,11 @@
 				  <option value="배송완료" >배송완료</option>
 				</select><br/>
 				
-		담당사원<select name="emp_id" class="form-control" style="width: 250px; display: inline;" onchange="emp_select_value(this);">
-				<option value="" selected>==사원 선택==</option>
-				<c:forEach items="${emps}" var="emp"> 
-				<option value="${emp.emp_id}">${emp.name}</option>
-				</c:forEach>
+		담당사원	<select name="emp_id" class="form-control" style="width: 250px; display: inline;" onchange="emp_select_value(this);">
+					<option value="" selected>==사원 선택==</option>
+					<c:forEach items="${emps}" var="emp"> 
+					<option value="${emp.emp_id}">${emp.name}</option>
+					</c:forEach>
 				</select>
 				<span id="emp_name"></span>
 				<br/>
