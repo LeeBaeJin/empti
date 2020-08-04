@@ -25,4 +25,9 @@
 		</foreach>
 		) "A"
 	</insert>
+	
+	<delete id="setSaleorderdetailDelete" parameterType="SaleorderdetailsVO">
+		DELETE FROM saleorderdetails 
+		WHERE sorder_no = #{sorder_no}
+	</delete>
 </mapper>

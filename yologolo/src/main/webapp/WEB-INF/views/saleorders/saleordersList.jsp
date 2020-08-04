@@ -9,6 +9,7 @@
 	var selDel = [];
 	//페이지 로드
 	$(function(){
+		
 		//데이터 테이블 주문일자 역 정렬
 		$('#dataTable').DataTable({
 			  order: [[0, 'desc']],
@@ -22,11 +23,11 @@
 			var obj = {};
 			obj['sorder_no'] = $(item).children().eq(7).children().val();
 			obj['del_status'] = $(item).children().eq(2).children().val();  
-			console.log(obj['del_status']);
 			selDel.push(obj);
 		});
-		console.log(selDel);
-		$('#tblhead').on('click', '#delUpdate', function() {
+		$('#tblHead').on('click', '#delUpdate', function() {
+			var result = confirm("배송상태를 수정하시겠습니까?");
+			if (result) {
 				$.ajax ({
 					url: "setUpdateSaleDel",
 					type: "POST",
@@ -38,8 +39,10 @@
 					alert("수정을 실패하였습니다.");
 				}
 			});
+			} else {
+				return false;
+			}
 		});
-		
 	});
 	//Select 박스의 옵션 값을 바꿀때 마다 값을 onchange하는 기능
 	function selChk(sorderNo, sorderDel) {
@@ -59,6 +62,21 @@
 					'width=800, height=300, left=150, top=250, location=no, status=no, scrollbars=yes');
 		return false;
 	}
+	//판매 주문 삭제(상세정보 포함)
+	function delSorder(sorderNo) {
+		var result = confirm("정말로 삭제하시겠습니까?");
+		if (result) {
+			alert("삭제하였습니다.");
+			window.location.href = "setDeleteSaleorders?sorder_no="+sorderNo;
+		} else {
+			return false;
+		}
+	}
+	
+	//반품
+	function reSorder() {
+		
+	}
 </script>
 </head>
 <body>
@@ -76,7 +94,7 @@
 			<a href="getSaleordersListMap" class="btn btn-outline-primary">주문내역</a> | 
 			<a href="getReturnSaleordersList" class="btn btn-outline-primary">반품내역</a> <br><br>
 			<table class="table table-bordered" id="dataTable" style="width: 100%; cellspacing=0;">
-				<thead id="tblhead">
+				<thead id="tblHead">
 					<tr>
 						<th>주문일자</th>
 						<th>판매합계</th>
@@ -111,12 +129,12 @@
 						<td>${sale.name}</td>
 						<td>${sale.company_name}</td>
 						
-						<td><button id="returnBtn" type="button" class="btn btn-outline-dark">반품</button></td>
-						<td><button id="deleteBtn" type="button" class="btn btn-outline-danger">삭제</button></td>
+						<td><a id="returnBtn" class="btn btn-outline-dark" href="#" onclick="reSorder();">반품</a></td>
+						<td><a id="deleteBtn" class="btn btn-outline-danger" href="#" onclick="delSorder(${sale.sorder_no});">삭제</a></td>
 						
 						<!--다중 업데이트의 조건을 받기위한 히든 데이터 -->
 						<td style="display: none;">
-						<input type="hidden" name="sorder_no" value="${sale.sorder_no}">  
+						<input type="hidden" name="sorder_no" id="sorder_no" value="${sale.sorder_no}">  
 						</td>
 					</tr>
 					</c:forEach>

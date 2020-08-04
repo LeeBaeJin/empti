@@ -100,7 +100,7 @@
 			var obj = {};
 			obj['sorder_no'] = saleSeq;
 			obj['item_no'] = $(item).children().eq(0).text(); 
-			obj['sorder_qty'] = $(item).children().eq(1).text();
+			obj['sorder_qty'] = $(item).children().eq(2).text();
 			td.push(obj);
 		});
 		//판매주문의 데이터는 vo객체에, 판매상세주문의 데이터는 List에 담아서 Insert
