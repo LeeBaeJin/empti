@@ -152,7 +152,7 @@ $(function(){
 	function fnc_btnfindItem(){
 		//품목 검색 기능
 		$('#btnFindItem').on('click', function() {
-			var wo = window.open('findItems','item', 'width=800, height=800');
+			var wo = window.open('findItems','item', 'width=800, height=800, left=400, top=100');
 			return wo;
 		});
 	};
@@ -188,6 +188,7 @@ $(function(){
 					<th class="text-center">구분</th>
 					<th class="text-center">창고번호</th>
 					<th class="text-center">품목코드</th>
+					<th class="text-center">조회</th>
 				</tr>
 			</thead>
 			<tbody></tbody>
@@ -200,26 +201,24 @@ $(function(){
 		<div id="disposalDiv" class="ml-5">
 			<h1>폐기불량 입력</h1>
 			<form id="disposalForm">
-				<label>폐기/불량 번호</label>	<input name="disposal_no" id="disposal_no" readonly><br/>
-				<label>폐기 수량</label>		<input name="disposal_qty"  ><br/>
-				<label>단가</label>			<input name="price"  ><br/>
-				<label>폐기일</label>			<input name="disposal_date" type="datetime-local"><br/>
-				<label>구분</label>			<select name="category">
+				<label>폐기/불량 번호</label>	<input class="form-control" name="disposal_no" id="disposal_no" readonly><br/>
+				<label>폐기 수량</label>		<input class="form-control" name="disposal_qty"  ><br/>
+				<label>단가</label>			<input class="form-control" name="price"  ><br/>
+				<label>폐기일</label>			<input class="form-control" name="disposal_date" type="datetime-local"><br/>
+				<label>구분</label>			<select class="form-control" name="category">
 														<option value="폐기">폐기</option>
 														<option value="불량">불량</option>
 											</select><br/>
 				
-				<label>창고</label>			<select name="strg_no" class="selectBox" onchange="storages_select_value(this);">
+				<label>창고</label>			<select class="form-control" name="strg_no" class="selectBox" onchange="storages_select_value(this);">
 												<option value="" selected> ==선택하세요== </option>
 													<c:forEach items="${storages}" var="storages">
 														<option value="${storages.strg_no}">${storages.strg_category}</option>
 													</c:forEach>
 											</select><span id="storages_no"></span><br/>
 				
-				<label>품목코드</label>		<input name="item_no" id="item_no" > <span id="item_name"></span>
-												<button type="button" value="품목선택" id="btnFindItem">
-													<img src="resources/images/Glass.png" width="30px" height="30px"></button>
-													<br/>
+				<label>품목코드</label>		<button type="button" value="품목선택" id="btnFindItem"><img src="resources/images/Glass.png" width="30px" height="30px"></button>
+											<input class="form-control" name="item_no" id="item_no" > <span id="item_name"></span><br/>
 				<div class="btn-group">
 					<input type="button" class="btn btn-primary" value="등록" id="btnInsert" /> 
 					<input type="button" class="btn btn-primary" value="수정" id="btnUpdate" /> 

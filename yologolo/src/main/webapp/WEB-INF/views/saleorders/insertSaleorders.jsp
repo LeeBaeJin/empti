@@ -8,7 +8,7 @@
 	$(function(){
 		//거래처 검색 기능
 		$('#btnFindCompany').on('click',function(){
-			var winObj = window.open('findCompany','companies','width=300, height=auto');
+			var winObj = window.open('findCompany','companies', 'width=500, height=700, left=400, top=100');
 			return winObj;
 		});
 		//품목 검색 기능

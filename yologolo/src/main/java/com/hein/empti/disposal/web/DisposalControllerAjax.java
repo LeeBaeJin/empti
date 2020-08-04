@@ -32,7 +32,7 @@ public class DisposalControllerAjax {
 	@Autowired	ItemsService		itemsService;
 
 	// AJAX페이지 호출
-	@RequestMapping("/setdisposalForm")
+	@RequestMapping("/setDisposalForm")
 	public String setInsertFormDisposal(Model model, ItemsVO itemsVO, StoragesVO storagesVO) {
 		model.addAttribute("storages", storagesService.getStoragesList(storagesVO));
 		model.addAttribute("items", itemsService.getItemsList(itemsVO));
