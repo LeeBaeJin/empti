@@ -9,12 +9,12 @@ $(function(){
 		stocksInsert(); 
 		stocksUpdate(); 
 		init();
-		fnc_btnfindItem();
+		fnc_btnfindItem(); 
 	});
 	
 		function fnc_btnfindItem(){
 		$('#btnFindItem').on('click', function() {
-			var wo = window.open('findItems','item', 'width=800, height=800');
+			var wo = window.open('findItems','item', 'width=500, height=700, left=950, top=50');
 			return wo;
 		});
 	};
