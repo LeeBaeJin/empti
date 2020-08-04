@@ -28,7 +28,7 @@
 	</insert>
 	
 	<delete id="setBuyorderdetailDelete" parameterType="BuyorderdetailsVO">
-		DELETE FROM buyorderdetails WHERE border_no = #{border_no}
-	
+		DELETE FROM buyorderdetails 
+		WHERE border_no = #{border_no}
 	</delete>
 </mapper>

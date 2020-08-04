@@ -11,6 +11,11 @@
 				TO_CHAR(d.disposal_date, 'yyyy-MM-dd hh24:mm') "disposal_date"
 		FROM disposal d JOIN storages s ON (d.strg_no = s.strg_no)
 						JOIN items i ON (d.item_no = i.item_no)
+		<where>
+			<if test="category !=null and category !='' ">	
+			d.category = #{category}
+		</if>
+		</where>
 		ORDER BY disposal_no 
 	</select>
 

@@ -13,6 +13,8 @@ $(function(){
 		disposalSelect();
 		init();
 		fnc_btnfindItem();
+		
+		$('[name="category"]:eq(0)').click();
 	});
 	
 	
@@ -114,14 +116,18 @@ $(function(){
 	
 	//  리스트 요청
 	function disposalList() {
+		$('[name="category"]').on('click', function(){
+			var category = this.value;
 		$.ajax({
 			url:'disposals',
+			data: {category : category},
 			type:'GET',			
 			dataType:'json',
 			error:function(xhr,status,msg){
 				alert("상태값 :" + status + " 에러 메세지:"+msg);
 			},
 			success:disposalListResult
+			});
 		});
 	}
 	
@@ -168,7 +174,10 @@ $(function(){
 <div class="row">
 	<!-- 목록 시작 -->
 	<div class="col-lg-7 col-md-12">
-		<h2>장부목록</h2>
+		<h2>폐기/불량 목록</h2>
+		 <input type="radio"  name="category" value="" checked><span> 전체조회</span>
+		 <input type="radio"  name="category" value="폐기"><span> 폐기</span>
+		 <input type="radio"  name="category" value="불량"><span> 불량</span>
 		<table class="table text-center">
 			<thead>
 				<tr>
@@ -221,5 +230,3 @@ $(function(){
 	</div>
 	<!-- 등록수정 폼 끝-->
 </div>
-
-	

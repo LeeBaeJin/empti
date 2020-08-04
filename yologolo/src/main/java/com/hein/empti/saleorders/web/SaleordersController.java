@@ -1,6 +1,8 @@
 package com.hein.empti.saleorders.web;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,12 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.hein.empti.buyorders.BuyordersVO;
 import com.hein.empti.emp.EmpVO;
 import com.hein.empti.emp.service.EmpService;
 import com.hein.empti.saleorderdetails.SaleorderdetailsVO;
@@ -27,10 +30,8 @@ import com.hein.empti.saleorders.service.SaleordersService;
 @Controller
 public class SaleordersController {
 
-	@Autowired
-	SaleordersService saleordersService;
-	@Autowired
-	SaleorderdetailsService saleorderdetailsService;
+	@Autowired SaleordersService saleordersService;
+	@Autowired SaleorderdetailsService saleorderdetailsService;
 
 	@Autowired
 	EmpService empService;
@@ -80,15 +81,22 @@ public class SaleordersController {
 	@ResponseBody
 	public String setInsertSaleorders(@RequestBody SorderMasterVO sVO) {
 		saleordersService.setInsertSaleorders(sVO);
-		return "redirect:getSaleordersList";
+		return "redirect:getSaleordersListMap";
 	}
 
 	// 수정처리 (배송상태만)
 	@RequestMapping("/setUpdateSaleDel")
 	@ResponseBody
-	public String setUpdateSaleDel(@RequestBody List<SaleordersVO> sList) {
+	public void setUpdateSaleDel(@RequestBody List<SaleordersVO> sList) {
 		saleordersService.setUpdateSaleDel(sList);
-		return "redirect:getSaleordersList";
+	}
+	
+	// 삭제처리
+	@RequestMapping("/setDeleteSaleorders")
+	public String setDeleteSaleorders(SaleordersVO sVO,SaleorderdetailsVO sdVO) {
+		saleorderdetailsService.setSaleorderdetailDelete(sdVO);
+		saleordersService.setDeleteSaleorders(sVO);
+		return "redirect:getSaleordersListMap";
 	}
 	
 	// 주문번호조회
