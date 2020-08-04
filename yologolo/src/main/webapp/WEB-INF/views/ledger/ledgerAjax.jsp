@@ -229,6 +229,7 @@ $(function(){
 					<th class="text-center">판매주문번호</th>
 					<th class="text-center">상태</th>
 					<th class="text-center">비고</th>
+					<th class="text-center">조회</th>
 				</tr>
 			</thead>
 			<tbody></tbody>
