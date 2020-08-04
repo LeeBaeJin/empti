@@ -32,6 +32,7 @@
   	   <typeAlias type="com.hein.empti.saleorderdetails.SaleorderdetailsVO" alias="SaleorderdetailsVO"/>
   	   <typeAlias type="com.hein.empti.menu.MenuVO" alias="MenuVO"/>
   	   <typeAlias type="com.hein.empti.authorities.AuthoritiesVO" alias="AuthoritiesVO"/>
+	   <typeAlias type="com.hein.empti.bank.BankVO" alias="BankVO"/>
   	   
    </typeAliases>
 </configuration>

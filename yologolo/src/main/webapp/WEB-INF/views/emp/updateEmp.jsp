@@ -61,6 +61,7 @@ $(function (){
 		<label>은행계좌</label>	 <input name="account_no" value="${empUp.account_no}"> <br/>
 		<label>부서번호</label>	 <select name="dept_id" onchange="dept_select_value(this);"> 
 									<option selected value="${empUp.dept_id}">${empUp.dept_name}</option>
+									<option >--------------</option>
 									<c:forEach items="${deptList}" var="dept">
 										<option value="${dept.dept_id}">${dept.dept_name}</option>
 									</c:forEach>

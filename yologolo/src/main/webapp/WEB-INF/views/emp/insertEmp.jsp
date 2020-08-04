@@ -76,6 +76,13 @@ function execPostCode() {
        }
     }).open();
 }
+
+$(function(){
+	$('#btnFindBank').on('click', function() {
+		var wo = window.open('findBank','item', 'width=800, hight=800');
+		return wo;
+	});
+});
 </script>    
     
 <div class="col-sm-12 my-auto">
@@ -106,7 +113,9 @@ function execPostCode() {
 									<option>퇴직</option>
 									<option>휴가</option>
 								</select> <br/>
-		<label>거래은행</label>	<input name="bank_name" class="form-control" style="width: 250px; display: inline;"> <br/>
+		<label>거래은행</label>	<input name="bank_name" id="bank_name" type="text" class="form-control" style="width: 250px; display: inline;">
+								<button type="button" value="은행선택" id="btnFindBank" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" width="30px" height="30px"></button>
+								<br/>
 		<label>은행계좌</label>	<input name="account_no" class="form-control" style="width: 250px; display: inline;"> <br/>
 		<label>부서이름</label>	<select name="dept_id" onchange="dept_select_value(this);" class="form-control" style="width: 250px; display: inline;"> 
 									<c:forEach items="${dept}" var="dept">

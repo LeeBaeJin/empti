@@ -8,7 +8,7 @@
 		FROM   employees e, departments d
 		WHERE  e.dept_id = d.dept_id
 		AND    e.emp_id = #{emp_id}
-		ORDER BY emp_id;
+		ORDER BY emp_id
 	</select>
 
 	<!-- emp Map(Excel) -->
