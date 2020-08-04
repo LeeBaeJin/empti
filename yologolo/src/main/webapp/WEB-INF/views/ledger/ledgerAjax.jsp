@@ -9,7 +9,6 @@
 
 
 $(function(){
-		allLedgerList();
 		ledgerList();
 		ledgerInsert();
 		ledgerUpdate();  
@@ -145,28 +144,11 @@ $(function(){
 		
 	}
 	
-	
-	// 전체목록 조회 요청
-	function allLedgerList() {
-		$('#allLedger').change(function() {
-		$.ajax({
-			url:'ledgers',
-			type:'GET',			
-			dataType:'json',
-			error:function(xhr,status,msg){
-				alert("상태값 :" + status + " 에러 메세지:"+msg);
-			},
-			success:ledgerListResult
-		});
-	});
-};
-	
 
 	// 전체조회요청
 	function ledgerList() {
 		$('[name="status"]').on('click',function() {
 		var status = this.value;
-		console.log(status);
 		$.ajax({
 			url:'ledgers',
 			data: {status :status},
