@@ -77,7 +77,7 @@
 	</insert>
 
 	<!-- 판매주문 배송상태 수정 -->
-	<update id="setUpdateSaleorders" parameterType="java.util.List">
+	<update id="setUpdateSaleDel" parameterType="java.util.List">
 		<foreach collection="list" item="item" separator=";"
 			open="DECLARE BEGIN" close="; END;">
 			UPDATE saleorders
@@ -98,6 +98,7 @@
 	</select>
 	
 	<!-- 판매주문삭제 -->
-	<!-- <delete id="setDeleteSaleorders" parameterType="SaleordersVO"> DELETE 
-		FROM saleorders WHERE sorder_no = #{sorder_no} </delete> -->
+	<delete id="setDeleteSaleorders" parameterType="SaleordersVO"> 
+		DELETE FROM saleorders 
+		WHERE sorder_no = #{sorder_no} </delete> 
 </mapper>

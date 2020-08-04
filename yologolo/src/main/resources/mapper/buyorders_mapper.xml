@@ -29,7 +29,6 @@
 		FROM dual
 	</select>
 	
-	
 	<!-- 구매주문 등록 -->
 	<insert id="setInsertBuyorders" parameterType="BuyordersVO">
 		INSERT INTO	BUYORDERS

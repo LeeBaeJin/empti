@@ -26,5 +26,10 @@ public class SaleorderdetailsServiceImpl implements SaleorderdetailsService{
 		return mapper.getSaleorderdetailList(vo);
 	}
 
+	@Override
+	public void setSaleorderdetailDelete(SaleorderdetailsVO vo) {
+		mapper.setSaleorderdetailDelete(vo);
+	}
+
 
 }

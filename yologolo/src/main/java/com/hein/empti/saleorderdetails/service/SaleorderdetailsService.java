@@ -12,5 +12,6 @@ public interface SaleorderdetailsService {
 	//다중 Insert
 	public void setSaleorderdetailInsert(List<SaleorderdetailsVO> list);
 	
-	
+	//삭제
+	public void setSaleorderdetailDelete(SaleorderdetailsVO vo);
 }
