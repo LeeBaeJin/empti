@@ -51,7 +51,7 @@ public class LedgerServiceImpl implements LedgerService {
 	
 	//월별 매출 통계 차트
 	@Override
-	public List<Map<String, Object>> getMonthlySaleAmount(LedgerVO vo) {
-		return ledgerMapper.getMonthlySaleAmount(vo);
+	public List<Map<String, Object>> getMonthlySaleAmount() {
+		return ledgerMapper.getMonthlySaleAmount();
 	}
 }

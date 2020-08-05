@@ -1,9 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<html>
-  <head>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<!-- 부서별 사원 수 차트 시작 -->
     <script type="text/javascript">
     
       google.charts.load('current', {'packages':['corechart']});
@@ -17,7 +16,7 @@
           data.addColumn('number', '사원수');
 		  var chartdata = [];
           $.ajax({  
-			  url: "getChartData", 
+			  url: "getDeptEmpCnt", 
 			  async : false, 			// 비동기여부. false = 동기식
 			  success : function(result){
 				  for(i=0; i<result.length; i++){
@@ -26,33 +25,30 @@
 			  }
 		  });
           data.addRows(chartdata);
-
-          
           
           // Set chart options
-          var options = {'title':'부서별 인원수',
-                         'width':400,
-                         'height':300,
+          var options = {title:'부서별 인원 수',
                          is3D : true,
                          hAxis: { format:'0,000', gridlines: {count:10} } ,
                          colors: ['#e0440e', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6']
           				};
-          
 
-        var chart = new google.visualization.ColumnChart(document.getElementById('columnchart_material'));
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('myBarChart'));
         chart.draw(data, options);
         
-/*         google.visualization.events.addListener(chart, 'select', selectHandler);
-
-        function selectHandler(e) {
-          var row = chart.getSelection()[0]["row"]
-          var column = chart.getSelection()[0]["column"]
-          console.log(data[row][0]);
-        } */
       }
     </script>
-  </head>
-  <body>
-    <div id="columnchart_material" style="width: 800px; height: 500px;"></div>
-  </body>
-</html>
+    <!--  <div id="columnchart_material" style="width: 400px; height: 320px;"></div> -->
+    <!-- Bar Chart -->
+	<div class="card shadow mb-4">
+		<div class="card-header py-3" >
+			<h6 class="m-0 font-weight-bold text-primary">Bar Chart</h6>
+		</div>
+		<div class="card-body">
+			<div class="chart-bar">
+				<div id="myBarChart" style="width: 450px; height: 300px;"></div>
+			</div>
+		</div>
+	</div>
+<!-- 부서별 사원 수 차트 끝 -->

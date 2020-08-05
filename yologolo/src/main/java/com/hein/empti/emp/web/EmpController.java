@@ -31,11 +31,9 @@ import com.hein.empti.emp.service.EmpService;
 @Controller //Bean등록, Dispatcher Servlet이 인식할 수 있는 Controller로 변환 //@Component 상속
 public class EmpController {
 	
-	@Autowired
-	EmpService empService;
+	@Autowired EmpService empService;
 	
-	@Autowired
-	DeptService deptService;
+	@Autowired DeptService deptService;
 	
 	//report
 	@Autowired
@@ -68,7 +66,6 @@ public class EmpController {
 		model.addAttribute("dept", deptService.getDeptList(deptVO));
 		return "admin/emp/insertEmp";
 	}
-	
 	//등록처리
 	@RequestMapping("/setInsertEmp")
 	public String setInsertEmp(EmpVO empVO,Model model) throws IOException {

@@ -16,5 +16,5 @@ public interface LedgerService {
 	public List<Map<String, Object>> getLdgrExcelMap(LedgerVO vo);
 	
 	//월별 매출 통계 차트
-	public List<Map<String,Object>> getMonthlySaleAmount(LedgerVO vo);
+	public List<Map<String,Object>> getMonthlySaleAmount();
 }
