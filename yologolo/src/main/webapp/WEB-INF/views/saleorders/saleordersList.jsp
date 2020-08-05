@@ -44,12 +44,19 @@
 		});
 	});
 	
-/* $(function() { //line-through 가운데 줄
-	$('#del_status option').each(function(){
+$(function() { //line-through 가운데 줄
+	var delStatus = $('[name=del_status] option:selected');
+	$.each(delStatus, function(idx, item) {
+		if(item.value == "반품"){
+			$(item).closest('tr').css({
+				color: "red"
+			})
+			$(item).closest('tr').find('.returnTd').empty();
+			$(item).closest('tr').find('.deleteTd').empty();
+		}
+	});
+});
 
-	})
-	
-}) */
 </script>
 
 </head>
@@ -84,7 +91,7 @@
 				</thead>
 				<tbody id="tblBody">
 					<c:forEach items="${saleordersMap}" var="sale">
-					<tr class="returnCss">
+					<tr class="returnCssll">
 						<td>
 						 <a href="javascript:void(0);" onclick="orderDetails(${sale.sorder_no});">${sale.sorder_date}</a>
 						</td>
@@ -106,8 +113,12 @@
 						<td>${sale.name}</td>
 						<td>${sale.company_name}</td>
 						
-						<td><a id="returnBtn" class="btn btn-outline-dark" href="#" onclick="reSorder(${sale.sorder_no});">반품</a></td>
-						<td><a id="deleteBtn" class="btn btn-outline-danger" href="#" onclick="delSorder(${sale.sorder_no});">삭제</a></td>
+						<td class="returnTd">
+						<a id="returnBtn" class="btn btn-outline-dark" href="#" onclick="reSorder(${sale.sorder_no});">반품</a>
+						</td>
+						<td class="deleteTd">
+						<a id="deleteBtn" class="btn btn-outline-danger" href="#" onclick="delSorder(${sale.sorder_no});">삭제</a>
+						</td>
 						
 						<!--다중 업데이트의 조건을 받기위한 히든 데이터 -->
 						<td style="display: none;">
