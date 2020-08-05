@@ -62,13 +62,13 @@ public class BuyordersController {
 		return "buyorderdetails/buyorderdetailList";
 	}
 	
-	
 	// 구매주문 시퀀스
 	@RequestMapping("/getBuySeq")
 	@ResponseBody
 	public String getBuySeq(String seq) {
 		return buyordersService.getBuySeq();
 	}
+	
 	// 등록폼
 	@RequestMapping("/setInsertFormBuyorders")
 	public String setInsertFormBuyorders(BuyordersVO vo) {
@@ -104,7 +104,7 @@ public class BuyordersController {
 	}
 	
 	//반품리스트(구매주문)
-	@RequestMapping(value = "/getReturnBuyordersList", method=RequestMethod.GET)
+	@RequestMapping("/getReturnBuyordersList")
 	@ResponseBody
 	public List<BuyordersVO> getReturnBuyordersList(BuyordersVO buyordersVO) {
 		return buyordersService.getReturnBuyordersList(buyordersVO);
@@ -119,13 +119,12 @@ public class BuyordersController {
 		return buyordersVO;
 	}
 	
-	
 	// 주문번호조회
-		@RequestMapping("/findBuyorderNo")
-		public String findBuyorderNo(BuyordersVO buyordersVO, Model model) {
-			model.addAttribute("findBuyorderNo", buyordersService.getBuyordersListMap(buyordersVO));
-			return "common/findBuyorderNo";
-		}
+	@RequestMapping("/findBuyorderNo")
+	public String findBuyorderNo(BuyordersVO buyordersVO, Model model) {
+		model.addAttribute("findBuyorderNo", buyordersService.getBuyordersListMap(buyordersVO));
+		return "common/findBuyorderNo";
+	}
 	
 	/*
 	 * // pdf 출력 및 인쇄

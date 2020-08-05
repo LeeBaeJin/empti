@@ -96,10 +96,12 @@ $(function() { //line-through 가운데 줄
 						 <a href="javascript:void(0);" onclick="orderDetails(${sale.sorder_no});">${sale.sorder_date}</a>
 						</td>
 						
+						<c:if test="${sale.sale_sum >= 0}">
 						<td align="right">
 						<fmt:parseNumber value="${sale.sale_sum}" var="fmt"/>
 						<fmt:formatNumber type="number" maxFractionDigits="3" value="${fmt}"/>
 						</td>
+						</c:if>
 						
 						<td>
 						<select id="del_status" name="del_status" onchange="selChk(${sale.sorder_no}, this)">

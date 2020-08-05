@@ -35,7 +35,7 @@
 		FROM employees e
 		JOIN saleorders s ON (e.emp_id = s.emp_id)
 		JOIN companies c ON (s.company_no = c.company_no)
-		<![CDATA[WHERE sale_sum >= 0 ]]>
+		<!--  <![CDATA[WHERE sale_sum >= 0 ]]> -->
 		ORDER BY 2 DESC
 	</select>
 

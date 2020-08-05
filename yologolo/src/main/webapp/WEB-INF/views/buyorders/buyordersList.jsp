@@ -35,9 +35,8 @@
 	         .append($('<td>').html(item.buy_sum))
 	         .append($('<td>').html(item.name))
 	         .append($('<td>').html(item.company_name))
-	         .append($('<td>').html('<button id=\'btnReturn\'>반품</button>'))
-	         .append($('<td>').html('<button id=\'btnUpdate\'>수정</button>'))
-	         .append($('<td>').html('<button id=\'btnDelete\'>삭제</button>'))
+	         .append($('<td>').html('<button id=\'btnReturn\' class=\'btn btn-outline-dark\'>반품</button>'))
+	         .append($('<td>').html('<button id=\'btnDelete\' class=\'btn btn-outline-danger\'>삭제</button>'))
 	         .append($('<td style="display:none;" id=\'hidden_border_no\'>').val(item.border_no))
 	         .appendTo('#tbodyBuyorders');
 		});
@@ -142,6 +141,8 @@
 	</div>
 	<div class="card-body">
 		<div class="table-responsive">
+		<a href="getBuyordersList" class="btn btn-outline-primary">주문내역</a> | 
+			<a href="getReturnBuyordersList" class="btn btn-outline-primary">반품내역</a> <br><br>
 			<table class="table table-bordered" id="dataTable" style="width: 100%;">
 				<thead>
 					<tr>
@@ -151,7 +152,6 @@
 						<th>거래처</th>
 						<th style="display:none;">주문번호</th>
 						<th style="width: 80px;">반품</th>
-						<th style="width: 80px;">수정</th>
 						<th style="width: 80px;">삭제</th>
 					</tr>
 				</thead>
@@ -159,7 +159,7 @@
 			</table>
 		</div>
 	</div>
-			<hr/>
+			<br/>
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
 		<div class="card-body">
