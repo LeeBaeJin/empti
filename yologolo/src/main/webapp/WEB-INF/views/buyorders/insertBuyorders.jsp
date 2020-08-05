@@ -111,7 +111,7 @@
 	
 	<label>구매합계: </label> 	<input type="number" name="buy_sum" class="form-control" style="width: 250px; display: inline;"> <br>
 	
-	<label>품목: </label>		<input name="item_no" id="item_no" type="text" class="form-control" style="width: 100px; display: inline;"> <input id="item_name" name="item_name" class="form-control" style="width: 250px; display: inline;">
+	<label>품목: </label>		<input name="item_no" id="item_no" type="text" class="form-control" style="width: 100px; display: inline;"> <span name="item_name" id="item_name" ></span>
 							<button type="button" value="품목선택" id="btnFindItem" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" width="30px" height="30px"></button><br>
 							
 	<label>수량: </label> 	<input type="number" name="border_qty" class="form-control" style="width: 250px; display: inline;"> <br>

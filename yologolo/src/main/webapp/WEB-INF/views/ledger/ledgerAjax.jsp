@@ -16,7 +16,7 @@ $(function(){
 		fnc_findOrderNo();
 		fnc_selectOrderNo();
 		
-		$('[name="status"]:eq(0)').click();	//radio 첫번째꺼 자동클릭.
+		$('[name="raidoStatus"]:eq(0)').click();	//radio 첫번째꺼 자동클릭.
 	});
 	
 	//주문번호 조회
@@ -146,7 +146,8 @@ $(function(){
 
 	// 전체조회요청
 	function ledgerList() {
-		$('[name="status"]').on('click',function() {
+		$('[name="raidoStatus"]:eq(0)').click();
+		$('[name="raidoStatus"]').on('click',function() {
 		var status = this.value;
 		$.ajax({
 			url:'ledgers',
@@ -213,11 +214,12 @@ $(function(){
 
 <div class="row">
 	<!-- 목록 시작 -->
-	<div class="col-lg-7 col-md-12">
+	<div class="col-lg-9 col-md-12">
 		<h2>장부목록</h2>
-	 <input type="radio"  name="status" value="" checked><span> 전체조회</span>
-	 <input type="radio"  name="status" value="매입"><span> 매입</span>
-	 <input type="radio"  name="status" value="매출" ><span> 매출</span>
+	 <input type="radio"  name="raidoStatus" value="" checked><span> 전체조회</span>
+	 <input type="radio"  name="raidoStatus" value="매입"><span> 매입</span>
+	 <input type="radio"  name="raidoStatus" value="매출" ><span> 매출</span>
+	 <input  name="date" type="month" id="">
 		<table class="table text-center">
 			<thead>
 				<tr>
@@ -238,7 +240,7 @@ $(function(){
 	<!-- 목록 끝-->
 	 
 	<!-- 등록수정 폼 시작 -->
-	<div class="col-lg-5 col-md-12 ">
+	<div class="col-lg-3 col-md-12 ">
 		<div id="ledgerDiv" class="ml-5">
 			<form id="ledgerForm">  
 				<label>장부번호</label>	<input class="form-control" name="ldgr_no" id="ldgr_no" readonly><br> 
@@ -256,6 +258,7 @@ $(function(){
 											<option value="" selected>==선택하세요==</option>
 											<option value="완납">완납</option>
 											<option value="미수">미수</option>
+											<option value="미납">미납</option>
 									   	</select> <br> 
 				<label>비고</label> 		<input name="note" class="form-control" > <br>
 								 		

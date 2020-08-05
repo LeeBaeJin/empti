@@ -30,7 +30,7 @@ public class CompanyController {
 	DataSource datasource;
 
 	// 단건조회
-	@RequestMapping("/getCompanyList/{company_no}") // getEmp?employeeId=aaa
+	@RequestMapping("/getCompany/{company_no}") // getEmp?employeeId=aaa
 	public String getCompany(@PathVariable String company_no, CompanyVO companyVO, Model model) {
 		model.addAttribute("company", companyService.getCompany(companyVO));
 		return "company/companyDetail";
@@ -49,7 +49,7 @@ public class CompanyController {
 		model.addAttribute("findCompanyList", companyService.findCompany(companyVO));
 		return "common/findCompany";
 	}
-
+	
 	// 등록폼
 	@RequestMapping("/setInsertFormCompany")
 	public String setInsertFormCompany(CompanyVO companyVO) {

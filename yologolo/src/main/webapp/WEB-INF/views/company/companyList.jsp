@@ -4,9 +4,11 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <script>
 	//거래처 상세조회
-	function compDetail(company_no) {
-		location.href = "getCompanyList/" + company_no
-	}
+	 function compDetail(company_no) {
+		location.href = "getCompany/" + company_no
+	} 
+	
+	
 	
 	//수정폼으로 이동
 	function upFrom(companyNo) {
@@ -46,7 +48,9 @@
 				<tbody>
 					<c:forEach items="${companyList}" var="company">
 						<tr>
-							<td><a href="#" onclick="compDetail(${company.company_no});">${company.company_name}</a></td>
+							<%-- <td><a href="#" onclick="compDetail(${company.company_no});" >${company.company_name}</a></td> --%>
+							<td><a href="getCompany/${company.company_no}" onclick="window.open(this.href, '_blank', 'width=1500, height=150, left=200, top=300'); return false;" >${company.company_name}</a></td>
+							
 							<td>
 							${company.zip_code}<br>
 							${company.address}<br>
