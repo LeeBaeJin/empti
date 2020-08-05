@@ -109,7 +109,7 @@ public class LedgerController {
 	
 	//월별 매출 통계 차트
 	@RequestMapping("getMonthlySaleAmount")
-	public @ResponseBody List<Map<String,Object>> getMonthlySaleAmount(LedgerVO vo){
-		return ledgerService.getMonthlySaleAmount(vo); 
+	public @ResponseBody List<Map<String,Object>> getMonthlySaleAmount(){
+		return ledgerService.getMonthlySaleAmount(); 
 	}
 }

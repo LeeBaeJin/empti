@@ -21,8 +21,7 @@
 	</select>
 	
 	<!-- 장부 전체조회 Map(Excel) -->
-	<select id="getLdgrExcelMap" resultType="map"
-		parameterType="LedgerVO">
+	<select id="getLdgrExcelMap" resultType="map" parameterType="LedgerVO">
 		select *from ldgrexcel_view
 		order by 장부번호
 	</select>
@@ -84,6 +83,6 @@
 		WHERE ldgr_date >= '2020-01-01' AND 
 	<![CDATA[ldgr_date < '2021-01-01' ]]> AND 
             	status = '매출'
-		GROUP BY TO_CHAR(ldgr_date, 'YYYY-MM');
+		GROUP BY TO_CHAR(ldgr_date, 'YYYY-MM')
 	</select>
 </mapper>
