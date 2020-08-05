@@ -29,6 +29,9 @@ $(function(){
 				}
 	
 		}	
+	
+		
+	
 	//초기화
 	function init() {
 		//초기화 버튼 클릭
@@ -36,6 +39,7 @@ $(function(){
 			$('#stocksform').each(function(){
 				this.reset();
 			});
+			$("#item_name").empty();	/* 품목명도 초기화 */
 		});
 	}//init
 	
@@ -88,6 +92,7 @@ $(function(){
 	function stocksSelectResult(stocks) {
 		$('input:text[name="stock_no"]').val(stocks.stock_no);
 		$('input:text[name="item_no"]').val(stocks.item_no);
+		$('span[name="item_name"]').text(stocks.item_name);
 		$('select[name="stock_category"]').val(stocks.stock_category).attr("selected", "selected","selected","selected");
 		$('input:text[name="stock_qty"]').val(stocks.stock_qty);
 		$('input:text[name="stock_price"]').val(stocks.stock_price);
@@ -192,8 +197,9 @@ $(function(){
 		<div id="storckDiv" class="ml-5">
 			<form id="stocksform">
 				<label>입출고번호</label>	<input name="stock_no" id="stock_no" readonly><br/>
-				<label>품목코드</label>	<input name="item_no" id="item_no" type="text"> <span id="item_name"></span>
+				<label>품목코드</label>	<input name="item_no" id="item_no" type="text"> <span name="item_name" id="item_name" ></span>
 										<button type="button" value="품목선택" id="btnFindItem" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" width="30px" height="30px"></button>
+										
 										<br/>
 				<label>거래유형</label>	<select name="stock_category">
 										  <option value="원자재" selected>원자재</option>

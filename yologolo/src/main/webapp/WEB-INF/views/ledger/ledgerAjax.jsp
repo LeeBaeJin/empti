@@ -258,6 +258,8 @@ $(function(){
 											<option value="미수">미수</option>
 									   	</select> <br> 
 				<label>비고</label> 		<input name="note" class="form-control" > <br>
+								 		
+										
 				<div class="btn-group" >
 					<input type="button" class="btn btn-primary" value="등록" id="btnInsert" /> 
 					<input type="button" class="btn btn-primary" value="수정" id="btnUpdate" /> 

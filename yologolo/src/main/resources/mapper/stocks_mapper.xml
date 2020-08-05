@@ -64,7 +64,10 @@
 	<!-- 입출고 단건조회 -->
 	<select id="getStocks" resultType="StocksVO"
 		parameterType="StocksVO">
-		SELECT * from stocks where stock_no = #{stock_no}
+		SELECT 		s.*, i.*
+		FROM		stocks s, items i
+		WHERE 		s.item_no=i.item_no and
+					s.stock_no = #{stock_no}
 	</select>
 
 
