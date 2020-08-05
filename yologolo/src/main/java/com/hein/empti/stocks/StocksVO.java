@@ -15,6 +15,7 @@ public class StocksVO {
 		String	stock_category;
 		String	detail_no;
 		String	item_no;
+		String	item_name;
 		String	strg_no;
 
 }

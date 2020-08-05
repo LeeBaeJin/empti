@@ -7,8 +7,8 @@
 	$(function(){
 		$('.clickItem').on('click', function(){
 			opener.document.getElementById("item_no").value = $(this).val();
-			opener.document.getElementById("item_name").value = $(this).parent().next().html();
-			//opener.document.getElementById("item_name").innerHTML = $(this).parent().next().html();
+			//opener.document.getElementById("item_name").value = $(this).parent().next().html();
+			opener.document.getElementById("item_name").innerHTML = $(this).parent().next().html();
 			window.close();
 		});
 	});

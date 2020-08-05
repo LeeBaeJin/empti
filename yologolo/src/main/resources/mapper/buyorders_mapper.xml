@@ -3,17 +3,18 @@
 
 <mapper	namespace="com.hein.empti.buyorders.mapper.BuyordersMapper">
 	<!-- 구매주문 전체조회 -->
-	<select id="getBuyordersListMap" resultType="map">
+		<select id="getBuyordersListMap" resultType="map">
 		SELECT  TO_CHAR(border_date, 'yyyy-MM-dd hh24:mi') "border_date",
 					buy_sum 			"buy_sum",
 					name				"name", 	
 					company_name		"company_name",
-					border_no			"border_no"
+					border_no			"border_no",
+					bo.return_no			"return_no",
+					bo.status				"status"
 		FROM 		buyorders bo, companies p, employees e
 		WHERE	 	bo.company_no = p.company_no and 
 					bo.emp_id 	  = e.emp_id
-<!-- 					<![CDATA[and buy_sum >= 0 ]]> -->
-		ORDER BY	border_date			
+		ORDER BY	border_no		
 	</select>
 	
 	<!-- 구매주문 단건조회 -->
