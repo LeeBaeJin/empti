@@ -35,6 +35,7 @@
 		FROM buyorders
 		WHERE BORDER_NO = #{border_no}
 	</select>
+	
 	<!-- 구매주문 등록 -->
 	<insert id="setInsertBuyorders" parameterType="BuyordersVO">
 		INSERT INTO	BUYORDERS
@@ -74,21 +75,25 @@
 	
 	<!-- 반품 조회 -->
 	<select id="getReturnBuyordersList" parameterType="BuyordersVO" resultType="BuyordersVO">
-		SELECT b.border_date "border_date", b.return_date "return_date", b.buy_sum "buy_sum", e.name "name", c.company_name "company_name"
+		SELECT b.border_date "border_date", b.return_date "return_date", b.buy_sum "buy_sum", 
+				e.name "name", c.company_name "company_name"
 		FROM buyorders b JOIN employees e 	ON (b.emp_id = e.emp_id)
 		JOIN companies c 					ON (b.company_no = c.company_no)
 		<![CDATA[where buy_sum < 0 ]]>
-		ORDER by border_no
+		ORDER by b.border_no
 	</select>
 	
-	<!-- 반품 업데이트 -->
-	<update id="setUpdateBuyordersRetrun" parameterType="BuyordersVO">
-		UPDATE buyorders 
-		SET
-		buy_sum = -1 * buy_sum,
-		return_date = sysdate
-		WHERE border_no = #{border_no}
-	</update>
+	<!-- 반품 입력 -->
+	<insert id="setInsertBuyordersRetrun" statementType="CALLABLE">
+		{call return_buyorder(
+		#{border_no, mode=OUT, jdbcType=VARCHAR},
+		#{border_date, mode=OUT, jdbcType=VARCHAR},
+		#{buy_sum, mode=OUT, jdbcType=VARCHAR},
+		#{emp_id, mode=OUT, jdbcType=VARCHAR},
+		#{company_no, mode=OUT, jdbcType=VARCHAR},
+		#{return_no}
+		) }
+	</insert>
 	
 	<!-- buyorder 전체조회 Map(Excel) -->
 	<select id="getBuyordersexcelMap" resultType="map" parameterType="DeptVO">

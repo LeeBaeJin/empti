@@ -125,7 +125,7 @@
 	}
 </script>
 <div>
-	<h1 class="h1">판매주문 입력</h1>
+	<h1 class="display-4 text-dark">판매주문 입력</h1>
 	<form action="setInsertSaleorders">
 		주문일자 	<input type="datetime-local" name="sorder_date" class="form-control" style="width: 300px; display: inline;"><br/>
 		
