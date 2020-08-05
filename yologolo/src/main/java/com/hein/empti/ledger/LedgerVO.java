@@ -15,5 +15,6 @@ public class LedgerVO {
 	String note;
 	String status;
 	
-	
+	//건수(count)
+	String count;
 }

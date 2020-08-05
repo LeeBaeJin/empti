@@ -111,10 +111,8 @@ public class BuyordersController {
 	}
 	
 	//반품
-	@RequestMapping(value= "/setUpdateBuyordersRetrun/{order_no}", method=RequestMethod.PUT)
-	@ResponseBody
-	public BuyordersVO setUpdateBuyordersRetrun(@PathVariable String order_no, BuyordersVO buyordersVO, Model model) {
-		buyordersVO.setBorder_no(order_no);
+	@RequestMapping("/setInsertBuyordersRetrun")
+	public BuyordersVO setUpdateBuyordersRetrun(BuyordersVO buyordersVO) {
 		buyordersService.setUpdateBuyordersRetrun(buyordersVO);
 		return buyordersVO;
 	}

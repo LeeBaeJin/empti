@@ -72,8 +72,6 @@ public class LedgerController {
 		ledgerVO.setLdgr_date(ledgerVO.getLdgr_date().substring(0, 16));
 		return ledgerVO;
 	}
-
-	
 	
 	// 전체조회
 	@RequestMapping(value = "/ledgers", method = RequestMethod.GET)
@@ -82,7 +80,6 @@ public class LedgerController {
 		return ledgerService.getLedgerList(ledgerVO);
 	}
 	
-
 	// 내역 조회
 	@RequestMapping("/getLedgerList")
 	public String getLedgerList(Model model, LedgerVO VO) {
@@ -109,5 +106,10 @@ public class LedgerController {
 		mv.addObject("headers", new String[] { "장부번호", "날짜", "금액", "상태", "주문번호", "비고"}); // 헤더의 값만 출력된다.
 		return mv;    //장부번호, 날짜, 금액, 상태, 주문번호, 비고
 	}
-
+	
+	//월별 매출 통계 차트
+	@RequestMapping("getMonthlySaleAmount")
+	public @ResponseBody List<Map<String,Object>> getMonthlySaleAmount(LedgerVO vo){
+		return ledgerService.getMonthlySaleAmount(vo); 
+	}
 }

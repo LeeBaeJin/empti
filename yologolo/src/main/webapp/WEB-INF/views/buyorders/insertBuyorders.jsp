@@ -80,8 +80,8 @@
 		$.each(tr, function(idx , item) {
 			var obj = {};
 			obj['border_no'] = result;
-			obj['item_no'] = $(item).children().eq(0).text(); 
-			obj['border_qty'] = $(item).children().eq(1).text();
+			obj['item_no'] = $(item).children().eq(2).text(); 
+			obj['border_qty'] = $(item).children().eq(3).text();
 			console.log($(item).children().eq(0).text());
 			td.push(obj);
 		})
