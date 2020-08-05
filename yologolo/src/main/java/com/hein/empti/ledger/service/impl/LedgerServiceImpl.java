@@ -48,6 +48,10 @@ public class LedgerServiceImpl implements LedgerService {
 	public List<Map<String, Object>> getLdgrExcelMap(LedgerVO vo) {
 		return ledgerMapper.getLdgrExcelMap(vo);
 	}
-
 	
+	//월별 매출 통계 차트
+	@Override
+	public List<Map<String, Object>> getMonthlySaleAmount(LedgerVO vo) {
+		return ledgerMapper.getMonthlySaleAmount(vo);
+	}
 }

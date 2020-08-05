@@ -156,10 +156,10 @@ public class EmpController {
 	}
 	
 	//차트데이터
-	@RequestMapping("getChartData")
+	@RequestMapping("getDeptEmpCnt")
 	public @ResponseBody List<Map<String,Object>> getDeptEmpCnt(){
-	return empService.getDeptEmpCnt(); 
-		}
+		return empService.getDeptEmpCnt(); 
+	}
 	
 	// excel 출력
 	@RequestMapping("emp_excel.do")

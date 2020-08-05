@@ -96,12 +96,13 @@
 		WHERE
 		emp_id = #{emp_id}
 	</delete>
-
+	
+	<!-- 부서별 사원 수 차트 -->
 	<select id="getDeptEmpCnt" resultType="map">
-		select nvl(dept_name,'사장님') "dept_name",
-		count(*) "cnt"
-		from employees e, departments d
-		where e.dept_id=d.dept_id(+)
-		group by dept_name
+		SELECT NVL(dept_name,'사장님') "dept_name",
+				count(*) "cnt"
+		FROM employees e, departments d
+		WHERE e.dept_id=d.dept_id(+)
+		GROUP BY dept_name
 	</select>
 </mapper>

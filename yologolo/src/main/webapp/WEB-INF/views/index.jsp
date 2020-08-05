@@ -2,10 +2,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
-  <!-- data-chart -->
-  <head>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
+  <!-- 부서별 사원 수 차트 시작 -->
     <script type="text/javascript">
     
       google.charts.load('current', {'packages':['corechart']});
@@ -19,7 +18,7 @@
           data.addColumn('number', '사원수');
 		  var chartdata = [];
           $.ajax({  
-			  url: "getChartData", 
+			  url: "getDeptEmpCnt", 
 			  async : false, 			// 비동기여부. false = 동기식
 			  success : function(result){
 				  for(i=0; i<result.length; i++){
@@ -30,30 +29,39 @@
           data.addRows(chartdata);
           
           // Set chart options
-          var options = {'title':'부서별 인원수',
-                         'width':400,
+          var options = {'title':'부서별 인원 수',
+                         'width':450,
                          'height':300,
                          is3D : true,
                          hAxis: { format:'0,000', gridlines: {count:10} } ,
                          colors: ['#e0440e', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6']
           				};
-          
+
 
         var chart = new google.visualization.ColumnChart(document.getElementById('columnchart_material'));
         chart.draw(data, options);
         
-/*         google.visualization.events.addListener(chart, 'select', selectHandler);
-
-        function selectHandler(e) {
-          var row = chart.getSelection()[0]["row"]
-          var column = chart.getSelection()[0]["column"]
-          console.log(data[row][0]);
-        } */
       }
     </script>
-  </head>
-    <div id="columnchart_material" style="width: 400px; height: 320px;"></div>
+    <!--  <div id="columnchart_material" style="width: 400px; height: 320px;"></div> -->
+    <!-- Bar Chart -->
+	<div class="card shadow mb-4" style="width: 30%;">
+		<div class="card-header py-3" >
+			<h6 class="m-0 font-weight-bold text-primary">Bar Chart</h6>
+		</div>
+		<div class="card-body" style="width: 30%;">
+			<div class="chart-bar" style="width: 30%;">
+				<div id="columnchart_material"></div>
+			</div>
+		</div>
+	</div>
+    <!-- 부서별 사원 수 차트 끝 -->
+    
+
+    
     <div>사원이름: ${login.name} &nbsp;&nbsp;</div>
+    
+    
 <a href="getLedgerList">장부현황</a>
 
 <a href="getCompanyList">거래처목록</a>

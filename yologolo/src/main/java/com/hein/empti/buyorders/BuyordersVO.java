@@ -10,6 +10,7 @@ public class BuyordersVO {
 	String border_no;
 	String border_date;
 	String buy_sum;
+	String status;
 	String company_no;
 	String emp_id;
 	

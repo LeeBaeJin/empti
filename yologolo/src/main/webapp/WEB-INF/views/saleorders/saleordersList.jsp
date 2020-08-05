@@ -44,7 +44,7 @@
 		});
 	});
 	
-$(function() { //line-through 가운데 줄
+$(function() {
 	var delStatus = $('[name=del_status] option:selected');
 	$.each(delStatus, function(idx, item) {
 		if(item.value == "반품"){
@@ -91,42 +91,42 @@ $(function() { //line-through 가운데 줄
 				</thead>
 				<tbody id="tblBody">
 					<c:forEach items="${saleordersMap}" var="sale">
-					<tr class="returnCssll">
-						<td>
-						 <a href="javascript:void(0);" onclick="orderDetails(${sale.sorder_no});">${sale.sorder_date}</a>
-						</td>
-						
 						<c:if test="${sale.sale_sum >= 0}">
-						<td align="right">
-						<fmt:parseNumber value="${sale.sale_sum}" var="fmt"/>
-						<fmt:formatNumber type="number" maxFractionDigits="3" value="${fmt}"/>
-						</td>
+							<tr>
+								<td>
+								 <a href="javascript:void(0);" onclick="orderDetails(${sale.sorder_no});">${sale.sorder_date}</a>
+								</td>
+								
+								<td align="right">
+								<fmt:parseNumber value="${sale.sale_sum}" var="fmt"/>
+								<fmt:formatNumber type="number" maxFractionDigits="3" value="${fmt}"/>
+								</td>
+								
+								<td>
+								<select id="del_status" name="del_status" onchange="selChk(${sale.sorder_no}, this)">
+									<option value="배송준비중" <c:if test="${fn:contains(sale.del_status,'배송준비중')}">selected="selected"</c:if>>배송준비중</option>
+									<option value="배송중" <c:if test="${fn:contains(sale.del_status,'배송중')}">selected="selected"</c:if>>배송중</option>
+									<option value="배송완료" <c:if test="${fn:contains(sale.del_status,'배송완료')}">selected="selected"</c:if>>배송완료</option>
+									<option value="반품" <c:if test="${fn:contains(sale.del_status,'반품')}">selected="selected"</c:if>>반품</option>
+								</select>
+								</td>
+								
+								<td>${sale.name}</td>
+								<td>${sale.company_name}</td>
+								
+								<td class="returnTd">
+								<a id="returnBtn" class="btn btn-outline-dark" href="#" onclick="reSorder(${sale.sorder_no});">반품</a>
+								</td>
+								<td class="deleteTd">
+								<a id="deleteBtn" class="btn btn-outline-danger" href="#" onclick="delSorder(${sale.sorder_no});">삭제</a>
+								</td>
+								
+								<!--다중 업데이트의 조건을 받기위한 히든 데이터 -->
+								<td style="display: none;">
+								<input type="hidden" name="sorder_no" id="sorder_no" value="${sale.sorder_no}">  
+								</td>
+							</tr>
 						</c:if>
-						
-						<td>
-						<select id="del_status" name="del_status" onchange="selChk(${sale.sorder_no}, this)">
-							<option value="배송준비중" <c:if test="${fn:contains(sale.del_status,'배송준비중')}">selected="selected"</c:if>>배송준비중</option>
-							<option value="배송중" <c:if test="${fn:contains(sale.del_status,'배송중')}">selected="selected"</c:if>>배송중</option>
-							<option value="배송완료" <c:if test="${fn:contains(sale.del_status,'배송완료')}">selected="selected"</c:if>>배송완료</option>
-							<option value="반품" <c:if test="${fn:contains(sale.del_status,'반품')}">selected="selected"</c:if>>반품</option>
-						</select>
-						</td>
-						
-						<td>${sale.name}</td>
-						<td>${sale.company_name}</td>
-						
-						<td class="returnTd">
-						<a id="returnBtn" class="btn btn-outline-dark" href="#" onclick="reSorder(${sale.sorder_no});">반품</a>
-						</td>
-						<td class="deleteTd">
-						<a id="deleteBtn" class="btn btn-outline-danger" href="#" onclick="delSorder(${sale.sorder_no});">삭제</a>
-						</td>
-						
-						<!--다중 업데이트의 조건을 받기위한 히든 데이터 -->
-						<td style="display: none;">
-						<input type="hidden" name="sorder_no" id="sorder_no" value="${sale.sorder_no}">  
-						</td>
-					</tr>
 					</c:forEach>
 				</tbody>
 			</table>

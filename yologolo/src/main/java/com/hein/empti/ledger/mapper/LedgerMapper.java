@@ -13,4 +13,7 @@ public interface LedgerMapper {
 	
 	//엑셀
 	public List<Map<String, Object>> getLdgrExcelMap(LedgerVO vo);
+	
+	//월별 매출 통계 차트
+	public List<Map<String,Object>> getMonthlySaleAmount(LedgerVO vo);
 }
