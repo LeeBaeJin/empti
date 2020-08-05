@@ -3,6 +3,15 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
+<script>
+function storagesDelete(strgNo){
+	if(confirm("삭제하시겠습니까?")){
+		location.href="setDeleteStorages?strg_no=" + strgNo;
+	}
+}
+
+</script>
+
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
 		<h6 class="m-0 font-weight-bold text-primary">
@@ -32,7 +41,7 @@
 							<td>${storages.strg_category}</td>
 							<td>${storages.name}</td>
 							<td><a href="setUpdateFormStorages?strg_no=${storages.strg_no}">수정</a></td>
-							<td><a href="setDeleteStorages?strg_no=${storages.strg_no}">삭제</a></td>
+							<td><a href="#" onclick="storagesDelete(${storages.strg_no})">삭제</a></td>
 						</tr>
 					</c:forEach>
 				</tbody>

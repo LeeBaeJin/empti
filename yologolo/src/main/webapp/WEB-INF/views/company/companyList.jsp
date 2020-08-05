@@ -12,6 +12,12 @@
 	function upFrom(companyNo) {
 		location.href = "setUpdateFormCompany?company_no=" + companyNo
 	}
+	
+	function companyDelete(companyNo){
+		if(comfirm("삭제하시겠습니까?"))
+			location.href="setDeleteCompany?company_no=" + companyNo;
+	}
+	
 </script>
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
@@ -49,7 +55,7 @@
 							<td>${company.dealer_name}</td>
 							<td>${company.dealer_phone}</td>
  							<td><button type="button" onclick="upFrom(${company.company_no})" class="btn btn-primary">수정</button></td>
-							<td><a href="setDeleteCompany?company_no=${company.company_no}" class="btn btn-primary">삭제</a></td>
+							<td><a href="#" onclick="companyDelete(${company.company_no})" class="btn btn-primary">삭제</a></td>
 						</tr>
 					</c:forEach>
 				</tbody>

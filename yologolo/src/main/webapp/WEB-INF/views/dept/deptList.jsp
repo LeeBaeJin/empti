@@ -3,6 +3,13 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
+<script>
+function deptDelete(dept_id) {
+	if(confirm("삭제하시겠습니까?")){
+		location.href="setDeleteDept?dept_id="+ dept_id;
+	}
+}
+</script>
 
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
@@ -31,7 +38,7 @@
 							<td>${dept.dept_id}</td>
 							<td><a href="setUpdateFormDept?dept_id=${dept.dept_id}">${dept.dept_name}</a></td>
 							<td>${dept.name}</td>
-							<td><a href="setDeleteDept?dept_id=${dept.dept_id}">삭제</a></td>
+							<td><a href="#" onclick="deptDelete(${dept.dept_id})">삭제</a></td>
 						</tr>
 						
 					</c:forEach>
