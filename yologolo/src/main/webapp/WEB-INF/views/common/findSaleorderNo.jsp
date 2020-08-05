@@ -26,14 +26,14 @@
 			<tr style="text-align:center">
 				<td><input type="button" class="clickNo" value="${orders.sorder_no}"></td>
 				<td>${orders.sorder_date}</td>
-			<c:choose>
-				<c:when test="${orders.return_no eq null}">
-					<td>X</td>
-				</c:when>
-				<c:otherwise>
-					<td>O</td>
-				</c:otherwise>
-			</c:choose>
+				<c:choose>
+					<c:when test="${orders.return_no eq null}">
+						<td>X</td>
+					</c:when>
+					<c:otherwise>
+						<td>O</td>
+					</c:otherwise>
+				</c:choose>
 			</tr>
 		</c:forEach>
 </table>
