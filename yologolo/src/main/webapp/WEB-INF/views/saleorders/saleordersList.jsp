@@ -44,7 +44,7 @@
 		});
 	});
 	
-$(function() { //line-through 가운데 줄
+$(function() {
 	var delStatus = $('[name=del_status] option:selected');
 	$.each(delStatus, function(idx, item) {
 		if(item.value == "반품"){
