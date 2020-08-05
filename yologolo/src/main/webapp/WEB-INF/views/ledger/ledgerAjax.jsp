@@ -145,7 +145,7 @@ $(function(){
 	
 
 	// 전체조회요청
-	function ledgerList() {
+	function ledgerList() { 
 		$('[name="raidoStatus"]:eq(0)').click();
 		$('[name="raidoStatus"]').on('click',function() {
 		var status = this.value;
@@ -219,7 +219,6 @@ $(function(){
 	 <input type="radio"  name="raidoStatus" value="" checked><span> 전체조회</span>
 	 <input type="radio"  name="raidoStatus" value="매입"><span> 매입</span>
 	 <input type="radio"  name="raidoStatus" value="매출" ><span> 매출</span>
-	 <input  name="date" type="month" id="">
 		<table class="table text-center">
 			<thead>
 				<tr>

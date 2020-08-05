@@ -171,7 +171,7 @@ $(function(){
 </script>
 	<!-- 목록 시작 -->
 <div class="row">
-	<div class="col-lg-7 col-md-12">
+	<div class="col-lg-9 col-md-12">
 			<h2>입출고목록</h2>
 			<table class="table text-center">
 				<thead>
@@ -193,25 +193,24 @@ $(function(){
 	<!-- 목록 끝-->
 
 	<!-- 등록폼 시작 -->
-	<div class="col-lg-5 col-md-12 ">
+	<div class="col-lg-3 col-md-12 ">
 		<div id="storckDiv" class="ml-5">
 			<form id="stocksform">
-				<label>입출고번호</label>	<input name="stock_no" id="stock_no" readonly><br/>
-				<label>품목코드</label>	<input name="item_no" id="item_no" type="text"> <span name="item_name" id="item_name" ></span>
-										<button type="button" value="품목선택" id="btnFindItem" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" width="30px" height="30px"></button>
-										
+				<label>입출고번호</label>	<input class="form-control" name="stock_no" id="stock_no" readonly><br/>
+				<label>품목코드</label>	<button type="button" value="품목선택" id="btnFindItem" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" width="30px" height="30px"></button>
+										<input class="form-control" name="item_no" id="item_no" type="text"> <span name="item_name" id="item_name" ></span>
 										<br/>
-				<label>거래유형</label>	<select name="stock_category">
+				<label>거래유형</label>	<select class="form-control" name="stock_category">
 										  <option value="원자재" selected>원자재</option>
 										  <option value="가공품">가공품</option>
 										  <option value="입고" >입고</option>
 										  <option value="출고" >출고</option>
 										</select><br/>
-				<label>수량</label>		<input name="stock_qty" id="stock_qty"><br/>
-				<label>거래가</label>		<input name="stock_price" id="stock_price"><br/>
-				<label>거래일자</label>	<input  name="stock_date" id="stock_date" type="datetime-local"><br/>
+				<label>수량</label>		<input class="form-control" name="stock_qty" id="stock_qty"><br/>
+				<label>거래가</label>		<input class="form-control" name="stock_price" id="stock_price"><br/>
+				<label>거래일자</label>	<input class="form-control" name="stock_date" id="stock_date" type="datetime-local"><br/>
 				
-				<label>창고</label>		<select name="strg_no" class="selectBox" id="strg_no" onchange="storages_select_value(this);">
+				<label>창고</label>		<select class="form-control" name="strg_no" class="selectBox" id="strg_no" onchange="storages_select_value(this);">
 											<option value="" selected> ==선택하세요== </option>
 												<c:forEach items="${storages}" var="storages">
 													<option value="${storages.strg_no}">${storages.strg_category}</option>
@@ -219,9 +218,9 @@ $(function(){
 											</select>
 										<span id="storages_name"></span><br/>	<!-- 창고번호 선택했을때 옆에 창고이름이 나올 자리. -->
 										
-				<label>상세번호</label>	<input name="detail_no" id="detail_no"><br/>
-				<label>비고	</label>	<input name="note" id="note"><br/>
-							<div class="btn-group">      
+				<label>상세번호</label>	<input class="form-control" name="detail_no" id="detail_no"><br/>
+				<label>비고	</label>	<input class="form-control" name="note" id="note"><br/>
+							<div class="btn-group " >      
 								<input type="button"  class="btn btn-primary" value="등록"  id="btnInsert" /> 
 								<input type="button"  class="btn btn-primary" value="수정"  id="btnUpdate" />
 								<input type="button"  class="btn btn-primary" value="초기화" id="btnInit" />		
