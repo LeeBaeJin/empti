@@ -3,17 +3,18 @@
 
 <mapper	namespace="com.hein.empti.buyorders.mapper.BuyordersMapper">
 	<!-- 구매주문 전체조회 -->
-	<select id="getBuyordersListMap" resultType="map">
-		SELECT  TO_CHAR(border_date, 'yyyy-MM-dd hh24:mi') "border_date",
+		<select id="getBuyordersListMap" resultType="map">
+		SELECT      TO_CHAR(border_date, 'yyyy-MM-dd hh24:mi') "border_date",
 					buy_sum 			"buy_sum",
 					name				"name", 	
 					company_name		"company_name",
-					border_no			"border_no"
-		FROM 		buyorders bo, companies p, employees e
-		WHERE	 	bo.company_no = p.company_no and 
-					bo.emp_id 	  = e.emp_id
-					<![CDATA[and buy_sum >= 0 ]]>
-		ORDER BY	border_date			
+					border_no			"border_no",
+					bo.return_no		"return_no",
+					bo.status			"status"
+		FROM 		buyorders bo
+		JOIN        companies p ON(bo.company_no = p.company_no)
+		JOIN		employees e ON(bo.emp_id 	  = e.emp_id)					
+		ORDER BY	bo.border_date desc		
 	</select>
 	
 	<!-- 구매주문 단건조회 -->
@@ -42,6 +43,7 @@
 		(border_no,
 		border_date,
 		buy_sum,
+		status,
 		company_no,
 		emp_id
 		)
@@ -49,11 +51,33 @@
 		#{border_no},
 		To_date(#{border_date}, 'yyyy-MM-dd hh24:mi'),
 		#{buy_sum},
+		#{status},
 		#{company_no},
 		#{emp_id}
 		)
 	</insert>
 
+	<!-- 판매주문 배송상태 수정 -->
+	<update id="setUpdateBuyDel" parameterType="java.util.List">
+		<foreach collection="list" item="item" separator=";" open="DECLARE BEGIN" close="; END;">
+			UPDATE buyorders
+			SET status =
+			#{item.status}
+			WHERE border_no = #{item.sorder_no}
+		</foreach>
+	</update>
+
+
+	<!-- 반품 조회 -->
+	<select id="getReturnBuyordersList" parameterType="BuyordersVO" resultType="BuyordersVO">
+		SELECT b.border_date "border_date", b.return_date "return_date", b.buy_sum "buy_sum", 
+				e.name "name", c.company_name "company_name"
+		FROM buyorders b JOIN employees e 	ON (b.emp_id = e.emp_id)
+		JOIN companies c 					ON (b.company_no = c.company_no)
+		<![CDATA[where buy_sum < 0 ]]>
+		ORDER by b.border_no
+	</select>
+	
 	<!-- 구매주문수정 -->
 	<update id="setUpdateBuyorders" parameterType="BuyordersVO">
 		UPDATE BUYORDERS
@@ -66,22 +90,9 @@
 		</set>
 		WHERE border_no = #{border_no}
 	</update>
+	
+	
 
-	<delete id="setDeleteBuyorders" parameterType="BuyordersVO">
-		DELETE FROM	BUYORDERS
-		WHERE border_no = #{border_no}
-	</delete>
-	
-	
-	<!-- 반품 조회 -->
-	<select id="getReturnBuyordersList" parameterType="BuyordersVO" resultType="BuyordersVO">
-		SELECT b.border_date "border_date", b.return_date "return_date", b.buy_sum "buy_sum", 
-				e.name "name", c.company_name "company_name"
-		FROM buyorders b JOIN employees e 	ON (b.emp_id = e.emp_id)
-		JOIN companies c 					ON (b.company_no = c.company_no)
-		<![CDATA[where buy_sum < 0 ]]>
-		ORDER by b.border_no
-	</select>
 	
 	<!-- 반품 입력 -->
 	<insert id="setInsertBuyordersRetrun" statementType="CALLABLE">
@@ -100,4 +111,9 @@
 		select*from buyordersexcel_view
 		order by 주문번호
 	</select>
+	
+	<delete id="setDeleteBuyorders" parameterType="BuyordersVO">
+		DELETE FROM	BUYORDERS
+		WHERE border_no = #{border_no}
+	</delete>
 </mapper>

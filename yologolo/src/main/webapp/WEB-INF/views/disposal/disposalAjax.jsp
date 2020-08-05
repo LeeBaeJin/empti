@@ -26,6 +26,7 @@ $(function(){
 			$('#disposalForm').each(function(){
 				this.reset();
 			});
+			$("#item_name").empty();
 		});
 	}//init
 	
@@ -110,6 +111,7 @@ $(function(){
 		$('[name="category"]').val(disposals.category);
 		$('[name="strg_no"]').val(disposals.strg_no);
 		$('[name="item_no"]').val(disposals.item_no);
+		$('[name="item_name"]').text(disposals.item_name);
 		
 	}
 	
@@ -218,7 +220,7 @@ $(function(){
 											</select><span id="storages_no"></span><br/>
 				
 				<label>품목코드</label>		<button type="button" value="품목선택" id="btnFindItem"><img src="resources/images/Glass.png" width="30px" height="30px"></button>
-											<input class="form-control" name="item_no" id="item_no" > <span id="item_name"></span><br/>
+											<input class="form-control" name="item_no" id="item_no" > <span id="item_name" name="item_name"></span><br/>
 				<div class="btn-group">
 					<input type="button" class="btn btn-primary" value="등록" id="btnInsert" /> 
 					<input type="button" class="btn btn-primary" value="수정" id="btnUpdate" /> 

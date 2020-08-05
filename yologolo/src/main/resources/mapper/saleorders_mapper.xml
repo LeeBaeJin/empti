@@ -31,13 +31,15 @@
 		s.sale_sum "sale_sum",
 		s.del_status "del_status",
 		e.name "name",
-		c.company_name "company_name"
+		c.company_name "company_name",
+		s.return_no "return_no"
 		FROM employees e
 		JOIN saleorders s ON (e.emp_id = s.emp_id)
 		JOIN companies c ON (s.company_no = c.company_no)
-		<!--  <![CDATA[WHERE sale_sum >= 0 ]]> -->
 		ORDER BY 2 DESC
 	</select>
+	
+	
 
 	<!-- 판매주문 시퀀스조회 -->
 	<select id="getSaleSeq" resultType="String">
@@ -102,5 +104,6 @@
 	<!-- 판매주문삭제 -->
 	<delete id="setDeleteSaleorders" parameterType="SaleordersVO"> 
 		DELETE FROM saleorders 
-		WHERE sorder_no = #{sorder_no} </delete> 
+		WHERE sorder_no = #{sorder_no} 
+	</delete> 
 </mapper>

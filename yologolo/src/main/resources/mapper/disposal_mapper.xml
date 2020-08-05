@@ -65,7 +65,10 @@
 	<!-- 폐기불량 단건조회 -->
 	<select id="getDisposal" resultType="DisposalVO"
 		parameterType="DisposalVO">
-		SELECT * FROM Disposal WHERE disposal_no = #{disposal_no}
+		SELECT d.*, i.*
+		FROM   disposal d, items i	 
+		WHERE  d.item_no = i.item_no AND	
+				disposal_no = #{disposal_no}
 	</select>
 
 </mapper>

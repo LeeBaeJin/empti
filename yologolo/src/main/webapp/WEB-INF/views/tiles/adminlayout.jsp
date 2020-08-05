@@ -98,7 +98,7 @@
         <div id="collapseTrade" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">거래</h6>
-            <a class="collapse-item" href="getBuyordersListForm">구매관리</a>
+            <a class="collapse-item" href="getBuyordersListMap">구매관리</a>
             <a class="collapse-item" href="getSaleordersListMap">판매관리</a>
           </div>
         </div>
