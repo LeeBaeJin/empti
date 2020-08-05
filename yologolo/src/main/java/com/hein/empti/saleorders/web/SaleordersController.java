@@ -124,7 +124,7 @@ public class SaleordersController {
 	@RequestMapping("/setInsertSaleordersRetrun")
 	public String setInsertSaleordersRetrun(SaleordersVO vo) {
 		saleordersService.setInsertSaleordersRetrun(vo);
-		return "admin/saleorders/returnSaleLordersList";
+		return "redirect:getReturnSaleordersList";
 	}
 
 	// view resolver 방식

@@ -152,7 +152,7 @@ function delSorder(sorderNo) {
 function reSorder(sorder_no) {
 	var result = confirm("반품하시겠습니까?");
 	if (result) {
-		window.location.href = "setInsertSaleordersRetrun?sorder_no="+sorder_no;
+		window.location.href = "setInsertSaleordersRetrun?return_no="+sorder_no;
 	} else {
 		return false;
 	}

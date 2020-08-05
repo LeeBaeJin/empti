@@ -13,8 +13,9 @@ public class BuyordersVO {
 	String company_no;
 	String emp_id;
 	
-	//반품일
+	//반품
 	String return_date;
+	String return_no;
 	
 	//Join
 	String name;

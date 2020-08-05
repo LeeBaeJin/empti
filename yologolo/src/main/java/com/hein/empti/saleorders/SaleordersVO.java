@@ -13,8 +13,9 @@ public class SaleordersVO {
 	String emp_id;
 	String company_no;
 	
-	//반품일
+	//반품
 	String return_date;
+	String return_no;
 	
 	//부가 프로퍼티
 	String company_name;
