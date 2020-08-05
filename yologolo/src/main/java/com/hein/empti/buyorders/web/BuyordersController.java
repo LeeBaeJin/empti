@@ -25,6 +25,8 @@ import com.hein.empti.buyorders.BuyordersVO;
 import com.hein.empti.buyorders.OrderMasterVO;
 import com.hein.empti.buyorders.service.BuyordersService;
 import com.hein.empti.items.ItemsVO;
+import com.hein.empti.saleorderdetails.SaleorderdetailsVO;
+import com.hein.empti.saleorders.SaleordersVO;
 
 @Controller
 public class BuyordersController {
@@ -41,12 +43,24 @@ public class BuyordersController {
 		return "admin/buyorders/buyordersList";
 	}
 	
-	//join문 map 전체 조회.
-	@RequestMapping(value= "/getBuyordersListMap", method=RequestMethod.GET)
-	@ResponseBody
-	public List<Map<String, Object>> getBuyordersListMap(BuyordersVO buyordersVO, Model model) {
-		return buyordersService.getBuyordersListMap(buyordersVO);
+	/*
+	 * //join문 map 전체 조회.
+	 * 
+	 * @RequestMapping(value= "/getBuyordersListMap", method=RequestMethod.GET)
+	 * 
+	 * @ResponseBody public List<Map<String, Object>>
+	 * getBuyordersListMap(BuyordersVO buyordersVO, Model model) { return
+	 * buyordersService.getBuyordersListMap(buyordersVO); }
+	 */
+	
+	// 구매주문 전체조회 Map
+	@RequestMapping("/getBuyordersListMap")
+	public String getSaleordersListMap(Model model, BuyordersVO buyordersVO) {
+		model.addAttribute("buyordersMap", buyordersService.getBuyordersListMap(buyordersVO));
+		return "admin/buyorders/buyordersList";
 	}
+	
+	
 
 	// 구매주문 단건조회
 	@RequestMapping("/getBuyorders")
@@ -91,32 +105,24 @@ public class BuyordersController {
 	}
 
 	//삭제처리(구매주문)
-	@RequestMapping(value = "/setDeleteBuyorders/{order_no}", method=RequestMethod.DELETE)
-	@ResponseBody
-	public Map setDeleteBuyorders(@PathVariable String order_no,BuyordersVO buyordersVO,BuyorderdetailsVO buyorderdetailsVO) {
-		buyorderdetailsVO.setBorder_no(order_no);
-		buyordersVO.setBorder_no(order_no);	
+	/*
+	 * @RequestMapping(value = "/setDeleteBuyorders/{order_no}",
+	 * method=RequestMethod.DELETE)
+	 * 
+	 * @ResponseBody public Map setDeleteBuyorders(@PathVariable String
+	 * order_no,BuyordersVO buyordersVO,BuyorderdetailsVO buyorderdetailsVO) {
+	 * buyorderdetailsVO.setBorder_no(order_no); buyordersVO.setBorder_no(order_no);
+	 * buyorderdetailsService.setBuyorderdetailDelete(buyorderdetailsVO);
+	 * buyordersService.setDeleteBuyorders(buyordersVO); Map map = new
+	 * HashMap<String, Object>(); map.put("result", Boolean.TRUE); return map; }
+	 */
+	
+	// 삭제처리
+	@RequestMapping("/setDeleteBuyorders")
+	public String setDeleteBuyorders(BuyordersVO buyordersVO, BuyorderdetailsVO buyorderdetailsVO) {
 		buyorderdetailsService.setBuyorderdetailDelete(buyorderdetailsVO);
 		buyordersService.setDeleteBuyorders(buyordersVO);
-		Map map = new HashMap<String, Object>();
-		map.put("result", Boolean.TRUE);
-		return map;
-	}
-	
-	//반품리스트(구매주문)
-	@RequestMapping("/getReturnBuyordersList")
-	@ResponseBody
-	public List<BuyordersVO> getReturnBuyordersList(BuyordersVO buyordersVO) {
-		return buyordersService.getReturnBuyordersList(buyordersVO);
-	}
-	
-	//반품
-	@RequestMapping(value= "/setUpdateBuyordersRetrun/{order_no}", method=RequestMethod.PUT)
-	@ResponseBody
-	public BuyordersVO setUpdateBuyordersRetrun(@PathVariable String order_no, BuyordersVO buyordersVO, Model model) {
-		buyordersVO.setBorder_no(order_no);
-		buyordersService.setUpdateBuyordersRetrun(buyordersVO);
-		return buyordersVO;
+		return "redirect:getBuyordersListMap";
 	}
 	
 	// 주문번호조회
@@ -125,6 +131,74 @@ public class BuyordersController {
 		model.addAttribute("findBuyorderNo", buyordersService.getBuyordersListMap(buyordersVO));
 		return "common/findBuyorderNo";
 	}
+	
+	
+	/*
+	 * //반품리스트(구매주문)
+	 * 
+	 * @RequestMapping("/getReturnBuyordersList")
+	 * 
+	 * @ResponseBody public List<BuyordersVO> getReturnBuyordersList(BuyordersVO
+	 * buyordersVO) { return buyordersService.getReturnBuyordersList(buyordersVO); }
+	 */
+	
+	// 반품목록 조회
+	@RequestMapping("/getReturnBuyordersList")
+	public String getReturnBuyordersList(BuyordersVO buyordersVO, Model model) {
+		model.addAttribute("returnBorders", buyordersService.getReturnBuyordersList(buyordersVO));
+		return "admin/buyorders/returnBuyLordersList";
+	}
+	
+	//반품처리(Insert)
+	@RequestMapping("/setInsertBuyordersRetrun")
+	public String setInsertBuyordersRetrun(BuyordersVO buyordersVO) {
+		buyordersService.setInsertBuyordersRetrun(buyordersVO);
+		return "redirect:getReturnBuyordersList";
+	}
+	
+	// 수정처리 (배송상태만)
+	@RequestMapping("/setUpdateBuyDel")
+	@ResponseBody
+	public void setUpdateSaleDel(@RequestBody List<BuyordersVO> bList) {
+		buyordersService.setUpdateBuyDel(bList);
+	}
+	
+	
+	// view resolver 방식 pdf 출력
+	@RequestMapping("buyorders_list_pdf.do")
+	public ModelAndView getBuyorderListReport(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("pdfView");
+		mv.addObject("filename", "/reports/buyorders_list_pdf.jrxml");
+		return mv;
+	}
+	
+	// excel 출력
+	@RequestMapping("buyOrdersexcel.do")
+	public ModelAndView buyordersexcel(BuyordersVO vo) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("commonExcelView");
+		mv.addObject("datas", buyordersService.getBuyordersexcelMap(vo));// Map객체를 조회해서 시트를 생성한다.
+		mv.addObject("filename", "buyorderlist");// 파일이름을 바꿔준다.
+		mv.addObject("headers", new String[] { "주문번호", "주문일자", "품목", "수량", "단가", "구매합계", "거래처", "담당자"}); // 헤더의 값만 출력된다.
+		return mv;    //주문번호, 주문일자, 품목, 수량, 단가, 구매합계, 거래처, 담당자
+	}
+	
+	
+	
+	/*
+	 * //반품
+	 * 
+	 * @RequestMapping(value= "/setUpdateBuyordersRetrun/{order_no}",
+	 * method=RequestMethod.PUT)
+	 * 
+	 * @ResponseBody public BuyordersVO setUpdateBuyordersRetrun(@PathVariable
+	 * String order_no, BuyordersVO buyordersVO, Model model) {
+	 * buyordersVO.setBorder_no(order_no);
+	 * buyordersService.setUpdateBuyordersRetrun(buyordersVO); return buyordersVO; }
+	 */
+
 	
 	/*
 	 * // pdf 출력 및 인쇄
@@ -145,23 +219,5 @@ public class BuyordersController {
 	 * response.getOutputStream()); }
 	 */
 	
-	// view resolver 방식 pdf 출력
-	@RequestMapping("buyorders_list_pdf.do")
-	public ModelAndView getBuyorderListReport(HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("pdfView");
-		mv.addObject("filename", "/reports/buyorders_list_pdf.jrxml");
-		return mv;
-	}
-	// excel 출력
-	@RequestMapping("buyOrdersexcel.do")
-	public ModelAndView buyordersexcel(BuyordersVO vo) {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("commonExcelView");
-		mv.addObject("datas", buyordersService.getBuyordersexcelMap(vo));// Map객체를 조회해서 시트를 생성한다.
-		mv.addObject("filename", "buyorderlist");// 파일이름을 바꿔준다.
-		mv.addObject("headers", new String[] { "주문번호", "주문일자", "품목", "수량", "단가", "구매합계", "거래처", "담당자"}); // 헤더의 값만 출력된다.
-		return mv;    //주문번호, 주문일자, 품목, 수량, 단가, 구매합계, 거래처, 담당자
-	}
+
 }

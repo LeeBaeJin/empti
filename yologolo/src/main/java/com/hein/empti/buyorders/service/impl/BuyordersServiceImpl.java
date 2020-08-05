@@ -18,15 +18,11 @@ public class BuyordersServiceImpl implements BuyordersService{
 	@Autowired BuyordersMapper buyordersMapper;
 	@Autowired BuyorderdetailsMapper buyorderdetailsMapper;
 	
+	//전체조회
 	@Override
 	public List<Map<String, Object>> getBuyordersListMap(BuyordersVO buyordersVO) {
 		return buyordersMapper.getBuyordersListMap(buyordersVO);
 	}
-
-//	@Override
-//	public List<BuyordersVO> getBuyordersList(BuyordersVO buyordersVO) {
-//		return buyordersMapper.getBuyordersList(buyordersVO);
-//	}
 
 	@Override
 	public BuyordersVO getBuyorders(BuyordersVO buyordersVO) {
@@ -55,9 +51,15 @@ public class BuyordersServiceImpl implements BuyordersService{
 		return buyordersMapper.getReturnBuyordersList(buyordersVO);
 	}
 
+
 	@Override
-	public void setUpdateBuyordersRetrun(BuyordersVO buyordersVO) {
-		buyordersMapper.setUpdateBuyordersRetrun(buyordersVO);
+	public void setInsertBuyordersRetrun(BuyordersVO buyordersVO) {
+		buyordersMapper.setInsertBuyordersRetrun(buyordersVO);
+	}
+
+	@Override
+	public void setUpdateBuyDel(List<BuyordersVO> bList) {
+		buyordersMapper.setUpdateBuyDel(bList);
 	}
 
 	//시퀀스 조회
@@ -69,7 +71,6 @@ public class BuyordersServiceImpl implements BuyordersService{
 	// 엑셀
 	@Override
 	public List<Map<String, Object>> getBuyordersexcelMap(BuyordersVO vo) {
-		// TODO Auto-generated method stub
 		return buyordersMapper.getBuyordersexcelMap(vo);
 	}
 }
