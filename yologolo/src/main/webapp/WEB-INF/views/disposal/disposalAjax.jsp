@@ -14,7 +14,7 @@ $(function(){
 		init();
 		fnc_btnfindItem();
 		
-		$('[name="category"]:eq(0)').click();
+		$('[name="radioCategory"]:eq(0)').click();
 	});
 	
 	
@@ -61,7 +61,7 @@ $(function(){
 			var disposalDate = $('[name="disposal_date"]').val();
 			var disposalQty = $('[name="disposal_qty"]').val();
 			var price = $('[name="price"]').val();
-			var category = $('[id="category"]').val();
+			var category = $('[name="category"]').val();
 			var itemNo = $('[name="item_no"]').val();
 			var strgNo = $('[name="strg_no"]').val();
 			$.ajax({ 
@@ -118,7 +118,8 @@ $(function(){
 	
 	//  리스트 요청
 	function disposalList() {
-		$('[name="category"]').on('click', function(){
+		$('[name="radioCategory"]:eq(0)').click();		/* radio 버튼에만 ajax처리가 걸려서 같이 넣어줌. */
+		$('[name="radioCategory"]').on('click', function(){
 			var category = this.value;
 		$.ajax({
 			url:'disposals',
@@ -177,9 +178,9 @@ $(function(){
 	<!-- 목록 시작 -->
 	<div class="col-lg-7 col-md-12">
 		<h2>폐기/불량 목록</h2>
-		 <input type="radio"  name="category" value="" checked><span> 전체조회</span>
-		 <input type="radio"  name="category" value="폐기"><span> 폐기</span>
-		 <input type="radio"  name="category" value="불량"><span> 불량</span>
+		 <input type="radio"  name="radioCategory" value="" checked><span> 전체조회</span>
+		 <input type="radio"  name="radioCategory" value="폐기"><span> 폐기</span>
+		 <input type="radio"  name="radioCategory" value="불량"><span> 불량</span>
 		<table class="table text-center">
 			<thead>
 				<tr>
