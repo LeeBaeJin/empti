@@ -11,6 +11,11 @@
 			<!-- 월별 총 매출 및 건수-->
 			<jsp:include page="ledger/getMonthlySaleAmount.jsp"/>
 		</div>
+		<div class="col-lg-4">
+			<!-- 거래량 많은 회사-->
+			<jsp:include page="company/getVipCompany.jsp"/>
+		</div>
+		
 	</div> 
     
 <div>사원이름: ${login.name} &nbsp;&nbsp;</div>
