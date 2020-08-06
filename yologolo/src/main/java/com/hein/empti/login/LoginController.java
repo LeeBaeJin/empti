@@ -49,7 +49,7 @@ public class LoginController {
 		return map;
 	}
 	
-	@RequestMapping("loginForm")
+	@RequestMapping("/loginForm")
 	public String loginForm(Model modle) {
 		return "common/login";
 	}
