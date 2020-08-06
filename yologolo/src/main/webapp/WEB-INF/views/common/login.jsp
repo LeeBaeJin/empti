@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <script>
 function check(){
-	$.ajax({
+	
+	
+	/* 	$.ajax({
 		url:"login",
 		type: "post",
 		data: $('#frm').serialize(),
@@ -12,11 +15,11 @@ function check(){
 		success:function(data){
 			if(data.result==true){
 				location.href="main";
-			}else{
+			} else {
 				alert(data.errorMsg);
 			}
 		}
-	});
+	}); */
 };
 </script>
 <head>
@@ -70,22 +73,18 @@ function check(){
                         <label class="custom-control-label" for="customCheck">Remember Me</label>
                       </div>
                     </div>
-                    <button type="button" onclick="check()" class="btn btn-primary btn-user btn-block">login</button>
+                    <button type="submit" class="btn btn-primary btn-user btn-block">login</button>
                     <hr>
-                    <a href="index.html" class="btn btn-google btn-user btn-block">
-                      <i class="fab fa-google fa-fw"></i> Login with Google
-                    </a>
-                    <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                      <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                    </a>
                   </form>
                   <hr>
-                  <div class="text-center">
-                    <a class="small" href="forgot-password.html">Forgot Password?</a>
-                  </div>
-                  <div class="text-center">
-                    <a class="small" href="register.html">Create an Account!</a>
-                  </div>
+                  ${param.error}
+
+				<c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
+					  로그인 에러입니다.<br>
+					  예외 타입：${SPRING_SECURITY_LAST_EXCEPTION.getClass().name}<br>
+					  메시지：${SPRING_SECURITY_LAST_EXCEPTION.message}<br>
+					<c:remove var="SPRING_SECURITY_LAST_EXCEPTION" scope="session" />
+				</c:if>
                 </div>
               </div>
             </div>

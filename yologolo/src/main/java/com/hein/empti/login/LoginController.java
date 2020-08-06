@@ -24,8 +24,8 @@ public class LoginController {
 	
 	
   	//로그인 처리
-	@RequestMapping(value = "/login", method=RequestMethod.POST)
-	@ResponseBody //아작스는 데이터만 넘어감
+	//@RequestMapping(value = "/login", method=RequestMethod.POST)
+	//@ResponseBody //아작스는 데이터만 넘어감
 	public Map login(EmpVO empVO, HttpSession session){
 		Map<String,Object> map = new HashMap<String,Object>();
 		EmpVO result = empMapper.getEmp(empVO);
