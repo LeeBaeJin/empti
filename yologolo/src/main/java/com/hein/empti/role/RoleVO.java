@@ -1,4 +1,4 @@
-package com.hein.empti.authorities;
+package com.hein.empti.role;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

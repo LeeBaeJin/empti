@@ -5,9 +5,9 @@
 <script type="text/javascript">
 $(function() {
 	//권한부여 새창
-	$('.authorities').on('click', function() {
+	$('.role').on('click', function() {
 		window.open('getRoleList',
-				'saleorderdetails',
+				'roleList',
 				'width=1700, height=600, left=150, top=100, location=no, status=no, scrollbars=yes');
 	return false;
 		});	
@@ -45,7 +45,7 @@ $(function() {
 							<td>${emp.position}</td>
 							<td>${emp.dept_name}</td>
 							<td>${emp.manager}</td>
-							<td><button class="btn btn-info authorities" onclick="authoritiesCheck">권한부여</button>
+							<td><button class="btn btn-info role" onclick="roleCheck">권한부여</button>
 						</tr>
 					</c:forEach>
 				</tbody>

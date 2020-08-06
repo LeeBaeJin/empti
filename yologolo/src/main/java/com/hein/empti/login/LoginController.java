@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.hein.empti.authorities.AuthoritiesVO;
-import com.hein.empti.authorities.mapper.AuthoritiesMapper;
 import com.hein.empti.emp.EmpVO;
 import com.hein.empti.emp.mapper.EmpMapper;
 
@@ -23,13 +21,12 @@ public class LoginController {
 
 	
 	@Autowired EmpMapper empMapper;
-	@Autowired AuthoritiesMapper authoritiesMapper;
 	
 	
   	//로그인 처리
 	@RequestMapping(value = "/login", method=RequestMethod.POST)
 	@ResponseBody //아작스는 데이터만 넘어감
-	public Map login(EmpVO empVO, AuthoritiesVO authoritiesVO,HttpSession session){
+	public Map login(EmpVO empVO, HttpSession session){
 		Map<String,Object> map = new HashMap<String,Object>();
 		EmpVO result = empMapper.getEmp(empVO);
 
@@ -43,13 +40,12 @@ public class LoginController {
 			
 		} else {
 			session.setAttribute("login", result);
-			session.setAttribute("authorities", authoritiesMapper.getAuthMenuList(authoritiesVO));
 			map.put("result", true);
 		}
 		return map;
 	}
 	
-	@RequestMapping("loginForm")
+	@RequestMapping("/loginForm")
 	public String loginForm(Model modle) {
 		return "common/login";
 	}
