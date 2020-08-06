@@ -12,8 +12,8 @@ public class HomeController {
 	//우리의 점화 페이지 (로그인 페이지)
 	@RequestMapping("/")
 	public String home(Model model) {
-		//return "common/login";
-		return "admin/index";
+		return "common/login";
+		//return "admin/index";
 	}
 	
 	//404에러 페이지
