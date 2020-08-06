@@ -2,6 +2,9 @@ package com.hein.empti.company.web;
 
 
 
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
@@ -12,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hein.empti.company.CompanyVO;
@@ -129,5 +133,12 @@ public class CompanyController {
 		mv.addObject("headers", new String[] { "회사번호", "회사명", "전화번호", "주소", "대표자명", "거래은행", "계좌번호", "담당자명", "담당자전화번호","비고" }); // 헤더의 값만 출력된다.
 		return mv;
 	}
+	
+	
+	//월별 매출 통계 차트
+		@RequestMapping("getVipCompany")
+		public @ResponseBody List<Map<String,Object>> getVipCompany(){
+			return companyService.getVipCompany(); 
+		}
 
 }

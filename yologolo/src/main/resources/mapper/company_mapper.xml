@@ -97,4 +97,8 @@
 		WHERE company_no = #{company_no}
 	</delete>
 
+	<select id="getVipCompany" resultType="map">
+		SELECT *
+		FROM VIPCOMPANY_VIEW
+	</select>
 </mapper>

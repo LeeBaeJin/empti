@@ -16,6 +16,13 @@
 	<if test="status !=null and status !='' ">	
 		status = #{status}
 	</if>
+	<if test="ldgr_date !=null">	
+		<![CDATA[
+		    ldgr_date >=to_date(#{startDt}, 'YYYY-MM-DD' ) AND 
+			ldgr_date < to_date(#{endDt}, 'YYYY-MM-DD')
+			]]>
+
+	</if>
 	</where>
 		ORDER BY ldgr_no
 	</select>

@@ -147,11 +147,11 @@ $(function(){
 	// 전체조회요청
 	function ledgerList() { 
 		$('[name="raidoStatus"]:eq(0)').click();
-		$('[name="raidoStatus"]').on('click',function() {
-		var status = this.value;
+		$('#searchForm').on('click','#btnSearch',function() {
+		console.log($("#searchForm").serialize());
 		$.ajax({
 			url:'ledgers',
-			data: {status :status},
+			data: $("#searchForm").serialize(),
 			type:'GET',			
 			dataType:'json',
 			error:function(xhr,status,msg){
@@ -216,9 +216,14 @@ $(function(){
 	<!-- 목록 시작 -->
 	<div class="col-lg-9 col-md-12">
 		<h2>장부목록</h2>
-	 <input type="radio"  name="raidoStatus" value="" checked><span> 전체조회</span>
-	 <input type="radio"  name="raidoStatus" value="매입"><span> 매입</span>
-	 <input type="radio"  name="raidoStatus" value="매출" ><span> 매출</span>
+			<form id="searchForm">
+				 <input type="radio"  name="raidoStatus" value="" checked><span> 전체조회</span>
+				 <input type="radio"  name="raidoStatus" value="매입"><span> 매입</span>
+				 <input type="radio"  name="raidoStatus" value="매출" ><span> 매출</span><br>
+				 <input type="date" name="startDt" value="start" data-date-format='yyyy-MM-dd'>  ~  <input type="date" name="endDt" value="end" data-date-format='yyyy-MM-dd'>
+				 <input type="button" class="btn btn-primary" value="검색" id="btnSearch" /> 
+				 
+		 	</form>
 		<table class="table text-center">
 			<thead>
 				<tr>

@@ -61,5 +61,10 @@ public class CompanyServiceImpl implements CompanyService {
 		return companyMapper.getSaleCount(companyVO);
 	}
 
+	@Override
+	public List<Map<String, Object>> getVipCompany() {
+		return companyMapper.getVipCompany();
+	}
+
 	
 }

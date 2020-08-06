@@ -19,4 +19,6 @@ public class CompanyVO {
 	String account_no;
 	String note;
 	
+	//data차트
+	String count;
 }
