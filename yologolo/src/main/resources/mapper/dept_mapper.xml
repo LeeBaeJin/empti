@@ -5,7 +5,7 @@
 	<select id="getDept" resultType="DeptVO" parameterType="DeptVO">
 		SELECT 	 d.*, e.name "name" 
 		FROM 	 departments d, employees e
-		WHERE    d.emp_id = e.emp_id
+		WHERE    d.emp_id = e.emp_id(+)
 		AND	     d.dept_id  = #{dept_id}
 		ORDER BY d.dept_id
 	</select>

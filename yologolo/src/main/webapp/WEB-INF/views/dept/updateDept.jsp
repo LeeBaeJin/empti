@@ -21,7 +21,7 @@ var emp_select_value = function(select_obj) {
 	<form action="setUpdateDept">
 		<label>부서번호</label>	 <input name="dept_id" value="${deptUp.dept_id}" readonly> <br/>
 		<label>부서이름</label>	 <input name="dept_name" value="${deptUp.dept_name}"> <br/>
-		<label>매니저</label>	 	<%-- <input name="emp_id" value="${deptUp.name}"> <br/> --%>
+		<label>부서장</label>	 	<%-- <input name="emp_id" value="${deptUp.name}"> <br/> --%>
 								<select name="emp_id" onchange="emp_select_value(this);">
 									<option value="${deptUp.emp_id}" selected> ${deptUp.name}</option>
 									<option >--------------</option>
