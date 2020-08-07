@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<style>
+	label{display:inline-block; width:100px;}
+</style>
+
 <script>
 	//페이지 로드
 	$(function(){
@@ -98,11 +102,13 @@
 			}
 		});
 	}
+	
+	
 </script>
 <div>
 	<h2 class="display-4 text-dark">구매주문 입력</h2>
 	<form class="form form-group" id="buyOrd">
-	<label>주문날짜: </label>	 <input type="datetime-local" name="border_date" class="form-control" style="width: 300px; display: inline;"> <br>
+	<label>주문날짜: </label>	 <input type="datetime-local" name="border_date" class="form-control" value="${serverTime}" style="width: 300px; display: inline;"> <br>
 	
 	<label>거래처코드: </label> <input name="company_no" id="company_no" class="form-control" style="width: 250px; display: inline;"> <span id="company_name"></span>
 			    			<button type="button" value="거래처선택" id="btnFindCompany" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" style="width: 30px; height: 30px;"></button><br/>
