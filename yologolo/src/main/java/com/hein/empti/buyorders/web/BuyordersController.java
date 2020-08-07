@@ -1,8 +1,7 @@
 package com.hein.empti.buyorders.web;
 
-import java.util.HashMap;
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,10 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -24,15 +21,11 @@ import com.hein.empti.buyorderdetails.service.BuyorderdetailsService;
 import com.hein.empti.buyorders.BuyordersVO;
 import com.hein.empti.buyorders.OrderMasterVO;
 import com.hein.empti.buyorders.service.BuyordersService;
-import com.hein.empti.items.ItemsVO;
-import com.hein.empti.saleorderdetails.SaleorderdetailsVO;
-import com.hein.empti.saleorders.SaleordersVO;
 
 @Controller
 public class BuyordersController {
 	@Autowired BuyordersService buyordersService;
 	@Autowired BuyorderdetailsService buyorderdetailsService;
-
 	@Autowired
 	@Qualifier("dataSourceSpied")
 	DataSource datasource;
@@ -85,23 +78,29 @@ public class BuyordersController {
 	
 	// 등록폼
 	@RequestMapping("/setInsertFormBuyorders")
-	public String setInsertFormBuyorders(BuyordersVO vo) {
+	public String setInsertFormBuyorders(BuyordersVO vo,Model model) {
+		LocalDateTime currentDateTime = LocalDateTime.now(); 
+		String currentTime =currentDateTime.toString().replace("T", " ");
+		int loc = currentTime.lastIndexOf(":");
+		System.out.println(currentTime.substring(0,loc));
+		model.addAttribute("serverTime", currentTime.substring(0,loc));
+		
 		return "admin/buyorders/insertBuyorders";
 	}
 
 	// 등록처리(구매주문)
 	@RequestMapping("/setInsertBuyorders")
 	@ResponseBody
-	public String setInsertBuyorders(@RequestBody OrderMasterVO mVO) {
+	public String setInsertBuyorders(@RequestBody OrderMasterVO mVO, Model model) {
 		buyordersService.setInsertBuyorders(mVO);
-		return "redirect:getBuyordersList";
+		return "redirect:getBuyordersListMap";
 	}
 
 	// 수정처리(구매주문)
 	@RequestMapping("/setUpdateBuyorders")
 	public String setUpdateBuyorders(BuyordersVO buyordersVO) {
 		buyordersService.setUpdateBuyorders(buyordersVO);
-		return "redirect:getBuyordersList";
+		return "redirect:getBuyordersListMap";
 	}
 
 	//삭제처리(구매주문)

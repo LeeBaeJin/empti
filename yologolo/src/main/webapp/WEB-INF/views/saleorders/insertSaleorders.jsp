@@ -123,6 +123,13 @@
 			return false;
 		}
 	}
+	
+	
+	$('[name:"sorder_date"]').function(){
+		var date = new Date(year, month, day, hours, minutes);
+			
+	}
+	
 </script>
 <div>
 	<h1 class="display-4 text-dark">판매주문 입력</h1>
