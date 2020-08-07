@@ -11,13 +11,13 @@
 		<security:intercept-url pattern="/**" access="isAuthenticated()" />
 		
 		
-		<security:form-login default-target-url="/main"
-							login-page="/loginForm" 
-							login-processing-url="/login"
-							username-parameter="emp_id" 
-							password-parameter="pwd"
-							authentication-failure-url="/loginForm" />
-							
+		<security:form-login
+							 login-page="/loginForm" 
+							 login-processing-url="/login"
+							 username-parameter="emp_id" 
+							 password-parameter="pwd"
+							 authentication-failure-url="/loginForm" 
+							 authentication-success-handler-ref="loginSuccessHandler" />
 		<security:logout logout-url="/logout" logout-success-url="/loginForm" />
 		<security:csrf disabled="true" />
 		<security:access-denied-handler error-page="/404error" />
@@ -36,6 +36,7 @@
 												 
 			</security:authentication-provider>
 	</security:authentication-manager>
+
 	<context:component-scan base-package="com.hein.empti" />
 	<!--<task:scheduler id="jobScheduler" pool-size="10" /> <task:annotation-driven 
 		scheduler="jobScheduler" /> -->
