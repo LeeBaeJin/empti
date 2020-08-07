@@ -18,10 +18,7 @@ import com.hein.empti.emp.mapper.EmpMapper;
 
 @Controller
 public class LoginController {
-
-	
 	@Autowired EmpMapper empMapper;
-	
 	
   	//로그인 처리
 	//@RequestMapping(value = "/login", method=RequestMethod.POST)
