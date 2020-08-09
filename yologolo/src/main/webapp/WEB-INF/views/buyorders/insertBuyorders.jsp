@@ -48,7 +48,35 @@
 		var tr = $('#tblTr');
 		tr.remove();
 	}
+	
+	
 	function seq_orderInsert() {
+		if(buyOrd.border_date.value ==""){
+			alert("주문날짜를 선택해주세요.");
+			buyOrd.border_date.focus();
+			return;
+		}
+		if(buyOrd.company_no.value == ""){
+			alert("거래처코드를 입력해주세요.");
+			buyOrd.company_no.focus();
+			return;
+		}
+		if(buyOrd.item_no.value ==""){
+			alert("품목을 입력해주세요.");
+			buyOrd.item_no.focus();
+			return;
+		}
+		if(buyOrd.border_qty.value == ""){
+			alert("수량을 입력해주세요.");
+			buyOrd.border_qty.focus();
+			return;
+		}
+		if(buyOrd.price.value == ""){
+			alert("단가를 입력해주세요.");
+			buyOrd.price.focus();
+			return;
+		}
+	
 		$.ajax ({
 			url: "getBuySeq",
 			contentType : "application/json",
@@ -102,21 +130,22 @@
 <div>
 	<h2 class="display-4 text-dark">구매주문 입력</h2>
 	<form class="form form-group" id="buyOrd">
-	<label>주문날짜: </label>	 <input type="datetime-local" name="border_date" class="form-control" style="width: 300px; display: inline;"> <br>
+	<label>주문일자: </label>	 <input type="datetime-local" name="border_date" id="border_date"class="form-control" style="width: 300px; display: inline;"> <br>
 	
 	<label>거래처코드: </label> <input name="company_no" id="company_no" class="form-control" style="width: 250px; display: inline;"> <span id="company_name"></span>
 			    			<button type="button" value="거래처선택" id="btnFindCompany" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" style="width: 30px; height: 30px;"></button><br/>
 			    			
-	<label>담당자: </label> 	<input name="emp_id" value="${login.emp_id}" class="form-control" style="width: 250px; display: inline;"> <br>
+	<label>담당자: </label> 	<input name="emp_id" value="${login.emp_id}" class="form-control" style="width: 250px; display: inline;"> 
+							<input name="name" value="${login.name}" class="form-control" style="width: 250px; display: inline;"><br>
 	
 	<label>구매합계: </label> 	<input type="number" name="buy_sum" class="form-control" style="width: 250px; display: inline;"> <br>
 	
 	<label>품목: </label>		<input name="item_no" id="item_no" type="text" class="form-control" style="width: 100px; display: inline;"> <span name="item_name" id="item_name" ></span>
 							<button type="button" value="품목선택" id="btnFindItem" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" width="30px" height="30px"></button><br>
 							
-	<label>수량: </label> 	<input type="number" name="border_qty" class="form-control" style="width: 250px; display: inline;"> <br>
+	<label>수량: </label> 	<input type="number" name="border_qty" id="border_qty" class="form-control" style="width: 250px; display: inline;"> <br>
 	
-	<label>단가: </label> 	<input type="number" name="price" class="form-control" style="width: 250px; display: inline;"> <br><br>
+	<label>단가: </label> 	<input type="number" name="price" id="price" class="form-control" style="width: 250px; display: inline;"> <br><br>
 	
 	<button type="button" onclick="addOrder()" class="btn btn-primary">추가</button>
 	<button type="button" id="resetBtn" class="btn btn-warning">초기화</button>

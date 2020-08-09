@@ -66,6 +66,34 @@
 	}
 	//시퀀스 조회 후 판매주문 Insert 실행
 	function seq_sorderInsert() {
+		if(saleOrd.sorder_date.value ==""){
+			alert("주문날짜를 선택해주세요.");
+			saleOrd.sorder_date.focus();
+			return;
+		}
+		if(saleOrd.company_no.value == ""){
+			alert("거래처코드를 입력해주세요.");
+			saleOrd.company_no.focus();
+			return;
+		}
+		if(saleOrd.item_no.value ==""){
+			alert("품목을 입력해주세요.");
+			saleOrd.item_no.focus();
+			return;
+		}
+		if(saleOrd.sorder_qty.value == ""){
+			alert("수량을 입력해주세요.");
+			saleOrd.sorder_qty.focus();
+			return;
+		}
+		if(saleOrd.price.value == ""){
+			alert("단가를 입력해주세요.");
+			saleOrd.price.focus();
+			return;
+		}
+		
+		
+		
 		$.ajax ({
 			url: "getSaleSeq",
 			contentType : "application/json",
@@ -126,35 +154,37 @@
 </script>
 <div>
 	<h1 class="display-4 text-dark">판매주문 입력</h1>
-	<form action="setInsertSaleorders">
-		주문일자 	<input type="datetime-local" name="sorder_date" class="form-control" style="width: 300px; display: inline;"><br/>
+	<form action="setInsertSaleorders" id="saleOrd">
+		주문일자: 	<input type="datetime-local" name="sorder_date" id="sorder_date" class="form-control" style="width: 300px; display: inline;"><br/>
 		
-		거래처코드 <input name="company_no" id="company_no" class="form-control" style="width: 250px; display: inline;"> <span id="company_name"></span>
+		거래처코드: <input name="company_no" id="company_no" class="form-control" style="width: 250px; display: inline;"> <span id="company_name"></span>
 			    <button type="button" value="거래처선택" id="btnFindCompany" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" width="30px" height="30px"></button><br/>
 			    
-		판매합계 	<input name="sale_sum" class="form-control" style="width: 250px; display: inline;"><br/>
+		판매합계: 	<input name="sale_sum" class="form-control" style="width: 250px; display: inline;"><br/>
 		
-		배송상태	<select name="del_status" class="form-control" style="width: 250px; display: inline;">
+		배송상태:	<select name="del_status" class="form-control" style="width: 250px; display: inline;">
 				  <option value="배송준비중" selected>배송준비중</option>
 				  <option value="배송중">배송중</option>
 				  <option value="배송완료" >배송완료</option>
 				</select><br/>
 				
-		담당사원	<select name="emp_id" class="form-control" style="width: 250px; display: inline;" onchange="emp_select_value(this);">
+		담당사원:	<%-- <select name="emp_id" class="form-control" style="width: 250px; display: inline;" onchange="emp_select_value(this);">
 					<option value="" selected>==사원 선택==</option>
 					<c:forEach items="${emps}" var="emp"> 
 					<option value="${emp.emp_id}">${emp.name}</option>
 					</c:forEach>
 				</select>
-				<span id="emp_name"></span>
+				<span id="emp_name"></span> --%>
+				<input name="emp_id" value="${login.emp_id}" class="form-control" style="width: 250px; display: inline;"> 
+				<input name="name" value="${login.name}" class="form-control" style="width: 250px; display: inline;"><br>
 				<br/>
 				
-		품목		<input name="item_no" id="item_no" class="form-control" style="width: 100px; display: inline;"> <input id="item_name" name="item_name" class="form-control" style="width: 250px; display: inline;">
+		품목:		<input name="item_no" id="item_no" class="form-control" style="width: 100px; display: inline;"> <input id="item_name" name="item_name" class="form-control" style="width: 250px; display: inline;">
 				<button type="button" value="품목선택" id="btnFindItem" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" width="30px" height="30px"></button><br/>
 				
-		수량 	<input name="sorder_qty" type="number" class="form-control" style="width: 250px; display: inline;"> <br>
+		수량: 	<input name="sorder_qty" id="sorder_qty" type="number" class="form-control" style="width: 250px; display: inline;"> <br>
 		
-		단가	<input name="price" type="number" class="form-control" style="width: 250px; display: inline;"><br><br>
+		단가:	<input name="price" id="price" type="number" class="form-control" style="width: 250px; display: inline;"><br><br>
 		
 	<button type="button" onclick="addOrder()" class="btn btn-primary">추가</button>
 	<button type="button" id="resetBtn" class="btn btn-warning">초기화</button><br>

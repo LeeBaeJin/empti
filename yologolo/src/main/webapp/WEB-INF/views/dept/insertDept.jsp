@@ -15,14 +15,32 @@ var emp_select_value = function(select_obj) {
 	}	
 }
 
+function check() {
+	if(frm.dept_id.value ==""){
+		alert("부서번호를 입력해주세요.");
+		frm.dept_id.focus();
+		return;
+	}
+	if(frm.dept_name.value == ""){
+		alert("부서이름을 입력해주세요.");
+		frm.dept_name.focus();
+		return;
+	}
+	if(frm.emp_id.value == ""){
+		alert("부서장을 선택해주세요.");
+		frm.emp_id.focus();
+		return;
+	}
+}
+
 </script>    
     
 <div align="center">
 	<h1>부서등록</h1>
-	<form action="setInsertDept">
-		<label>부서번호</label>	 <input name="dept_id"> <br/>
-		<label>부서이름</label>	 <input name="dept_name"> <br/>
-		<label>매니저</label>	 <select name="emp_id" onchange="emp_select_value(this);"> 
+	<form action="setInsertDept" id="frm">
+		<label>부서번호</label>	 <input name="dept_id" id="dept_id"> <br/>
+		<label>부서이름</label>	 <input name="dept_name" id="dept_name"> <br/>
+		<label>부서장</label>	 <select name="emp_id" id="emp_id"onchange="emp_select_value(this);"> 
 									<option value="" selected> ==선택하세요== </option>
 									<c:forEach items="${emp}" var="emp" >
 										<option value="${emp.emp_id}">${emp.name}</option>
@@ -30,6 +48,6 @@ var emp_select_value = function(select_obj) {
 								 </select>
 								 <span id="emp_name"></span>
 								 <br/>
-	<button type="submit">등록</button>
+	<button type="submit" onclick="check()">등록</button>
 	</form>
 </div>

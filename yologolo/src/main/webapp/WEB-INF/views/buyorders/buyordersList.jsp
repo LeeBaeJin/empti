@@ -64,7 +64,7 @@ $(function() {
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
 		<h6 class="m-0 font-weight-bold text-primary">
-			<a href="getBuyordersListMap">구매주문 조회</a> | 
+			<a href="getBuyordersListMap">구매주문 목록</a> | 
 			<a href="setInsertFormBuyorders">구매주문 입력</a> |
 			<a href="buyorders_list.do">PDF</a> |
 			<a href="borderexcel.do">EXCEL</a>

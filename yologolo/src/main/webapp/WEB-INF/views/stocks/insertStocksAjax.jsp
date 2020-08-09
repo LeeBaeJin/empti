@@ -47,7 +47,31 @@ $(function(){
 	function stocksInsert(){
 		//등록 버튼 클릭
 		$('#btnInsert').on('click',function(){
-			console.log($("#stocksform").serialize());
+			if(stocksform.item_no.value ==""){
+				alert("품목코드를 입력해주세요.");
+				stocksform.item_no.focus();
+				return;
+			}
+			if(stocksform.stock_qty.value ==""){
+				alert("수량을 입력해주세요.");
+				stocksform.stock_qty.focus();
+				return;
+			}
+			if(stocksform.stock_price.value ==""){
+				alert("거래가를 입력해주세요.");
+				stocksform.stock_price.focus();
+				return;
+			}
+			if(stocksform.stock_date.value ==""){
+				alert("거래일자를 입력해주세요.");
+				stocksform.stock_date.focus();
+				return;
+			}
+			if(stocksform.strg_no.value ==""){
+				alert("창고를 입력해주세요.");
+				stocksform.strg_no.focus();
+				return;
+			}
 			$.ajax({ 
 			    url: "adminStocks",  
 			    type: 'POST',  
@@ -195,7 +219,7 @@ $(function(){
 	<!-- 등록폼 시작 -->
 	<div class="col-lg-3 col-md-12 ">
 		<div id="storckDiv" class="ml-5">
-			<form id="stocksform">
+			<form id="stocksform" id="frm">
 				<label>입출고번호</label>	<input class="form-control" name="stock_no" id="stock_no" readonly><br/>
 				<label>품목코드</label>	<button type="button" value="품목선택" id="btnFindItem" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" width="30px" height="30px"></button>
 										<input class="form-control" name="item_no" id="item_no" type="text"> <span name="item_name" id="item_name" ></span>

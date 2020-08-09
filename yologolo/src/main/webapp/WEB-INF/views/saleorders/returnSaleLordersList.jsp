@@ -20,7 +20,7 @@ $(function(){
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
 				<h6 class="m-0 font-weight-bold text-primary">
-			<a href="getSaleordersListMap">판매주문 조회</a> | 
+			<a href="getSaleordersListMap">판매주문 목록</a> | 
 			<a href="setInsertFormSaleorders">판매주문 입력</a> |
 			<a href="saleorders_list.do">PDF</a> |
 			<a href="sorderexcel.do">EXCEL</a>

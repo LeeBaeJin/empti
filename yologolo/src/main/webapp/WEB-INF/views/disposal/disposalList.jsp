@@ -6,8 +6,8 @@
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
 		<h6 class="m-0 font-weight-bold text-primary">
-			<a href="getDisposalList">폐기 내역 </a> | 
-			<a href="setInsertFormDisposal">폐기 입력</a> | 
+			<a href="getDisposalList">폐기/불량 내역 </a> | 
+			<a href="setInsertFormDisposal">폐기/불량 입력</a> | 
 			<a href="disposal_list.do">PDF</a> | 
 			<a href="disposal_excel.do">EXCEL</a>
 		</h6>
@@ -18,10 +18,10 @@
 				<thead>
 					<tr>
 						<th>#</th>
-						<th>폐기일</th>
+						<th>날짜</th>
 						<th>품목명</th>
-						<th>폐기 수량</th>
-						<th>단가</th>
+						<th>폐기/불량 수량</th>
+						<th>비용</th>
 						<th>구분</th>
 						<th>창고</th>
 						<th>수정</th>
