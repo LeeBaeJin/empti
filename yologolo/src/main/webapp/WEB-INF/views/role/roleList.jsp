@@ -13,12 +13,29 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <script>
 	$(document).ready(function() {
+		// 데이터테이블로 적용
 		$('#example').DataTable();
 		
-		$('#roleBtn').on('click', function() {
-		
+		//확인 버튼 close 기능
+		$('#closeBtn').on('click', function() {
+			windows.close();
 		});
+		
+		erList(empId);
+		
 	});
+	
+	function erList(empId) {
+		$.ajax({
+			url : "getEmpRoleList",
+			contentType : "application/json",
+			success: function() {
+				$('[name=roleChk]').attr("chekced", true);
+			}, error: function() {
+				alert("롤 조회 실패하였습니다.");
+			}
+		});
+	}
 </script>
 <table id="example" class="ui celled table" style="width:100%; margin-left: 1%">
 	<thead>
@@ -40,4 +57,4 @@
 	</c:forEach>
 	</tbody>
 </table>
-<button type="button" class="btn btn-success" id="roleBtn">확인</button>
+<button type="button" class="btn btn-success" id="closeBtn">확인</button>
