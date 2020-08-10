@@ -4,8 +4,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <script src="https://code.jquery.com/jquery-3.5.1.js"
 	integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-<script>
 
+<script>
 
 $(function(){
 		ledgerList();
@@ -198,7 +198,7 @@ $(function(){
 			.append($('<input type=\'hidden\' id=\'hidden_ldgr_no\'>').val(item.ldgr_no))
 			.appendTo('tbody');
 		});//each
-	};//userListResult
+	};//ledgerListResult
 	
 	
 	// 구분에 따른 구매/판매 주문번호 조회

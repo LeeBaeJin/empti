@@ -10,6 +10,10 @@ $(function(){
 		stocksUpdate(); 
 		init();
 		fnc_btnfindItem();
+		
+		$('#searchForm').on('click','#btnSearch',function() {
+			stocksList();
+		});
 	});
 	
 		function fnc_btnfindItem(){
@@ -163,8 +167,10 @@ $(function(){
 	
 	//목록 조회 요청
 	function stocksList() {
+		console.log($("#searchForm").serialize());
 		$.ajax({
 			url:'adminStocks',
+			data: $("#searchForm").serialize(),
 			type:'GET',			
 			dataType:'json',
 			error:function(xhr,status,msg){
@@ -198,6 +204,18 @@ $(function(){
 <div class="row">
 	<div class="col-lg-9 col-md-12">
 			<h2>입출고목록</h2>
+				<form id="searchForm">
+					<label>거래유형</label>	<select class="form-control" name="selectCategory">
+											  <option value="" selected>전체</option>
+											  <option value="원자재">원자재</option>
+											  <option value="가공품">가공품</option>
+											  <option value="입고" >입고</option>
+											  <option value="출고" >출고</option>
+											</select><br/>
+					 <input type="date" name="startDate" value="start" data-date-format='yyyy-MM-dd'>  ~  <input type="date" name="endDate" value="end" data-date-format='yyyy-MM-dd'>
+					 <input type="button" class="btn btn-primary" value="검색" id="btnSearch" /> 
+					 <input type="reset"  class="btn btn-primary" value="초기화" /> 
+		 		</form>
 			<table class="table text-center">
 				<thead>
 				<tr>				
