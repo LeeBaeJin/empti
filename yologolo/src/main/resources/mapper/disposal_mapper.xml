@@ -12,9 +12,19 @@
 		FROM disposal d JOIN storages s ON (d.strg_no = s.strg_no)
 						JOIN items i ON (d.item_no = i.item_no)
 		<where>
-			<if test="category !=null and category !='' ">	
-			d.category = #{category}
-		</if>
+			<if test="radioCategory !=null and radioCategory !='' ">	
+			 	d.category = #{radioCategory}
+			</if>
+			<if test="startDate !=null and startDate != '' ">	
+				<![CDATA[
+				AND   trunc(d.disposal_date) >= to_date(#{startDate}, 'YYYY-MM-DD' )
+					]]>
+			</if>
+			<if test="endDate !=null and endDate != '' ">	
+				<![CDATA[
+				AND	trunc(d.disposal_date) <= to_date(#{endDate}, 'YYYY-MM-DD')
+					]]>
+			</if>
 		</where>
 		ORDER BY disposal_no 
 	</select>

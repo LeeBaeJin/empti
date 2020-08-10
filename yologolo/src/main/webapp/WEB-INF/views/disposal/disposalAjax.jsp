@@ -14,7 +14,9 @@ $(function(){
 		init();
 		fnc_btnfindItem();
 		
-		$('[name="radioCategory"]:eq(0)').click();
+		$('#searchForm').on('click','#btnSearch',function() {
+			disposalList()
+		});
 	});
 	
 	
@@ -118,12 +120,10 @@ $(function(){
 	
 	//  리스트 요청
 	function disposalList() {
-		$('[name="radioCategory"]:eq(0)').click();		/* radio 버튼에만 ajax처리가 걸려서 같이 넣어줌. */
-		$('[name="radioCategory"]').on('click', function(){
-			var category = this.value;
+		var category = this.value;
 		$.ajax({
 			url:'disposals',
-			data: {category : category},
+			data: $("#searchForm").serialize(),
 			type:'GET',			
 			dataType:'json',
 			error:function(xhr,status,msg){
@@ -131,8 +131,8 @@ $(function(){
 			},
 			success:disposalListResult
 			});
-		});
-	}
+		}
+	
 	
 	// 폐기불량 리스트 뿌려줌
 	function disposalListResult(data) {
@@ -178,9 +178,14 @@ $(function(){
 	<!-- 목록 시작 -->
 	<div class="col-lg-7 col-md-12">
 		<h2>폐기/불량 목록</h2>
-		 <input type="radio"  name="radioCategory" value="" checked><span> 전체조회</span>
-		 <input type="radio"  name="radioCategory" value="폐기"><span> 폐기</span>
-		 <input type="radio"  name="radioCategory" value="불량"><span> 불량</span>
+			<form id="searchForm">
+		 		<input type="radio"  name="radioCategory" value="" checked><span> 전체조회</span>
+			 	<input type="radio"  name="radioCategory" value="폐기"><span> 폐기</span>
+			 	<input type="radio"  name="radioCategory" value="불량"><span> 불량</span>
+			 	<input type="date" name="startDate" value="start" data-date-format='yyyy-MM-dd'>  ~  <input type="date" name="endDate" value="end" data-date-format='yyyy-MM-dd'>
+			 	<input type="button" class="btn btn-primary" value="검색" id="btnSearch" /> 
+			 	<input type="reset"  class="btn btn-primary" value="초기화" /> 
+		 	</form>
 		<table class="table text-center">
 			<thead>
 				<tr>
