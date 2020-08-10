@@ -131,28 +131,28 @@
 		});
 	}
 </script>
-<div>
-	<h2 class="display-4 text-dark">구매주문 입력</h2>
+<div class="col-sm-12 my-auto">
+	<h2 class="display-4 text-dark"  style=font-size:30px;>구매주문 입력</h2>
 	<form class="form form-group" id="buyOrd">
-	<label>주문일자: </label>	 <input value="${serverTime}" type="datetime-local" name="border_date" id="border_date"class="form-control" style="width: 300px; display: inline;"> <br>
+	<label>주문일자 </label>	 <input value="${serverTime}" type="datetime-local" name="border_date" id="border_date"class="form-control" style="width: 300px; display: inline;"> <br>
 	
-	<label>거래처코드: </label> <input name="company_no" id="company_no" class="form-control" style="width: 250px; display: inline;"> <span id="company_name"></span>
+	<label>거래처코드 </label> <input name="company_no" id="company_no" class="form-control" style="width: 250px; display: inline;"> <span id="company_name"></span>
 			    			<button type="button" value="거래처선택" id="btnFindCompany" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" style="width: 30px; height: 30px;"></button><br/>
 			    			
-	<label>담당자: </label> 	<input name="name" value="${emp_id.name}" class="form-control" style="width: 250px; display: inline;"><br>
-	<label>사번:  </label>	<input name="emp_id" value="${emp_id.emp_id}" class="form-control" style="width: 250px; display: inline;"> <br> 
+	<label>담당자 </label> 	<input name="name" value="${emp_id.name}" class="form-control" style="width: 250px; display: inline;"><br>
+	<label>사번  </label>	<input name="emp_id" value="${emp_id.emp_id}" class="form-control" style="width: 250px; display: inline;"> <br> 
 							
 	
-	<label>구매합계: </label> 	<input type="number" name="buy_sum" class="form-control" style="width: 250px; display: inline;"> <br>
+	<label>구매합계</label> 	<input type="number" name="buy_sum" class="form-control" style="width: 250px; display: inline;"> <br>
 	
-	<label>품목: </label>		<input name="item_no" id="item_no" type="text" class="form-control" style="width: 100px; display: inline;"> <span name="item_name" id="item_name" ></span>
+	<label>품목 </label>		<input name="item_no" id="item_no" type="text" class="form-control" style="width: 100px; display: inline;"> <span name="item_name" id="item_name" ></span>
 							<button type="button" value="품목선택" id="btnFindItem" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" width="30px" height="30px"></button><br>
 							
-	<label>수량: </label> 	<input type="number" name="border_qty" id="border_qty" class="form-control" style="width: 250px; display: inline;"> <br>
+	<label>수량 </label> 	<input type="number" name="border_qty" id="border_qty" class="form-control" style="width: 250px; display: inline;"> <br>
 	
-	<label>단가: </label> 	<input type="number" name="price" id="price" class="form-control" style="width: 250px; display: inline;"> <br><br>
+	<label>단가 </label> 	<input type="number" name="price" id="price" class="form-control" style="width: 250px; display: inline;"> <br><br>
 	
-	<button type="button" onclick="addOrder()" class="btn btn-primary">추가</button>
+	<button type="button" onclick="addOrder()" class="btn btn-primary" >추가</button>
 	<button type="button" id="resetBtn" class="btn btn-warning">초기화</button>
 	<!-- 구매상세주문 테이블 -->
 	<table id="buyTable" style="width: 40%;" class="table table-bordered">

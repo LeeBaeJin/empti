@@ -3,6 +3,14 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script>
+//수정폼으로 이동
+function upForm(itemNo) {
+	location.href = "setUpdateFormItems?item_no=" + itemNo
+}
+</script>
+
+
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
 		<h6 class="m-0 font-weight-bold text-primary">
@@ -39,7 +47,8 @@
 								<fmt:parseNumber value="${items.item_price}" var="fmt"/>
 								<fmt:formatNumber type="number" maxFractionDigits="3" value="${fmt}"/>
 							</td>
-							<td><a href="setUpdateFormItems?item_no=${items.item_no}">수정</a></td>
+							<td><button type="button" onclick="upForm(${items.item_no})" class="btn btn-primary">수정</button></td>
+							
 						</tr>
 					</c:forEach>
 				</tbody>

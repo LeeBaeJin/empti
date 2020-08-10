@@ -3,6 +3,9 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<style>
+	label{display:inline-block; width:120px;}
+</style>
 <script>
 //부서 검색
 var dept_select_value = function(select_obj) {
@@ -175,7 +178,7 @@ function check() {
 </script>    
     
 <div class="col-sm-12 my-auto">
-	<h1>사원등록</h1>
+	<h2 class="display-4 text-dark"  style=font-size:30px;>사원등록</h2>
 	<form action="setInsertEmp" id="frm" method="post" enctype="multipart/form-data" class="from-group">
 		<label>사원아이디</label>	<input name="emp_id" id="emp_id" class="form-control" style="width: 250px; display: inline;"> <br/>
 		<label>이름</label>		<input name="name" id="name"class="form-control" style="width: 250px; display: inline;"> <br/>
@@ -183,10 +186,10 @@ function check() {
 		<label>패스워드 확인</label>	<input type="password" name="pwd2" id="pwd2" class="form-control pw" style="width: 250px; display: inline;"> <br/>
 		<div id="pw"></div>
 		<label>전화번호</label>	<input name="phone" id="phone" class="form-control" style="width: 250px; display: inline;"> <br/>
-		<label>주소</label>		<input class="form-control" name="zip_code" id="addr1" readonly="readonly" style="width: 10%; display: inline;" placeholder="우편번호">
-								<button class="btn btn-default" type="button"  onclick="execPostCode();"><i class="fa fa-search"></i> 우편번호 찾기</button><br/>                             
-								<input class="form-control" name="address" id="addr2" readonly="readonly" style="top: 5px; width: 35%; display: inline;" placeholder="도로명 주소"><br/>
-								<input class="form-control" name="address_detail" id="addr3" style="width: 35%; display: inline;" placeholder="상세주소">
+		<label>주소</label>			<input class="form-control" name="zip_code" id="addr1" readonly="readonly" style="width: 10%; display: inline;" placeholder="우편번호">
+		<label></label>			<button class="btn btn-default" type="button"  onclick="execPostCode();"><i class="fa fa-search"></i> 우편번호 찾기</button><br/>                             
+		<label></label>			<input class="form-control" name="address" id="addr2" readonly="readonly" style="top: 5px; width: 35%; display: inline;" placeholder="도로명 주소"><br/>
+		<label></label>			<input class="form-control" name="address_detail" id="addr3" style="width: 35%; display: inline;" placeholder="상세주소">
 								 <br/>
 		<label>이메일</label>		<input name="email" type="email" class="form-control" style="width: 250px; display: inline;"> <br/>
 		<label>입사일</label>		<input name="hire_date" id="hire_date"type="date" class="form-control" style="width: 250px; display: inline;"> <br/>
@@ -215,6 +218,6 @@ function check() {
 								<span id="dept_name"></span>
 								<br/>
 		<label>이미지</label>     <input type="file" name="uploadFile" id="uploadFile" class="form-control" style="width: 250px; display: inline;"><br/>
-	<button class="btn btn-success" type="submit" onclick="check()">등록</button>
+	<button class="btn btn-success" type="submit" onclick="check()" >등록</button>
 	</form>
 </div>

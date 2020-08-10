@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <script src="https://code.jquery.com/jquery-3.5.1.js"
 	integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<style>
+	label{display:inline-block; width:80px;}
+</style>
 <script>
 	function validCheck() {
 		if(frm.item_no.value ==""){
@@ -32,8 +35,8 @@
 
 </script>
 
-	<h1>품목 등록</h1>
-	<form action="setInsertItems" name="frm">
+	<h2 class="display-4 text-dark"  style=font-size:30px;>품목 등록</h2>
+	<form action="setInsertItems" name="frm" class="from-group">
 		<label>품목코드</label>	<input name="item_no" id="item_no"><br/>
 		<label>품목명</label>		<input name="item_name" id="item_name"><br/>
 		<label>유형</label>		<select name="category" id="category">
@@ -46,5 +49,5 @@
 		<label>단위</label>		<input name="unit" id="unit"><br/>
 		<label>유통기한</label>	<input name="exp_date" id="exp_date"><br/>
 		<label>단가</label>	<input name="item_price" id="item_price"><br/>
-	<button type="submit" onclick="validCheck()">등록</button>
+	<button class="btn btn-success" type="submit" onclick="validCheck()">등록</button>
 	</form>
