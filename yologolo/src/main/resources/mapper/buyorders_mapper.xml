@@ -63,10 +63,9 @@
 			UPDATE buyorders
 			SET status =
 			#{item.status}
-			WHERE border_no = #{item.sorder_no}
+			WHERE border_no = #{item.border_no}
 		</foreach>
 	</update>
-
 
 	<!-- 반품 조회 -->
 	<select id="getReturnBuyordersList" parameterType="BuyordersVO" resultType="BuyordersVO">
@@ -90,9 +89,6 @@
 		</set>
 		WHERE border_no = #{border_no}
 	</update>
-	
-	
-
 	
 	<!-- 반품 입력 -->
 	<insert id="setInsertBuyordersRetrun" statementType="CALLABLE">
