@@ -132,7 +132,7 @@
 			}
 	}
 </script>
-<div>
+<div class="col-sm-12 my-auto">
 	<h2 class="display-4 text-dark">구매주문 입력</h2>
 	<form class="form form-group" id="buyOrd">
 	<label>주문일자: </label>	 <input value="${serverTime}" type="datetime-local" name="border_date" id="border_date"class="form-control" style="width: 300px; display: inline;"> <br>

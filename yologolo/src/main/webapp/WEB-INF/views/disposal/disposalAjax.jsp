@@ -146,7 +146,7 @@ $(function(){
 			.append($('<td>').html(item.category))
 			.append($('<td>').html(item.strg_no))
 			.append($('<td>').html(item.item_no))
-			.append($('<td>').html('<button id=\'btnSelect\'>조회</button>'))
+			.append($('<td>').html('<button id=\'btnSelect\' class=\'btn btn-info\'>조회</button>'))
 			.append($('<input type=\'hidden\' id=\'hidden_disposal_no\'>').val(item.disposal_no))
 			.appendTo('tbody');
 		});//each
@@ -183,8 +183,8 @@ $(function(){
 			 	<input type="radio"  name="radioCategory" value="폐기"><span> 폐기</span>
 			 	<input type="radio"  name="radioCategory" value="불량"><span> 불량</span>
 			 	<input type="date" name="startDate" value="start" data-date-format='yyyy-MM-dd'>  ~  <input type="date" name="endDate" value="end" data-date-format='yyyy-MM-dd'>
-			 	<input type="button" class="btn btn-primary" value="검색" id="btnSearch" /> 
-			 	<input type="reset"  class="btn btn-primary" value="초기화" /> 
+			 	<input type="button" class="btn btn-secondary" value="검색" id="btnSearch" /> 
+			 	<input type="reset"  class="btn btn-warning" value="초기화" /> 
 		 	</form>
 		<table class="table text-center">
 			<thead>
@@ -228,9 +228,9 @@ $(function(){
 				<label>품목코드</label>		<button type="button" value="품목선택" id="btnFindItem"><img src="resources/images/Glass.png" width="30px" height="30px"></button>
 											<input class="form-control" name="item_no" id="item_no" > <span id="item_name" name="item_name"></span><br/>
 				<div class="btn-group">
-					<input type="button" class="btn btn-primary" value="등록" id="btnInsert" /> 
+					<input type="button" class="btn btn-success" value="등록" id="btnInsert" /> 
 					<input type="button" class="btn btn-primary" value="수정" id="btnUpdate" /> 
-					<input type="button" class="btn btn-primary" value="초기화" id="btnInit" />
+					<input type="button" class="btn btn-warning" value="초기화" id="btnInit" />
 				</div>
 			</form>
 		</div>

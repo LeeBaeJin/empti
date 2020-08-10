@@ -23,6 +23,7 @@
   <!-- 데이타테이블 CSS 적용 -->
   <link href="resources/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 	
+  
 </head>
 
 <body id="page-top">
