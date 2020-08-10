@@ -17,4 +17,19 @@ public class RoleServiceImpl implements RoleService {
 	public List<RoleVO> getRoleList(RoleVO roleVO) {
 		return roleMapper.getRoleList(roleVO);
 	}
+
+	@Override
+	public List<RoleVO> getEmpRoleList(RoleVO roleVO) {
+		return roleMapper.getEmpRoleList(roleVO);
+	}
+
+	@Override
+	public void setInsertEmpRole(RoleVO roleVO) {
+		roleMapper.setInsertEmpRole(roleVO);
+	}
+
+	@Override
+	public void setDeleteEmpRole(RoleVO roleVO) {
+		roleMapper.setDeleteEmpRole(roleVO);
+	}
 }

@@ -8,4 +8,25 @@
 		FROM role
 		ORDER BY id
 	</select>
+	
+	<select id="getEmpRoleList" resultType="RoleVO">
+		SELECT *
+		FROM emp_role
+		WHERE emp_id = #{emp_id}
+	</select>
+	
+	<insert id="setInsertEmpRole" parameterType="RoleVO">
+		INSERT INTO emp_role (
+			role_id,
+			emp_id
+		) VALUES (
+			#{role_id},
+			#{emp_id}
+		)
+	</insert>
+	
+	<delete id="setDeleteEmpRole" parameterType="RoleVO">
+		DELETE FROM emp_role
+		WHERE emp_id = #{emp_id}
+	</delete>
 </mapper>
