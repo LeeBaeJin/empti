@@ -17,4 +17,9 @@ public class DisposalVO {
 	//Join
 	String item_name;
 	String strg_category;
+	
+	//검색기능
+	String radioCategory;
+	String startDate;
+	String endDate;
 }
