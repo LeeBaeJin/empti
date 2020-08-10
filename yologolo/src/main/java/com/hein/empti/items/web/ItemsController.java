@@ -24,7 +24,6 @@ public class ItemsController {
 	public String setInsertFormItems(ItemsVO vo) {
 
 		return "admin/items/insertItems";
-
 	}
 
 	// 등록 처리
