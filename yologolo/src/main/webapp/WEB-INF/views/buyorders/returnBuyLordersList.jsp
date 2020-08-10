@@ -35,7 +35,7 @@ $(function(){
 					<tr>
 						<th>주문일자</th>
 						<th>반품일자</th>
-						<th>판매합계</th>
+						<th>반품합계</th>
 						<th>주문담당</th>
 						<th>거래처</th>
 						<th style="display: none;"></th>

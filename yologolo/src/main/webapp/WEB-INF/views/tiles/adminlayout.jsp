@@ -268,8 +268,9 @@
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">우리 조원들 빠이팅 합시다 ㅎㅎ</h1>
+            <h1 class="h3 mb-0 text-gray-800">박규림을 찬양하라!!!!!찬양하라!! 찬양하라!!!</h1>
           </div>
+
 
 		<!-- 컨텐츠 영역 -->
 		<tiles:insertAttribute name="content" />

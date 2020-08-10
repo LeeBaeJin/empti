@@ -22,9 +22,7 @@
 			tr.remove();
 		});
 		
-		$('[name:"sorder_date"]').on("load",function(){
-			var date = new Date(year, month, day, hours, minutes);
-		});
+
 		
 	});
 	//담당 사원 사번 표시 기능
@@ -41,11 +39,13 @@
 	function addOrder()  {
 		if ($('[name=item_no]').val() == '') {
 			alert("품목을 선택해주십시오.");
+		} else if($('[name=sorder_qty]').val() == ''){
+			alert("수량을 입력해주십시오.");
 		} else {
 			var od_no1 = $('[name=item_no]').val();
-			var od_no2 = $('[name=item_name]').val();
+			var od_no2 = $('[name=item_name]').text();
 			var od_no3 = $('[name=sorder_qty]').val();
-			var od_no4 = $('[name=price]').val();
+			var od_no4 = $('[name=item_price]').val();
 			console.log(od_no1, od_no2, od_no3, od_no4);
 			var td1 = $('<td />').text(od_no1);
 			var td2 = $('<td />').text(od_no2);
@@ -56,7 +56,7 @@
 				$('[name=item_no]').val('');
 				$('[name=item_name]').val('');
 				$('[name=sorder_qty]').val('');
-				$('[name=price]').val('');
+				$('[name=item_price]').val('');
 			
 			//추가한 상세주문 데이터의 '수량'*'단가'를 합산하여 sale_sum에 출력
 			$.each($('#tblBody tr'), function(idx, item) {
@@ -71,34 +71,11 @@
 	}
 	//시퀀스 조회 후 판매주문 Insert 실행
 	function seq_sorderInsert() {
-		if(saleOrd.sorder_date.value ==""){
-			alert("주문날짜를 선택해주세요.");
-			saleOrd.sorder_date.focus();
-			return;
-		}
 		if(saleOrd.company_no.value == ""){
 			alert("거래처코드를 입력해주세요.");
 			saleOrd.company_no.focus();
 			return;
-		}
-		if(saleOrd.item_no.value ==""){
-			alert("품목을 입력해주세요.");
-			saleOrd.item_no.focus();
-			return;
-		}
-		if(saleOrd.sorder_qty.value == ""){
-			alert("수량을 입력해주세요.");
-			saleOrd.sorder_qty.focus();
-			return;
-		}
-		if(saleOrd.price.value == ""){
-			alert("단가를 입력해주세요.");
-			saleOrd.price.focus();
-			return;
-		}
-		
-		
-		
+		} 
 		$.ajax ({
 			url: "getSaleSeq",
 			contentType : "application/json",
@@ -189,12 +166,12 @@
 				<input name="name" value="${emp_id.name}" class="form-control" style="width: 250px; display: inline;"><br>
 				<br/>
 				
-		품목:		<input name="item_no" id="item_no" class="form-control" style="width: 100px; display: inline;"> <input id="item_name" name="item_name" class="form-control" style="width: 250px; display: inline;">
+		품목:		<input name="item_no" id="item_no" class="form-control" style="width: 100px; display: inline;"><span name="item_name" id="item_name" ></span>
 				<button type="button" value="품목선택" id="btnFindItem" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" width="30px" height="30px"></button><br/>
 				
 		수량: 	<input name="sorder_qty" id="sorder_qty" type="number" class="form-control" style="width: 250px; display: inline;"> <br>
 		
-		단가:	<input name="price" id="price" type="number" class="form-control" style="width: 250px; display: inline;"><br><br>
+		단가:		<input name="item_price" id="item_price" type="number" class="form-control" style="width: 250px; display: inline;"><br><br>
 		
 	<button type="button" onclick="addOrder()" class="btn btn-primary">추가</button>
 	<button type="button" id="resetBtn" class="btn btn-warning">초기화</button><br>

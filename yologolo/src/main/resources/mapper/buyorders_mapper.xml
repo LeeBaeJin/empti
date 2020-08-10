@@ -51,7 +51,7 @@
 		#{border_no},
 		To_date(#{border_date}, 'yyyy-MM-dd hh24:mi'),
 		#{buy_sum},
-		#{status},
+		'수령중',
 		#{company_no},
 		#{emp_id}
 		)

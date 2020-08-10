@@ -6,6 +6,8 @@
 </style>
 
 <script>
+	var sum = 0;
+	var multi = 0;
 	//페이지 로드
 	$(function(){
 		//거래처 검색 버튼
@@ -24,17 +26,18 @@
 			console.log(tr);
 			tr.remove();
 		});
-		document.getElementsByName('border_date').value = new Date().toISOString().slice(0, 16);
 	});
 	//구매상세 테이블 추가 버튼
 	function addOrder()  {
 		if ($('[name=item_no]').val() == '') {
 			alert("품목을 선택해주십시오.");
+		} else if($('[name=border_qty]').val() == ''){
+			alert("수량을 입력해주십시오.");
 		} else {
 			var od_no1 = $('[name=item_no]').val();
-			var od_no2 = $('[name=item_name]').val();
+			var od_no2 = $('[name=item_name]').text();
 			var od_no3 = $('[name=border_qty]').val();
-			var od_no4 = $('[name=price]').val();
+			var od_no4 = $('[name=item_price]').val();
 			console.log(od_no1, od_no2, od_no3);
 			var td1 = $('<td />').text(od_no1);
 			var td2 = $('<td />').text(od_no2);
@@ -45,7 +48,17 @@
 				$('[name=item_no]').val('');
 				$('[name=item_name]').val('');
 				$('[name=border_qty]').val('');
-				$('[name=price]').val(''); 
+				$('[name=item_price]').val(''); 
+			
+			//추가한 상세주문 데이터의 '수량'*'단가'를 합산하여 sale_sum에 출력
+			$.each($('#tblBody tr'), function(idx, item) {
+				var qty = $(item).children().eq(2).text();
+				var price = $(item).children().eq(3).text();
+				multi = parseInt(qty) * parseInt(price);
+				sum = sum + multi;
+			});
+			$('[name=buy_sum]').val(sum);
+			$('[name=item_name]').text(" ")
 		}
 	}
 	function removeOrder()  {
@@ -55,32 +68,11 @@
 	
 	
 	function seq_orderInsert() {
-		if(buyOrd.border_date.value ==""){
-			alert("주문날짜를 선택해주세요.");
-			buyOrd.border_date.focus();
-			return;
-		}
 		if(buyOrd.company_no.value == ""){
 			alert("거래처코드를 입력해주세요.");
 			buyOrd.company_no.focus();
 			return;
 		}
-		if(buyOrd.item_no.value ==""){
-			alert("품목을 입력해주세요.");
-			buyOrd.item_no.focus();
-			return;
-		}
-		if(buyOrd.border_qty.value == ""){
-			alert("수량을 입력해주세요.");
-			buyOrd.border_qty.focus();
-			return;
-		}
-		if(buyOrd.price.value == ""){
-			alert("단가를 입력해주세요.");
-			buyOrd.price.focus();
-			return;
-		}
-	
 		$.ajax ({
 			url: "getBuySeq",
 			contentType : "application/json",
@@ -99,11 +91,13 @@
 		var om_no2 = $('[name=company_no]').val();
 		var om_no3 = $('[name=emp_id]').val();
 		var om_no4 = $('[name=buy_sum]').val();
+		var om_no5 = $('[name=status]').val();
 		console.log(om_no1, om_no2, om_no3, om_no4);
 		var mObj = {'border_date':om_no1,
 				    'company_no':om_no2,
 				    'emp_id':om_no3,
 				    'buy_sum':om_no4,
+				    'status':om_no5,
 				    'border_no': result}
 		
 		//구매상세주문의 데이터
@@ -112,23 +106,30 @@
 		$.each(tr, function(idx , item) {
 			var obj = {};
 			obj['border_no'] = result;
-			obj['item_no'] = $(item).children().eq(2).text(); 
-			obj['border_qty'] = $(item).children().eq(3).text();
+			obj['item_no'] = $(item).children().eq(0).text(); 
+			obj['border_qty'] = $(item).children().eq(2).text();
 			console.log($(item).children().eq(0).text());
 			td.push(obj);
 		})
+		//구매주문의 데이터는 vo객체에, 구매상세주문의 데이터는 List에 담아서 Insert
 		var datas = {vo: mObj, list:td}
-			$.ajax ({
-				url: "setInsertBuyorders",
-				type: "POST",
-				data: JSON.stringify(datas),
-				contentType : "application/json",
-				success: function() {
-				alert("성공적으로 주문하였습니다.");
-			}, error: function() {
-				alert("주문을 실패하였습니다.");
+		var result = confirm("주문하시겠습니까?");
+			if (result) {
+				$.ajax ({
+					url: "setInsertBuyorders",
+					type: "POST",
+					data: JSON.stringify(datas),
+					contentType : "application/json",
+					success: function() {
+					alert("성공적으로 주문하였습니다.");
+					window.location.href="getBuyordersListMap"
+					}, error: function() {
+					alert("주문을 실패하였습니다.");
+					}
+				});
+			}else {
+				return false;
 			}
-		});
 	}
 </script>
 <div>
@@ -150,7 +151,7 @@
 							
 	<label>수량: </label> 	<input type="number" name="border_qty" id="border_qty" class="form-control" style="width: 250px; display: inline;"> <br>
 	
-	<label>단가: </label> 	<input type="number" name="price" id="price" class="form-control" style="width: 250px; display: inline;"> <br><br>
+	<label>단가: </label> 	<input type="number" name="item_price" id="item_price" class="form-control" style="width: 250px; display: inline;"> <br><br>
 	
 	<button type="button" onclick="addOrder()" class="btn btn-primary">추가</button>
 	<button type="button" id="resetBtn" class="btn btn-warning">초기화</button>

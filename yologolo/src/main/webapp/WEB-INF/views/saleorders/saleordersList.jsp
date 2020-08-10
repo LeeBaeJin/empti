@@ -25,7 +25,7 @@
 			selDel.push(obj);
 		});
 		$('#tblHead').on('click', '#delUpdate', function() {
-			var result = confirm("배송상태를 수정하시겠습니까?");
+			var result = confirm("배송상태를 수정하시겠습니까?\n배송완료 시 수정이 불가능합니다.");
 			if (result) {
 				$.ajax ({
 					url: "setUpdateSaleDel",
@@ -47,14 +47,21 @@
 $(function() {
 	var delStatus = $('[name=del_status] option:selected');
 	$.each(delStatus, function(idx, item) {
-		if(item.value == "반품"){
-			$(item).closest('tr').css({
-				color: "red"
-			})
-			$(item).closest('tr').find('.returnTd').empty();
-			$(item).closest('tr').find('.deleteTd').empty();
+		if(item.value == "배송완료"){
+			$(item).parent().attr('disabled', 'true');
 		}
 	});
+	
+	$('.spanReturn').parent().prev().css({
+        color: "red"
+	});
+	$('.spanReturn').css({
+        color: "red"
+	});
+	$('.spanReturn').closest('tr').find('.returnTd').empty();
+	$('.spanReturn').closest('tr').find('.deleteTd').empty();
+	
+	
 });
 
 </script>
@@ -102,13 +109,17 @@ $(function() {
 								<fmt:formatNumber type="number" maxFractionDigits="3" value="${fmt}"/>
 								</td>
 								
-								<td>
+								<td class="returnStatus">
+								<c:if test="${sale.del_status != '반품'}" >
 								<select id="del_status" name="del_status" onchange="selChk(${sale.sorder_no}, this)">
 									<option value="배송준비중" <c:if test="${fn:contains(sale.del_status,'배송준비중')}">selected="selected"</c:if>>배송준비중</option>
 									<option value="배송중" <c:if test="${fn:contains(sale.del_status,'배송중')}">selected="selected"</c:if>>배송중</option>
 									<option value="배송완료" <c:if test="${fn:contains(sale.del_status,'배송완료')}">selected="selected"</c:if>>배송완료</option>
-									<option value="반품" <c:if test="${fn:contains(sale.del_status,'반품')}">selected="selected"</c:if>>반품</option>
 								</select>
+								</c:if>
+								<c:if test="${sale.del_status == '반품'}">
+									<span class="spanReturn">반품</span>
+								</c:if>
 								</td>
 								
 								<td>${sale.name}</td>
@@ -165,6 +176,7 @@ function delSorder(sorderNo) {
 function reSorder(sorder_no) {
 	var result = confirm("반품하시겠습니까?");
 	if (result) {
+		alert("반품하였습니다.");
 		window.location.href = "setInsertSaleordersRetrun?return_no="+sorder_no;
 	} else {
 		return false;

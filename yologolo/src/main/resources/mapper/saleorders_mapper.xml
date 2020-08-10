@@ -64,7 +64,7 @@
 		To_date(#{sorder_date}, 'yyyy-MM-dd
 		hh24:mi:ss'),
 		#{sale_sum},
-		#{del_status},
+		'배송준비중',
 		#{emp_id},
 		#{company_no})
 	</insert>
