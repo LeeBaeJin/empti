@@ -32,7 +32,7 @@
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<image>
 				<reportElement x="-20" y="-20" width="595" height="190" uuid="6d67a7af-e18f-4e4a-8f67-6d070d8aba90"/>
-				<imageExpression><![CDATA["C:\\Users\\hong\\Desktop\\final project\\image\\pdf_image05.jpg"]]></imageExpression>
+				<imageExpression><![CDATA["images/pdf_image05.jpg"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement mode="Opaque" x="267" y="93" width="235" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="3eff04d8-9fe2-4326-96c3-e04f723bba9c">
