@@ -10,4 +10,5 @@ public class MenuVO {
 	String menu_name;
 	String menu_addr;
 	String group_name;
+	String role_id;
 }
