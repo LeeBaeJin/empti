@@ -239,7 +239,7 @@ $(function(){
 	<div class="col-lg-3 col-md-12 ">
 		<div id="storckDiv" class="ml-5">
 			<form id="stocksform" id="frm">
-				<label>입출고번호</label>	<input class="form-control" name="stock_no" id="stock_no" readonly><br/>
+										<input class="form-control" name="stock_no" id="stock_no" type="hidden"><br/>
 				<label>품목코드</label>	<button type="button" value="품목선택" id="btnFindItem" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" width="30px" height="30px"></button>
 										<input class="form-control" name="item_no" id="item_no" type="text"> <span name="item_name" id="item_name" ></span>
 										<br/>

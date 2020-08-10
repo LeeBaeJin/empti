@@ -190,9 +190,9 @@ $(function(){
 			<thead>
 				<tr>
 					<th class="text-center">폐기/불량 번호</th>
-					<th class="text-center">폐기 수량</th>
-					<th class="text-center">단가</th>
-					<th class="text-center">폐기일</th>
+					<th class="text-center">폐기/불량 수량</th>
+					<th class="text-center">처리비용</th>
+					<th class="text-center">날짜</th>
 					<th class="text-center">구분</th>
 					<th class="text-center">창고번호</th>
 					<th class="text-center">품목코드</th>
@@ -210,9 +210,9 @@ $(function(){
 			<h1>폐기불량 입력</h1>
 			<form id="disposalForm">
 				<label>폐기/불량 번호</label>	<input class="form-control" name="disposal_no" id="disposal_no" readonly><br/>
-				<label>폐기 수량</label>		<input class="form-control" name="disposal_qty"  ><br/>
-				<label>단가</label>			<input class="form-control" name="price"  ><br/>
-				<label>폐기일</label>			<input class="form-control" name="disposal_date" type="datetime-local"><br/>
+				<label>폐기/불량 수량</label>		<input class="form-control" name="disposal_qty"  ><br/>
+				<label>처리비용</label>			<input class="form-control" name="price"  ><br/>
+				<label>날짜</label>			<input class="form-control" name="disposal_date" type="datetime-local"><br/>
 				<label>구분</label>			<select class="form-control" name="category">
 														<option value="폐기">폐기</option>
 														<option value="불량">불량</option>

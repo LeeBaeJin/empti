@@ -80,9 +80,10 @@ public class BuyordersController {
 	@RequestMapping("/setInsertFormBuyorders")
 	public String setInsertFormBuyorders(BuyordersVO vo,Model model) {
 		LocalDateTime currentDateTime = LocalDateTime.now(); 
-		String currentTime =currentDateTime.toString().replace("T", " ");
+		String currentTime =currentDateTime.toString().replace(" ", "T");
 		int loc = currentTime.lastIndexOf(":");
 		System.out.println(currentTime.substring(0,loc));
+		
 		model.addAttribute("serverTime", currentTime.substring(0,loc));
 		
 		return "admin/buyorders/insertBuyorders";
