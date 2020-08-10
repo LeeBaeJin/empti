@@ -6,36 +6,29 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
+import org.springframework.stereotype.Component;
 
-public class LoginSuccessHandler implements AuthenticationSuccessHandler {
+import com.hein.empti.emp.EmpVO;
+import com.hein.empti.emp.mapper.EmpMapper;
+
+@Component("loginSuccessHandler")
+public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 	
-	private String emp_id;
-	private String url;
+	@Autowired EmpMapper empMapper;
 	
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
+		super.onAuthenticationSuccess(request, response, authentication);
+		super.setDefaultTargetUrl("/main");
+		EmpVO empVO = new EmpVO();
+		User vo  =  (User) authentication.getPrincipal();
+		empVO.setEmp_id(vo.getUsername());
+		request.getSession().setAttribute("emp_id", empMapper.getEmp(empVO));
 	}
-
-	public String getEmp_id() {
-		return emp_id;
-	}
-
-	public void setEmp_id(String emp_id) {
-		this.emp_id = emp_id;
-	}
-
-	public String getUrl() {
-		return url;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
-	}
-
-
-	
-	
 }

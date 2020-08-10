@@ -5,8 +5,6 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <script>
 function check(){
-	
-	
 	/* 	$.ajax({
 		url:"login",
 		type: "post",
@@ -42,7 +40,6 @@ function check(){
 </head>
 
 <body class="bg-gradient-primary">
-
   <div class="container">
 
     <!-- Outer Row -->
@@ -76,7 +73,6 @@ function check(){
                     <button type="submit" class="btn btn-primary btn-user btn-block">login</button>
                     <hr>
                   </form>
-                  <hr>
                   ${param.error}
 
 				<c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">

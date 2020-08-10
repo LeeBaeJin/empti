@@ -9,7 +9,7 @@ $(function(){
 		stocksInsert(); 
 		stocksUpdate(); 
 		init();
-		fnc_btnfindItem(); 
+		fnc_btnfindItem();
 	});
 	
 		function fnc_btnfindItem(){
@@ -19,6 +19,8 @@ $(function(){
 		});
 	};
 	
+	
+
 	/* 창고번호를 선택했을때 옆에 창고이름이 나오는 '그 자리'를 찾아가는 함수   */
 	var storages_select_value = function(select_obj) {
 	if($("#storages_name").text() == ""){	/* id값이 storage_name인 자리의 text가 공백이면 */
@@ -124,7 +126,6 @@ $(function(){
 		$('select[name="strg_no"]').val(stocks.strg_no).attr("selected", "selected","selected","selected");
 		$('input:text[name="detail_no"]').val(stocks.detail_no);
 		$('input:text[name="note"]').val(stocks.note);
-		
 	}
 	
 	
