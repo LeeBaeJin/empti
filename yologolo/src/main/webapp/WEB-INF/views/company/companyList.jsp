@@ -8,8 +8,6 @@
 		location.href = "getCompany/" + company_no
 	} 
 	
-	
-	
 	//수정폼으로 이동
 	function upFrom(companyNo) {
 		location.href = "setUpdateFormCompany?company_no=" + companyNo
@@ -49,8 +47,7 @@
 					<c:forEach items="${companyList}" var="company">
 						<tr>
 							<%-- <td><a href="#" onclick="compDetail(${company.company_no});" >${company.company_name}</a></td> --%>
-							<td><a href="getCompany/${company.company_no}" onclick="window.open(this.href, '_blank', 'width=1500, height=150, left=200, top=300'); return false;" >${company.company_name}</a></td>
-							
+							<td><a href="getCompany/${company.company_no}" onclick="window.open(this.href, '_blank', 'width=500, height=700, left=650, top=150'); return false;" >${company.company_name}</a></td>							
 							<td>
 							${company.zip_code}<br>
 							${company.address}<br>
