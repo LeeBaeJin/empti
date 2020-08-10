@@ -4,7 +4,7 @@
 	<security:http pattern="/*.do" security="none"/>
 	<security:http pattern="/resources/**" security="none"/>
 	<security:http>
-	
+
 		<!-- 아무나 허용 가능한 URL -->
 		<security:intercept-url	pattern="/loginForm" access="permitAll()" />
 		

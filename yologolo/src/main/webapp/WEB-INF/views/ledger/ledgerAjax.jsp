@@ -16,7 +16,9 @@ $(function(){
 		fnc_findOrderNo();
 		fnc_selectOrderNo();
 		
-		$('[name="raidoStatus"]:eq(0)').click();	//radio 첫번째꺼 자동클릭.
+		$('#searchForm').on('click','#btnSearch',function() {
+			ledgerList() 
+		});
 	});
 	
 	//주문번호 조회
@@ -165,9 +167,7 @@ $(function(){
 	
 
 	// 전체조회요청
-	function ledgerList() { 
-		$('[name="raidoStatus"]:eq(0)').click();
-		$('#searchForm').on('click','#btnSearch',function() {
+	function ledgerList() { 	
 		console.log($("#searchForm").serialize());
 		$.ajax({
 			url:'ledgers',
@@ -179,8 +179,8 @@ $(function(){
 			},
 			success:ledgerListResult
 		});
-	});
-};
+	};
+
 	// 조회 응답 . 리스트 뿌려줌.
 	function ledgerListResult(data) {
 		$("tbody").empty();
@@ -237,12 +237,12 @@ $(function(){
 	<div class="col-lg-9 col-md-12">
 		<h2>장부목록</h2>
 			<form id="searchForm">
-				 <input type="radio"  name="raidoStatus" value="" checked><span> 전체조회</span>
-				 <input type="radio"  name="raidoStatus" value="매입"><span> 매입</span>
-				 <input type="radio"  name="raidoStatus" value="매출" ><span> 매출</span><br>
-				 <input type="date" name="startDt" value="start" data-date-format='yyyy-MM-dd'>  ~  <input type="date" name="endDt" value="end" data-date-format='yyyy-MM-dd'>
+				 <input type="radio"  name="radioStatus" value="" checked><span> 전체조회</span>
+				 <input type="radio"  name="radioStatus" value="매입"><span> 매입</span>
+				 <input type="radio"  name="radioStatus" value="매출" ><span> 매출</span><br>
+				 <input type="date" name="startDate" value="start" data-date-format='yyyy-MM-dd'>  ~  <input type="date" name="endDate" value="end" data-date-format='yyyy-MM-dd'>
 				 <input type="button" class="btn btn-primary" value="검색" id="btnSearch" /> 
-				 
+				 <input type="reset"  class="btn btn-primary" value="초기화" /> 
 		 	</form>
 		<table class="table text-center">
 			<thead>
