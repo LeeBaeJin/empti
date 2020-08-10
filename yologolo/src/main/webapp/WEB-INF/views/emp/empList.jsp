@@ -1,17 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<style>
+a.role {
+ color: white;
+}
+</style>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <script type="text/javascript">
-$(function() {
 	//권한부여 새창
-	$('.role').on('click', function() {
-		window.open('getRoleList',
-				'roleList',
-				'width=1700, height=600, left=150, top=100, location=no, status=no, scrollbars=yes');
-	return false;
-		});	
-});
+	function openRole(empId) {
+		window.open('getRoleList', 'roleList',
+		'width=1700, height=600, left=150, top=100, location=no, status=no, scrollbars=yes');
+		
+		return false;
+	}
 </script>
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
@@ -45,7 +48,7 @@ $(function() {
 							<td>${emp.position}</td>
 							<td>${emp.dept_name}</td>
 							<td>${emp.manager}</td>
-							<td><button class="btn btn-info role" onclick="roleCheck">권한부여</button>
+							<td><a class="btn btn-info role" onclick="openRole(${emp.emp_id});">권한부여</a></td>
 						</tr>
 					</c:forEach>
 				</tbody>
