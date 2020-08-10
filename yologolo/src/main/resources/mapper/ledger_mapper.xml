@@ -13,15 +13,18 @@
 		SELECT *
 		FROM ledger
 	<where>
-	<if test="status !=null and status !='' ">	
-		status = #{status}
+	<if test="radioStatus !=null and radioStatus !='' ">	
+		status = #{radioStatus}
 	</if>
-	<if test="ldgr_date !=null">	
+	<if test="startDate !=null and startDate != '' ">	
 		<![CDATA[
-		    ldgr_date >=to_date(#{startDt}, 'YYYY-MM-DD' ) AND 
-			ldgr_date < to_date(#{endDt}, 'YYYY-MM-DD')
+		  AND   trunc(ldgr_date) >= to_date(#{startDate}, 'YYYY-MM-DD' )
 			]]>
-
+	</if>
+		<if test="endDate !=null and endDate != '' ">	
+		<![CDATA[
+		  AND	trunc(ldgr_date) <= to_date(#{endDate}, 'YYYY-MM-DD')
+			]]>
 	</if>
 	</where>
 		ORDER BY ldgr_no

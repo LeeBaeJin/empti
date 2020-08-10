@@ -5,9 +5,25 @@
 <mapper namespace="com.hein.empti.stocks.mapper.StocksMapper">
 
 	<!-- 전체조회 -->
-	<select id="getStocksList" resultType="StocksVO">
+	<select id="getStocksList" parameterType="StocksVO" resultType="StocksVO">
 		SELECT *
 		FROM stocks
+	
+	<where>
+	<if test="selectCategory !=null and selectCategory !='' ">	
+		stock_category = #{selectCategory}
+	</if>
+	<if test="startDate !=null and startDate != '' ">	
+		<![CDATA[
+		  AND   trunc(stock_date) >= to_date(#{startDate}, 'YYYY-MM-DD' )
+			]]>
+	</if>
+		<if test="endDate !=null and endDate != '' ">	
+		<![CDATA[
+		  AND	trunc(stock_date) <= to_date(#{endDate}, 'YYYY-MM-DD')
+			]]>
+	</if>
+	</where>	
 		ORDER BY stock_no
 	</select>
 

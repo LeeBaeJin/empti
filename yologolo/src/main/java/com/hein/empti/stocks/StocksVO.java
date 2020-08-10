@@ -18,4 +18,8 @@ public class StocksVO {
 		String	item_name;
 		String	strg_no;
 
+		//검색
+		String selectCategory;
+		String startDate;
+		String endDate;
 }

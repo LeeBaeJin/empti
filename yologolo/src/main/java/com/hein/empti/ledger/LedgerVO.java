@@ -17,4 +17,8 @@ public class LedgerVO {
 	
 	//건수(count)
 	String count;
+	
+	String radioStatus;
+	String startDate;
+	String endDate;
 }
