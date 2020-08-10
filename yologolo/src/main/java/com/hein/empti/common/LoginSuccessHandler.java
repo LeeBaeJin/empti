@@ -24,8 +24,8 @@ public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
-		super.onAuthenticationSuccess(request, response, authentication);
 		super.setDefaultTargetUrl("/main");
+		super.onAuthenticationSuccess(request, response, authentication);
 		EmpVO empVO = new EmpVO();
 		User vo  =  (User) authentication.getPrincipal();
 		empVO.setEmp_id(vo.getUsername());
