@@ -1,5 +1,6 @@
 package com.hein.empti.saleorders.web;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -79,6 +80,11 @@ public class SaleordersController {
 	// 판매주문 등록폼
 	@RequestMapping("/setInsertFormSaleorders")
 	public String setInsertFormSaleorders(SaleordersVO vo, Model model, EmpVO empVO) {
+		LocalDateTime currentDateTime = LocalDateTime.now(); 
+		String currentTime =currentDateTime.toString().replace(" ", "T");
+		int loc = currentTime.lastIndexOf(":");
+		System.out.println(currentTime.substring(0,loc));
+		model.addAttribute("serverTime", currentTime.substring(0,loc));
 		model.addAttribute("emps", empService.getEmpList(empVO));
 		return "admin/saleorders/insertSaleorders";
 	}

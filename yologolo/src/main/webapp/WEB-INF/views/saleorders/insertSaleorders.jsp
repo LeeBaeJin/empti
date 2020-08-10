@@ -21,6 +21,11 @@
 			var tr = $("#tblBody").children();
 			tr.remove();
 		});
+		
+		$('[name:"sorder_date"]').on("load",function(){
+			var date = new Date(year, month, day, hours, minutes);
+		});
+		
 	});
 	//담당 사원 사번 표시 기능
 	var emp_select_value = function(select_obj) {
@@ -152,17 +157,15 @@
 		}
 	}
 	
+
 	
-	$('[name:"sorder_date"]').function(){
-		var date = new Date(year, month, day, hours, minutes);
-			
-	}
+	
 	
 </script>
 <div>
 	<h1 class="display-4 text-dark">판매주문 입력</h1>
 	<form action="setInsertSaleorders" id="saleOrd">
-		주문일자: 	<input type="datetime-local" name="sorder_date" id="sorder_date" class="form-control" style="width: 300px; display: inline;"><br/>
+		주문일자: 	<input value="${serverTime}" type="datetime-local" name="sorder_date" id="sorder_date" class="form-control" style="width: 300px; display: inline;"><br/>
 		
 		거래처코드: <input name="company_no" id="company_no" class="form-control" style="width: 250px; display: inline;"> <span id="company_name"></span>
 			    <button type="button" value="거래처선택" id="btnFindCompany" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" width="30px" height="30px"></button><br/>
@@ -182,8 +185,8 @@
 					</c:forEach>
 				</select>
 				<span id="emp_name"></span> --%>
-				<input name="emp_id" value="${login.emp_id}" class="form-control" style="width: 250px; display: inline;"> 
-				<input name="name" value="${login.name}" class="form-control" style="width: 250px; display: inline;"><br>
+				<input name="emp_id" value="${emp_id.emp_id}" class="form-control" style="width: 250px; display: inline;"> 
+				<input name="name" value="${emp_id.name}" class="form-control" style="width: 250px; display: inline;"><br>
 				<br/>
 				
 		품목:		<input name="item_no" id="item_no" class="form-control" style="width: 100px; display: inline;"> <input id="item_name" name="item_name" class="form-control" style="width: 250px; display: inline;">
