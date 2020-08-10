@@ -12,8 +12,7 @@
 		<security:intercept-url pattern="/**" access="isAuthenticated()" />
 		
 		
-		<security:form-login
-							 login-page="/loginForm" 
+		<security:form-login login-page="/loginForm" 
 							 login-processing-url="/login"
 							 username-parameter="emp_id" 
 							 password-parameter="pwd"
@@ -41,4 +40,12 @@
 	<context:component-scan base-package="com.hein.empti" />
 	<!--<task:scheduler id="jobScheduler" pool-size="10" /> <task:annotation-driven 
 		scheduler="jobScheduler" /> -->
+	
+	<!-- Interceptors -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" /> 
+            <bean class="com.hein.empti.common.RoleInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
 </beans>
