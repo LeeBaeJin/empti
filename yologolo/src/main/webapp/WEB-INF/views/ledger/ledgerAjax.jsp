@@ -235,7 +235,8 @@ $(function(){
 <div class="row">
 	<!-- 목록 시작 -->
 	<div class="col-lg-9 col-md-12">
-		<h2>장부목록</h2>
+		<h2 style="text-align:center">장부 목록</h2>
+		<hr class="sidebar-divider d-none d-md-block">
 			<form id="searchForm">
 				 <input type="radio"  name="radioStatus" value="" checked><span> 전체조회</span>
 				 <input type="radio"  name="radioStatus" value="매입"><span> 매입</span>
@@ -266,6 +267,8 @@ $(function(){
 	<!-- 등록수정 폼 시작 -->
 	<div class="col-lg-3 col-md-12 ">
 		<div id="ledgerDiv" class="ml-5">
+			<h2 style="text-align:center">장부 등록</h2>
+			<hr class="sidebar-divider d-none d-md-block">
 			<form id="ledgerForm">  
 				<label>장부번호</label>	<input class="form-control" name="ldgr_no" id="ldgr_no" readonly><br> 
 				<label>날짜</label> 		<input class="form-control" name="ldgr_date" id="ldgr_date" type="datetime-local"> <br> 

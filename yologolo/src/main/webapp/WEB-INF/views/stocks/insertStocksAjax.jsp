@@ -203,7 +203,8 @@ $(function(){
 	<!-- 목록 시작 -->
 <div class="row">
 	<div class="col-lg-9 col-md-12">
-			<h2>입출고목록</h2>
+			<h2 style="text-align:center">입출고 목록</h2>
+			<hr class="sidebar-divider d-none d-md-block">
 				<form id="searchForm">
 					<label>거래유형</label>	<select name="selectCategory">
 											  <option value="" selected>전체</option>
@@ -239,6 +240,8 @@ $(function(){
 	<!-- 등록폼 시작 -->
 	<div class="col-lg-3 col-md-12 ">
 		<div id="storckDiv" class="ml-5">
+			<h2 style="text-align:center">입출고 입력</h2>
+			<hr class="sidebar-divider d-none d-md-block">
 			<form id="stocksform">
 										<input class="form-control" name="stock_no" id="stock_no" type="hidden"><br/>
 				<label>품목코드</label>	<button type="button" value="품목선택" id="btnFindItem" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" width="30px" height="30px"></button>

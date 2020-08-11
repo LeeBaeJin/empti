@@ -39,7 +39,8 @@ function check() {
 </script>    
     
 <div align="center" >
-	<h2 class="display-4 text-dark"  style=font-size:35px;>부서등록</h2><br/>
+	<h2 class="display-4 text-dark"  style=font-size:35px;>부서등록</h2>
+	<hr class="sidebar-divider d-none d-md-block">
 	<form class="form form-group" action="setInsertDept" id="frm" >
 			 <div class="col-sm-2" align="left" >
 			<label>부서번호 </label>	 <input name="dept_id" id="dept_id"  class="form-control"> <br/>

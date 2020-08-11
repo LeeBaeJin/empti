@@ -177,7 +177,8 @@ $(function(){
 <div class="row">
 	<!-- 목록 시작 -->
 	<div class="col-lg-7 col-md-12">
-		<h2>폐기/불량 목록</h2>
+		<h2 style="text-align:center">폐기/불량 목록</h2>
+		<hr class="sidebar-divider d-none d-md-block">
 			<form id="searchForm">
 		 		<input type="radio"  name="radioCategory" value="" checked><span> 전체조회</span>
 			 	<input type="radio"  name="radioCategory" value="폐기"><span> 폐기</span>
@@ -207,7 +208,8 @@ $(function(){
 	<!-- 등록수정 폼 시작 -->
 	<div class="col-lg-5 col-md-12">
 		<div id="disposalDiv" class="ml-5">
-			<h1>폐기불량 입력</h1>
+			<h2 style="text-align:center">폐기/불량 입력</h2>
+			<hr class="sidebar-divider d-none d-md-block">
 			<form id="disposalForm">
 				<label>폐기/불량 번호</label>	<input class="form-control" name="disposal_no" id="disposal_no" readonly><br/>
 				<label>폐기/불량 수량</label>		<input class="form-control" name="disposal_qty"  ><br/>
