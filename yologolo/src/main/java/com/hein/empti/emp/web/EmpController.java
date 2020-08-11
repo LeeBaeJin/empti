@@ -105,7 +105,7 @@ public class EmpController {
 	public String setUpdateFormEmp(EmpVO empVO, Model model, DeptVO deptVO,HttpSession session) {
 
 		//Object login = session.getAttribute("login");
-		EmpVO login =(EmpVO) session.getAttribute("emp_id");
+		EmpVO login =(EmpVO) session.getAttribute("login");
 		empVO.setEmp_id(login.getEmp_id());
 		empVO = empService.getEmp(empVO);
 		model.addAttribute("empUp", empService.getEmp(empVO));
@@ -115,7 +115,7 @@ public class EmpController {
 	
 	//수정처리
 	@RequestMapping("/setUpdateEmp")
-	public String setUpdateEmp(EmpVO empVO, Model model) throws IOException {
+	public String setUpdateEmp(EmpVO empVO, Model model, HttpSession session) throws IOException {
 		MultipartFile file = empVO.getUploadFile();
 		String filename = file.getOriginalFilename();
 		if (file != null && file.getSize() > 0) {
@@ -123,13 +123,9 @@ public class EmpController {
 			filename = upFile.getName();
 			file.transferTo(upFile);
 			empVO.setProfile(filename);
-			empService.setUpdateEmp(empVO);
-			}
-			
-		else {
-			empService.setUpdateEmp(empVO);
-			
 		}
+		empService.setUpdateEmp(empVO);
+		session.setAttribute("login", empService.getEmp(empVO));
 		return "redirect:main";
 	}
 	

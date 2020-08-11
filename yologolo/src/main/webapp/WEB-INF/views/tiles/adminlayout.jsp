@@ -194,18 +194,18 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">${emp_id.name}님&nbsp;</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">${login.name}님&nbsp;</span>
                 <!-- 프로필 사진 -->
-                <c:if test="${not empty emp_id.profile}">
-                <img class="img-profile rounded-circle" src="download?name=${emp_id.profile}">
+                <c:if test="${not empty login.profile}">
+                <img class="img-profile rounded-circle" src="download?name=${login.profile}">
               	</c:if>
-              	<c:if test="${empty emp_id.profile}">
+              	<c:if test="${empty login.profile}">
                 <img class="img-profile rounded-circle" src="resources/images/profile.jpg">
               	</c:if>
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a href="mySetUpdateFormEmp?emp_id=${emp_id.emp_id}">
+                <a href="mySetUpdateFormEmp?emp_id=${login.emp_id}">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>
