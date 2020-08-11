@@ -21,10 +21,10 @@ var emp_select_value = function(select_obj) {
 <div >
 	<h2 class="display-4 text-dark"  style=font-size:30px>부서 수정</h2>
 	<form action="setUpdateDept" class="from-group">
-		<label>부서번호</label>	 <input name="dept_id" value="${deptUp.dept_id}" readonly> <br/>
-		<label>부서이름</label>	 <input name="dept_name" value="${deptUp.dept_name}"> <br/>
+		<label>부서번호</label>	 <input name="dept_id" value="${deptUp.dept_id}" class="form-control"  readonly> <br/>
+		<label>부서이름</label>	 <input name="dept_name" value="${deptUp.dept_name}" class="form-control" > <br/>
 		<label>매니저</label>	 	<%-- <input name="emp_id" value="${deptUp.name}"> <br/> --%>
-								<select name="emp_id" onchange="emp_select_value(this);">
+								<select name="emp_id" onchange="emp_select_value(this);" class="form-control" >
 									<option value="${deptUp.emp_id}" selected> ${deptUp.name}</option>
 									<option >--------------</option>
 									<c:forEach items="${empList}" var="emp">

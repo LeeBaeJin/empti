@@ -38,7 +38,7 @@ function deptDelete(dept_id) {
 							<td>${dept.dept_id}</td>
 							<td><a href="setUpdateFormDept?dept_id=${dept.dept_id}">${dept.dept_name}</a></td>
 							<td>${dept.name}</td>
-							<td><a href="#" onclick="deptDelete(${dept.dept_id})">삭제</a></td>
+							<td><a href="#" onclick="deptDelete(${dept.dept_id})" class="btn btn-danger">삭제</a></td>
 						</tr>
 						
 					</c:forEach>
