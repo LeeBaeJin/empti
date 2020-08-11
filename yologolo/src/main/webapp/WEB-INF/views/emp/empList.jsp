@@ -21,7 +21,9 @@ a.role {
 		<h6 class="m-0 font-weight-bold text-primary">
 		<a href="getEmpList">사원 목록</a> | 
 		<a href="setInsertFormEmp">사원 등록</a> |
-		<a href="employees_list.do">PDF</a> |
+		<a href= "employees_list.do" onclick="window.open(this.href, 'width=800', 'height=1200', 'toolbars=no', 'scrollbars=yes'); return false">PDF</a> |
+		
+<!-- 		<a href="employees_list.do">PDF</a> | -->
 		<a href="emp_excel.do">EXCEL</a> 
 		</h6>
 	</div>

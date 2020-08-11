@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hein.empti.saleorders.mapper.SaleordersMapper">
+<mapper
+	namespace="com.hein.empti.saleorders.mapper.SaleordersMapper">
 	<!-- 판매주문단건조회 -->
 	<select id="getSaleorders" parameterType="SaleordersVO"
 		resultType="SaleordersVO">
@@ -12,19 +13,21 @@
 	<!-- 판매주문전체조회 list -->
 	<select id="getSaleordersList" resultType="SaleordersVO">
 		SELECT *
-		FROM saleorders
+		FROM
+		saleorders
 		ORDER BY sorder_no
 	</select>
 
-  	<!-- 판매주문 전체조회 Map(Excel) -->
-	<select id="getSaleOrdersExcelMap" resultType="map" parameterType="SaleordersVO">
-		select* from
-		sorderexcel_view
-		order by 판매번호
+	<!-- 판매주문 전체조회 Map(Excel) -->
+	<select id="getSaleOrdersExcelMap" resultType="map"
+		parameterType="SaleordersVO">
+		select*from saleorderlist_view
+		order by 판매일자
 	</select>
 
 	<!-- 판매주문전체조회 Map -->
-	<select id="getSaleordersListMap" parameterType="SaleordersVO" resultType="map">
+	<select id="getSaleordersListMap" parameterType="SaleordersVO"
+		resultType="map">
 		SELECT s.sorder_no "sorder_no",
 		TO_CHAR(s.sorder_date,
 		'yyyy-MM-dd hh24:mi') "sorder_date",
@@ -34,12 +37,14 @@
 		c.company_name "company_name",
 		s.return_no "return_no"
 		FROM employees e
-		JOIN saleorders s ON (e.emp_id = s.emp_id)
+		JOIN saleorders s ON (e.emp_id
+		= s.emp_id)
 		JOIN companies c ON (s.company_no = c.company_no)
-		ORDER BY 2 DESC
+		ORDER BY 2
+		DESC
 	</select>
-	
-	
+
+
 
 	<!-- 판매주문 시퀀스조회 -->
 	<select id="getSaleSeq" resultType="String">
@@ -71,39 +76,47 @@
 
 	<!-- 판매주문 배송상태 수정 -->
 	<update id="setUpdateSaleDel" parameterType="java.util.List">
-		<foreach collection="list" item="item" separator=";" open="DECLARE BEGIN" close="; END;">
+		<foreach collection="list" item="item" separator=";"
+			open="DECLARE BEGIN" close="; END;">
 			UPDATE saleorders
 			SET del_status =
 			#{item.del_status}
 			WHERE sorder_no = #{item.sorder_no}
 		</foreach>
 	</update>
-	
+
 	<!-- 반품 조회 -->
-	<select id="getReturnSaleordersList" parameterType="SaleordersVO" resultType="SaleordersVO">
-		SELECT s.sorder_date "sorder_date", s.return_date "return_date", s.sale_sum "sale_sum", 
-				e.name "name", c.company_name "company_name"
-		FROM saleorders s JOIN employees e 	ON (s.emp_id = e.emp_id)
-		JOIN companies c 					ON (s.company_no = c.company_no)
+	<select id="getReturnSaleordersList"
+		parameterType="SaleordersVO" resultType="SaleordersVO">
+		SELECT s.sorder_date "sorder_date", s.return_date "return_date",
+		s.sale_sum "sale_sum",
+		e.name "name", c.company_name "company_name"
+		FROM saleorders s JOIN employees
+		e ON (s.emp_id = e.emp_id)
+		JOIN companies c ON (s.company_no =
+		c.company_no)
 		<![CDATA[WHERE sale_sum < 0 ]]>
 		ORDER by s.sorder_no
 	</select>
-	
+
 	<!-- 반품 입력 및 원래 주문 배송상태 수정 -->
 	<insert id="setInsertSaleordersRetrun" statementType="CALLABLE">
-		{call return_saleorder(
+		{call
+		return_saleorder(
 		#{sorder_no, mode=OUT, jdbcType=VARCHAR},
 		#{sorder_date, mode=OUT, jdbcType=VARCHAR},
-		#{sale_sum, mode=OUT, jdbcType=VARCHAR},
+		#{sale_sum, mode=OUT,
+		jdbcType=VARCHAR},
 		#{emp_id, mode=OUT, jdbcType=VARCHAR},
-		#{company_no, mode=OUT, jdbcType=VARCHAR},
+		#{company_no,
+		mode=OUT, jdbcType=VARCHAR},
 		#{return_no}
 		) }
 	</insert>
-	
+
 	<!-- 판매주문삭제 -->
-	<delete id="setDeleteSaleorders" parameterType="SaleordersVO"> 
-		DELETE FROM saleorders 
-		WHERE sorder_no = #{sorder_no} 
-	</delete> 
+	<delete id="setDeleteSaleorders" parameterType="SaleordersVO">
+		DELETE FROM saleorders
+		WHERE sorder_no = #{sorder_no}
+	</delete>
 </mapper>
