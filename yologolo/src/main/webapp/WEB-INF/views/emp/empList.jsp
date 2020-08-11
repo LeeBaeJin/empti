@@ -10,7 +10,7 @@ a.role {
 <script type="text/javascript">
 	//권한부여 새창
 	function openRole(empId) {
-		window.open('getRoleList', 'roleList',
+		window.open('getRoleList?emp_id='+empId, 'roleList',
 		'width=1700, height=600, left=150, top=100, location=no, status=no, scrollbars=yes');
 		
 		return false;

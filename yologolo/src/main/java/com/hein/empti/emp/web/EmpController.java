@@ -100,11 +100,12 @@ public class EmpController {
 		return "admin/emp/updateEmp";
 	}
 	
+	//session login 수정 폼
 	@RequestMapping("/mySetUpdateFormEmp")
 	public String setUpdateFormEmp(EmpVO empVO, Model model, DeptVO deptVO,HttpSession session) {
 
 		//Object login = session.getAttribute("login");
-		EmpVO login =(EmpVO) session.getAttribute("login");
+		EmpVO login =(EmpVO) session.getAttribute("emp_id");
 		empVO.setEmp_id(login.getEmp_id());
 		empVO = empService.getEmp(empVO);
 		model.addAttribute("empUp", empService.getEmp(empVO));
@@ -121,10 +122,15 @@ public class EmpController {
 			File upFile = FileRenamePolicy.rename(new File("D:/upload",filename));
 			filename = upFile.getName();
 			file.transferTo(upFile);
+			empVO.setProfile(filename);
+			empService.setUpdateEmp(empVO);
 			}
-		empVO.setProfile(filename);
-		empService.setUpdateEmp(empVO);
-		return "redirect:getEmpList";
+			
+		else {
+			empService.setUpdateEmp(empVO);
+			
+		}
+		return "redirect:main";
 	}
 	
 	//삭제처리
