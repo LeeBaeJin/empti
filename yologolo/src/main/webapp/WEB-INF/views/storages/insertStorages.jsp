@@ -25,16 +25,22 @@
 
 	}
 </script>
-		<h2 class="display-4 text-dark"  style=font-size:30px>창고 입력</h2>
+<div align="center">
+		<h2 class="display-4 text-dark"  style=font-size:35px>창고 입력</h2><br/>
 			<form action="setInsertStorages" id="frm" class="from-group">
-				<label>창고번호</label>	<input name="strg_no" id="strg_no"><br/>
-				<label>창고유형</label>	<input name="strg_category" id="strg_category"><br/>
+				<div class="col-sm-2" align="left" >
+				<label>창고번호</label>	<input name="strg_no" id="strg_no" class="form-control"><br/>
+				<label>창고유형</label>	<input name="strg_category" id="strg_category" class="form-control"><br/>
 				<label>담당사원</label>	
-						<select name="emp_id" id="emp_id">
-							<option value="" selected>==사원 선택==</option>
+						<select name="emp_id" id="emp_id" class="form-control">
+							<option value="" selected>=======사원 선택========</option>
 							<c:forEach items="${emps}" var="emps"> 
 							<option value="${emps.emp_id}">${emps.name}</option>
 							</c:forEach>
 						</select><br/>
-			<button class="btn btn-success" type="submit" onclick="check()">등록</button>
+			<div align="center">
+				<button class="btn btn-success" type="submit" onclick="check()">등록</button>
+			</div>
+		</div>
 			</form>
+</div>

@@ -34,20 +34,25 @@
 	}
 
 </script>
-
-	<h2 class="display-4 text-dark"  style=font-size:30px;>품목 등록</h2>
+<div align="center" >
+	<h2 class="display-4 text-dark"  style=font-size:35px;>품목 등록</h2><br/>
 	<form action="setInsertItems" name="frm" class="from-group">
-		<label>품목코드</label>	<input name="item_no" id="item_no"><br/>
-		<label>품목명</label>		<input name="item_name" id="item_name"><br/>
-		<label>유형</label>		<select name="category" id="category">
+	<div class="col-sm-2" align="left" >
+		<label>품목코드</label>	<input name="item_no" id="item_no" class="form-control"><br/>
+		<label>품목명</label>		<input name="item_name" id="item_name" class="form-control"><br/>
+		<label>유형</label>		<select name="category" id="category" class="form-control"><br/>
 								  <option value="원자재" selected>원자재</option>
 								  <option value="가공품">가공품</option>
 								  <option value="장비">장비</option>
 								  <option value="소비품">소비품</option>
 								</select>
 								<br/>
-		<label>단위</label>		<input name="unit" id="unit"><br/>
-		<label>유통기한</label>	<input name="exp_date" id="exp_date"><br/>
-		<label>단가</label>	<input name="item_price" id="item_price"><br/>
-	<button class="btn btn-success" type="submit" onclick="validCheck()">등록</button>
+		<label>단위</label>		<input name="unit" id="unit" class="form-control"><br/>
+		<label>유통기한</label>	<input name="exp_date" id="exp_date" class="form-control"><br/>
+		<label>단가</label>	<input name="item_price" id="item_price" class="form-control"><br/>
+	<div align="center">
+		<button class="btn btn-success" type="submit" onclick="validCheck()">등록</button>
+	</div><br/>
+	</div>
 	</form>
+</div>
