@@ -181,7 +181,7 @@ $(function(){
 			<form id="searchForm">
 		 		<input type="radio"  name="radioCategory" value="" checked><span> 전체조회</span>
 			 	<input type="radio"  name="radioCategory" value="폐기"><span> 폐기</span>
-			 	<input type="radio"  name="radioCategory" value="불량"><span> 불량</span>
+			 	<input type="radio"  name="radioCategory" value="불량"><span> 불량</span><br>
 			 	<input type="date" name="startDate" value="start" data-date-format='yyyy-MM-dd'>  ~  <input type="date" name="endDate" value="end" data-date-format='yyyy-MM-dd'>
 			 	<input type="button" class="btn btn-secondary" value="검색" id="btnSearch" /> 
 			 	<input type="reset"  class="btn btn-warning" value="초기화" /> 
