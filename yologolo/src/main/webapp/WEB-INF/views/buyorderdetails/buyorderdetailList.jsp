@@ -52,9 +52,9 @@
 			</tr>
 			</c:forEach>
 		</tbody>
-	</table><br/><br/><br/><br/>
+	</table><br/>
 	<div class="form-inline form-group">
-    	<label for="total" style="font-size: 20px; font-weight: normal;" >합계:</label> &nbsp;&nbsp;&nbsp;&nbsp;
+    	&nbsp;&nbsp;<label for="total" style="font-size: 20px; font-weight: normal;" >합계:</label> &nbsp;&nbsp;&nbsp;&nbsp;
     		
     			<input type="text" class="form-control" id="total" style="font-size: 13px;"  readonly="readonly">
     			<label for="total" style="font-size: 20px; font-weight: normal;" >원</label>

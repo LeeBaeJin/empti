@@ -65,7 +65,8 @@ function execPostCode() {
 </script>
 <div class="col-sm-12 my-auto">
 	<h2 class="display-4 text-dark"  style=font-size:30px;>거래처등록</h2>
-	<form id="cpFrm" action="setInsertCompany" class="from-group">
+	<hr class="sidebar-divider d-none d-md-block" width="43%" align="left"> 
+		<form id="cpFrm" action="setInsertCompany" class="from-group">
 		<label>회사코드</label>	 <input class="form-control" name="company_no" style="width: 250px; display: inline;"> <br/>
 		<label>회사명</label> 	<input class="form-control"name="company_name" style="width: 250px; display: inline;"> <br/>
 		<label>대표 전화번호</label> <input class="form-control" name="phone" style="width: 250px; display: inline;"> <br/>
