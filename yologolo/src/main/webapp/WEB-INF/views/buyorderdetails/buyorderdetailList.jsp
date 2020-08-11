@@ -55,10 +55,10 @@
 	</table><br/><br/><br/><br/>
 	<div class="form-inline form-group">
     	<label for="total" style="font-size: 20px; font-weight: normal;" >합계:</label> &nbsp;&nbsp;&nbsp;&nbsp;
-    		<!-- <div class="col-sm-10"> -->
+    		
     			<input type="text" class="form-control" id="total" style="font-size: 13px;"  readonly="readonly">
     			<label for="total" style="font-size: 20px; font-weight: normal;" >원</label>
-    		<!-- </div> -->
+    		
     </div>
 
 </body>

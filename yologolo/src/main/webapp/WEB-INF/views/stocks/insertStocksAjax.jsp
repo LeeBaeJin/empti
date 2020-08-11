@@ -137,7 +137,7 @@ $(function(){
 	function stocksUpdate() {
 		//수정 버튼 클릭
 		$('#stocksform').on('click', '#btnUpdate', function(){
-			var stocksNo = $('#storckDiv').find('#stock_no').val();
+			var stocksNo = $('#stocksform').find('#stock_no').val();
 			var itemNo = $('[name="item_no"]').val();
 			var stockCategory = $('[name="stock_category"]').val();
 			var stockQty = $('[name="stock_qty"]').val();
@@ -239,7 +239,7 @@ $(function(){
 	<!-- 등록폼 시작 -->
 	<div class="col-lg-3 col-md-12 ">
 		<div id="storckDiv" class="ml-5">
-			<form id="stocksform" id="frm">
+			<form id="stocksform">
 										<input class="form-control" name="stock_no" id="stock_no" type="hidden"><br/>
 				<label>품목코드</label>	<button type="button" value="품목선택" id="btnFindItem" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" width="30px" height="30px"></button>
 										<input class="form-control" name="item_no" id="item_no" type="text"> <span name="item_name" id="item_name" ></span>

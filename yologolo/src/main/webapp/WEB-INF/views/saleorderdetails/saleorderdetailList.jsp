@@ -4,9 +4,11 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <html>
-<head>
+
 <script>
 	//페이지 로드
 	//수량*단가 합산 기능
@@ -28,9 +30,11 @@
 	    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	}
 </script>
-</head>
+<div class="alert alert-primary" role="alert" style="text-align:center; font-size:2.5em" >
+  주문 합계
+</div>
 <body>
-	<table class="table">
+	<table class="table table-hover">
 		<thead class="thead-dark">
 			<tr>
 				<th scope="col">#</th>
@@ -49,12 +53,13 @@
 			</tr>
 			</c:forEach>
 		</tbody>
-	</table>
+	</table><br/><br/><br/><br/>
 	<div class="form-inline form-group" >
-    	<label for="total" class="col-sm-2 control-label">합계:</label>
-    		<div class="col-sm-10">
-    			<input type="text" class="form-control" id="total" readonly="readonly">원
-    		</div>
+    	<label for="total" style="font-size: 20px; font-weight: normal;" >합계:</label> &nbsp;&nbsp;&nbsp;&nbsp;
+    		
+    			<input type="text" class="form-control" id="total" style="font-size: 13px;"  readonly="readonly">
+    			<label for="total" style="font-size: 20px; font-weight: normal;" >원</label>
+    	
     </div>
 </body>
 </html>
