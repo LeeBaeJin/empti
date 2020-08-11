@@ -150,7 +150,7 @@ public class SaleordersController {
 		mv.setViewName("commonExcelView");
 		mv.addObject("datas", saleordersService.getSaleOrdersExcelMap(vo));// Map객체를 조회해서 시트를 생성한다.
 		mv.addObject("filename", "saleorderlist");// 파일이름을 바꿔준다.
-		mv.addObject("headers", new String[] { "판매번호", "판매일자", "품목", "수량", "단가", "판매합계", "거래처", "담당자" }); // 헤더의 값만
+		mv.addObject("headers", new String[] {"판매일자", "거래처명", "품목명", "판매단가", "주문수량", "담당직원", "상태" }); // 헤더의 값만
 																											// 출력된다.
 		return mv; // 판매번호, 판매일자, 품목, 수량, 단가, 판매합계, 거래처, 담당자
 	}
