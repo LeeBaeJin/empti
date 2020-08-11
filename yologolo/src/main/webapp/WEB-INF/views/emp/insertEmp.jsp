@@ -180,7 +180,7 @@ function check() {
 <div class="col-sm-12 my-auto">
 	<h2 class="display-4 text-dark"  style=font-size:30px;>사원등록</h2>
 	<form action="setInsertEmp" id="frm" method="post" enctype="multipart/form-data" class="from-group">
-		<label>사원아이디</label>	<input name="emp_id" id="emp_id" class="form-control" style="width: 250px; display: inline;"> <br/>
+		<label>사원아이디</label>	<input name="emp_id" id="emp_id" class="form-control" value="${empId.emp_id}" style="width: 250px; display: inline;"> <br/>
 		<label>이름</label>		<input name="name" id="name"class="form-control" style="width: 250px; display: inline;"> <br/>
 		<label>패스워드</label>	<input type="password" name="pwd" id="pwd" class="form-control pw" style="width: 250px; display: inline;"> <br/>
 		<label>패스워드 확인</label>	<input type="password" name="pwd2" id="pwd2" class="form-control pw" style="width: 250px; display: inline;"> <br/>

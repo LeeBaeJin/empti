@@ -63,6 +63,7 @@ public class EmpController {
 	//등록폼
 	@RequestMapping("/setInsertFormEmp")
 	public String setInsertFormEmp(EmpVO empVO, Model model, DeptVO deptVO) {
+		model.addAttribute("empId", empService.empIdMax(empVO));
 		model.addAttribute("dept", deptService.getDeptList(deptVO));
 		return "admin/emp/insertEmp";
 	}
