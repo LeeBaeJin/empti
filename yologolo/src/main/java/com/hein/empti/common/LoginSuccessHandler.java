@@ -29,6 +29,6 @@ public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 		EmpVO empVO = new EmpVO();
 		User vo  =  (User) authentication.getPrincipal();
 		empVO.setEmp_id(vo.getUsername());
-		request.getSession().setAttribute("emp_id", empMapper.getEmp(empVO));
+		request.getSession().setAttribute("login", empMapper.getEmp(empVO));
 	}
 }
