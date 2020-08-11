@@ -2,7 +2,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js"
 	integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <style>
-	label{display:inline-block; width:80px;}
+	label{display:inline-block; width:100px;}
 </style>
 <script>
 	function validCheck() {
@@ -47,7 +47,7 @@
 								</select>
 								<br/>
 		<label>단위</label>		<input name="unit" id="unit"><br/>
-		<label>유통기한</label>	<input name="exp_date" id="exp_date"><br/>
+		<label>유통기한(일)</label>	<input name="exp_date" id="exp_date"><br/>
 		<label>단가</label>	<input name="item_price" id="item_price"><br/>
 	<button class="btn btn-success" type="submit" onclick="validCheck()">등록</button>
 	</form>
