@@ -109,15 +109,15 @@ $(function(){
 		<label>이메일 </label>		 <input name="email" value="${empUp.email}"> <br/>
 		<label>입사일 </label>		 <input name="hire_date" value="${empUp.hire_date}" type="date"> <br/>
 		<label>급여 </label>		 <input name="salary" value="${empUp.salary}"> <br/>
-		<label>계약유형: </label>	 <input name="position" value="${empUp.position}"> <br/>
+		<label>계약유형 </label>	 <input name="position" value="${empUp.position}"> <br/>
 		<label>상태 </label>		 <input name="status" value="${empUp.status}"> <br/>
 		<label>거래은행 </label>	 <input name="bank_name" value="${empUp.bank_name}"> <br/>
 		<label>은행계좌</label>	 <input name="account_no" value="${empUp.account_no}"> <br/>
-		<label>부서번호 </label>	 <select name="dept_id" onchange="dept_select_value(this);"> 
-									<option selected value="${empUp.dept_id}">${empUp.dept_name}</option>
+		<label>부서명 </label>	 <select name="dept_id" onchange="dept_select_value(this);"> 
+									<option value="">대표</option>
 									<option >--------------</option>
 									<c:forEach items="${deptList}" var="dept">
-										<option value="${dept.dept_id}">${dept.dept_name}</option>
+										<option value="${dept.dept_id}" <c:if test="${dept.dept_id == empUp.dept_id }">selected</c:if> >${dept.dept_name}</option>
 									</c:forEach>
 								</select>
 								<span id="dept_name"></span>
