@@ -12,30 +12,63 @@
 <!-- 버튼 CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <script>
+	var roleId;
+	var empId = '${param.emp_id}';
+	//페이지 로드
 	$(document).ready(function() {
 		// 데이터테이블로 적용
 		$('#example').DataTable();
 		
 		//확인 버튼 close 기능
 		$('#closeBtn').on('click', function() {
-			windows.close();
+			window.close();
 		});
-		
-		erList(empId);
-		
+		roleCheck();
+		console.log(empId);
 	});
 	
-	function erList(empId) {
-		$.ajax({
-			url : "getEmpRoleList",
-			contentType : "application/json",
-			success: function() {
-				$('[name=roleChk]').attr("chekced", true);
-			}, error: function() {
-				alert("롤 조회 실패하였습니다.");
+	function roleCheck() {
+		// 체크박스 체크 시
+		$('[name="roleChk"]').change(function() {
+			if($('[name="roleChk"]').is(":checked")){
+				roleId = $(this).closest('tr').children().eq(1).text();
+				console.log(roleId);
+				$.ajax ({
+					url : 'setInsertEmpRole',
+					type : 'POST',
+				    dataType : 'json',
+				    data : JSON.stringify({role_id : roleId, emp_id : empId}),
+				    contentType:'application/json; charset=utf-8',
+				    success: function(response) {
+				    	if(response.result == true) {
+				    		alert("권한 부여 성공");
+				    	}
+				    }, error : function(xhr, status, message) {
+				    	alert("권한 부여 실패");
+					}
+				});
+			} else {
+				roleId = $(this).closest('tr').children().eq(1).text();
+				console.log(roleId);
+				$.ajax ({
+					url : 'setDeleteEmpRole',
+					type : 'POST',
+				    dataType : 'json',
+				    data : JSON.stringify({role_id : roleId, emp_id : empId}),
+				    contentType:'application/json; charset=utf-8',
+				    success: function(response) {
+				    	if(response.result == true) {
+				    		alert("권한 삭제 성공");
+				    	}
+				    }, error : function(xhr, status, message) {
+				    	alert("권한 삭제 실패");
+					}
+				});
 			}
-		});
-	}
+			
+			});
+		}
+	
 </script>
 <table id="example" class="ui celled table" style="width:100%; margin-left: 1%">
 	<thead>
@@ -50,8 +83,7 @@
 	<c:forEach items="${roleList}" var="role">
 		<tr>
 			<td><input type="checkbox" name="roleChk" value="${role.id}"
-			<c:if test="${role.roleYn == 1}">checked="checked"</c:if> 
-			>
+			<c:if test="${role.roleYn == 1}">checked="checked"</c:if> >
 			</td>
 			<td>${role.id}</td>
 			<td>${role.role_name}</td>
@@ -60,4 +92,4 @@
 	</c:forEach>
 	</tbody>
 </table>
-<button type="button" class="btn btn-success" id="closeBtn">확인</button>
+<button type="button" class="btn btn-success btn-lg" id="closeBtn">확인</button>
