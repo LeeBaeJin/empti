@@ -134,7 +134,7 @@
 </script>
 <div class="col-sm-12 my-auto">
 	<h2 class="display-4 text-dark"  style=font-size:35px;>구매 주문 입력</h2>
-	<hr class="sidebar-divider d-none d-md-block">
+	<hr class="sidebar-divider d-none d-md-block" width="40%" align="left"> 
 	<form class="form form-group" id="buyOrd">
 	<label>주문일자 </label>	<input value="${serverTime}" type="datetime-local" name="border_date" id="border_date"class="form-control" style="width: 300px; display: inline;"> <br>
 	<label>거래처코드 </label>  <input name="company_no" id="company_no" class="form-control" style="width: 250px; display: inline;"> <span id="company_name"></span>

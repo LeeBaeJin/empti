@@ -8,7 +8,8 @@
 	</style>
 
 <div align="center">
-	<h2 class="display-4 text-dark"  style=font-size:30px>품목 수정</h2><br/>
+	<h2 class="display-4 text-dark"  style=font-size:30px>품목 수정</h2>
+	<hr class="sidebar-divider d-none d-md-block" style="width: 15%;"> 
 		<form action="setUpdateItems" class="form form-group">
 			<div class="col-sm-2" align="left">
 				<label>품목코드</label>	<input  class="form-control" name="item_no" value="${updateList.item_no}" readonly><br/>

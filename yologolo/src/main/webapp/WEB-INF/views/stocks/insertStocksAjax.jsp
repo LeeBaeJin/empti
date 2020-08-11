@@ -216,7 +216,7 @@ $(function(){
 					 <input type="date" name="startDate" value="start" data-date-format='yyyy-MM-dd'>  ~  <input type="date" name="endDate" value="end" data-date-format='yyyy-MM-dd'>
 					 <input type="button" class="btn btn-secondary" value="검색" id="btnSearch" /> 
 					 <input type="reset"  class="btn btn-warning" value="초기화" /> 
-		 		</form>
+		 		</form><br/>
 			<table class="table text-center">
 				<thead>
 				<tr>				

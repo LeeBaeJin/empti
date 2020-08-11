@@ -145,7 +145,7 @@
 
 <div class="col-sm-12 my-auto">
 	<h2 class="display-4 text-dark"  style=font-size:35px;>판매 주문 입력</h2>
-	<hr class="sidebar-divider d-none d-md-block">
+	<hr class="sidebar-divider d-none d-md-block" width="40%" align="left"> 
 	<form action="setInsertSaleorders" id="saleOrd">
 		<label>주문일자 </label>	<input value="${serverTime}" type="datetime-local" name="sorder_date" id="sorder_date" class="form-control" style="width: 300px; display: inline;"><br/>
 		<label>거래처코드</label>	<input name="company_no" id="company_no" class="form-control" style="width: 250px; display: inline;"> <span id="company_name"></span>

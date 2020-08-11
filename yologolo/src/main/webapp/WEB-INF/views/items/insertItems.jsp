@@ -36,7 +36,7 @@
 </script>
 <div align="center" >
 	<h2 class="display-4 text-dark"  style=font-size:35px;>품목 등록</h2>
-	<hr class="sidebar-divider d-none d-md-block">
+	<hr class="sidebar-divider d-none d-md-block" style="width: 15%;"> 
 	<form action="setInsertItems" name="frm" class="from-group">
 		<div class="col-sm-2" align="left" >
 		<label>품목코드</label>	<input name="item_no" id="item_no" class="form-control"><br/>

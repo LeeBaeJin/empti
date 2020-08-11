@@ -20,6 +20,7 @@ var emp_select_value = function(select_obj) {
     
 <div align="center">
 	<h2 class="display-4 text-dark"  style=font-size:35px>부서 수정</h2>
+	<hr class="sidebar-divider d-none d-md-block" style="width: 15%;"> 
 	<form action="setUpdateDept" class="from-group">
 		<div class="col-sm-2" align="left" >
 			<label>부서번호</label>	 <input name="dept_id" value="${deptUp.dept_id}" class="form-control"  readonly> <br/>
