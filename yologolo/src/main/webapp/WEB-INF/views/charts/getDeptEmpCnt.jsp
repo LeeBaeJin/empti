@@ -48,7 +48,7 @@
 		</div>
 		<div class="card-body">
 			<div class="chart-bar">
-				<div id="myBarChart" class="col-lg-4" style="width: 100%; height: 100%;"></div>
+				<div id="myBarChart" class="col-lg-12" style="width: 100%; height: 100%;"></div>
 			</div>
 		</div>
 	</div>

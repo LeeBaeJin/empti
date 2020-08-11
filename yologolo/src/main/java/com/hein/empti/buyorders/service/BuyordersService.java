@@ -13,13 +13,11 @@ public interface BuyordersService {
 	public void setUpdateBuyorders(BuyordersVO buyordersVO);
 	public void setDeleteBuyorders(BuyordersVO buyordersVO);
 	
-	
 	//시퀀스 조회
 	public String getBuySeq();
 	
 	//엑셀
 	public List<Map<String, Object>> getBuyordersexcelMap(BuyordersVO vo);
-
 
 	//구매주문 map담기
 	public List<Map<String, Object>> getBuyordersListMap(BuyordersVO buyordersVO);
@@ -33,5 +31,6 @@ public interface BuyordersService {
 	//수정처리(배송상태만)
 	public void setUpdateBuyDel(List<BuyordersVO> bList);
 	
+	//'미수령'인 주문 건수
+	public String getReadyBuyorders(BuyordersVO vo);
 }
-
