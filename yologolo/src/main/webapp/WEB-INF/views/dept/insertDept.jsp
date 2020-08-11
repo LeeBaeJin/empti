@@ -38,19 +38,23 @@ function check() {
 
 </script>    
     
-<div >
-	<h2 class="display-4 text-dark"  style=font-size:30px;>부서등록</h2>
-	<form class="form form-group" action="setInsertDept" id="frm">
-		<label>부서번호 </label>	 <input name="dept_id" id="dept_id" class="form-control" > <br/>
-		<label>부서이름 </label>	 <input name="dept_name" id="dept_name" class="form-control"> <br/>
-		<label>부서장  </label>	 <select name="emp_id" id="emp_id"onchange="emp_select_value(this);" class="form-control"> 
-									<option value="" selected> ==선택하세요== </option>
-									<c:forEach items="${emp}" var="emp" >
-										<option value="${emp.emp_id}">${emp.name}</option>
-									</c:forEach>
-								 </select>
-								 <span id="emp_name"></span>
-								 <br/>
-	<button type="submit" onclick="check()"  class="btn btn-success">등록</button>
+<div align="center" >
+	<h2 class="display-4 text-dark"  style=font-size:40px;>부서등록</h2>
+	<form class="form form-group" action="setInsertDept" id="frm" >
+			 <div class="col-sm-2" align="left" style=font-size:20px;>
+			<label>부서번호 </label>	 <input name="dept_id" id="dept_id"  class="form-control"> <br/>
+			<label>부서이름 </label>	 <input name="dept_name" id="dept_name" class="form-control"> <br/>
+			<label>부서장  </label>	 <select name="emp_id" id="emp_id"onchange="emp_select_value(this);" class="form-control" > 
+										<option value=""  selected> =======선택하세요======= </option>
+										<c:forEach items="${emp}" var="emp" >
+											<option value="${emp.emp_id}" align="center">${emp.name}</option>
+										</c:forEach>
+									 </select>
+									 <span id="emp_name"></span>
+									 <br/>
+			 <div align="center">
+				<button type="submit" onclick="check()"  class="btn btn-success">등록</button>
+			 </div>
+		 </div>						 
 	</form>
 </div>

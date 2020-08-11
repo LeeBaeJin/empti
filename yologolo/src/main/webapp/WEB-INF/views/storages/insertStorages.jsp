@@ -33,7 +33,7 @@
 						<select name="emp_id" id="emp_id">
 							<option value="" selected>==사원 선택==</option>
 							<c:forEach items="${emps}" var="emps"> 
-							<option>${emps.emp_id}</option>
+							<option value="${emps.emp_id}">${emps.name}</option>
 							</c:forEach>
 						</select><br/>
 			<button class="btn btn-success" type="submit" onclick="check()">등록</button>

@@ -21,14 +21,12 @@
 	<!-- 창고 전체조회 map --> <!-- 별칭을 주지 않으면 map에 key가 대문자로 들어가기때문.//별칭을 주지 않을거면 el태그안에 대문자로 쓰면됨. -->
 	<select id="getStoragesListMap" resultType="map"
 		parameterType="StoragesVO">
-		SELECT s.strg_no "strg_no",
-		s.strg_category
-		"strg_category",
-		e.name "name"
-		FROM storages s, employees e
-		WHERE
-		s.emp_id = e.emp_id
-		ORDER BY strg_no
+		SELECT 		s.strg_no 			"strg_no",
+					s.strg_category 	"strg_category",
+					e.name 				"name"
+		FROM 		storages s, employees e
+		WHERE		s.emp_id = e.emp_id
+		ORDER BY 	s.strg_no
 	</select>
 	
 	<select id="getDisposalCount" parameterType="StoragesVO" resultType="int">
@@ -78,9 +76,14 @@
 
 
 	<!-- 창고 단건조회 -->
-	<select id="getStorages" resultType="StoragesVO"
-		parameterType="StoragesVO">
-		SELECT * FROM Storages WHERE strg_no = #{strg_no}
+	<select id="getStorages" resultType="StoragesVO" parameterType="StoragesVO">
+		SELECT 	s.strg_no			,
+				s.strg_category		,
+				e.name			,
+				e.emp_id			   
+		FROM 	STORAGES s, EMPLOYEES e
+		WHERE 	s.emp_id= e.emp_id  
+		AND	  	s.strg_no = #{strg_no}
 	</select>
 
 </mapper>
