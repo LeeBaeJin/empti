@@ -8,6 +8,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.hein.empti.emp.service.EmpService;
 import com.hein.empti.menu.service.MenuService;
+import com.hein.empti.role.service.RoleService;
 
 public class RoleInterceptor extends HandlerInterceptorAdapter {
 	// controller로 보내기 전에 처리하는 인터셉터
@@ -15,7 +16,7 @@ public class RoleInterceptor extends HandlerInterceptorAdapter {
 	// 매개변수 Object는 핸들러 정보를 의미한다.
 	
 	@Autowired MenuService menuService;
-	@Autowired EmpService empService;
+	@Autowired RoleService roleService;
 	
 	// 컨트롤러가 호출되기 전에 실행되는 메서드
 	@Override

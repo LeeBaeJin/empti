@@ -1,10 +1,12 @@
 package com.hein.empti;
 
-
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.hein.empti.menu.MenuVO;
+import com.hein.empti.menu.service.MenuService;
 
 /**
  * Handles requests for the application home page.

@@ -134,11 +134,10 @@ public class CompanyController {
 		return mv;
 	}
 	
-	
 	//월별 매출 통계 차트
-		@RequestMapping("getVipCompany")
-		public @ResponseBody List<Map<String,Object>> getVipCompany(){
-			return companyService.getVipCompany(); 
-		}
+	@RequestMapping("getVipCompany")
+	public @ResponseBody List<Map<String,Object>> getVipCompany(){
+		return companyService.getVipCompany(); 
+	}
 
 }
