@@ -19,9 +19,9 @@ var emp_select_value = function(select_obj) {
 </script>  
     
 <div align="center">
-	<h2 class="display-4 text-dark"  style=font-size:40px>부서 수정</h2>
+	<h2 class="display-4 text-dark"  style=font-size:35px>부서 수정</h2>
 	<form action="setUpdateDept" class="from-group">
-		<div class="col-sm-2" align="left" style=font-size:20px;>
+		<div class="col-sm-2" align="left" >
 			<label>부서번호</label>	 <input name="dept_id" value="${deptUp.dept_id}" class="form-control"  readonly> <br/>
 			<label>부서이름</label>	 <input name="dept_name" value="${deptUp.dept_name}" class="form-control" > <br/>
 			<label>매니저</label>	 	<%-- <input name="emp_id" value="${deptUp.name}"> <br/> --%>
