@@ -13,4 +13,6 @@ public class RoleVO {
 	//EMP_ROLE의 프로퍼티
 	String role_id;
 	String emp_id;
+	    
+	String roleYn;
 }

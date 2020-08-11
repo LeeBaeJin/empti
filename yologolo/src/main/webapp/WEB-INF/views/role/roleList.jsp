@@ -49,7 +49,10 @@
 	<tbody id="tblBody">
 	<c:forEach items="${roleList}" var="role">
 		<tr>
-			<td><input type="checkbox" name="roleChk" value="${role.id}"></td>
+			<td><input type="checkbox" name="roleChk" value="${role.id}"
+			<c:if test="${role.roleYn == 1}">checked="checked"</c:if> 
+			>
+			</td>
 			<td>${role.id}</td>
 			<td>${role.role_name}</td>
 			<td>${role.description}</td>
