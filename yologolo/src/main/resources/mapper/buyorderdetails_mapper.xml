@@ -3,10 +3,10 @@
 <mapper namespace="com.hein.empti.buyorderdetails.mapper.BuyorderdetailsMapper">
 	
 	<select id="getBuyorderdetailList" parameterType="BuyorderdetailsVO" resultType="map">
-	  SELECT i.item_name "item_name", b.border_qty "border_qty", i.item_price "item_price"
+	  SELECT i.item_name "item_name", b.border_qty "border_qty", i.item_price "item_price", b.border_no "border_no"
 		FROM items i JOIN buyorderdetails b
 		ON   (i.item_no = b.item_no)
-		WHERE b.border_no = ${border_no}
+		WHERE b.border_no = #{border_no}
 	</select>
 	
 	

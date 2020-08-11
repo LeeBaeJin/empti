@@ -14,6 +14,13 @@ $(function(){
 		  serverSide: false
 	});
 });
+
+function orderDetails(return_no) {
+	window.open('getBuyorderdetailList?border_no=' + return_no,
+				'buyorderdetails',
+				'width=800, height=300, left=150, top=250, location=no, status=no, scrollbars=yes');
+	return false;
+}
 </script>
 </head>
 <body>
@@ -39,12 +46,13 @@ $(function(){
 						<th>주문담당</th>
 						<th>거래처</th>
 						<th style="display: none;"></th>
+						<th style="display: none;"></th>
 					</tr>
 				</thead>
 				<tbody id="tblBody">
 					<c:forEach items="${returnBorders}" var="rb">
 					<tr>
-						<td>${rb.border_date}</td>
+						<td><a href="javascript:void(0);" onclick="orderDetails(${rb.return_no});">${rb.border_date}</a></td>
 						
 						<td>${rb.return_date}</td>
 						
@@ -58,6 +66,7 @@ $(function(){
 						<td>${rb.company_name}</td>
 						
 						<td style="display: none;">${rb.border_no}</td>
+						<td style="display: none;">${rb.return_no}</td>
 					</tr>
 					</c:forEach>
 				</tbody>

@@ -82,7 +82,7 @@
 	<!-- 반품 조회 -->
 	<select id="getReturnSaleordersList" parameterType="SaleordersVO" resultType="SaleordersVO">
 		SELECT s.sorder_date "sorder_date", s.return_date "return_date", s.sale_sum "sale_sum", 
-				e.name "name", c.company_name "company_name"
+				e.name "name", c.company_name "company_name", s.return_no "return_no"
 		FROM saleorders s JOIN employees e 	ON (s.emp_id = e.emp_id)
 		JOIN companies c 					ON (s.company_no = c.company_no)
 		<![CDATA[WHERE sale_sum < 0 ]]>
