@@ -3,6 +3,7 @@
 	<name>yologolo</name>
 	<comment></comment>
 	<projects>
+		<project>springMybatis</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

@@ -25,7 +25,8 @@
 		<h6 class="m-0 font-weight-bold text-primary">
 		<a href="getCompanyList">거래처 목록</a> | 
 		<a href="setInsertFormCompany">거래처 입력</a> |
-		<a href="companyPdf.do">PDF</a> |
+<!-- 		<a href="companyPdf.do">PDF</a> | -->
+		<a href= "companyPdf.do" onclick="window.open(this.href, 'width=800', 'height=1200', 'toolbars=no', 'scrollbars=yes'); return false">PDF</a> |
 		<a href="company_excel.do">EXCEL</a>
 		</h6>
 	</div>
