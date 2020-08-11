@@ -47,7 +47,7 @@ $(function(){
 			    	if(response.result == true) {
 			    		disposalList();
 			    	}
-			    }, 
+			    },
 			    error:function(xhr, status, message) { 
 			        alert(""+ status+" 정보를 입력해주세요 "+message);
 			    } 

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper	namespace="com.hein.empti.role.mapper.RoleMapper">
-
 	<!-- 롤(LOL) 조회 -->
 	<select id="getRoleList" resultType="RoleVO">
 		SELECT r.*
@@ -10,7 +9,7 @@
 			SELECT 1
 			FROM emp_role e
 			WHERE emp_id = #{emp_id} AND r.id = e.role_id
-		),0) "roleYn"
+		), 0) "roleYn"
    		</if>
 		FROM role r
 		ORDER BY id
@@ -28,6 +27,6 @@
 	
 	<delete id="setDeleteEmpRole" parameterType="RoleVO">
 		DELETE FROM emp_role
-		WHERE emp_id = #{emp_id}
+		WHERE emp_id = #{emp_id} AND role_id = #{role_id}
 	</delete>
 </mapper>
