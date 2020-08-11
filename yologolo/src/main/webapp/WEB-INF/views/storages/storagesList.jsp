@@ -24,7 +24,9 @@ function upFrom(strgNo) {
 		<h6 class="m-0 font-weight-bold text-primary">
 		<a href="getStoragesListMap">창고 목록</a> | 
 		<a href="setInsertFormStorages">창고 등록</a> |
-		<a href="storages.do">PDF</a> |
+		<a href= "storages.do" onclick="window.open(this.href, 'width=800', 'height=1200', 'toolbars=no', 'scrollbars=yes'); return false">PDF</a> |
+		
+	<!-- 	<a href="storages.do">PDF</a> | -->
 		<a href="storages_excel.do">EXCEL</a>
 		
 		</h6>
