@@ -12,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.hein.empti.emp.EmpVO;
 import com.hein.empti.emp.service.EmpService;
-import com.hein.empti.items.ItemsVO;
 import com.hein.empti.storages.StoragesVO;
 import com.hein.empti.storages.service.StoragesService;
 
@@ -39,12 +38,7 @@ public class StoragesController {
 		return "redirect:getStoragesListMap";
 	}
 
-	// 전체조회
-	// @RequestMapping("/getStoragesList")
-	public String getStoragesList(Model model, StoragesVO storagesVO) {
-		model.addAttribute("storagesList", storagesService.getStoragesList(storagesVO));
-		return "admin/storages/storagesList";
-	}
+	
 
 	@RequestMapping("/getStoragesListMap")
 	public String getStoragesListMap(Model model, StoragesVO storagesVO) {
@@ -60,8 +54,9 @@ public class StoragesController {
 
 	// 수정폼
 	@RequestMapping("/setUpdateFormStorages")
-	public String setUpdateFormStorages(Model model, StoragesVO storagesVO) {
+	public String setUpdateFormStorages(Model model, StoragesVO storagesVO, EmpVO empVO) {
 		model.addAttribute("updateList", storagesService.getStorages(storagesVO));
+		model.addAttribute("emps", empService.getEmpList(empVO));
 		return "admin/storages/updateStorages";
 	}
 

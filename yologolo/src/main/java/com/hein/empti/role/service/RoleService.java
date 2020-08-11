@@ -8,9 +8,6 @@ public interface RoleService {
 	//롤 전체조회
 	public List<RoleVO> getRoleList(RoleVO roleVO);
 	
-	//해당 사번의 롤 전체조회 
-	public List<RoleVO> getEmpRoleList(RoleVO roleVO);
-	
 	//사원 롤 부여, 삭제
 	public void setInsertEmpRole(RoleVO roleVO);
 	public void setDeleteEmpRole(RoleVO roleVO);

@@ -140,8 +140,8 @@
 	<label>거래처코드: </label> <input name="company_no" id="company_no" class="form-control" style="width: 250px; display: inline;"> <span id="company_name"></span>
 			    			<button type="button" value="거래처선택" id="btnFindCompany" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" style="width: 30px; height: 30px;"></button><br/>
 			    			
-	<label>담당자: </label> 	<input name="name" value="${emp_id.name}" class="form-control" style="width: 250px; display: inline;"><br>
-	<label>사번:  </label>	<input name="emp_id" value="${emp_id.emp_id}" class="form-control" style="width: 250px; display: inline;"> <br> 
+	<label>담당자: </label> 	<input name="name" value="${login.name}" class="form-control" style="width: 250px; display: inline;"><br>
+	<label>사번:  </label>	<input name="emp_id" value="${login.emp_id}" class="form-control" style="width: 250px; display: inline;"> <br> 
 							
 	
 	<label>구매합계: </label> 	<input type="number" name="buy_sum" class="form-control" style="width: 250px; display: inline;"> <br>

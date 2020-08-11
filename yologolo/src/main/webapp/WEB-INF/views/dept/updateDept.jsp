@@ -18,21 +18,24 @@ var emp_select_value = function(select_obj) {
 
 </script>  
     
-<div >
-	<h2 class="display-4 text-dark"  style=font-size:30px>부서 수정</h2>
+<div align="center">
+	<h2 class="display-4 text-dark"  style=font-size:35px>부서 수정</h2>
 	<form action="setUpdateDept" class="from-group">
-		<label>부서번호</label>	 <input name="dept_id" value="${deptUp.dept_id}" class="form-control"  readonly> <br/>
-		<label>부서이름</label>	 <input name="dept_name" value="${deptUp.dept_name}" class="form-control" > <br/>
-		<label>매니저</label>	 	<%-- <input name="emp_id" value="${deptUp.name}"> <br/> --%>
-								<select name="emp_id" onchange="emp_select_value(this);" class="form-control" >
-									<option value="${deptUp.emp_id}" selected> ${deptUp.name}</option>
-									<option >--------------</option>
-									<c:forEach items="${empList}" var="emp">
-										<option value="${emp.emp_id}">${emp.name}</option>
-									</c:forEach>
-								</select>
-								
-								<input id="emp_id" value="${deptUp.emp_id}"> <br/> 
-		<button class="btn btn-primary"type="submit">수정</button>
+		<div class="col-sm-2" align="left" >
+			<label>부서번호</label>	 <input name="dept_id" value="${deptUp.dept_id}" class="form-control"  readonly> <br/>
+			<label>부서이름</label>	 <input name="dept_name" value="${deptUp.dept_name}" class="form-control" > <br/>
+			<label>매니저</label>	 	<%-- <input name="emp_id" value="${deptUp.name}"> <br/> --%>
+									<select name="emp_id" onchange="emp_select_value(this);" class="form-control" >
+										<option value="${deptUp.emp_id}" selected> ${deptUp.name}</option>
+										<option >--------------</option>
+										<c:forEach items="${empList}" var="emp">
+											<option value="${emp.emp_id}">${emp.name}</option>
+										</c:forEach>
+									</select><br/>
+			<label>사번</label>		 <input id="emp_id" class="form-control" value="${deptUp.emp_id}"> <br/> 
+			<div align="center">
+				<button class="btn btn-primary"type="submit">수정</button>
+			</div>
+		</div>
 	</form>
 </div>

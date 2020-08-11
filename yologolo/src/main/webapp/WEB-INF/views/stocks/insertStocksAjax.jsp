@@ -243,7 +243,7 @@ $(function(){
 										<input class="form-control" name="stock_no" id="stock_no" type="hidden"><br/>
 				<label>품목코드</label>	<button type="button" value="품목선택" id="btnFindItem" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" width="30px" height="30px"></button>
 										<input class="form-control" name="item_no" id="item_no" type="text"> <span name="item_name" id="item_name" ></span>
-										<br/>
+										<br/><br/>
 				<label>거래유형</label>	<select class="form-control" name="stock_category">
 										  <option value="원자재" selected>원자재</option>
 										  <option value="가공품">가공품</option>

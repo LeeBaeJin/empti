@@ -7,6 +7,7 @@
 	label{display:inline-block; width:120px;}
 </style>
 <script>
+//부서 이름
 var dept_select_value = function(select_obj) {
 	if($("#dept_name").text() == ""){
 	$("#dept_name").append(select_obj.value);
@@ -39,6 +40,57 @@ $(function (){
 	});
 });
 
+//우편번호
+function execPostCode() {
+    new daum.Postcode({
+        oncomplete: function(data) {
+           // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+           // 도로명 주소의 노출 규칙에 따라 주소를 조합한다.
+           // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+           var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
+           var extraRoadAddr = ''; // 도로명 조합형 주소 변수
+
+           // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+           // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+           if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+               extraRoadAddr += data.bname;
+           }
+           // 건물명이 있고, 공동주택일 경우 추가한다.
+           if(data.buildingName !== '' && data.apartment === 'Y'){
+              extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+           }
+           // 도로명, 지번 조합형 주소가 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+           if(extraRoadAddr !== ''){
+               extraRoadAddr = ' (' + extraRoadAddr + ')';
+           }
+           // 도로명, 지번 주소의 유무에 따라 해당 조합형 주소를 추가한다.
+           if(fullRoadAddr !== ''){
+               fullRoadAddr += extraRoadAddr;
+           }
+
+           // 우편번호와 주소 정보를 해당 필드에 넣는다.
+           console.log(data.zonecode);
+           console.log(fullRoadAddr);
+           
+           $("#addr1").val(data.zonecode);
+           $("#addr2").val(fullRoadAddr);
+           
+           /* document.getElementById('signUpUserPostNo').value = data.zonecode; //5자리 새우편번호 사용
+           document.getElementById('signUpUserCompanyAddress').value = fullRoadAddr;
+           document.getElementById('signUpUserCompanyAddressDetail').value = data.jibunAddress; */
+       }
+    }).open();
+}
+
+//은행 찾기
+$(function(){
+	$('#btnFindBank').on('click', function() {
+		var wo = window.open('findBank','item', 'width=800, hight=800');
+		return wo;
+	});
+});
+
 </script>  
 <div class="col-sm-12 my-auto">
 	<h2 class="display-4 text-dark"  style=font-size:30px;>사원수정</h2>
@@ -57,20 +109,21 @@ $(function (){
 		<label>이메일 </label>		 <input name="email" value="${empUp.email}"> <br/>
 		<label>입사일 </label>		 <input name="hire_date" value="${empUp.hire_date}" type="date"> <br/>
 		<label>급여 </label>		 <input name="salary" value="${empUp.salary}"> <br/>
-		<label>계약유형: </label>	 <input name="position" value="${empUp.position}"> <br/>
+		<label>계약유형 </label>	 <input name="position" value="${empUp.position}"> <br/>
 		<label>상태 </label>		 <input name="status" value="${empUp.status}"> <br/>
 		<label>거래은행 </label>	 <input name="bank_name" value="${empUp.bank_name}"> <br/>
 		<label>은행계좌</label>	 <input name="account_no" value="${empUp.account_no}"> <br/>
-		<label>부서번호 </label>	 <select name="dept_id" onchange="dept_select_value(this);"> 
-									<option selected value="${empUp.dept_id}">${empUp.dept_name}</option>
+		<label>부서명 </label>	 <select name="dept_id" onchange="dept_select_value(this);"> 
+									<option value="">대표</option>
 									<option >--------------</option>
 									<c:forEach items="${deptList}" var="dept">
-										<option value="${dept.dept_id}">${dept.dept_name}</option>
+										<option value="${dept.dept_id}" <c:if test="${dept.dept_id == empUp.dept_id }">selected</c:if> >${dept.dept_name}</option>
 									</c:forEach>
 								</select>
 								<span id="dept_name"></span>
 								<br/>
-		<label>이미지 </label>     <input type="file" name="uploadFile" />${empUp.profile}<br>
+		<label>이미지 </label>    <input type="file" name="uploadFile" />${empUp.profile}<br>
+								<input type="hidden" name="uploadFile" value="${empUp.profile}">
 	<button type="submit" class="btn btn-primary">수정</button>
 	</form>
 </div>

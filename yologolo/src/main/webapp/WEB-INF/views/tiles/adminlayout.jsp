@@ -59,7 +59,8 @@
       <div class="sidebar-heading">
 		목록
       </div>
-
+	  
+	  <sec:authorize access="hasAnyRole('ROLE_HR','ROLE_ADMIN')">
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEmp" aria-expanded="true" aria-controls="collapseEmp">
@@ -69,14 +70,16 @@
         <div id="collapseEmp" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">인사</h6>
-            <sec:authorize access="hasAnyRole('ROLE_HR','ROLE_ADMIN')">
+            
             <a class="collapse-item" href="getDeptList">부서관리</a>
             <a class="collapse-item" href="getEmpList">사원관리</a>
-            </sec:authorize>
+            
           </div>
         </div>
       </li>
+      </sec:authorize>
       
+     <sec:authorize access="hasAnyRole('ROLE_STOCKS','ROLE_ADMIN')">
 	 <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStock" aria-expanded="true" aria-controls="collapseStock">
           <i class="fas fa-fw fa-cog"></i>
@@ -93,7 +96,9 @@
           </div>
         </div>
 	 </li>
+	 </sec:authorize>
 	 
+	 <sec:authorize access="hasAnyRole('ROLE_DEALS','ROLE_ADMIN')">
 	 <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTrade" aria-expanded="true" aria-controls="collapseTrade">
           <i class="fas fa-fw fa-cog"></i>
@@ -107,7 +112,9 @@
           </div>
         </div>
 	 </li>
+	 </sec:authorize>
 	 
+	 <sec:authorize access="hasAnyRole('ROLE_LEDGERS','ROLE_ADMIN')">
 	 <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMoney" aria-expanded="true" aria-controls="collapseMoney">
           <i class="fas fa-fw fa-cog"></i>
@@ -116,13 +123,13 @@
         <div id="collapseMoney" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">장부</h6>
-            <sec:authorize access="hasAnyRole('ROLE_LEDGERS','ROLE_ADMIN')">
+            
             <a class="collapse-item" href="setLedgerForm">매입/매출 관리</a>
-            </sec:authorize>
+            
           </div>
         </div>
 	 </li>
-
+	 </sec:authorize>
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 
@@ -194,18 +201,18 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">${emp_id.name}님&nbsp;</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">${login.name}님&nbsp;</span>
                 <!-- 프로필 사진 -->
-                <c:if test="${not empty emp_id.profile}">
-                <img class="img-profile rounded-circle" src="download?name=${emp_id.profile}">
+                <c:if test="${not empty login.profile}">
+                <img class="img-profile rounded-circle" src="download?name=${login.profile}">
               	</c:if>
-              	<c:if test="${empty emp_id.profile}">
+              	<c:if test="${empty login.profile}">
                 <img class="img-profile rounded-circle" src="resources/images/profile.jpg">
               	</c:if>
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a href="mySetUpdateFormEmp?emp_id=${emp_id.emp_id}">
+                <a href="mySetUpdateFormEmp?emp_id=${login.emp_id}">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>

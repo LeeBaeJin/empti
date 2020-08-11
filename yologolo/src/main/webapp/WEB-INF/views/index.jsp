@@ -5,15 +5,15 @@
 	<div class="row">
 		<div class="col-lg-4">
 			<!-- 부서별 인원 수 -->
-			<jsp:include page="emp/getDeptEmpCnt.jsp"/>
+			<jsp:include page="charts/getDeptEmpCnt.jsp"/>
 		</div>
 		<div class="col-lg-4">
 			<!-- 월별 총 매출 및 건수-->
-			<jsp:include page="ledger/getMonthlySaleAmount.jsp"/>
+			<jsp:include page="charts/getMonthlySaleAmount.jsp"/>
 		</div>
 		<div class="col-lg-4">
 			<!-- 거래량 많은 회사-->
-			<jsp:include page="company/getVipCompany.jsp"/>
+			<jsp:include page="charts/getVipCompany.jsp"/>
 		</div>
 		
 	</div> 

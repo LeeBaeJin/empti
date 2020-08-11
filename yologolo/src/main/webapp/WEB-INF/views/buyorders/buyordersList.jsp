@@ -78,7 +78,7 @@ $(function() {
 			<a href="setInsertFormBuyorders">구매주문 입력</a> |
 			<!-- <a href="buyorders_list.do">PDF</a> | -->
 			<a href= "buyorders_list.do" onclick="window.open(this.href, 'width=800', 'height=1200', 'toolbars=no', 'scrollbars=yes'); return false">PDF</a> |
-			<a href="buyOrdersexcel.do">EXCEL</a>
+			<a href="buyOrdersexcel.do">EXCEL</a> 
 		</h6>
 	</div>
 	<div class="card-body">

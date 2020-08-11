@@ -11,9 +11,10 @@
 	</select>
 	
 	<select id="getMenuList" resultType="MenuVO" parameterType="MenuVO">
-		SELECT *
-		FROM menu
-		ORDER BY menu_no
+		SELECT m.*, er.emp_id
+		FROM menu m JOIN emp_role er
+		ON (m.role_id = er.role_id)
+		WHERE emp_id = #{emp_id}
 	</select>
 	
 </mapper>

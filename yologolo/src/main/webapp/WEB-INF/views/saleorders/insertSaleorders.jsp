@@ -162,8 +162,8 @@
 					</c:forEach>
 				</select>
 				<span id="emp_name"></span> --%>
-				<input name="emp_id" value="${emp_id.emp_id}" class="form-control" style="width: 250px; display: inline;"> 
-				<input name="name" value="${emp_id.name}" class="form-control" style="width: 250px; display: inline;"><br>
+				<input name="emp_id" value="${login.emp_id}" class="form-control" style="width: 250px; display: inline;"> 
+				<input name="name" value="${login.name}" class="form-control" style="width: 250px; display: inline;"><br>
 				<br/>
 				
 		품목:		<input name="item_no" id="item_no" class="form-control" style="width: 100px; display: inline;"><span name="item_name" id="item_name" ></span>
