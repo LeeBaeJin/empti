@@ -70,7 +70,7 @@
 	<!-- 반품 조회 -->
 	<select id="getReturnBuyordersList" parameterType="BuyordersVO" resultType="BuyordersVO">
 		SELECT b.border_date "border_date", b.return_date "return_date", b.buy_sum "buy_sum", 
-				e.name "name", c.company_name "company_name"
+				e.name "name", c.company_name "company_name", b.return_no "return_no"
 		FROM buyorders b JOIN employees e 	ON (b.emp_id = e.emp_id)
 		JOIN companies c 					ON (b.company_no = c.company_no)
 		<![CDATA[where buy_sum < 0 ]]>

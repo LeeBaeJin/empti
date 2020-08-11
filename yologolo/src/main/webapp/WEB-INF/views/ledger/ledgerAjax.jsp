@@ -194,7 +194,7 @@ $(function(){
 			.append($('<td>').html(item.sorder_no))
 			.append($('<td>').html(item.condition))
 			.append($('<td>').html(item.note))
-			.append($('<td>').html('<button id=\'btnSelect\'>조회</button>'))
+			.append($('<td>').html('<button id=\'btnSelect\' class=\'btn btn-info\'>조회</button>'))
 			.append($('<input type=\'hidden\' id=\'hidden_ldgr_no\'>').val(item.ldgr_no))
 			.appendTo('tbody');
 		});//each
@@ -241,8 +241,8 @@ $(function(){
 				 <input type="radio"  name="radioStatus" value="매입"><span> 매입</span>
 				 <input type="radio"  name="radioStatus" value="매출" ><span> 매출</span><br>
 				 <input type="date" name="startDate" value="start" data-date-format='yyyy-MM-dd'>  ~  <input type="date" name="endDate" value="end" data-date-format='yyyy-MM-dd'>
-				 <input type="button" class="btn btn-primary" value="검색" id="btnSearch" /> 
-				 <input type="reset"  class="btn btn-primary" value="초기화" /> 
+				 <input type="button" class="btn btn-secondary" value="검색" id="btnSearch" /> 
+				 <input type="reset"  class="btn btn-warning" value="초기화" /> 
 		 	</form>
 		<table class="table text-center">
 			<thead>
@@ -287,9 +287,9 @@ $(function(){
 								 		
 										
 				<div class="btn-group" >
-					<input type="button" class="btn btn-primary" value="등록" id="btnInsert" /> 
+					<input type="button" class="btn btn-success" value="등록" id="btnInsert" /> 
 					<input type="button" class="btn btn-primary" value="수정" id="btnUpdate" /> 
-					<input type="button" class="btn btn-primary" value="초기화" id="btnInit" />
+					<input type="button" class="btn btn-warning" value="초기화" id="btnInit" />
 				</div>
 			</form>
 		</div>

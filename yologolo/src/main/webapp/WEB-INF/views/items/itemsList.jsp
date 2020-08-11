@@ -47,7 +47,7 @@ function upForm(itemNo) {
 								<fmt:parseNumber value="${items.item_price}" var="fmt"/>
 								<fmt:formatNumber type="number" maxFractionDigits="3" value="${fmt}"/>
 							</td>
-							<td><button type="button" onclick="upForm(${items.item_no})" class="btn btn-primary">수정</button></td>
+							<td><a href="#" onclick="upForm('${items.item_no}')" class="btn btn-primary">수정</a></td>
 							
 						</tr>
 					</c:forEach>

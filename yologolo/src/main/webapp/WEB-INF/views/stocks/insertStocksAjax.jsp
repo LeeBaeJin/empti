@@ -205,7 +205,7 @@ $(function(){
 	<div class="col-lg-9 col-md-12">
 			<h2>입출고목록</h2>
 				<form id="searchForm">
-					<label>거래유형</label>	<select class="form-control" name="selectCategory">
+					<label>거래유형</label>	<select name="selectCategory">
 											  <option value="" selected>전체</option>
 											  <option value="원자재">원자재</option>
 											  <option value="가공품">가공품</option>
@@ -228,6 +228,7 @@ $(function(){
 					<th class="text-center">창고</th>
 					<th class="text-center">상세번호</th>
 					<th class="text-center">비고</th>
+					<th></th>
 				</tr>
 				</thead>
 				<tbody></tbody>
