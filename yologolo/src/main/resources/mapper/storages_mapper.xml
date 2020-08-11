@@ -86,4 +86,9 @@
 		AND	  	s.strg_no = #{strg_no}
 	</select>
 
+	<!-- 창고번호 MAX -->
+	<select id="strgNoMax" resultType="StoragesVO">
+		SELECT nvl(max(strg_no)+1, 0) "strg_no"
+		FROM   STORAGES
+	</select>
 </mapper>

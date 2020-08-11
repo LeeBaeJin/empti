@@ -26,6 +26,7 @@ public class StoragesController {
 	// 등록폼
 	@RequestMapping("/setInsertFormStorages")
 	public String setInsertFormStorages(StoragesVO storagesVO, Model model, EmpVO empVO) {
+		model.addAttribute("strgNo", storagesService.strgNoMax(storagesVO));
 		model.addAttribute("emps", empService.getEmpList(empVO));
 		return "admin/storages/insertStorages";
 	}
@@ -71,7 +72,7 @@ public class StoragesController {
 	@RequestMapping("/setDeleteStorages")
 	public String setDeleteStorages(Model model, StoragesVO storagesVO) {
 		if(storagesService.getDisposalCount(storagesVO) > 0 || storagesService.getStocksCount(storagesVO) >0) {
-			model.addAttribute("msg", "삭제할 수 없습니다.");
+			model.addAttribute("msg", "창고 내역이 있어 삭제할 수 없습니다.");
 			model.addAttribute("loc", "getStoragesListMap");
 			return "common/msg";
 		} else {
