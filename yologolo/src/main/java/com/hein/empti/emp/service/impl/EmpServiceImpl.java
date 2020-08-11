@@ -62,5 +62,14 @@ public class EmpServiceImpl implements EmpService {
 	public int getDeptCount(DeptVO deptVO) {
 		return empMapper.getDeptCount(deptVO);
 	}
+
+	//사번 max
+	@Override
+	public EmpVO empIdMax(EmpVO empVO) {
+		return empMapper.empIdMax(empVO);
+	}
+	
+	
+	
 	
 }

@@ -55,7 +55,7 @@ function check(){
               <div class="col-lg-6">
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                    <h1 class="h4 text-gray-900 mb-4">EMPTI!</h1>
                   </div>
                   <form class="user" id="frm" action="login" method="post">
                     <div class="form-group">
@@ -70,7 +70,7 @@ function check(){
                         <label class="custom-control-label" for="customCheck">Remember Me</label>
                       </div>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-user btn-block">login</button>
+                    <button type="submit" class="btn btn-primary btn-user btn-block">로그인</button>
                     <hr>
                   </form>
                   ${param.error}
