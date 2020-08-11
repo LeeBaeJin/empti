@@ -11,4 +11,7 @@ public class MenuVO {
 	String menu_addr;
 	String group_name;
 	String role_id;
+	
+	//Join용 프로퍼티
+	String emp_id;
 }

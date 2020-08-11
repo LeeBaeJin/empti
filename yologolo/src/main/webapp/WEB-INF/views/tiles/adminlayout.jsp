@@ -59,7 +59,8 @@
       <div class="sidebar-heading">
 		목록
       </div>
-
+	  
+	  <sec:authorize access="hasAnyRole('ROLE_HR','ROLE_ADMIN')">
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEmp" aria-expanded="true" aria-controls="collapseEmp">
@@ -69,14 +70,16 @@
         <div id="collapseEmp" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">인사</h6>
-            <sec:authorize access="hasAnyRole('ROLE_HR','ROLE_ADMIN')">
+            
             <a class="collapse-item" href="getDeptList">부서관리</a>
             <a class="collapse-item" href="getEmpList">사원관리</a>
-            </sec:authorize>
+            
           </div>
         </div>
       </li>
+      </sec:authorize>
       
+     <sec:authorize access="hasAnyRole('ROLE_STOCKS','ROLE_ADMIN')">
 	 <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStock" aria-expanded="true" aria-controls="collapseStock">
           <i class="fas fa-fw fa-cog"></i>
@@ -93,7 +96,9 @@
           </div>
         </div>
 	 </li>
+	 </sec:authorize>
 	 
+	 <sec:authorize access="hasAnyRole('ROLE_DEALS','ROLE_ADMIN')">
 	 <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTrade" aria-expanded="true" aria-controls="collapseTrade">
           <i class="fas fa-fw fa-cog"></i>
@@ -107,7 +112,9 @@
           </div>
         </div>
 	 </li>
+	 </sec:authorize>
 	 
+	 <sec:authorize access="hasAnyRole('ROLE_LEDGERS','ROLE_ADMIN')">
 	 <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMoney" aria-expanded="true" aria-controls="collapseMoney">
           <i class="fas fa-fw fa-cog"></i>
@@ -116,13 +123,13 @@
         <div id="collapseMoney" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">장부</h6>
-            <sec:authorize access="hasAnyRole('ROLE_LEDGERS','ROLE_ADMIN')">
+            
             <a class="collapse-item" href="setLedgerForm">매입/매출 관리</a>
-            </sec:authorize>
+            
           </div>
         </div>
 	 </li>
-
+	 </sec:authorize>
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 
