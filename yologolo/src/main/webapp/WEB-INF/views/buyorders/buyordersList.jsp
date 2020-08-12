@@ -110,7 +110,7 @@ $(function() {
 							
 							<td align="right">
 							<fmt:parseNumber value="${buy.buy_sum}" var="fmt"/>
-							<fmt:formatNumber type="number" maxFractionDigits="3" value="${fmt}"/>
+							<fmt:formatNumber type="number" maxFractionDigits="3" value="${fmt}"/>&nbsp;원
 							</td>
 							
 							
