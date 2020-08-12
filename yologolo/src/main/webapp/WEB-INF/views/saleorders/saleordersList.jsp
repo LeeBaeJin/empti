@@ -74,8 +74,7 @@ $(function() {
 			<a href="getSaleordersListMap">판매주문 목록</a> | 
 			<a href="setInsertFormSaleorders">판매주문 입력</a> |
 			<a href= "saleorders_list.do" onclick="window.open(this.href, 'width=800', 'height=1200', 'toolbars=no', 'scrollbars=yes'); return false">PDF</a> |
-			
-		<!-- 	<a href="saleorders_list.do">PDF</a> | -->
+			<!-- <a href="saleorders_list.do">PDF</a> | -->
 			<a href="sorderexcel.do">EXCEL</a>
 		</h6>
 	</div>

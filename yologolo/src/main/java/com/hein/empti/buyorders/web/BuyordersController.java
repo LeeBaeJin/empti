@@ -165,12 +165,12 @@ public class BuyordersController {
 	
 	
 	// view resolver 방식 pdf 출력
-	@RequestMapping("buyorders_list_pdf.do")
+	@RequestMapping("buyorders_list.do")
 	public ModelAndView getBuyorderListReport(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("pdfView");
-		mv.addObject("filename", "/reports/buyorders_list_pdf.jrxml");
+		mv.addObject("filename", "/reports/buyorders_list2.jrxml");
 		return mv;
 	}
 	
@@ -181,8 +181,8 @@ public class BuyordersController {
 		mv.setViewName("commonExcelView");
 		mv.addObject("datas", buyordersService.getBuyordersexcelMap(vo));// Map객체를 조회해서 시트를 생성한다.
 		mv.addObject("filename", "buyorderlist");// 파일이름을 바꿔준다.
-		mv.addObject("headers", new String[] { "주문번호", "주문일자", "품목", "수량", "단가", "구매합계", "거래처", "담당자"}); // 헤더의 값만 출력된다.
-		return mv;    //주문번호, 주문일자, 품목, 수량, 단가, 구매합계, 거래처, 담당자
+		mv.addObject("headers", new String[] { "구매일자", "품목", "단가", "주문수량", "합계", "담당사원", "거래처", "상태"}); // 헤더의 값만 출력된다.
+		return mv;    //구매일자/품목/ 단가/주문수량/합계/담당사원/거래처/상태
 	}
 	
 	
