@@ -11,6 +11,7 @@ $(function(){
 		disposalInsert();
 		disposalUpdate();  
 		disposalSelect();
+		disposalDelete();
 		init();
 		fnc_btnfindItem();
 		
@@ -90,6 +91,7 @@ $(function(){
 		//조회 버튼 클릭
 		$('body').on('click','#btnSelect',function(){
 			var disposalNo = $(this).closest('tr').find('#hidden_disposal_no').val();
+			console.log(disposalNo)
 			//특정 사용자 조회
 			$.ajax({
 				url:'disposals/' + disposalNo, 
@@ -102,6 +104,28 @@ $(function(){
 				success:disposalSelectResult
 			});
 		}); //조회 버튼 클릭
+	}
+	function disposalDelete(){
+		$('body').on('click', '#btnDelete', function() {
+			var disposalNo = $(this).closest('tr').find('#hidden_disposal_no').val();
+			console.log(disposalNo);
+			var result = confirm("폐기/불량 내역을 삭제하시겠습니까?");
+			if(result){
+			$.ajax({
+				url:'disposals/'+ disposalNo,  
+	               type:'DELETE',
+	               contentType:'application/json;charset=utf-8',
+	               cache: false,
+	               dataType:'json',
+	               error:function(xhr,status,msg){
+	                  console.log("상태값 :" + status + " Http에러메시지 :"+msg);
+	               }, success:function(xhr) {
+	                  console.log(xhr.result);
+	                  disposalList();
+					}
+				});
+			}
+		});
 	}
 	
 	// 조회 응답
@@ -147,6 +171,7 @@ $(function(){
 			.append($('<td>').html(item.strg_no))
 			.append($('<td>').html(item.item_no))
 			.append($('<td>').html('<button id=\'btnSelect\' class=\'btn btn-info\'>조회</button>'))
+			.append($('<td>').html('<button id=\'btnDelete\' class=\'btn btn-danger\'>삭제</button>'))
 			.append($('<input type=\'hidden\' id=\'hidden_disposal_no\'>').val(item.disposal_no))
 			.appendTo('tbody');
 		});//each
@@ -198,6 +223,7 @@ $(function(){
 					<th class="text-center">창고번호</th>
 					<th class="text-center">품목코드</th>
 					<th class="text-center">조회</th>
+					<th class="text-center">삭제</th>
 				</tr>
 			</thead>
 			<tbody></tbody>
