@@ -3,6 +3,9 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<style>
+	label{display:inline-block; width:120px;}
+</style>
 <script>
 //부서 검색
 var dept_select_value = function(select_obj) {
@@ -83,32 +86,123 @@ $(function(){
 		return wo;
 	});
 });
+
+
+function check() {
+	if(frm.emp_id.value ==""){
+		alert("사원아이디를 입력해주세요.");
+		frm.emp_id.focus();
+		return;
+	}
+	if(frm.name.value == ""){
+		alert("이름을 입력해주세요.");
+		frm.name.focus();
+		return;
+	}
+	if(frm.pwd.value == ""){
+		alert("패스워드를 입력해주세요.");
+		frm.pwd.focus();
+		return;
+	}
+	if(frm.pwd2.value ==""){
+		alert("패스워드를 입력해주세요.");
+		frm.pwd2.focus();
+		return;
+	}
+	if(frm.phone.value == ""){
+		alert("전화번호를 입력해주세요.");
+		frm.phone.focus();
+		return;
+	}
+	if(frm.addr1.value == ""){
+		alert("우편번호를 입력해주세요.");
+		frm.addr1.focus();
+		return;
+	}
+	if(frm.addr2.value == ""){
+		alert("주소를 입력해주세요.");
+		frm.addr2.focus();
+		return;
+	}
+	if(frm.addr3.value == ""){
+		alert("상세주소를 입력해주세요.");
+		frm.addr3.focus();
+		return;
+	}
+	if(frm.email.value ==""){
+		alert("이메일을 입력해주세요.");
+		frm.email.focus();
+		return;
+	}
+	if(frm.hire_date.value == ""){
+		alert("입사일을 선택해주세요.");
+		frm.hire_date.focus();
+		return;
+	}
+	if(frm.salary.value == ""){
+		alert("급여를 선택해주세요.");
+		frm.salary.focus();
+		return;
+	}
+	if(frm.position.value ==""){
+		alert("계약유형을 선택해주세요.");
+		frm.position.focus();
+		return;
+	}
+	if(frm.status.value == ""){
+		alert("상태를 입력해주세요.");
+		frm.status.focus();
+		return;
+	}
+	if(frm.bank_name.value == ""){
+		alert("거래은행을 선택해주세요.");
+		frm.bank_name.focus();
+		return;
+	}	
+	if(frm.account_no.value ==""){
+		alert("은행계좌를 입력해주세요.");
+		frm.account_no.focus();
+		return;
+	}
+	if(frm.dept_id.value == ""){
+		alert("부서를 입력해주세요.");
+		frm.dept_id.focus();
+		return;
+	}
+	if(frm.uploadFile.value == ""){
+		alert("이미지를 선택해주세요.");
+		frm.uploadFile.focus();
+		return;
+	}
+}
 </script>    
     
 <div class="col-sm-12 my-auto">
-	<h1>사원등록</h1>
-	<form action="setInsertEmp" method="post" enctype="multipart/form-data" class="from-group">
-		<label>사원아이디</label>	<input name="emp_id" class="form-control" style="width: 250px; display: inline;"> <br/>
-		<label>이름</label>		<input name="name" class="form-control" style="width: 250px; display: inline;"> <br/>
+	<h2 class="display-4 text-dark"  style=font-size:30px;>사원등록</h2>
+	<hr class="sidebar-divider d-none d-md-block" width="43%" align="left"> 
+	<form action="setInsertEmp" id="frm" method="post" enctype="multipart/form-data" class="from-group">
+		<label>사원아이디</label>	<input name="emp_id" id="emp_id" class="form-control" value="${empId.emp_id}" style="width: 250px; display: inline;"> <br/>
+		<label>이름</label>		<input name="name" id="name"class="form-control" style="width: 250px; display: inline;"> <br/>
 		<label>패스워드</label>	<input type="password" name="pwd" id="pwd" class="form-control pw" style="width: 250px; display: inline;"> <br/>
 		<label>패스워드 확인</label>	<input type="password" name="pwd2" id="pwd2" class="form-control pw" style="width: 250px; display: inline;"> <br/>
 		<div id="pw"></div>
-		<label>전화번호</label>	<input name="phone" class="form-control" style="width: 250px; display: inline;"> <br/>
-		<label>주소</label>		<input class="form-control" name="zip_code" id="addr1" readonly="readonly" style="width: 10%; display: inline;" placeholder="우편번호">
-								<button class="btn btn-default" type="button"  onclick="execPostCode();"><i class="fa fa-search"></i> 우편번호 찾기</button><br/>                             
-								<input class="form-control" name="address" id="addr2" readonly="readonly" style="top: 5px; width: 35%; display: inline;" placeholder="도로명 주소"><br/>
-								<input class="form-control" name="address_detail" id="addr3" style="width: 35%; display: inline;" placeholder="상세주소">
+		<label>전화번호</label>	<input name="phone" id="phone" class="form-control" style="width: 250px; display: inline;"> <br/>
+		<label>주소</label>			<input class="form-control" name="zip_code" id="addr1" readonly="readonly" style="width: 10%; display: inline;" placeholder="우편번호">
+		<label></label>			<button class="btn btn-default" type="button"  onclick="execPostCode();"><i class="fa fa-search"></i> 우편번호 찾기</button><br/>                             
+		<label></label>			<input class="form-control" name="address" id="addr2" readonly="readonly" style="top: 5px; width: 35%; display: inline;" placeholder="도로명 주소"><br/>
+		<label></label>			<input class="form-control" name="address_detail" id="addr3" style="width: 35%; display: inline;" placeholder="상세주소">
 								 <br/>
 		<label>이메일</label>		<input name="email" type="email" class="form-control" style="width: 250px; display: inline;"> <br/>
-		<label>입사일</label>		<input name="hire_date" type="date" class="form-control" style="width: 250px; display: inline;"> <br/>
-		<label>급여</label>		<input name="salary" type="number" class="form-control" style="width: 250px; display: inline;"> <br/>
-		<label>계약유형</label>	<select name="position" class="form-control" style="width: 250px; display: inline;"> 
+		<label>입사일</label>		<input name="hire_date" id="hire_date"type="date" class="form-control" style="width: 250px; display: inline;"> <br/>
+		<label>급여</label>		<input name="salary" id="salary" type="number" class="form-control" style="width: 250px; display: inline;"> <br/>
+		<label>계약유형</label>	<select name="position" ijd="position" class="form-control" style="width: 250px; display: inline;"> 
 									<option value="" selected> ======선택하세요====== </option>
 									<option>정직원</option>
 									<option>계약직</option>
 									<option>일용직</option>
 								</select><br/>
-		<label>상태</label>		<select name="status" class="form-control" style="width: 250px; display: inline;">
+		<label>상태</label>		<select name="status" id="status" class="form-control" style="width: 250px; display: inline;">
+									<option value="" selected> ======선택하세요====== </option>
 									<option>재직</option>
 									<option>퇴직</option>
 									<option>휴가</option>
@@ -116,15 +210,15 @@ $(function(){
 		<label>거래은행</label>	<input name="bank_name" id="bank_name" type="text" class="form-control" style="width: 250px; display: inline;">
 								<button type="button" value="은행선택" id="btnFindBank" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" width="30px" height="30px"></button>
 								<br/>
-		<label>은행계좌</label>	<input name="account_no" class="form-control" style="width: 250px; display: inline;"> <br/>
-		<label>부서이름</label>	<select name="dept_id" onchange="dept_select_value(this);" class="form-control" style="width: 250px; display: inline;"> 
+		<label>은행계좌</label>	<input name="account_no" id="account_no" class="form-control" style="width: 250px; display: inline;"> <br/>
+		<label>부서이름</label>	<select name="dept_id" id="dept_id" onchange="dept_select_value(this);" class="form-control" style="width: 250px; display: inline;"> 
 									<c:forEach items="${dept}" var="dept">
 										<option value="${dept.dept_id}">${dept.dept_name}</option>
 									</c:forEach>
 								</select>
 								<span id="dept_name"></span>
 								<br/>
-		<label>이미지</label>     <input type="file" name="uploadFile" class="form-control" style="width: 250px; display: inline;"><br/>
-	<button class="btn btn-success"type="submit">등록</button>
+		<label>이미지</label>     <input type="file" name="uploadFile" id="uploadFile" class="form-control" style="width: 250px; display: inline;"><br/>
+	<button class="btn btn-success" type="submit" onclick="check()" >등록</button>
 	</form>
 </div>

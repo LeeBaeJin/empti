@@ -10,6 +10,10 @@ $(function(){
 		stocksUpdate(); 
 		init();
 		fnc_btnfindItem();
+		
+		$('#searchForm').on('click','#btnSearch',function() {
+			stocksList();
+		});
 	});
 	
 		function fnc_btnfindItem(){
@@ -49,7 +53,31 @@ $(function(){
 	function stocksInsert(){
 		//등록 버튼 클릭
 		$('#btnInsert').on('click',function(){
-			console.log($("#stocksform").serialize());
+			if(stocksform.item_no.value ==""){
+				alert("품목코드를 입력해주세요.");
+				stocksform.item_no.focus();
+				return;
+			}
+			if(stocksform.stock_qty.value ==""){
+				alert("수량을 입력해주세요.");
+				stocksform.stock_qty.focus();
+				return;
+			}
+			if(stocksform.stock_price.value ==""){
+				alert("거래가를 입력해주세요.");
+				stocksform.stock_price.focus();
+				return;
+			}
+			if(stocksform.stock_date.value ==""){
+				alert("거래일자를 입력해주세요.");
+				stocksform.stock_date.focus();
+				return;
+			}
+			if(stocksform.strg_no.value ==""){
+				alert("창고를 입력해주세요.");
+				stocksform.strg_no.focus();
+				return;
+			}
 			$.ajax({ 
 			    url: "adminStocks",  
 			    type: 'POST',  
@@ -109,7 +137,7 @@ $(function(){
 	function stocksUpdate() {
 		//수정 버튼 클릭
 		$('#stocksform').on('click', '#btnUpdate', function(){
-			var stocksNo = $('#storckDiv').find('#stock_no').val();
+			var stocksNo = $('#stocksform').find('#stock_no').val();
 			var itemNo = $('[name="item_no"]').val();
 			var stockCategory = $('[name="stock_category"]').val();
 			var stockQty = $('[name="stock_qty"]').val();
@@ -139,8 +167,10 @@ $(function(){
 	
 	//목록 조회 요청
 	function stocksList() {
+		console.log($("#searchForm").serialize());
 		$.ajax({
 			url:'adminStocks',
+			data: $("#searchForm").serialize(),
 			type:'GET',			
 			dataType:'json',
 			error:function(xhr,status,msg){
@@ -164,7 +194,7 @@ $(function(){
 			.append($('<td>').html(item.strg_no))
 			.append($('<td>').html(item.detail_no))
 			.append($('<td>').html(item.note))
-			.append($('<td>').html('<button id=\'btnSelect\'>조회</button>'))
+			.append($('<td>').html('<button id=\'btnSelect\' class=\'btn btn-info\'>조회</button>'))
 			.append($('<input type=\'hidden\' id=\'hidden_stock_no\'>').val(item.stock_no))
 			.appendTo('tbody');
 		});//each
@@ -173,7 +203,20 @@ $(function(){
 	<!-- 목록 시작 -->
 <div class="row">
 	<div class="col-lg-9 col-md-12">
-			<h2>입출고목록</h2>
+			<h2 style="text-align:center">입출고 목록</h2>
+			<hr class="sidebar-divider d-none d-md-block">
+				<form id="searchForm">
+					<label>거래유형</label>	<select name="selectCategory">
+											  <option value="" selected>전체</option>
+											  <option value="원자재">원자재</option>
+											  <option value="가공품">가공품</option>
+											  <option value="입고" >입고</option>
+											  <option value="출고" >출고</option>
+											</select><br/>
+					 <input type="date" name="startDate" value="start" data-date-format='yyyy-MM-dd'>  ~  <input type="date" name="endDate" value="end" data-date-format='yyyy-MM-dd'>
+					 <input type="button" class="btn btn-secondary" value="검색" id="btnSearch" /> 
+					 <input type="reset"  class="btn btn-warning" value="초기화" /> 
+		 		</form><br/>
 			<table class="table text-center">
 				<thead>
 				<tr>				
@@ -186,6 +229,7 @@ $(function(){
 					<th class="text-center">창고</th>
 					<th class="text-center">상세번호</th>
 					<th class="text-center">비고</th>
+					<th></th>
 				</tr>
 				</thead>
 				<tbody></tbody>
@@ -196,11 +240,13 @@ $(function(){
 	<!-- 등록폼 시작 -->
 	<div class="col-lg-3 col-md-12 ">
 		<div id="storckDiv" class="ml-5">
+			<h2 style="text-align:center">입출고 입력</h2>
+			<hr class="sidebar-divider d-none d-md-block">
 			<form id="stocksform">
-				<label>입출고번호</label>	<input class="form-control" name="stock_no" id="stock_no" readonly><br/>
+										<input class="form-control" name="stock_no" id="stock_no" type="hidden"><br/>
 				<label>품목코드</label>	<button type="button" value="품목선택" id="btnFindItem" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" width="30px" height="30px"></button>
 										<input class="form-control" name="item_no" id="item_no" type="text"> <span name="item_name" id="item_name" ></span>
-										<br/>
+										<br/><br/>
 				<label>거래유형</label>	<select class="form-control" name="stock_category">
 										  <option value="원자재" selected>원자재</option>
 										  <option value="가공품">가공품</option>
@@ -222,9 +268,9 @@ $(function(){
 				<label>상세번호</label>	<input class="form-control" name="detail_no" id="detail_no"><br/>
 				<label>비고	</label>	<input class="form-control" name="note" id="note"><br/>
 							<div class="btn-group " >      
-								<input type="button"  class="btn btn-primary" value="등록"  id="btnInsert" /> 
+								<input type="button"  class="btn btn-success" value="등록"  id="btnInsert" /> 
 								<input type="button"  class="btn btn-primary" value="수정"  id="btnUpdate" />
-								<input type="button"  class="btn btn-primary" value="초기화" id="btnInit" />		
+								<input type="button"  class="btn btn-warning" value="초기화" id="btnInit" />		
 				</div>
 			</form>
 		</div>

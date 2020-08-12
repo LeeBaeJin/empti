@@ -20,4 +20,7 @@ public class SaleordersVO {
 	//부가 프로퍼티
 	String company_name;
 	String name;
+	
+	//count
+	String count;
 }

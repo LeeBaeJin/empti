@@ -9,4 +9,10 @@ public class RoleVO {
 	String id;
 	String role_name;
 	String description;
+	
+	//EMP_ROLE의 프로퍼티
+	String role_id;
+	String emp_id;
+	    
+	String roleYn;
 }

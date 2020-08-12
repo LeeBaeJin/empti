@@ -4,8 +4,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <script src="https://code.jquery.com/jquery-3.5.1.js"
 	integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-<script>
 
+<script>
 
 $(function(){
 		ledgerList();
@@ -16,7 +16,9 @@ $(function(){
 		fnc_findOrderNo();
 		fnc_selectOrderNo();
 		
-		$('[name="raidoStatus"]:eq(0)').click();	//radio 첫번째꺼 자동클릭.
+		$('#searchForm').on('click','#btnSearch',function() {
+			ledgerList() 
+		});
 	});
 	
 	//주문번호 조회
@@ -50,7 +52,27 @@ $(function(){
 	function ledgerInsert(){
 		//등록 버튼 클릭
 		$('#ledgerForm').on('click', '#btnInsert', function(){
-			console.log($("#ledgerForm").serialize());
+			if(ledgerForm.ldgr_date.value == ""){
+				alert("날짜를 선택해주세요.");
+				ledgerForm.ldgr_date.focus();
+				return;
+			}
+			if(ledgerForm.total_amount.value == ""){
+				alert("금액을 입력해주세요.");
+				ledgerForm.total_amount.focus();
+				return;
+			}
+			if(ledgerForm.status.value ==""){
+				alert("구분를 선택해주세요.");
+				frm.status.focus();
+				return;
+			}
+			if(ledgerForm.condition.value == ""){
+				alert("상태를 선택해주세요.");
+				frm.condition.focus();
+				return;
+			}
+
 			$.ajax({ 
 			    url: "ledgers",  
 			    type: 'POST',  
@@ -145,9 +167,7 @@ $(function(){
 	
 
 	// 전체조회요청
-	function ledgerList() { 
-		$('[name="raidoStatus"]:eq(0)').click();
-		$('#searchForm').on('click','#btnSearch',function() {
+	function ledgerList() { 	
 		console.log($("#searchForm").serialize());
 		$.ajax({
 			url:'ledgers',
@@ -159,8 +179,8 @@ $(function(){
 			},
 			success:ledgerListResult
 		});
-	});
-};
+	};
+
 	// 조회 응답 . 리스트 뿌려줌.
 	function ledgerListResult(data) {
 		$("tbody").empty();
@@ -174,11 +194,11 @@ $(function(){
 			.append($('<td>').html(item.sorder_no))
 			.append($('<td>').html(item.condition))
 			.append($('<td>').html(item.note))
-			.append($('<td>').html('<button id=\'btnSelect\'>조회</button>'))
+			.append($('<td>').html('<button id=\'btnSelect\' class=\'btn btn-info\'>조회</button>'))
 			.append($('<input type=\'hidden\' id=\'hidden_ldgr_no\'>').val(item.ldgr_no))
 			.appendTo('tbody');
 		});//each
-	};//userListResult
+	};//ledgerListResult
 	
 	
 	// 구분에 따른 구매/판매 주문번호 조회
@@ -215,15 +235,16 @@ $(function(){
 <div class="row">
 	<!-- 목록 시작 -->
 	<div class="col-lg-9 col-md-12">
-		<h2>장부목록</h2>
+		<h2 style="text-align:center">장부 목록</h2>
+		<hr class="sidebar-divider d-none d-md-block">
 			<form id="searchForm">
-				 <input type="radio"  name="raidoStatus" value="" checked><span> 전체조회</span>
-				 <input type="radio"  name="raidoStatus" value="매입"><span> 매입</span>
-				 <input type="radio"  name="raidoStatus" value="매출" ><span> 매출</span><br>
-				 <input type="date" name="startDt" value="start" data-date-format='yyyy-MM-dd'>  ~  <input type="date" name="endDt" value="end" data-date-format='yyyy-MM-dd'>
-				 <input type="button" class="btn btn-primary" value="검색" id="btnSearch" /> 
-				 
-		 	</form>
+				 <input type="radio"  name="radioStatus" value="" checked><span> 전체조회</span>
+				 <input type="radio"  name="radioStatus" value="매입"><span> 매입</span>
+				 <input type="radio"  name="radioStatus" value="매출" ><span> 매출</span><br>
+				 <input type="date" name="startDate" value="start" data-date-format='yyyy-MM-dd'>  ~  <input type="date" name="endDate" value="end" data-date-format='yyyy-MM-dd'>
+				 <input type="button" class="btn btn-secondary" value="검색" id="btnSearch" /> 
+				 <input type="reset"  class="btn btn-warning" value="초기화" /> 
+		 	</form><br/>
 		<table class="table text-center">
 			<thead>
 				<tr>
@@ -246,10 +267,12 @@ $(function(){
 	<!-- 등록수정 폼 시작 -->
 	<div class="col-lg-3 col-md-12 ">
 		<div id="ledgerDiv" class="ml-5">
+			<h2 style="text-align:center">장부 등록</h2>
+			<hr class="sidebar-divider d-none d-md-block">
 			<form id="ledgerForm">  
 				<label>장부번호</label>	<input class="form-control" name="ldgr_no" id="ldgr_no" readonly><br> 
-				<label>날짜</label> 		<input class="form-control" name="ldgr_date" type="datetime-local"> <br> 
-				<label>금액</label> 		<input class="form-control" name="total_amount"> <br> 
+				<label>날짜</label> 		<input class="form-control" name="ldgr_date" id="ldgr_date" type="datetime-local"> <br> 
+				<label>금액</label> 		<input class="form-control" name="total_amount" id="total_amount"> <br> 
 				<label>구분</label> 		<select class="form-control" name="status" id="status">
 											<option value="" selected>== 매출/매입 선택 ==</option>
 											<option value="매입">매입</option>
@@ -257,8 +280,7 @@ $(function(){
 										</select><br>
 				
 				<div id="order_no"></div>
-				
-					<label>상태</label> 	<select class="form-control" name="condition">
+					<label>상태</label> 	<select class="form-control" name="condition" id="condition">
 											<option value="" selected>==선택하세요==</option>
 											<option value="완납">완납</option>
 											<option value="미수">미수</option>
@@ -268,9 +290,9 @@ $(function(){
 								 		
 										
 				<div class="btn-group" >
-					<input type="button" class="btn btn-primary" value="등록" id="btnInsert" /> 
+					<input type="button" class="btn btn-success" value="등록" id="btnInsert" /> 
 					<input type="button" class="btn btn-primary" value="수정" id="btnUpdate" /> 
-					<input type="button" class="btn btn-primary" value="초기화" id="btnInit" />
+					<input type="button" class="btn btn-warning" value="초기화" id="btnInit" />
 				</div>
 			</form>
 		</div>

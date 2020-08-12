@@ -3,12 +3,22 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script>
+//수정폼으로 이동
+function upForm(itemNo) {
+	location.href = "setUpdateFormItems?item_no=" + itemNo
+}
+</script>
+
+
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
 		<h6 class="m-0 font-weight-bold text-primary">
 		<a href="getItemsList">품목 목록</a> | 
 		<a href="setInsertFormItems">품목 입력</a> |
-		<a href="items_list.do">PDF</a> |
+		<a href= "items_list.do" onclick="window.open(this.href, 'width=800', 'height=1200', 'toolbars=no', 'scrollbars=yes'); return false">PDF</a> |
+		
+	<!-- 	<a href="items_list.do">PDF</a> | -->
 		<a href="items_excel.do">EXCEL</a>
 		</h6>
 	</div>
@@ -39,7 +49,8 @@
 								<fmt:parseNumber value="${items.item_price}" var="fmt"/>
 								<fmt:formatNumber type="number" maxFractionDigits="3" value="${fmt}"/>
 							</td>
-							<td><a href="setUpdateFormItems?item_no=${items.item_no}">수정</a></td>
+							<td><a href="#" onclick="upForm('${items.item_no}')" class="btn btn-primary">수정</a></td>
+							
 						</tr>
 					</c:forEach>
 				</tbody>

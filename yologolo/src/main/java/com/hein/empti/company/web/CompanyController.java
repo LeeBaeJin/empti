@@ -85,7 +85,7 @@ public class CompanyController {
 	@RequestMapping("/setDeleteCompany")
 	public String setDeleteCompany(CompanyVO companyVO, Model model) {
 		if(companyService.getBuyCount(companyVO) > 0 || companyService.getSaleCount(companyVO) >0) {
-			model.addAttribute("msg", "삭제할 수 없습니다.");
+			model.addAttribute("msg", "거래이력이 있어 삭제할 수 없습니다.");
 			model.addAttribute("loc", "getCompanyList");
 			return "common/msg";
 		} else {
@@ -134,11 +134,10 @@ public class CompanyController {
 		return mv;
 	}
 	
-	
 	//월별 매출 통계 차트
-		@RequestMapping("getVipCompany")
-		public @ResponseBody List<Map<String,Object>> getVipCompany(){
-			return companyService.getVipCompany(); 
-		}
+	@RequestMapping("getVipCompany")
+	public @ResponseBody List<Map<String,Object>> getVipCompany(){
+		return companyService.getVipCompany(); 
+	}
 
 }

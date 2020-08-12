@@ -3,6 +3,9 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <style>
+	label{display:inline-block; width:120px;}
+</style>
 <script>
 //페이지 로드
 $(function(){
@@ -67,22 +70,23 @@ function execPostCode() {
 </script>
 <div class="col-sm-12 my-auto">
 	<h3>거래처수정</h3>
+	<hr class="sidebar-divider d-none d-md-block" width="43%" align="left"> 
 	<form id="cpFrm" action="setUpdateCompany" class="from-group">
 		<label>회사코드</label> <input class="form-control" name="company_no" style="width: 250px; display: inline;" value="${company.company_no}" readonly="readonly"> <br/>
 		<label>회사명</label> <input class="form-control"name="company_name" style="width: 250px; display: inline;" value="${company.company_name}"> <br/>
 		<label>대표 전화번호</label> <input class="form-control" name="phone" style="width: 250px; display: inline;" value="${company.phone}"> <br/>
 		<label>대표 이름</label> <input class="form-control" name="ceo_name" style="width: 250px; display: inline;" value="${company.ceo_name}"> <br/>
 		<label>주소</label>	<input class="form-control" name="zip_code" id="addr1" readonly="readonly" style="width: 10%; display: inline;" placeholder="우편번호" value="${company.zip_code}">
-							<button class="btn btn-default" type="button"  onclick="execPostCode();"><i class="fa fa-search"></i> 우편번호 찾기</button><br/>                             
-							<input class="form-control" name="address" id="addr2" readonly="readonly" style="top: 5px; width: 35%; display: inline;" placeholder="도로명 주소" value="${company.address}"><br/>
-							<input class="form-control" name="address_detail" id="addr3" style="width: 35%; display: inline;" placeholder="상세주소" value="${company.address_detail}">
+		<label></label>					<button class="btn btn-default" type="button"  onclick="execPostCode();"><i class="fa fa-search"></i> 우편번호 찾기</button><br/>                             
+		<label></label>					<input class="form-control" name="address" id="addr2" readonly="readonly" style="top: 5px; width: 35%; display: inline;" placeholder="도로명 주소" value="${company.address}"><br/>
+		<label></label>					<input class="form-control" name="address_detail" id="addr3" style="width: 35%; display: inline;" placeholder="상세주소" value="${company.address_detail}">
 							<br/>
 		<label>담당자 전화번호</label>	<input class="form-control" name="dealer_phone" style="width: 250px; display: inline;" value="${company.dealer_phone}"> <br/>
 		<label>담당자 이름</label>	<input class="form-control" name="dealer_name" style="width: 250px; display: inline;" value="${company.dealer_name}"> <br/>
 		<label>은행</label> <input class="form-control" name="bank_name" style="width: 250px; display: inline;" value="${company.bank_name}"> <br/>
 		<label>계좌</label> <input class="form-control" name="account_no" style="width: 250px; display: inline;" value="${company.account_no}"> <br/>
 		<label>비고</label> <input class="form-control" name="note" style="width: 250px; display: inline;" value="${company.note}"> <br/><br/>
-	<button class="btn btn-success" id="subBtn" type="button">수정</button>
+	<button class="btn btn-primary" id="subBtn" type="button">수정</button> 
 	<button class="btn btn-danger" id="delBtn" type="button" onclick="delCompany(${company.company_no})">삭제</button>
 	</form>
 </div>

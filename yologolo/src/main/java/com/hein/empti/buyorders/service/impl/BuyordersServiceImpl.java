@@ -73,4 +73,10 @@ public class BuyordersServiceImpl implements BuyordersService{
 	public List<Map<String, Object>> getBuyordersexcelMap(BuyordersVO vo) {
 		return buyordersMapper.getBuyordersexcelMap(vo);
 	}
+	
+	// '미수령'인 주문 건수
+	@Override
+	public String getReadyBuyorders(BuyordersVO vo) {
+		return buyordersMapper.getReadyBuyorders(vo);
+	}
 }

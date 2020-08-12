@@ -8,7 +8,9 @@
 		<h6 class="m-0 font-weight-bold text-primary">
 		<a href="getSaleledgerList">장부 내역</a> | 
 		<a href="setInsertFormSaleledger">장부 입력</a> |
-		<a href="buyledger_list.do">PDF</a>
+		<a href= "buyledger_list.do" onclick="window.open(this.href, 'width=800', 'height=1200', 'toolbars=no', 'scrollbars=yes'); return false">PDF</a> |
+		
+<!-- 		<a href="buyledger_list.do">PDF</a> -->
 		</h6>
 	</div>
 	<div class="card-body">

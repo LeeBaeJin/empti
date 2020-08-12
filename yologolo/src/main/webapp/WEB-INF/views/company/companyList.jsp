@@ -8,8 +8,6 @@
 		location.href = "getCompany/" + company_no
 	} 
 	
-	
-	
 	//수정폼으로 이동
 	function upFrom(companyNo) {
 		location.href = "setUpdateFormCompany?company_no=" + companyNo
@@ -27,7 +25,8 @@
 		<h6 class="m-0 font-weight-bold text-primary">
 		<a href="getCompanyList">거래처 목록</a> | 
 		<a href="setInsertFormCompany">거래처 입력</a> |
-		<a href="companyPdf.do">PDF</a> |
+<!-- 		<a href="companyPdf.do">PDF</a> | -->
+		<a href= "companyPdf.do" onclick="window.open(this.href, 'width=800', 'height=1200', 'toolbars=no', 'scrollbars=yes'); return false">PDF</a> |
 		<a href="company_excel.do">EXCEL</a>
 		</h6>
 	</div>
@@ -49,8 +48,7 @@
 					<c:forEach items="${companyList}" var="company">
 						<tr>
 							<%-- <td><a href="#" onclick="compDetail(${company.company_no});" >${company.company_name}</a></td> --%>
-							<td><a href="getCompany/${company.company_no}" onclick="window.open(this.href, '_blank', 'width=1500, height=150, left=200, top=300'); return false;" >${company.company_name}</a></td>
-							
+							<td><a href="getCompany/${company.company_no}" onclick="window.open(this.href, '_blank', 'width=500, height=700, left=650, top=150'); return false;" >${company.company_name}</a></td>							
 							<td>
 							${company.zip_code}<br>
 							${company.address}<br>
@@ -60,7 +58,7 @@
 							<td>${company.dealer_name}</td>
 							<td>${company.dealer_phone}</td>
  							<td><button type="button" onclick="upFrom(${company.company_no})" class="btn btn-primary">수정</button></td>
-							<td><a href="#" onclick="companyDelete(${company.company_no})" class="btn btn-primary">삭제</a></td>
+							<td><a href="#" onclick="companyDelete(${company.company_no})" class="btn btn-danger">삭제</a></td>
 						</tr>
 					</c:forEach>
 				</tbody>

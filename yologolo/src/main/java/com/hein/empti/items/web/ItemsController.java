@@ -24,7 +24,6 @@ public class ItemsController {
 	public String setInsertFormItems(ItemsVO vo) {
 
 		return "admin/items/insertItems";
-
 	}
 
 	// 등록 처리
@@ -53,6 +52,7 @@ public class ItemsController {
 	@RequestMapping("/setUpdateFormItems")
 	public String setUpdateFormItems(Model model, ItemsVO vo) {
 		model.addAttribute("updateList", itemsService.getItems(vo));
+		System.out.println(vo);
 		return "admin/items/updateItems";
 	}
 

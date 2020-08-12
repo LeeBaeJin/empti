@@ -19,4 +19,6 @@ public interface EmpService {
 	//emp (Map) 엑셀
 	public List<Map<String, Object>> getEmpMap(EmpVO vo);
 
+	//사번 max값
+	public EmpVO empIdMax(EmpVO empVO);
 }

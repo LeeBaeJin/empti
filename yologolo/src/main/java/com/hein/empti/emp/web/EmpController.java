@@ -63,6 +63,7 @@ public class EmpController {
 	//등록폼
 	@RequestMapping("/setInsertFormEmp")
 	public String setInsertFormEmp(EmpVO empVO, Model model, DeptVO deptVO) {
+		model.addAttribute("empId", empService.empIdMax(empVO));
 		model.addAttribute("dept", deptService.getDeptList(deptVO));
 		return "admin/emp/insertEmp";
 	}
@@ -100,6 +101,7 @@ public class EmpController {
 		return "admin/emp/updateEmp";
 	}
 	
+	//session login 수정 폼
 	@RequestMapping("/mySetUpdateFormEmp")
 	public String setUpdateFormEmp(EmpVO empVO, Model model, DeptVO deptVO,HttpSession session) {
 
@@ -114,17 +116,18 @@ public class EmpController {
 	
 	//수정처리
 	@RequestMapping("/setUpdateEmp")
-	public String setUpdateEmp(EmpVO empVO, Model model) throws IOException {
+	public String setUpdateEmp(EmpVO empVO, Model model, HttpSession session) throws IOException {
 		MultipartFile file = empVO.getUploadFile();
 		String filename = file.getOriginalFilename();
 		if (file != null && file.getSize() > 0) {
 			File upFile = FileRenamePolicy.rename(new File("D:/upload",filename));
 			filename = upFile.getName();
 			file.transferTo(upFile);
-			}
-		empVO.setProfile(filename);
+			empVO.setProfile(filename);
+		}
 		empService.setUpdateEmp(empVO);
-		return "redirect:getEmpList";
+		session.setAttribute("login", empService.getEmp(empVO));
+		return "redirect:main";
 	}
 	
 	//삭제처리

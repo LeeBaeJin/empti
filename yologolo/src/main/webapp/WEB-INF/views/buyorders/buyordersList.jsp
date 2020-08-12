@@ -25,7 +25,8 @@
 			buyDel.push(obj);
 		});
 		$('#tblHead').on('click', '#delUpdate', function() {
-			var result = confirm("배송상태를 수정하시겠습니까?");
+			var result = confirm("배송상태를 수정하시겠습니까?\n수령완료 시 수정이 불가능합니다.");
+			var delStatus = $('[name=status] option:selected');
 			if (result) {
 				$.ajax ({
 					url: "setUpdateBuyDel",
@@ -34,6 +35,7 @@
 					contentType : "application/json",
 					success: function() {
 					alert("성공적으로 수정하였습니다.");
+										
 				},  error: function() {
 					alert("수정을 실패하였습니다.");
 				}
@@ -44,17 +46,25 @@
 		});
 	});
 	
+	
 $(function() {
 	var delStatus = $('[name=status] option:selected');
+	console.log(delStatus)
 	$.each(delStatus, function(idx, item) {
-		if(item.value == "반품"){
-			$(item).closest('tr').css({
-				color: "red"
-			})
-			$(item).closest('tr').find('.returnTd').empty();
-			$(item).closest('tr').find('.deleteTd').empty();
+		if(item.value == "수령완료"){
+		$(item).parent().attr('disabled', 'true');
 		}
 	});
+	
+	$('.spanReturn').parent().prev().css({
+        color: "red"
+	});
+	$('.spanReturn').css({
+        color: "red"
+	});
+	$('.spanReturn').closest('tr').find('.returnTd').empty();
+	$('.spanReturn').closest('tr').find('.deleteTd').empty();
+	
 });
 
 </script>
@@ -64,10 +74,11 @@ $(function() {
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
 		<h6 class="m-0 font-weight-bold text-primary">
-			<a href="getBuyordersListMap">구매주문 조회</a> | 
+			<a href="getBuyordersListMap">구매주문 목록</a> | 
 			<a href="setInsertFormBuyorders">구매주문 입력</a> |
-			<a href="buyorders_list.do">PDF</a> |
-			<a href="borderexcel.do">EXCEL</a>
+			<!-- <a href="buyorders_list.do">PDF</a> | -->
+			<a href= "buyorders_list.do" onclick="window.open(this.href, 'width=800', 'height=1200', 'toolbars=no', 'scrollbars=yes'); return false">PDF</a> |
+			<a href="buyOrdersexcel.do">EXCEL</a> 
 		</h6>
 	</div>
 	<div class="card-body">
@@ -103,12 +114,16 @@ $(function() {
 							</td>
 							
 							
-							<td>
+							<td class="returnStatus">
+							<c:if test="${buy.status != '반품'}" >
 							<select id="status" name="status" onchange="buyChk(${buy.border_no}, this)">
 								<option value="수령중" <c:if test="${fn:contains(buy.status,'수령중')}">selected="selected"</c:if>>수령중</option>
 								<option value="수령완료" <c:if test="${fn:contains(buy.status,'수령완료')}">selected="selected"</c:if>>수령완료</option>
-								<option value="반품" <c:if test="${fn:contains(buy.status,'반품')}">selected="selected"</c:if>>반품</option>
 							</select>
+							</c:if>
+							<c:if test="${buy.status == '반품'}">
+									<span class="spanReturn">반품</span>
+								</c:if>
 							</td>
 							
 							<td>${buy.name}</td>
@@ -165,6 +180,7 @@ function delBorder(borderNo) {
 function reBorder(border_no) {
 	var result = confirm("반품하시겠습니까?");
 	if (result) {
+		alert("반품하였습니다.");
 		window.location.href = "setInsertBuyordersRetrun?return_no="+border_no;
 	} else {
 		return false;

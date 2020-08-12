@@ -46,11 +46,11 @@
     <!-- Combo Chart -->
 	<div class="card shadow mb-4">
 		<div class="card-header py-3">
-			<h6 class="m-0 font-weight-bold text-primary">Combo Chart</h6>
+			<h6 class="m-0 font-weight-bold text-primary">매출액 통계</h6>
 		</div>
 		<div class="card-body">
-			<div class="chart-area">
-				<div id="myComboChart" style="width: 450px; height: 300px;"></div>
+			<div class="chart-bar">
+				<div id="myComboChart" class="col-lg-12" style="width: 100%; height: 100%;"></div>
 			</div>
 		</div>
 	</div>

@@ -14,13 +14,20 @@ $(function(){
 		  serverSide: false
 	});
 });
+
+function orderDetails(return_no) {
+	window.open('getBuyorderdetailList?border_no=' + return_no,
+				'buyorderdetails',
+				'width=800, height=300, left=150, top=250, location=no, status=no, scrollbars=yes');
+	return false;
+}
 </script>
 </head>
 <body>
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
 				<h6 class="m-0 font-weight-bold text-primary">
-			<a href="getBuyordersListMap">구매주문 조회</a> | 
+			<a href="getBuyordersListMap">구매주문 목록</a> | 
 			<a href="setInsertFormBuyorders">구매주문 입력</a> |
 			<a href="buyorders_list.do">PDF</a> |
 			<a href="borderexcel.do">EXCEL</a>
@@ -35,16 +42,17 @@ $(function(){
 					<tr>
 						<th>주문일자</th>
 						<th>반품일자</th>
-						<th>판매합계</th>
+						<th>반품합계</th>
 						<th>주문담당</th>
 						<th>거래처</th>
+						<th style="display: none;"></th>
 						<th style="display: none;"></th>
 					</tr>
 				</thead>
 				<tbody id="tblBody">
 					<c:forEach items="${returnBorders}" var="rb">
 					<tr>
-						<td>${rb.border_date}</td>
+						<td><a href="javascript:void(0);" onclick="orderDetails(${rb.return_no});">${rb.border_date}</a></td>
 						
 						<td>${rb.return_date}</td>
 						
@@ -58,6 +66,7 @@ $(function(){
 						<td>${rb.company_name}</td>
 						
 						<td style="display: none;">${rb.border_no}</td>
+						<td style="display: none;">${rb.return_no}</td>
 					</tr>
 					</c:forEach>
 				</tbody>

@@ -16,7 +16,9 @@ function deptDelete(dept_id) {
 		<h6 class="m-0 font-weight-bold text-primary">
 		<a href="getDeptList">부서 목록</a> | 
 		<a href="setInsertFormDept">부서 입력</a> |
-		<a href="departments_list.do">PDF</a> |
+	    <a href= "departments_list.do" onclick="window.open(this.href, 'width=800', 'height=1200', 'toolbars=no', 'scrollbars=yes'); return false">PDF</a> |
+	
+<!-- 		<a href="departments_list.do">PDF</a> | -->
 		<a href="dept_excel.do">EXCEL</a>
 		
 		</h6>
@@ -38,7 +40,7 @@ function deptDelete(dept_id) {
 							<td>${dept.dept_id}</td>
 							<td><a href="setUpdateFormDept?dept_id=${dept.dept_id}">${dept.dept_name}</a></td>
 							<td>${dept.name}</td>
-							<td><a href="#" onclick="deptDelete(${dept.dept_id})">삭제</a></td>
+							<td><a href="#" onclick="deptDelete(${dept.dept_id})" class="btn btn-danger">삭제</a></td>
 						</tr>
 						
 					</c:forEach>

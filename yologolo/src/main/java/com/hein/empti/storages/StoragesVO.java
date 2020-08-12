@@ -9,5 +9,6 @@ public class StoragesVO {
 		String	strg_no;
 		String	strg_category;
 		String	emp_id;
+		String 	name;
 
 }

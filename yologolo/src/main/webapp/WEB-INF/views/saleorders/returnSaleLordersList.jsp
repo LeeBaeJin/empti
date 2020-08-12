@@ -14,13 +14,20 @@ $(function(){
 		  serverSide: false
 	});
 });
+
+function orderDetails(return_no) {
+	window.open('getSaleorderdetailList?sorder_no=' + return_no,
+				'saleorderdetails',
+				'width=800, height=300, left=150, top=250, location=no, status=no, scrollbars=yes');
+	return false;
+}
 </script>
 </head>
 <body>
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
 				<h6 class="m-0 font-weight-bold text-primary">
-			<a href="getSaleordersListMap">판매주문 조회</a> | 
+			<a href="getSaleordersListMap">판매주문 목록</a> | 
 			<a href="setInsertFormSaleorders">판매주문 입력</a> |
 			<a href="saleorders_list.do">PDF</a> |
 			<a href="sorderexcel.do">EXCEL</a>
@@ -35,16 +42,17 @@ $(function(){
 					<tr>
 						<th>주문일자</th>
 						<th>반품일자</th>
-						<th>판매합계</th>
+						<th>반품합계</th>
 						<th>주문담당</th>
 						<th>거래처</th>
+						<th style="display: none;"></th>
 						<th style="display: none;"></th>
 					</tr>
 				</thead>
 				<tbody id="tblBody">
 					<c:forEach items="${returnSorders}" var="rs">
 					<tr>
-						<td>${rs.sorder_date}</td>
+						<td> <a href="javascript:void(0);" onclick="orderDetails(${rs.return_no});">${rs.sorder_date}</a></td>
 						
 						<td>${rs.return_date}</td>
 						
@@ -58,6 +66,7 @@ $(function(){
 						<td>${rs.company_name}</td>
 						
 						<td style="display: none;">${rs.sorder_no}</td>
+						<td style="display: none;">${rs.return_no}</td>
 					</tr>
 					</c:forEach>
 				</tbody>

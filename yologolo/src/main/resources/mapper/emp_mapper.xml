@@ -105,4 +105,10 @@
 		WHERE e.dept_id=d.dept_id(+)
 		GROUP BY dept_name
 	</select>
+	
+	<!-- 사번 max값 -->
+	<select id="empIdMax" resultType="EmpVO">
+		SELECT nvl(max(emp_id)+1, 0) "emp_id"
+		FROM   employees
+	</select>
 </mapper>

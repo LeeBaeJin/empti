@@ -14,7 +14,9 @@ $(function(){
 		init();
 		fnc_btnfindItem();
 		
-		$('[name="radioCategory"]:eq(0)').click();
+		$('#searchForm').on('click','#btnSearch',function() {
+			disposalList()
+		});
 	});
 	
 	
@@ -45,7 +47,7 @@ $(function(){
 			    	if(response.result == true) {
 			    		disposalList();
 			    	}
-			    }, 
+			    },
 			    error:function(xhr, status, message) { 
 			        alert(""+ status+" 정보를 입력해주세요 "+message);
 			    } 
@@ -118,12 +120,10 @@ $(function(){
 	
 	//  리스트 요청
 	function disposalList() {
-		$('[name="radioCategory"]:eq(0)').click();		/* radio 버튼에만 ajax처리가 걸려서 같이 넣어줌. */
-		$('[name="radioCategory"]').on('click', function(){
-			var category = this.value;
+		var category = this.value;
 		$.ajax({
 			url:'disposals',
-			data: {category : category},
+			data: $("#searchForm").serialize(),
 			type:'GET',			
 			dataType:'json',
 			error:function(xhr,status,msg){
@@ -131,8 +131,8 @@ $(function(){
 			},
 			success:disposalListResult
 			});
-		});
-	}
+		}
+	
 	
 	// 폐기불량 리스트 뿌려줌
 	function disposalListResult(data) {
@@ -146,7 +146,7 @@ $(function(){
 			.append($('<td>').html(item.category))
 			.append($('<td>').html(item.strg_no))
 			.append($('<td>').html(item.item_no))
-			.append($('<td>').html('<button id=\'btnSelect\'>조회</button>'))
+			.append($('<td>').html('<button id=\'btnSelect\' class=\'btn btn-info\'>조회</button>'))
 			.append($('<input type=\'hidden\' id=\'hidden_disposal_no\'>').val(item.disposal_no))
 			.appendTo('tbody');
 		});//each
@@ -177,17 +177,23 @@ $(function(){
 <div class="row">
 	<!-- 목록 시작 -->
 	<div class="col-lg-7 col-md-12">
-		<h2>폐기/불량 목록</h2>
-		 <input type="radio"  name="radioCategory" value="" checked><span> 전체조회</span>
-		 <input type="radio"  name="radioCategory" value="폐기"><span> 폐기</span>
-		 <input type="radio"  name="radioCategory" value="불량"><span> 불량</span>
+		<h2 style="text-align:center">폐기/불량 목록</h2>
+		<hr class="sidebar-divider d-none d-md-block">
+			<form id="searchForm">
+		 		<input type="radio"  name="radioCategory" value="" checked><span> 전체조회</span>
+			 	<input type="radio"  name="radioCategory" value="폐기"><span> 폐기</span>
+			 	<input type="radio"  name="radioCategory" value="불량"><span> 불량</span><br>
+			 	<input type="date" name="startDate" value="start" data-date-format='yyyy-MM-dd'>  ~  <input type="date" name="endDate" value="end" data-date-format='yyyy-MM-dd'>
+			 	<input type="button" class="btn btn-secondary" value="검색" id="btnSearch" /> 
+			 	<input type="reset"  class="btn btn-warning" value="초기화" /> 
+		 	</form><br/>
 		<table class="table text-center">
 			<thead>
 				<tr>
 					<th class="text-center">폐기/불량 번호</th>
-					<th class="text-center">폐기 수량</th>
-					<th class="text-center">단가</th>
-					<th class="text-center">폐기일</th>
+					<th class="text-center">폐기/불량 수량</th>
+					<th class="text-center">처리비용</th>
+					<th class="text-center">날짜</th>
 					<th class="text-center">구분</th>
 					<th class="text-center">창고번호</th>
 					<th class="text-center">품목코드</th>
@@ -202,12 +208,13 @@ $(function(){
 	<!-- 등록수정 폼 시작 -->
 	<div class="col-lg-5 col-md-12">
 		<div id="disposalDiv" class="ml-5">
-			<h1>폐기불량 입력</h1>
+			<h2 style="text-align:center">폐기/불량 입력</h2>
+			<hr class="sidebar-divider d-none d-md-block">
 			<form id="disposalForm">
 				<label>폐기/불량 번호</label>	<input class="form-control" name="disposal_no" id="disposal_no" readonly><br/>
-				<label>폐기 수량</label>		<input class="form-control" name="disposal_qty"  ><br/>
-				<label>단가</label>			<input class="form-control" name="price"  ><br/>
-				<label>폐기일</label>			<input class="form-control" name="disposal_date" type="datetime-local"><br/>
+				<label>폐기/불량 수량</label>		<input class="form-control" name="disposal_qty"  ><br/>
+				<label>처리비용</label>			<input class="form-control" name="price"  ><br/>
+				<label>날짜</label>			<input class="form-control" name="disposal_date" type="datetime-local"><br/>
 				<label>구분</label>			<select class="form-control" name="category">
 														<option value="폐기">폐기</option>
 														<option value="불량">불량</option>
@@ -223,9 +230,9 @@ $(function(){
 				<label>품목코드</label>		<button type="button" value="품목선택" id="btnFindItem"><img src="resources/images/Glass.png" width="30px" height="30px"></button>
 											<input class="form-control" name="item_no" id="item_no" > <span id="item_name" name="item_name"></span><br/>
 				<div class="btn-group">
-					<input type="button" class="btn btn-primary" value="등록" id="btnInsert" /> 
+					<input type="button" class="btn btn-success" value="등록" id="btnInsert" /> 
 					<input type="button" class="btn btn-primary" value="수정" id="btnUpdate" /> 
-					<input type="button" class="btn btn-primary" value="초기화" id="btnInit" />
+					<input type="button" class="btn btn-warning" value="초기화" id="btnInit" />
 				</div>
 			</form>
 		</div>

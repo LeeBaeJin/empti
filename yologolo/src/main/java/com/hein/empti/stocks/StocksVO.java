@@ -13,9 +13,14 @@ public class StocksVO {
 		String	note;
 		String	stock_price;
 		String	stock_category;
-		String	detail_no;
+		String	borderdetail_no;
+		String	sorderdetail_no;
 		String	item_no;
 		String	item_name;
 		String	strg_no;
 
+		//검색
+		String selectCategory;
+		String startDate;
+		String endDate;
 }

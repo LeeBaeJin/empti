@@ -1,8 +1,7 @@
 package com.hein.empti.saleorders.web;
 
-import java.util.HashMap;
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,10 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -79,6 +76,11 @@ public class SaleordersController {
 	// 판매주문 등록폼
 	@RequestMapping("/setInsertFormSaleorders")
 	public String setInsertFormSaleorders(SaleordersVO vo, Model model, EmpVO empVO) {
+		LocalDateTime currentDateTime = LocalDateTime.now(); 
+		String currentTime =currentDateTime.toString().replace(" ", "T");
+		int loc = currentTime.lastIndexOf(":");
+		System.out.println(currentTime.substring(0,loc));
+		model.addAttribute("serverTime", currentTime.substring(0,loc));
 		model.addAttribute("emps", empService.getEmpList(empVO));
 		return "admin/saleorders/insertSaleorders";
 	}
@@ -144,8 +146,15 @@ public class SaleordersController {
 		mv.setViewName("commonExcelView");
 		mv.addObject("datas", saleordersService.getSaleOrdersExcelMap(vo));// Map객체를 조회해서 시트를 생성한다.
 		mv.addObject("filename", "saleorderlist");// 파일이름을 바꿔준다.
-		mv.addObject("headers", new String[] { "판매번호", "판매일자", "품목", "수량", "단가", "판매합계", "거래처", "담당자" }); // 헤더의 값만
+		mv.addObject("headers", new String[] {"판매일자", "거래처명", "품목명", "판매단가", "주문수량", "담당직원", "상태" }); // 헤더의 값만
 																											// 출력된다.
 		return mv; // 판매번호, 판매일자, 품목, 수량, 단가, 판매합계, 거래처, 담당자
+	}
+	
+	// '배송준비중'인 주문 건수
+	@RequestMapping("getReadySaleorders")
+	@ResponseBody
+	public String getReadySaleorders(SaleordersVO vo, Model model) {
+		return saleordersService.getReadySaleorders(vo);
 	}
 }
