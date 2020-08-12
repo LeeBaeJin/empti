@@ -27,11 +27,11 @@ $(function(){
 			var status = $('#status option:selected').val();
 			
 			if(status == '매입'){
-			var bwo = window.open('findBuyorderNo','item', 'width=800, height=1200, left=700, top=150');
+			var bwo = window.open('findBuyorderNo','item', 'width=800, height=1000, left=800');
 			//var wo = window.open('findBuyorderNo/status','item', 'width=800, height=800');
 			return bwo;
 			} else {     
-			var swo = window.open('findSaleorderNo','item', 'width=800, height=1200, left=700, top=150');
+			var swo = window.open('findSaleorderNo','item', 'width=800, height=1000, left=800');
 			return swo;
 			
 			}
