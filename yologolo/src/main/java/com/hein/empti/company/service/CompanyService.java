@@ -22,7 +22,7 @@ public interface CompanyService {
 	//거래처 리스트 (Map) 엑셀
 	public List<Map<String, Object>> getCompanyMap(CompanyVO vo);
 	
-	// data chart
-	public List<Map<String,Object>> getVipCompany();
+	// 가장 주문량이 많은 거래처
+	public CompanyVO getVipCompany(CompanyVO vo);
 
 }

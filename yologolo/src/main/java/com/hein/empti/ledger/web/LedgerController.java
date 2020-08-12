@@ -112,4 +112,12 @@ public class LedgerController {
 	public @ResponseBody List<Map<String,Object>> getMonthlySaleAmount(){
 		return ledgerService.getMonthlySaleAmount(); 
 	}
+	
+	//영업이익
+	@RequestMapping("getProfits")
+	@ResponseBody
+	public String getProfits(LedgerVO ledgerVO) {
+		return ledgerService.getProfits(ledgerVO);
+	}
+	
 }

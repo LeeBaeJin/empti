@@ -61,10 +61,9 @@ public class CompanyServiceImpl implements CompanyService {
 		return companyMapper.getSaleCount(companyVO);
 	}
 
+	//가장 주문량 많은 거래처
 	@Override
-	public List<Map<String, Object>> getVipCompany() {
-		return companyMapper.getVipCompany();
+	public CompanyVO getVipCompany(CompanyVO vo) {
+		return companyMapper.getVipCompany(vo);
 	}
-
-	
 }

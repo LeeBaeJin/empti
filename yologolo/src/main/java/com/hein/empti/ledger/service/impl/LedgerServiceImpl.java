@@ -54,4 +54,9 @@ public class LedgerServiceImpl implements LedgerService {
 	public List<Map<String, Object>> getMonthlySaleAmount() {
 		return ledgerMapper.getMonthlySaleAmount();
 	}
+
+	@Override
+	public String getProfits(LedgerVO vo) {
+		return ledgerMapper.getProfits(vo);
+	}
 }

@@ -97,7 +97,7 @@
 		WHERE company_no = #{company_no}
 	</delete>
 
-	<select id="getVipCompany" resultType="map">
+	<select id="getVipCompany" resultType="CompanyVO" parameterType="CompanyVO">
 		SELECT *
 		FROM VIPCOMPANY_VIEW
 	</select>

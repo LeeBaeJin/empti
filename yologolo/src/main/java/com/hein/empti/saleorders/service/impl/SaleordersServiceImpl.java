@@ -82,4 +82,10 @@ public class SaleordersServiceImpl implements SaleordersService {
 	public String getReadySaleorders(SaleordersVO vo) {
 		return saleordersMapper.getReadySaleorders(vo);
 	}
+	
+	//판매량 높은 품목 Best5
+	@Override
+	public List<Map<String, Object>> getHigherSaleItems() {
+		return saleordersMapper.getHigherSaleItems();
+	}
 }

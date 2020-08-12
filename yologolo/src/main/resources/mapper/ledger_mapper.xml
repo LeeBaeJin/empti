@@ -95,4 +95,11 @@
             	status = '매출'
 		GROUP BY TO_CHAR(ldgr_date, 'YYYY-MM')
 	</select>
+	
+	<!-- 영업이익 -->
+	<select id="getProfits" resultType="string" parameterType="LedgerVO">
+		SELECT SUM(total_amount) "profits"
+		FROM ledger
+		WHERE TO_CHAR(ldgr_date, 'yyyy-MM') = '2020-08'
+	</select>
 </mapper>

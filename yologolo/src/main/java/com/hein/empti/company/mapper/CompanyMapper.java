@@ -15,12 +15,13 @@ public interface CompanyMapper {
 	//삭제 count
 	public int getBuyCount(CompanyVO companyVO);
 	public int getSaleCount(CompanyVO companyVO);
+	
 	//거래처 검색
 	public List<CompanyVO> findCompany(CompanyVO companyVO);
 	
 	//거래처 리스트 (Map) 엑셀
 	public List<Map<String, Object>> getCompanyMap(CompanyVO vo);
  
-	// data chart
-	public List<Map<String,Object>> getVipCompany();
+	// 가장 주문량이 많은 거래처
+	public CompanyVO getVipCompany(CompanyVO vo);
 }

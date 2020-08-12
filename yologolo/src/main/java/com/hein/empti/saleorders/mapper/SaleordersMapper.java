@@ -31,4 +31,7 @@ public interface SaleordersMapper {
 	
 	//'배송준비중'인 주문 건수
 	public String getReadySaleorders(SaleordersVO vo);
+	
+	//판매량 높은 품목 Best5
+	public List<Map<String,Object>> getHigherSaleItems();
 }

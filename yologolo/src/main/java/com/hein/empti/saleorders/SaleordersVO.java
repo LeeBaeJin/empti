@@ -21,6 +21,9 @@ public class SaleordersVO {
 	String company_name;
 	String name;
 	
-	//count
+	//count (건수)
 	String count;
+	String item_no;
+	String item_name;
+	
 }

@@ -18,7 +18,11 @@ public class LedgerVO {
 	//건수(count)
 	String count;
 	
+	//월별 검색
 	String radioStatus;
 	String startDate;
 	String endDate;
+	
+	//영업이익
+	String profits;
 }

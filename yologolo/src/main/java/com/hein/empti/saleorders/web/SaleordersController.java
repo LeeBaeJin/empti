@@ -2,6 +2,7 @@ package com.hein.empti.saleorders.web;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -154,7 +155,13 @@ public class SaleordersController {
 	// '배송준비중'인 주문 건수
 	@RequestMapping("getReadySaleorders")
 	@ResponseBody
-	public String getReadySaleorders(SaleordersVO vo, Model model) {
+	public String getReadySaleorders(SaleordersVO vo) {
 		return saleordersService.getReadySaleorders(vo);
+	}
+	
+	// 판매량 높은 품목 Best 5
+	@RequestMapping("getHigherSaleItems")
+	public @ResponseBody List<Map<String,Object>> getHigherSaleItems(){
+		return saleordersService.getHigherSaleItems(); 
 	}
 }

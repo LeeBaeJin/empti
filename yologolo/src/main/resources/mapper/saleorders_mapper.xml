@@ -118,4 +118,17 @@
 		FROM saleorders
 		WHERE del_status = '배송준비중'
 	</select>
+	
+	<!-- 판매량 높은 품목 Best5 -->
+	<select id="getHigherSaleItems" resultType="map" >
+		SELECT *
+		FROM 
+			(SELECT i.item_name "item_name", count(s.sorder_no) "count"
+			FROM SALEORDERS s 				JOIN SALEORDERDETAILS sd
+			ON (s.sorder_no = sd.sorder_no) JOIN items i
+			ON (sd.item_no = i.item_no)
+			GROUP BY i.item_name)
+		<![CDATA[WHERE ROWNUM <= 5 ]]>
+		ORDER BY 2 DESC
+	</select>
 </mapper>

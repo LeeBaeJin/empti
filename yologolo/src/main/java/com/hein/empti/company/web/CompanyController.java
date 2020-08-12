@@ -1,10 +1,5 @@
 package com.hein.empti.company.web;
 
-
-
-import java.util.List;
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
@@ -21,13 +16,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.hein.empti.company.CompanyVO;
 import com.hein.empti.company.service.CompanyService;
 
-
-
 @Controller // Bean등록, Dispatcher Servlet이 인식할 수 있는 Controller로 변환// @Component상속
 public class CompanyController {
 
-	@Autowired
-	CompanyService companyService;
+	@Autowired CompanyService companyService;
 
 	@Autowired
 	@Qualifier("dataSourceSpied")
@@ -94,25 +86,6 @@ public class CompanyController {
 		}
 	}
 
-	/*
-	 * // pdf 출력 및 인쇄
-	 * 
-	 * @RequestMapping("/companyPdf.do") public void report(HttpServletRequest
-	 * request, HttpServletResponse response) throws Exception { Connection conn =
-	 * datasource.getConnection(); // InputStream stream =
-	 * getClass().getResourceAsStream("/reports/companyPdf.jasper"); // JasperReport
-	 * jasperReport = (JasperReport) JRLoader.loadObject(stream); InputStream stream
-	 * = getClass().getResourceAsStream("/reports/companyPdf.jrxml"); JasperReport
-	 * jasperReport = JasperCompileManager.compileReport(stream);
-	 * 
-	 * HashMap<String, Object> map = new HashMap<>(); map.put("p_company",
-	 * request.getParameter("comp"));
-	 * 
-	 * JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, map,
-	 * conn); JasperExportManager.exportReportToPdfStream(jasperPrint,
-	 * response.getOutputStream()); }
-	 */
-
 	// view resolver 방식 pdf 출력
 	@RequestMapping("companyPdf.do")
 	public ModelAndView getSaleLedgerListReport(HttpServletRequest request, HttpServletResponse response)
@@ -134,10 +107,10 @@ public class CompanyController {
 		return mv;
 	}
 	
-	//월별 매출 통계 차트
+	// 가장 거래량 많은 거래처
 	@RequestMapping("getVipCompany")
-	public @ResponseBody List<Map<String,Object>> getVipCompany(){
-		return companyService.getVipCompany(); 
+	@ResponseBody
+	public CompanyVO getVipCompany(CompanyVO vo) {
+		return companyService.getVipCompany(vo);
 	}
-
 }

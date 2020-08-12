@@ -12,34 +12,42 @@
 		<jsp:include page="charts/getMonthlySaleAmount.jsp"/>
 	</div>
 	<div class="col-lg-4">
-		<!-- 거래량 많은 회사-->
-		<jsp:include page="charts/getVipCompany.jsp"/>
+		<!-- 판매량 높은 품목  Best 5-->
+		<jsp:include page="charts/getHigherSaleItems.jsp"></jsp:include>
 	</div>
 </div>
 <!-- 차트 끝 -->
 
 <!-- 카드 -->
 <div class="row">
-	<div class="col-xl-4 col-md-6 mb-4">
-		<jsp:include page="cards/card1.jsp"></jsp:include>
+	<div class="col-xl-3 col-md-6 mb-4">
+		<!-- 영업이익 -->
+		<jsp:include page="cards/getProfits.jsp"></jsp:include>
 	</div>
-	<div class="col-xl-4 col-md-6 mb-4">
-		<jsp:include page="cards/card2.jsp"></jsp:include>
+	<div class="col-xl-3 col-md-6 mb-4">
+		<!-- 주문량 높은 거래처 -->
+		<jsp:include page="cards/getVipCompany.jsp"></jsp:include>
 	</div>
-	<div class="col-xl-4 col-md-6 mb-4">
-		<jsp:include page="cards/card3.jsp"></jsp:include>
+	<div class="col-xl-3 col-md-6 mb-4">
+		<!-- 미배송 판매건수 -->
+		<jsp:include page="cards/getReadySale.jsp"></jsp:include>
 	</div>
+	<div class="col-xl-3 col-md-6 mb-4">
+		<!-- 수령중 구매건수 -->
+		<jsp:include page="cards/getReadyBuy.jsp"></jsp:include>
+	</div>
+	
 </div>
 
 <div class="row">
 	<div class="col-xl-3 col-md-6 mb-4">
-		<jsp:include page="cards/getReadySale.jsp"></jsp:include>
+		<jsp:include page="cards/card2.jsp"></jsp:include>
 	</div>
 	<div class="col-xl-3 col-md-6 mb-4">
-		<jsp:include page="cards/getReadyBuy.jsp"></jsp:include>
+		<jsp:include page="cards/card3.jsp"></jsp:include>
 	</div>
 </div>
-    
+
 <!-- 텍스트 카드 -->
 <div class="row">
 	<div class="col-lg-6 col-md-6 mb-4">
