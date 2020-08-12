@@ -19,13 +19,15 @@
 <table class="table table-hover">
 	 <thead class="thead-dark">
 		<tr style="text-align:center">
-			<th>주문번호</th><th>주문날짜</th><th>반품주문 유무</th>
+			<th>주문번호</th><th>주문날짜</th><th>판매금액</th><th>거래처명</th><th>반품주문 유무</th>
 		</tr>
 	</thead>
 		<c:forEach items="${findSaleorderNo}" var="orders">
 			<tr style="text-align:center">
 				<td><input type="button" class="clickNo" value="${orders.sorder_no}"></td>
 				<td>${orders.sorder_date}</td>
+				<td>${orders.sale_sum}</td>
+				<td>${orders.company_name}</td>
 				<c:choose>
 					<c:when test="${orders.return_no eq null}">
 						<td>X</td>
