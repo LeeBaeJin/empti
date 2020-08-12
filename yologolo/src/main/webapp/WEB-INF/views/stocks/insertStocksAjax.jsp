@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <script>
@@ -179,6 +180,11 @@ $(function(){
 			success:stocksListResult
 		});
 	}// 리스트 조회
+
+	//가격 포맽팅
+	function numberWithCommas(x) {
+	    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
 	
 	// 입출고 내역 목록 뿌려줌
 	function stocksListResult(data) {
@@ -189,7 +195,7 @@ $(function(){
 			.append($('<td>').html(item.item_no))
 			.append($('<td>').html(item.stock_category))
 			.append($('<td>').html(item.stock_qty))
-			.append($('<td>').html(item.stock_price))
+			.append($('<td>').html(numberWithCommas(item.stock_price)))
 			.append($('<td>').html(item.stock_date))
 			.append($('<td>').html(item.strg_no))
 			.append($('<td>').html(item.detail_no))

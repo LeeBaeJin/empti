@@ -59,7 +59,6 @@
 	<!--폐기불량 수정 -->
 	<update id="setUpdateDisposal" parameterType="DisposalVO">
 		<!-- null체크 후 변경 . 동적 쿼리 -->
-
 		UPDATE Disposal
 		<set>
 			<if test="disposal_qty != null">disposal_qty=#{disposal_qty},</if>
@@ -73,12 +72,19 @@
 	</update>
 
 	<!-- 폐기불량 단건조회 -->
-	<select id="getDisposal" resultType="DisposalVO"
-		parameterType="DisposalVO">
+	<select id="getDisposal" resultType="DisposalVO" parameterType="DisposalVO">
 		SELECT d.*, i.*
 		FROM   disposal d, items i	 
 		WHERE  d.item_no = i.item_no AND	
 				disposal_no = #{disposal_no}
 	</select>
-
+	
+	<!-- 입/출고 기준 폐기/불량률 -->
+	<select id="getAvgDisposal" resultType="map">
+		SELECT i.item_name "item_name", sum(stock_qty) "stock_qty", sum(disposal_qty) "disposal_qty"
+		FROM disposal d JOIN stocks s ON (s.item_no = d.item_no)
+						JOIN items i ON (d.item_no = i.item_no)
+		GROUP BY i.item_name
+		ORDER BY 1
+	</select>
 </mapper>

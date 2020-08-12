@@ -43,4 +43,10 @@ public class DisposalServiceImpl implements DisposalService{
 	public List<Map<String, Object>> getDisposalMap(DisposalVO vo) {
 		return disposalMapper.getDisposalMap(vo);
 	}
+	
+	// 입/출고 기준 폐기/불량률 
+	@Override
+	public List<Map<String, Object>> getAvgDisposal() {
+		return disposalMapper.getAvgDisposal();
+	}
 }
