@@ -41,18 +41,12 @@ public class EmpController {
 	DataSource datasource; 	
 	
 	//단건조회
-	@RequestMapping("/getEmpList/{emp_id}")
-	public String getEmp(@PathVariable String emp_id) {
-		return "admin/emp/empList";
+	@RequestMapping("/getEmp/{emp_id}")
+	public String getEmp(@PathVariable String emp_id, EmpVO empVO, Model model) {
+		model.addAttribute("getEmp", empService.getEmp(empVO));
+		return "emp/empDetail";
 	}
-	
-	//사원상세정보
-	@RequestMapping(value = "/empDetail", method=RequestMethod.POST) 
-	@ResponseBody
-	public EmpVO empDetail(EmpVO empVO, Model model) {
-		return empService.getEmp(empVO);
-	}
-	
+		
 	//전체조회
 	@RequestMapping("/getEmpList")
 	public String getEmpList(EmpVO empVO, Model model) {

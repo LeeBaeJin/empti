@@ -43,51 +43,16 @@
 			}
 		});
 	});
-	
-	
-$(document).ready(function() {
-	$('#dataTable').on('order.dt', function() {
-		var delStatus =$('[name=del_status] option:selected');
-		$.each(delStatus, function(idx, item) {
-			console.log(item.value);
-			if(item.value == "배송완료"){
-				$(item).parent().attr('disabled', 'true');
-			}
-		});	
-	})
 
-}); 
-
-/* $(function() {
-	$('#dataTable').on('order.dt', function() {
-		var delStatus =$('[name=del_status] option:selected');
-		$.each(delStatus, function(idx, item) {
-			console.log(item.value);
-			if(item.value == "배송완료"){
-				$(item).parent().attr('disabled', 'true');
-			}
-		});	
-	}) */
+$(function() {	
 	
-		/* var table = $('#dataTable').DataTable();
-		var delStatus = table.rows($('[name=del_status] option:selected')).data().selector.rows;
-		console.log(delStatus)
-		$.each(delStatus, function(idx, item) {
-			console.log(item);
-			if(item.value == "배송완료"){
-				$(item).parent().attr('disabled', 'true');
-			}
-		}); */	
-			var delStatus =$('[name=del_status] option:selected');
+	var delStatus =$('[name=del_status] option:selected');
 	$.each(delStatus, function(idx, item) {
 		console.log(item.value);
 		if(item.value == "배송완료"){
 			$(item).parent().attr('disabled', 'true');
 		}
-	});	
 	});
-
-	
 	
 	$('.spanReturn').parent().prev().css({
         color: "red"
@@ -96,7 +61,14 @@ $(document).ready(function() {
         color: "red"
 	});
 	$('.spanReturn').closest('tr').find('.returnTd').empty();
-	$('.spanReturn').closest('tr').find('.deleteTd').empty();
+	$('.spanReturn').closest('tr').find('.deleteTd').empty();	
+})
+
+	
+
+
+	
+	
 		
 
 
