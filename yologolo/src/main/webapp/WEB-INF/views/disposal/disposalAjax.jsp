@@ -157,6 +157,10 @@ $(function(){
 			});
 		}
 	
+	//가격 포맽팅
+	function numberWithCommas(x) {
+	    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
 	
 	// 폐기불량 리스트 뿌려줌
 	function disposalListResult(data) {
@@ -165,7 +169,7 @@ $(function(){
 			$('<tr>')
 			.append($('<td>').html(item.disposal_no))
 			.append($('<td>').html(item.disposal_qty))
-			.append($('<td>').html(item.price))
+			.append($('<td>').html(numberWithCommas(item.price)))
 			.append($('<td>').html(item.disposal_date))
 			.append($('<td>').html(item.category))
 			.append($('<td>').html(item.strg_no))
@@ -254,7 +258,7 @@ $(function(){
 											</select><span id="storages_no"></span><br/>
 				
 				<label>품목코드</label>		<button type="button" value="품목선택" id="btnFindItem"><img src="resources/images/Glass.png" width="30px" height="30px"></button>
-											<input class="form-control" name="item_no" id="item_no" > <span id="item_name" name="item_name"></span><br/>
+											<input class="form-control" name="item_no" id="item_no" > <span id="item_name" name="item_name"></span><br/><br/>
 				<div class="btn-group">
 					<input type="button" class="btn btn-success" value="등록" id="btnInsert" /> 
 					<input type="button" class="btn btn-primary" value="수정" id="btnUpdate" /> 

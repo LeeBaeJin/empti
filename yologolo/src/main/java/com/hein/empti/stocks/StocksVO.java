@@ -6,18 +6,18 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class StocksVO {
-	
-		String	stock_no;
-		String	stock_qty;
-		String 	stock_date;
-		String	note;
-		String	stock_price;
-		String	stock_category;
-		String	borderdetail_no;
-		String	sorderdetail_no;
-		String	item_no;
-		String	item_name;
-		String	strg_no;
+		String stock_no;
+		String stock_date;
+		String stock_qty;
+		String stock_category;
+		String strg_no;
+		String item_no;
+		String stock_status;
+		String sorder_no;
+		String border_no;
+		
+		//JOIN
+		String item_name;
 
 		//검색
 		String selectCategory;
