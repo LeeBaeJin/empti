@@ -39,6 +39,12 @@ public class DisposalServiceImpl implements DisposalService{
 		disposalMapper.setUpdateDisposal(disposalVO);
 	}
 
+		
+	@Override
+	public void setDeleteDisposal(DisposalVO disposalVO) {
+		disposalMapper.setDeleteDisposal(disposalVO);
+	}
+
 	@Override
 	public List<Map<String, Object>> getDisposalMap(DisposalVO vo) {
 		return disposalMapper.getDisposalMap(vo);
