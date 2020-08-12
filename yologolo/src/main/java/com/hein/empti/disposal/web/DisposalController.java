@@ -25,11 +25,11 @@ import com.hein.empti.storages.StoragesVO;
 import com.hein.empti.storages.service.StoragesService;
 
 @Controller
-public class DisposalControllerAjax {
+public class DisposalController {
 
 	@Autowired	DisposalService disposalService;
 	@Autowired 	StoragesService	storagesService;
-	@Autowired	ItemsService		itemsService;
+	@Autowired	ItemsService	itemsService;
 
 	// AJAX페이지 호출
 	@RequestMapping("/setDisposalForm")

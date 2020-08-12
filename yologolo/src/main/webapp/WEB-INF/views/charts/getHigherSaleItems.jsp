@@ -2,8 +2,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<html>
-  <head>
+    
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load("current", {packages:["corechart"]});
@@ -34,9 +33,7 @@
         chart.draw(data, options);
       }
     </script>
-  </head>
-  <body>
-    <div class="card shadow mb-4">
+    <div class="card shadow lg-4">
 		<div class="card-header py-3">
 			<h6 class="m-0 font-weight-bold text-primary">판매량 높은 품목</h6>
 		</div>
@@ -46,5 +43,3 @@
 			</div>
 		</div>
 	</div>
-  </body>
-</html>

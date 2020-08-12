@@ -39,7 +39,7 @@ function check(){
 
 </head>
 
-<body class="bg-gradient-info">
+<body class="bg-gradient-secondary">
   <div class="container">
 
     <!-- Outer Row -->
@@ -68,7 +68,7 @@ function check(){
                     <div class="form-group">
                       <div class="custom-control custom-checkbox small">
                         <input type="checkbox" class="custom-control-input" id="customCheck">
-                        <label class="custom-control-label" for="customCheck">Remember Me</label>
+                        <label class="custom-control-label" for="customCheck">아이디 저장</label>
                       </div>
                     </div>
                     <button type="submit" class="btn btn-success btn-user btn-block">로그인</button>

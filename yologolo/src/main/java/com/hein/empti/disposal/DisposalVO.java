@@ -17,6 +17,7 @@ public class DisposalVO {
 	//Join
 	String item_name;
 	String strg_category;
+	String stock_qty;
 	
 	//검색기능
 	String radioCategory;
