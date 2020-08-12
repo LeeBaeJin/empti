@@ -11,6 +11,7 @@ public interface DisposalService {
 	public List<Map<String, Object>> getDisposalList(DisposalVO disposalVO);
 	public void setInsertDisposal(DisposalVO disposalVO);
 	public void setUpdateDisposal(DisposalVO disposalVO);
+	public void setDeleteDisposal(DisposalVO disposalVO);
 	
 	//폐기 불량 리스트(Map) 엑셀
 	public List<Map<String, Object>> getDisposalMap(DisposalVO vo);
