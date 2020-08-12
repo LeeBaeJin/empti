@@ -103,7 +103,7 @@ public class DeptController {
 		mv.setViewName("commonExcelView");
 		mv.addObject("datas", deptService.getDeptMap(vo));// Map객체를 조회해서 시트를 생성한다.
 		mv.addObject("filename", "deptlist");// 파일이름을 바꿔준다.
-		mv.addObject("headers", new String[] { "부서번호", "부서명", "매니저번호" }); // 헤더의 값만 출력된다.
+		mv.addObject("headers", new String[] { "부서번호", "부서명", "매니저성명" }); // 헤더의 값만 출력된다.
 		return mv;
 	}
 
