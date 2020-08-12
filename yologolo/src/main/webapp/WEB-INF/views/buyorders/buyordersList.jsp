@@ -87,7 +87,7 @@ $(function() {
 			<a href="getReturnBuyordersList" class="btn btn-outline-primary">반품내역</a> <br><br>
 			<table class="table table-bordered" id="dataTable" style="width: 100%; cellspacing=0;">
 				<thead id="tblHead">
-					<tr>
+					<tr style="text-align: center;">
 						<th>주문일자</th>
 						<th>판매합계</th>
 						<th style="width: 200px;">배송상태&nbsp;
@@ -129,10 +129,10 @@ $(function() {
 							<td>${buy.name}</td>
 							<td>${buy.company_name}</td>
 							
-							<td class="returnTd">
+							<td class="returnTd" style="text-align: center;">
 							<a id="returnBtn" class="btn btn-outline-dark" href="#" onclick="reBorder(${buy.border_no});">반품</a>
 							</td>
-							<td class="deleteTd">
+							<td class="deleteTd" style="text-align: center;">
 							<a id="deleteBtn" class="btn btn-outline-danger" href="#" onclick="delBorder(${buy.border_no});">삭제</a>
 							</td>
 							

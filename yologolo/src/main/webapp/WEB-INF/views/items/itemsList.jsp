@@ -31,7 +31,7 @@ function itemsDelete(itemNo) {
 
 	<div class="card-body">
 		<div class="table-responsive">
-			<table class="table table-bordered" id="dataTable" width="100%"	cellspacing="0">
+			<table class="table table-bordered" id="dataTable" style="text-align: center;" width="100%"	cellspacing="0">
 				<thead>
 					<tr>
 						<th>품목코드</th>
@@ -50,9 +50,9 @@ function itemsDelete(itemNo) {
 							<td>${items.item_no}</td>
 							<td>${items.item_name}</td>
 							<td>${items.category}</td>
-							<td>${items.unit}</td>
+							<td style="text-align: right;">${items.unit}</td>
 							<td>${items.exp_date}일</td>
-							<td>
+							<td style="text-align: right;">
 								<fmt:parseNumber value="${items.item_price}" var="fmt"/>
 								<fmt:formatNumber type="number" maxFractionDigits="3" value="${fmt}"/>
 							</td>

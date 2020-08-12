@@ -25,9 +25,9 @@ function deptDelete(dept_id) {
 	</div>
 	<div class="card-body">
 		<div class="table-responsive">
-			<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+			<table class="table table-bordered" id="dataTable"  style="text-align: center;" width="100%" cellspacing="0">
 				<thead>
-					<tr>
+					<tr style="text-align: center;">
 						<th>부서번호</th>
 						<th>부서명</th>
 						<th>매니저</th>
