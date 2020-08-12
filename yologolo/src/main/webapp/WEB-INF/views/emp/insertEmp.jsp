@@ -218,7 +218,7 @@ function check() {
 								</select>
 								<span id="dept_name"></span>
 								<br/>
-		<label>이미지</label>     <input type="file" name="uploadFile" id="uploadFile" class="form-control" style="width: 250px; display: inline;"><br/>
+		<label>이미지</label>     <input type="file" name="uploadFile" id="uploadFile" class="form-control" style="width: 250px; display: inline;"><br>
 	<button class="btn btn-success" type="submit" onclick="check()" >등록</button>
 	</form>
 </div>
