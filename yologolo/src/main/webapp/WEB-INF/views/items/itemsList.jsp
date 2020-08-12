@@ -54,7 +54,7 @@ function itemsDelete(itemNo) {
 							<td>${items.exp_date}일</td>
 							<td style="text-align: right;">
 								<fmt:parseNumber value="${items.item_price}" var="fmt"/>
-								<fmt:formatNumber type="number" maxFractionDigits="3" value="${fmt}"/>
+								<fmt:formatNumber type="number" maxFractionDigits="3" value="${fmt}"/>&nbsp;원
 							</td>
 							<td><a href="#" onclick="upForm('${items.item_no}')" class="btn btn-primary">수정</a></td>
 							<td><button type="button" onclick="itemsDelete('${items.item_no}')" class="btn btn-danger">삭제</button></td>

@@ -144,7 +144,7 @@ $(document).ready(function() {
 								
 								<td align="right">
 								<fmt:parseNumber value="${sale.sale_sum}" var="fmt"/>
-								<fmt:formatNumber type="number" maxFractionDigits="3" value="${fmt}"/>
+								<fmt:formatNumber type="number" maxFractionDigits="3" value="${fmt}"/>&nbsp;원
 								</td>
 								
 								<td class="returnStatus">
