@@ -185,9 +185,9 @@
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 					<pen lineWidth="0.25" lineStyle="Dotted" lineColor="#7D7D7D"/>
 					<topPen lineWidth="0.25" lineStyle="Dotted" lineColor="#7D7D7D"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineStyle="Dotted" lineColor="#7D7D7D"/>
 					<bottomPen lineWidth="0.25" lineStyle="Dotted" lineColor="#7D7D7D"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineStyle="Dotted" lineColor="#7D7D7D"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="나눔고딕" size="8"/>
@@ -201,9 +201,9 @@
 				<box>
 					<pen lineWidth="0.25" lineStyle="Dotted" lineColor="#7D7D7D"/>
 					<topPen lineWidth="0.25" lineStyle="Dotted" lineColor="#7D7D7D"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineStyle="Dotted" lineColor="#7D7D7D"/>
 					<bottomPen lineWidth="0.25" lineStyle="Dotted" lineColor="#7D7D7D"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineStyle="Dotted" lineColor="#7D7D7D"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="나눔고딕" size="8"/>
@@ -217,9 +217,9 @@
 				<box>
 					<pen lineWidth="0.25" lineStyle="Dotted" lineColor="#7D7D7D"/>
 					<topPen lineWidth="0.25" lineStyle="Dotted" lineColor="#7D7D7D"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineStyle="Dotted" lineColor="#7D7D7D"/>
 					<bottomPen lineWidth="0.25" lineStyle="Dotted" lineColor="#7D7D7D"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineStyle="Dotted" lineColor="#7D7D7D"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="나눔고딕" size="8"/>
@@ -233,9 +233,9 @@
 				<box>
 					<pen lineWidth="0.25" lineStyle="Dotted" lineColor="#7D7D7D"/>
 					<topPen lineWidth="0.25" lineStyle="Dotted" lineColor="#7D7D7D"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineStyle="Dotted" lineColor="#7D7D7D"/>
 					<bottomPen lineWidth="0.25" lineStyle="Dotted" lineColor="#7D7D7D"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineStyle="Dotted" lineColor="#7D7D7D"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="나눔고딕" size="8"/>
@@ -249,9 +249,9 @@
 				<box>
 					<pen lineWidth="0.25" lineStyle="Dotted" lineColor="#7D7D7D"/>
 					<topPen lineWidth="0.25" lineStyle="Dotted" lineColor="#7D7D7D"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineStyle="Dotted" lineColor="#7D7D7D"/>
 					<bottomPen lineWidth="0.25" lineStyle="Dotted" lineColor="#7D7D7D"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineStyle="Dotted" lineColor="#7D7D7D"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="나눔고딕" size="8"/>
@@ -265,9 +265,9 @@
 				<box>
 					<pen lineWidth="0.25" lineStyle="Dotted" lineColor="#7D7D7D"/>
 					<topPen lineWidth="0.25" lineStyle="Dotted" lineColor="#7D7D7D"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineStyle="Dotted" lineColor="#7D7D7D"/>
 					<bottomPen lineWidth="0.25" lineStyle="Dotted" lineColor="#7D7D7D"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineStyle="Dotted" lineColor="#7D7D7D"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="나눔고딕" size="8"/>

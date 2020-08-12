@@ -124,7 +124,7 @@ $(function(){
 								<span id="dept_name"></span>
 								<br/>
 		<label>이미지 </label>    <input type="file" name="uploadFile" />${empUp.profile}<br>
-								<input type="hidden" name="uploadFile" value="${empUp.profile}">
+								<input type="hidden" name="uploadFile" value="${empUp.profile}"><br>
 	<button type="submit" class="btn btn-primary">수정</button>
 	</form>
 </div>

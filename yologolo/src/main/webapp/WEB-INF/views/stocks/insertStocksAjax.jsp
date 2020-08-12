@@ -229,10 +229,10 @@ $(function(){
 					<th class="text-center">창고</th>
 					<th class="text-center">상세번호</th>
 					<th class="text-center">비고</th>
-					<th></th>
+					<th class="text-center">조회</th>
 				</tr>
 				</thead>
-				<tbody></tbody>
+				<tbody ></tbody>
 			</table>
 		</div>
 	<!-- 목록 끝-->

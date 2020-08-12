@@ -25,12 +25,13 @@ function deptDelete(dept_id) {
 	</div>
 	<div class="card-body">
 		<div class="table-responsive">
-			<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+			<table class="table table-bordered" id="dataTable"  style="text-align: center;" width="100%" cellspacing="0">
 				<thead>
-					<tr>
+					<tr style="text-align: center;">
 						<th>부서번호</th>
 						<th>부서명</th>
 						<th>매니저</th>
+						<th>수정</th>
 						<th>삭제</th>
 					</tr>
 				</thead>
@@ -38,8 +39,9 @@ function deptDelete(dept_id) {
 					<c:forEach items="${deptList}" var="dept">
 						<tr>
 							<td>${dept.dept_id}</td>
-							<td><a href="setUpdateFormDept?dept_id=${dept.dept_id}">${dept.dept_name}</a></td>
+							<td>${dept.dept_name}</td>
 							<td>${dept.name}</td>
+							<td><a href="setUpdateFormDept?dept_id=${dept.dept_id}"  class="btn btn-primary">수정</a></td>
 							<td><a href="#" onclick="deptDelete(${dept.dept_id})" class="btn btn-danger">삭제</a></td>
 						</tr>
 						

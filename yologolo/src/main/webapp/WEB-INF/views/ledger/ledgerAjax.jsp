@@ -151,12 +151,18 @@ $(function(){
 			$('#order_no').empty();
 			$('#order_no')
 			.append($('<label>').text("구매주문번호"))
-			.append($('<input id=\'border_no\'>').val(ledgers.border_no)); 
+			.append("&nbsp;&nbsp;")
+			.append($('<button type="button" id=\'btnFindOrderNo\'>')
+			.append('<img src="resources/images/Glass.png" width="30px" height="30px">'))
+			.append($('<input id=\'border_no\' class=\'form-control\'><br>').val(ledgers.border_no)); 
 		} else if (ledgers.status == "매출"){
  			$('#order_no').empty();
 			$('#order_no')
 			.append($('<label>').text("판매주문번호"))
-			.append($('<input id=\'sorder_no\'>').val(ledgers.sorder_no)); 
+			.append("&nbsp;&nbsp;")
+			.append($('<button type="button" id=\'btnFindOrderNo\'>')
+			.append('<img src="resources/images/Glass.png" width="30px" height="30px">'))
+			.append($('<input id=\'sorder_no\' class=\'form-control\'><br>').val(ledgers.sorder_no)); 
 		} else {
 			$('#order_no').empty();
 		}
@@ -209,18 +215,20 @@ $(function(){
 				$('#order_no').empty();
 				$('#order_no')
 				.append($('<label>').text("구매주문번호"))
-				.append($('<input id=\'border_no\' name=\'border_no\'>'))
-				.append($('<input id=\'sorder_no\' name=\'sorder_no\' hidden>'))
+				.append("&nbsp;&nbsp;")
 				.append($('<button type="button" id=\'btnFindOrderNo\'>')
 				.append('<img src="resources/images/Glass.png" width="30px" height="30px">'))
+				.append($('<input id=\'border_no\' name=\'border_no\' class=\'form-control\'>'))
+				.append($('<input id=\'sorder_no\' name=\'sorder_no\' hidden><br>'))
 			} else if (status == "매출"){
 				$('#order_no').empty();
 				$('#order_no')
 				.append($('<label>').text("판매주문번호"))
-				.append($('<input id=\'sorder_no\' name=\'sorder_no\'>'))
-				.append($('<input id=\'border_no\' name=\'border_no\' hidden>'))
+				.append("&nbsp;&nbsp;")
 				.append($('<button type="button" id=\'btnFindOrderNo\'>')
 				.append('<img src="resources/images/Glass.png" width="30px" height="30px">'))
+				.append($('<input id=\'sorder_no\' name=\'sorder_no\' class=\'form-control\'>'))
+				.append($('<input id=\'border_no\' name=\'border_no\' hidden><br>'))
 
 			} else {
 				$('#order_no').empty();

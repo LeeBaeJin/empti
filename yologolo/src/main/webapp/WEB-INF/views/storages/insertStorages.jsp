@@ -43,7 +43,7 @@ var emp_select_value = function(select_obj) {
 							<c:forEach items="${emps}" var="emps"> 
 							<option value="${emps.emp_id}">${emps.name}</option>
 							</c:forEach>
-						</select><span id="emp_name"></span>
+						</select><span id="emp_name"></span><br>
 			<div align="center">
 				<button class="btn btn-success" type="button" onclick="check()">등록</button>
 			</div>

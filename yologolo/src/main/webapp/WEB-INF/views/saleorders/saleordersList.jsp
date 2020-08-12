@@ -43,36 +43,16 @@
 			}
 		});
 	});
+
+$(function() {	
 	
-$(function() {
-	$('#dataTable').on('order.dt', function() {
-		var delStatus =$('[name=del_status] option:selected');
-		$.each(delStatus, function(idx, item) {
-			console.log(item.value);
-			if(item.value == "배송완료"){
-				$(item).parent().attr('disabled', 'true');
-			}
-		});	
-	})
 	var delStatus =$('[name=del_status] option:selected');
 	$.each(delStatus, function(idx, item) {
 		console.log(item.value);
 		if(item.value == "배송완료"){
 			$(item).parent().attr('disabled', 'true');
 		}
-	});	
-		/* var table = $('#dataTable').DataTable();
-		var delStatus = table.rows($('[name=del_status] option:selected')).data().selector.rows;
-		console.log(delStatus)
-		$.each(delStatus, function(idx, item) {
-			console.log(item);
-			if(item.value == "배송완료"){
-				$(item).parent().attr('disabled', 'true');
-			}
-		}); */	
 	});
-
-	
 	
 	$('.spanReturn').parent().prev().css({
         color: "red"
@@ -81,7 +61,14 @@ $(function() {
         color: "red"
 	});
 	$('.spanReturn').closest('tr').find('.returnTd').empty();
-	$('.spanReturn').closest('tr').find('.deleteTd').empty();
+	$('.spanReturn').closest('tr').find('.deleteTd').empty();	
+})
+
+	
+
+
+	
+	
 		
 
 
@@ -95,8 +82,7 @@ $(function() {
 			<a href="getSaleordersListMap">판매주문 목록</a> | 
 			<a href="setInsertFormSaleorders">판매주문 입력</a> |
 			<a href= "saleorders_list.do" onclick="window.open(this.href, 'width=800', 'height=1200', 'toolbars=no', 'scrollbars=yes'); return false">PDF</a> |
-			
-		<!-- 	<a href="saleorders_list.do">PDF</a> | -->
+			<!-- <a href="saleorders_list.do">PDF</a> | -->
 			<a href="sorderexcel.do">EXCEL</a>
 		</h6>
 	</div>
@@ -106,7 +92,7 @@ $(function() {
 			<a href="getReturnSaleordersList" class="btn btn-outline-primary">반품내역</a> <br><br>
 			<table class="table table-bordered" id="dataTable" style="width: 100%; cellspacing=0;">
 				<thead id="tblHead">
-					<tr>
+					<tr style="text-align: center;">
 						<th>주문일자</th>
 						<th>판매합계</th>
 						<th style="width: 200px;">배송상태&nbsp;
@@ -129,7 +115,7 @@ $(function() {
 								
 								<td align="right">
 								<fmt:parseNumber value="${sale.sale_sum}" var="fmt"/>
-								<fmt:formatNumber type="number" maxFractionDigits="3" value="${fmt}"/>
+								<fmt:formatNumber type="number" maxFractionDigits="3" value="${fmt}"/>&nbsp;원
 								</td>
 								
 								<td class="returnStatus">
@@ -148,10 +134,10 @@ $(function() {
 								<td>${sale.name}</td>
 								<td>${sale.company_name}</td>
 								
-								<td class="returnTd">
+								<td class="returnTd" style="text-align: center;">
 								<a id="returnBtn" class="btn btn-outline-dark" href="#" onclick="reSorder(${sale.sorder_no});">반품</a>
 								</td>
-								<td class="deleteTd">
+								<td class="deleteTd" style="text-align: center;">
 								<a id="deleteBtn" class="btn btn-outline-danger" href="#" onclick="delSorder(${sale.sorder_no});">삭제</a>
 								</td>
 								

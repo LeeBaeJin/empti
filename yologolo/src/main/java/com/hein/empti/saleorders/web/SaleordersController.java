@@ -130,13 +130,13 @@ public class SaleordersController {
 		return "redirect:getReturnSaleordersList";
 	}
 
-	// view resolver 방식
+	// view resolver pdf 방식
 	@RequestMapping("saleorders_list.do")
-	public ModelAndView getSaleLedgerListReport(HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView getSaleordersListReport(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("pdfView");
-		mv.addObject("filename", "/reports/saleorders_list.jrxml");
+		mv.addObject("filename", "/reports/saleorderlist_view2.jrxml");
 		return mv;
 	}
 
