@@ -44,7 +44,8 @@
 		});
 	});
 	
-$(function() {
+	
+$(document).ready(function() {
 	$('#dataTable').on('order.dt', function() {
 		var delStatus =$('[name=del_status] option:selected');
 		$.each(delStatus, function(idx, item) {
@@ -54,13 +55,20 @@ $(function() {
 			}
 		});	
 	})
-	var delStatus =$('[name=del_status] option:selected');
-	$.each(delStatus, function(idx, item) {
-		console.log(item.value);
-		if(item.value == "배송완료"){
-			$(item).parent().attr('disabled', 'true');
-		}
-	});	
+
+}); 
+
+/* $(function() {
+	$('#dataTable').on('order.dt', function() {
+		var delStatus =$('[name=del_status] option:selected');
+		$.each(delStatus, function(idx, item) {
+			console.log(item.value);
+			if(item.value == "배송완료"){
+				$(item).parent().attr('disabled', 'true');
+			}
+		});	
+	}) */
+	
 		/* var table = $('#dataTable').DataTable();
 		var delStatus = table.rows($('[name=del_status] option:selected')).data().selector.rows;
 		console.log(delStatus)
@@ -70,6 +78,13 @@ $(function() {
 				$(item).parent().attr('disabled', 'true');
 			}
 		}); */	
+			var delStatus =$('[name=del_status] option:selected');
+	$.each(delStatus, function(idx, item) {
+		console.log(item.value);
+		if(item.value == "배송완료"){
+			$(item).parent().attr('disabled', 'true');
+		}
+	});	
 	});
 
 	
@@ -106,7 +121,7 @@ $(function() {
 			<a href="getReturnSaleordersList" class="btn btn-outline-primary">반품내역</a> <br><br>
 			<table class="table table-bordered" id="dataTable" style="width: 100%; cellspacing=0;">
 				<thead id="tblHead">
-					<tr>
+					<tr style="text-align: center;">
 						<th>주문일자</th>
 						<th>판매합계</th>
 						<th style="width: 200px;">배송상태&nbsp;
@@ -148,10 +163,10 @@ $(function() {
 								<td>${sale.name}</td>
 								<td>${sale.company_name}</td>
 								
-								<td class="returnTd">
+								<td class="returnTd" style="text-align: center;">
 								<a id="returnBtn" class="btn btn-outline-dark" href="#" onclick="reSorder(${sale.sorder_no});">반품</a>
 								</td>
-								<td class="deleteTd">
+								<td class="deleteTd" style="text-align: center;">
 								<a id="deleteBtn" class="btn btn-outline-danger" href="#" onclick="delSorder(${sale.sorder_no});">삭제</a>
 								</td>
 								

@@ -34,7 +34,7 @@
 		<div class="table-responsive">
 			<table class="table table-bordered" id="dataTable" style="width: 100%;">
 				<thead>
-					<tr>
+					<tr style="text-align: center;">
 						<th>거래처 명</th>
 						<th>주소</th>
 						<th>대표자 성명</th>
@@ -57,8 +57,8 @@
 							<td>${company.ceo_name}</td>
 							<td>${company.dealer_name}</td>
 							<td>${company.dealer_phone}</td>
- 							<td><button type="button" onclick="upFrom(${company.company_no})" class="btn btn-primary">수정</button></td>
-							<td><a href="#" onclick="companyDelete(${company.company_no})" class="btn btn-danger">삭제</a></td>
+ 							<td style="text-align:center;"><button type="button" onclick="upFrom(${company.company_no})" class="btn btn-primary">수정</button></td>
+							<td style="text-align:center;"><a href="#" onclick="companyDelete(${company.company_no})" class="btn btn-danger">삭제</a></td>
 						</tr>
 					</c:forEach>
 				</tbody>
