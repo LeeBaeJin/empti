@@ -17,22 +17,17 @@ var emp_select_value = function(select_obj) {
 }
 
 	function check() {
-		if(frm.strg_no.value ==""){
-			alert("창고번호를 입력해주세요.");
-			frm.strg_no.focus();
-			return;
-		}
 		if(frm.strg_category.value == ""){
 			alert("창고유형을 입력해주세요.");
 			frm.strg_category.focus();
 			return;
 		}
 		if(frm.emp_id.value == ""){
-			alert("담당사원을 입력해주세요.");
+			alert("담당사원을 선택해주세요.");
 			frm.emp_id.focus();
 			return;
 		}
-
+		frm.submit();
 	}
 </script>
 <div align="center">
@@ -50,7 +45,7 @@ var emp_select_value = function(select_obj) {
 							</c:forEach>
 						</select><span id="emp_name"></span>
 			<div align="center">
-				<button class="btn btn-success" type="submit" onclick="check()">등록</button>
+				<button class="btn btn-success" type="button" onclick="check()">등록</button>
 			</div>
 		</div>
 			</form>

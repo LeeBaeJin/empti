@@ -31,6 +31,7 @@
 			frm.item_price.focus();
 			return;
 		}
+		frm.submit();
 	}
 
 </script>
@@ -52,7 +53,7 @@
 		<label>유통기한(일)</label>	<input name="exp_date" id="exp_date" class="form-control"><br/>
 		<label>단가</label>	<input name="item_price" id="item_price" class="form-control"><br/>
 	<div align="center">
-		<button class="btn btn-success" type="submit" onclick="validCheck()">등록</button>
+		<button class="btn btn-success" type="button" onclick="validCheck()">등록</button>
 	</div><br/>
 	</div>
 	</form>

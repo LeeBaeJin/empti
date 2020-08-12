@@ -62,6 +62,23 @@ public class ItemsController {
 		itemsService.setUpdateItems(vo);
 		return "redirect:getItemsList";
 	}
+	
+	//삭제처리
+	@RequestMapping("/setDeleteItems")
+	public String setDeleteItems(Model model, ItemsVO itemsVO) {
+		if(itemsService.getDisposalCount(itemsVO) > 0 || itemsService.getBuyDetailCount(itemsVO) >0
+			|| itemsService.getSaleDetailCount(itemsVO) >0 ) {
+			model.addAttribute("msg", "품목 내역이 있어 삭제할 수 없습니다.");
+			model.addAttribute("loc", "getItemsList");
+			return "common/msg";
+		} else {
+			itemsService.setDeleteItems(itemsVO);
+			model.addAttribute("msg", "품목이 삭제되었습니다.");
+			model.addAttribute("loc", "getItemsList");
+			return "common/msg";		
+		}
+	}
+	
 
 	// 품목검색
 	@RequestMapping("/findItems")

@@ -89,11 +89,6 @@ $(function(){
 
 
 function check() {
-	if(frm.emp_id.value ==""){
-		alert("사원아이디를 입력해주세요.");
-		frm.emp_id.focus();
-		return;
-	}
 	if(frm.name.value == ""){
 		alert("이름을 입력해주세요.");
 		frm.name.focus();
@@ -174,6 +169,7 @@ function check() {
 		frm.uploadFile.focus();
 		return;
 	}
+	frm.submit();
 }
 </script>    
     
@@ -219,6 +215,6 @@ function check() {
 								<span id="dept_name"></span>
 								<br/>
 		<label>이미지</label>     <input type="file" name="uploadFile" id="uploadFile" class="form-control" style="width: 250px; display: inline;"><br/>
-	<button class="btn btn-success" type="submit" onclick="check()" >등록</button>
+	<button class="btn btn-success" type="button" onclick="check()" >등록</button>
 	</form>
 </div>

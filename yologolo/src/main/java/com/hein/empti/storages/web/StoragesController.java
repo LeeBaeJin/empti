@@ -34,7 +34,6 @@ public class StoragesController {
 	// 등록처리
 	@RequestMapping("/setInsertStorages")
 	public String setInsertStorages(StoragesVO storagesVO) {
-
 		storagesService.setInsertStorages(storagesVO);
 		return "redirect:getStoragesListMap";
 	}
@@ -77,7 +76,9 @@ public class StoragesController {
 			return "common/msg";
 		} else {
 			storagesService.setDeleteStorages(storagesVO);
-			return "redirect:getStoragesListMap";		
+			model.addAttribute("msg", "창고가 삭제되었습니다.");
+			model.addAttribute("loc", "getStoragesListMap");
+			return "common/msg";		
 		}
 	}
 

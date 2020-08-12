@@ -8,6 +8,12 @@
 function upForm(itemNo) {
 	location.href = "setUpdateFormItems?item_no=" + itemNo
 }
+
+function itemsDelete(itemNo) {
+	if(confirm("삭제하시겠습니까?")){
+		location.href="setDeleteItems?item_no=" + itemNo;
+	}
+}
 </script>
 
 
@@ -35,6 +41,7 @@ function upForm(itemNo) {
 						<th>유통기한</th>
 						<th>가공품 원가</th>
 						<th>수정</th>
+						<th>삭제</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -50,7 +57,7 @@ function upForm(itemNo) {
 								<fmt:formatNumber type="number" maxFractionDigits="3" value="${fmt}"/>
 							</td>
 							<td><a href="#" onclick="upForm('${items.item_no}')" class="btn btn-primary">수정</a></td>
-							
+							<td><button type="button" onclick="itemsDelete('${items.item_no}')" class="btn btn-danger">삭제</button></td>
 						</tr>
 					</c:forEach>
 				</tbody>
