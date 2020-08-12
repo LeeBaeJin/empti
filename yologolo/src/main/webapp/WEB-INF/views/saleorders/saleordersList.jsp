@@ -44,25 +44,7 @@
 		});
 	});
 
-$(function() {	
-	
-	var delStatus =$('[name=del_status] option:selected');
-	$.each(delStatus, function(idx, item) {
-		console.log(item.value);
-		if(item.value == "배송완료"){
-			$(item).parent().attr('disabled', 'true');
-		}
-	});
-	
-	$('.spanReturn').parent().prev().css({
-        color: "red"
-	});
-	$('.spanReturn').css({
-        color: "red"
-	});
-	$('.spanReturn').closest('tr').find('.returnTd').empty();
-	$('.spanReturn').closest('tr').find('.deleteTd').empty();	
-})
+
 
 	
 
@@ -113,21 +95,21 @@ $(function() {
 								 <a href="javascript:void(0);" onclick="orderDetails(${sale.sorder_no});">${sale.sorder_date}</a>
 								</td>
 								
-								<td align="right">
+								<td align="right" <c:if test="${sale.del_status == '반품'}">style="color:red"</c:if>>
 								<fmt:parseNumber value="${sale.sale_sum}" var="fmt"/>
 								<fmt:formatNumber type="number" maxFractionDigits="3" value="${fmt}"/>&nbsp;원
 								</td>
 								
 								<td class="returnStatus">
 								<c:if test="${sale.del_status != '반품'}" >
-								<select id="del_status" class="del_status" name="del_status" onchange="selChk(${sale.sorder_no}, this)">
+								<select id="del_status" class="del_status" name="del_status" onchange="selChk(${sale.sorder_no}, this)"  <c:if test="${sale.del_status == '배송완료'}">disabled="disabled"</c:if>>
 									<option value="배송준비중" <c:if test="${fn:contains(sale.del_status,'배송준비중')}">selected="selected"</c:if>>배송준비중</option>
 									<option value="배송중" <c:if test="${fn:contains(sale.del_status,'배송중')}">selected="selected"</c:if>>배송중</option>
-									<option value="배송완료" <c:if test="${fn:contains(sale.del_status,'배송완료')}">selected="selected"</c:if>>배송완료</option>
+									<option value="배송완료" <c:if test="${fn:contains(sale.del_status,'배송완료')}">selected="selected"  </c:if>>배송완료</option>
 								</select>
 								</c:if>
 								<c:if test="${sale.del_status == '반품'}">
-									<span class="spanReturn">반품</span>
+									<span class="spanReturn" style="color:red">반품</span>
 								</c:if>
 								</td>
 								

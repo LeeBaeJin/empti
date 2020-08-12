@@ -46,27 +46,6 @@
 		});
 	});
 	
-	
-$(function() {
-	var delStatus = $('[name=status] option:selected');
-	console.log(delStatus)
-	$.each(delStatus, function(idx, item) {
-		if(item.value == "수령완료"){
-		$(item).parent().attr('disabled', 'true');
-		}
-	});
-	
-	$('.spanReturn').parent().prev().css({
-        color: "red"
-	});
-	$('.spanReturn').css({
-        color: "red"
-	});
-	$('.spanReturn').closest('tr').find('.returnTd').empty();
-	$('.spanReturn').closest('tr').find('.deleteTd').empty();
-	
-});
-
 </script>
 
 </head>
@@ -108,7 +87,7 @@ $(function() {
 							 <a href="javascript:void(0);" onclick="orderDetails(${buy.border_no});">${buy.border_date}</a>
 							</td>
 							
-							<td align="right">
+							<td align="right" <c:if test="${sale.del_status == '반품'}">style="color:red"</c:if>>
 							<fmt:parseNumber value="${buy.buy_sum}" var="fmt"/>
 							<fmt:formatNumber type="number" maxFractionDigits="3" value="${fmt}"/>&nbsp;원
 							</td>
@@ -116,13 +95,13 @@ $(function() {
 							
 							<td class="returnStatus">
 							<c:if test="${buy.status != '반품'}" >
-							<select id="status" name="status" onchange="buyChk(${buy.border_no}, this)">
+							<select id="status" name="status" onchange="buyChk(${buy.border_no}, this)" <c:if test="${sale.del_status == '수령완료'}">disabled="disabled"</c:if>>
 								<option value="수령중" <c:if test="${fn:contains(buy.status,'수령중')}">selected="selected"</c:if>>수령중</option>
 								<option value="수령완료" <c:if test="${fn:contains(buy.status,'수령완료')}">selected="selected"</c:if>>수령완료</option>
 							</select>
 							</c:if>
 							<c:if test="${buy.status == '반품'}">
-									<span class="spanReturn">반품</span>
+									<span class="spanReturn" style="color:red">반품</span>
 								</c:if>
 							</td>
 							
