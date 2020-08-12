@@ -15,7 +15,7 @@
 	<!-- 창고_view 전체조회 Map(Excel) -->
 	<select id="getStoragesExcelMap" resultType="map"
 		parameterType="StoragesVO">
-		select*from storagesexcel_view
+		select*from storagesexcel_view order by 창고번호
 	</select>
 
 	<!-- 창고 전체조회 map --> <!-- 별칭을 주지 않으면 map에 key가 대문자로 들어가기때문.//별칭을 주지 않을거면 el태그안에 대문자로 쓰면됨. -->
