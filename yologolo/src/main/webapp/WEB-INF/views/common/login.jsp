@@ -39,14 +39,12 @@ function check(){
 
 </head>
 
-<body class="bg-gradient-primary">
+<body class="bg-gradient-info">
   <div class="container">
 
     <!-- Outer Row -->
     <div class="row justify-content-center">
-
       <div class="col-xl-10 col-lg-12 col-md-9">
-
         <div class="card o-hidden border-0 shadow-lg my-5">
           <div class="card-body p-0">
             <!-- Nested Row within Card Body -->
@@ -70,7 +68,7 @@ function check(){
                         <label class="custom-control-label" for="customCheck">Remember Me</label>
                       </div>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-user btn-block">로그인</button>
+                    <button type="submit" class="btn btn-success btn-user btn-block">로그인</button>
                     <hr>
                   </form>
                   ${param.error}
@@ -86,11 +84,8 @@ function check(){
             </div>
           </div>
         </div>
-
       </div>
-
     </div>
-
   </div>
 
   <!-- Bootstrap core JavaScript-->
@@ -104,5 +99,4 @@ function check(){
   <script src="resources/admin/js/sb-admin-2.min.js"></script>
 
 </body>
-
 </html>

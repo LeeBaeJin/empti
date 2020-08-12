@@ -19,10 +19,6 @@
 		  async : false, 			// 비동기여부. false = 동기식
 		  success : function(result){
 			  for(i=0; i<result.length; i++){
-				  console.log([
-					  			result[i].ldgr_date,
-					  			parseInt(result[i].total_amount)/1000000,
-					  			parseInt(result[i].count)]);
 				  chartdata.push([
 					  			result[i].ldgr_date,
 					  			parseInt(result[i].total_amount)/1000000, 

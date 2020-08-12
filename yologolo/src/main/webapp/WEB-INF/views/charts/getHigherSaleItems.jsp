@@ -19,7 +19,7 @@
 			  async : false, 			// 비동기여부. false = 동기식
 			  success : function(result){
 				  for(i=0; i<result.length; i++){
-					  chartdata.push([result[i].item_name, parseInt(result[i].count) ]); //push : data담음
+					  chartdata.push([result[i].item_name, parseInt(result[i].count)]); //push : data담음
 				  }
 			  }
 		  });

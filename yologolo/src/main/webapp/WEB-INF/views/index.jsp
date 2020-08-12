@@ -48,9 +48,9 @@
 	</div>
 </div>
 
-<!-- 텍스트 카드 -->
 <div class="row">
-	<div class="col-lg-6 col-md-6 mb-4">
-		<jsp:include page="cards/collapsCard.jsp"></jsp:include>
-	</div>
+<!-- 텍스트 카드 -->
+<div class="col-lg-6 col-md-6 mb-4">
+	<jsp:include page="cards/collapsCard.jsp"></jsp:include>
+</div>
 </div>
