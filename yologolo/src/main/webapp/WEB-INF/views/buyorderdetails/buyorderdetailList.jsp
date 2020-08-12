@@ -32,7 +32,7 @@
 	}
 </script>
 <div class="alert alert-primary" role="alert" style="text-align:center; font-size:2.5em" >
-  주문 합계
+  구매주문 상세 내역
 </div>
 <body>
 	<table class="table table-hover">
