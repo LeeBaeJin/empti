@@ -11,7 +11,7 @@
 			async: false,
 			success : function(result) {
 				result = result + '건';
-				$('.count').text(result);
+				$('.scount').text(result);
 			}
 		});
 	});
@@ -21,11 +21,11 @@
   <div class="card-body">
     <div class="row no-gutters align-items-center">
       <div class="col mr-2">
-        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">미배송 판매주문 건수</div>
-        <div class="h5 mb-0 font-weight-bold text-gray-800 count"></div>
+        <div class="text-s font-weight-bold text-warning text-uppercase mb-1">미배송 판매주문 건수</div>
+        <div class="h5 mb-0 font-weight-bold text-gray-800 scount"></div>
       </div>
       <div class="col-auto">
-        <i class="fas fa-comments fa-2x text-gray-300"></i>
+        <a href="getSaleordersListMap" class="fas fa-comments fa-2x text-gray-300"></a>
       </div>
     </div>
   </div>

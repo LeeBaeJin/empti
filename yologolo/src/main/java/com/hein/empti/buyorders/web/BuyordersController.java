@@ -108,16 +108,6 @@ public class BuyordersController {
 		return "common/findBuyorderNo";
 	}
 	
-	
-	/*
-	 * //반품리스트(구매주문)
-	 * 
-	 * @RequestMapping("/getReturnBuyordersList")
-	 * 
-	 * @ResponseBody public List<BuyordersVO> getReturnBuyordersList(BuyordersVO
-	 * buyordersVO) { return buyordersService.getReturnBuyordersList(buyordersVO); }
-	 */
-	
 	// 반품목록 조회
 	@RequestMapping("/getReturnBuyordersList")
 	public String getReturnBuyordersList(BuyordersVO buyordersVO, Model model) {
