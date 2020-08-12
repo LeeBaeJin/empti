@@ -24,7 +24,7 @@
 			obj['status'] = $(item).children().eq(2).children().val();  
 			buyDel.push(obj);
 		});
-		$('#tblHead').on('click', '#delUpdate', function() {
+/* 		$('#tblHead').on('click', '#delUpdate', function() {
 			var result = confirm("배송상태를 수정하시겠습니까?\n수령완료 시 수정이 불가능합니다.");
 			var delStatus = $('[name=status] option:selected');
 			if (result) {
@@ -35,7 +35,8 @@
 					contentType : "application/json",
 					success: function() {
 					alert("성공적으로 수정하였습니다.");
-										
+					
+						
 				},  error: function() {
 					alert("수정을 실패하였습니다.");
 				}
@@ -43,9 +44,30 @@
 			} else {
 				return false;
 			}
-		});
+		}); */
 	});
-	
+$(function() {
+	delUpdate.addEventListener("click",function() {
+		var result = confirm("배송상태를 수정하시겠습니까?\n수령완료 시 수정이 불가능합니다.");
+		var delStatus = $('[name=status] option:selected');
+		if (result) {
+			$.ajax ({
+				url: "setUpdateBuyDel",
+				type: "POST",
+				data: JSON.stringify(buyDel),
+				contentType : "application/json",
+				success: function() {
+				alert("성공적으로 수정하였습니다.");
+					
+				},  error: function() {
+				alert("수정을 실패하였습니다.");
+				}
+			
+			});
+		window.event.stopPropagation();
+		}
+	});
+});
 </script>
 
 </head>
@@ -87,7 +109,7 @@
 							 <a href="javascript:void(0);" onclick="orderDetails(${buy.border_no});">${buy.border_date}</a>
 							</td>
 							
-							<td align="right" <c:if test="${sale.del_status == '반품'}">style="color:red"</c:if>>
+							<td align="right" <c:if test="${buy.status == '반품'}">style="color:red"</c:if>>
 							<fmt:parseNumber value="${buy.buy_sum}" var="fmt"/>
 							<fmt:formatNumber type="number" maxFractionDigits="3" value="${fmt}"/>&nbsp;원
 							</td>
@@ -95,7 +117,7 @@
 							
 							<td class="returnStatus">
 							<c:if test="${buy.status != '반품'}" >
-							<select id="status" name="status" onchange="buyChk(${buy.border_no}, this)" <c:if test="${sale.del_status == '수령완료'}">disabled="disabled"</c:if>>
+							<select id="status" name="status" onchange="buyChk(${buy.border_no}, this)" <c:if test="${buy.status == '수령완료'}">disabled="disabled"</c:if>>
 								<option value="수령중" <c:if test="${fn:contains(buy.status,'수령중')}">selected="selected"</c:if>>수령중</option>
 								<option value="수령완료" <c:if test="${fn:contains(buy.status,'수령완료')}">selected="selected"</c:if>>수령완료</option>
 							</select>
@@ -156,14 +178,14 @@ function delBorder(borderNo) {
 		return false;
 	}
 }
-function reBorder(border_no) {
+function reBorder(borderNo) {
 	var result = confirm("반품하시겠습니까?");
 	if (result) {
-		alert("반품하였습니다.");
-		window.location.href = "setInsertBuyordersRetrun?return_no="+border_no;
+		window.location.href = "setInsertBuyordersRetrun?return_no="+borderNo;
 	} else {
 		return false;
 	}
+
 }
 </script>
 </body>

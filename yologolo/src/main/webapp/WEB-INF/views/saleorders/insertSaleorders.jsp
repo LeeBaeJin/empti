@@ -150,11 +150,11 @@
 		<label>주문일자 </label>	<input value="${serverTime}" type="datetime-local" name="sorder_date" id="sorder_date" class="form-control" style="width: 300px; display: inline;"><br/>
 		<label>거래처코드</label>	<input name="company_no" id="company_no" class="form-control" style="width: 250px; display: inline;"> <span id="company_name"></span>
 			   						<button type="button" value="거래처선택" id="btnFindCompany" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" width="30px" height="30px"></button><br/>
-		<label>배송상태</label>	<select name="del_status" class="form-control" style="width: 250px; display: inline;">
+<!-- 		<label>배송상태</label>	<select name="del_status" class="form-control" style="width: 250px; display: inline;">
 								 	  <option value="배송준비중" selected>배송준비중</option>
 									  <option value="배송중">배송중</option>
 									  <option value="배송완료" >배송완료</option>
-								</select><br/>
+								</select><br/> -->
 		<label>담당자</label>	<%-- <select name="emp_id" class="form-control" style="width: 250px; display: inline;" onchange="emp_select_value(this);">
 								<option value="" selected>==사원 선택==</option>
 								<c:forEach items="${emps}" var="emp"> 
