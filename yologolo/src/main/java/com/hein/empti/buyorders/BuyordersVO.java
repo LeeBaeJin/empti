@@ -21,4 +21,7 @@ public class BuyordersVO {
 	//Join
 	String name;
 	String company_name;
+	
+	//count
+	String count;
 }

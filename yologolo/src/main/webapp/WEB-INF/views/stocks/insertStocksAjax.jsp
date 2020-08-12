@@ -137,7 +137,7 @@ $(function(){
 	function stocksUpdate() {
 		//수정 버튼 클릭
 		$('#stocksform').on('click', '#btnUpdate', function(){
-			var stocksNo = $('#storckDiv').find('#stock_no').val();
+			var stocksNo = $('#stocksform').find('#stock_no').val();
 			var itemNo = $('[name="item_no"]').val();
 			var stockCategory = $('[name="stock_category"]').val();
 			var stockQty = $('[name="stock_qty"]').val();
@@ -203,7 +203,8 @@ $(function(){
 	<!-- 목록 시작 -->
 <div class="row">
 	<div class="col-lg-9 col-md-12">
-			<h2>입출고목록</h2>
+			<h2 style="text-align:center">입출고 목록</h2>
+			<hr class="sidebar-divider d-none d-md-block">
 				<form id="searchForm">
 					<label>거래유형</label>	<select name="selectCategory">
 											  <option value="" selected>전체</option>
@@ -215,7 +216,7 @@ $(function(){
 					 <input type="date" name="startDate" value="start" data-date-format='yyyy-MM-dd'>  ~  <input type="date" name="endDate" value="end" data-date-format='yyyy-MM-dd'>
 					 <input type="button" class="btn btn-secondary" value="검색" id="btnSearch" /> 
 					 <input type="reset"  class="btn btn-warning" value="초기화" /> 
-		 		</form>
+		 		</form><br/>
 			<table class="table text-center">
 				<thead>
 				<tr>				
@@ -239,7 +240,9 @@ $(function(){
 	<!-- 등록폼 시작 -->
 	<div class="col-lg-3 col-md-12 ">
 		<div id="storckDiv" class="ml-5">
-			<form id="stocksform" id="frm">
+			<h2 style="text-align:center">입출고 입력</h2>
+			<hr class="sidebar-divider d-none d-md-block">
+			<form id="stocksform">
 										<input class="form-control" name="stock_no" id="stock_no" type="hidden"><br/>
 				<label>품목코드</label>	<button type="button" value="품목선택" id="btnFindItem" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" width="30px" height="30px"></button>
 										<input class="form-control" name="item_no" id="item_no" type="text"> <span name="item_name" id="item_name" ></span>

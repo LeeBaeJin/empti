@@ -42,8 +42,6 @@
 		DESC
 	</select>
 
-
-
 	<!-- 판매주문 시퀀스조회 -->
 	<select id="getSaleSeq" resultType="String">
 		SELECT Salemaster_seq.NEXTVAL
@@ -113,4 +111,11 @@
 		DELETE FROM saleorders
 		WHERE sorder_no = #{sorder_no}
 	</delete>
+	
+	<!-- '배송준비중'인 주문 건수 -->
+	<select id="getReadySaleorders" resultType="string" parameterType="SaleordersVO">
+		SELECT COUNT(*) "count" 
+		FROM saleorders
+		WHERE del_status = '배송준비중'
+	</select>
 </mapper>

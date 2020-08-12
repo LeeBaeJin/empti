@@ -15,10 +15,8 @@ import com.hein.empti.saleorders.service.SaleordersService;
 @Service
 public class SaleordersServiceImpl implements SaleordersService {
 
-	@Autowired
-	SaleordersMapper saleordersMapper;
-	@Autowired
-	SaleorderdetailsMapper saleorderdetailsMapper;
+	@Autowired SaleordersMapper saleordersMapper;
+	@Autowired SaleorderdetailsMapper saleorderdetailsMapper;
 
 	@Override
 	public List<SaleordersVO> getSaleordersList(SaleordersVO saleordersVO) {
@@ -72,9 +70,16 @@ public class SaleordersServiceImpl implements SaleordersService {
 	public List<SaleordersVO> getReturnSaleordersList(SaleordersVO saleordersVO) {
 		return saleordersMapper.getReturnSaleordersList(saleordersVO);
 	}
-
+	
+	// 반품 입력
 	@Override
 	public void setInsertSaleordersRetrun(SaleordersVO vo) {
 		saleordersMapper.setInsertSaleordersRetrun(vo);
+	}
+	
+	// '배송준비중'인 주문 건수
+	@Override
+	public String getReadySaleorders(SaleordersVO vo) {
+		return saleordersMapper.getReadySaleorders(vo);
 	}
 }

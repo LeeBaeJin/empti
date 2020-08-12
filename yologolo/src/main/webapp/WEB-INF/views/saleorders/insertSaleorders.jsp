@@ -2,6 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<style>
+	label{display:inline-block; width:100px;}
+</style>
 <script type="text/javaScript">
 	var sum = 0;
 	var multi = 0;
@@ -139,42 +142,40 @@
 	
 	
 </script>
-<div>
-	<h1 class="display-4 text-dark">판매주문 입력</h1>
+
+<div class="col-sm-12 my-auto">
+	<h2 class="display-4 text-dark"  style=font-size:35px;>판매 주문 입력</h2>
+	<hr class="sidebar-divider d-none d-md-block" width="40%" align="left"> 
 	<form action="setInsertSaleorders" id="saleOrd">
-		주문일자: 	<input value="${serverTime}" type="datetime-local" name="sorder_date" id="sorder_date" class="form-control" style="width: 300px; display: inline;"><br/>
+		<label>주문일자 </label>	<input value="${serverTime}" type="datetime-local" name="sorder_date" id="sorder_date" class="form-control" style="width: 300px; display: inline;"><br/>
+		<label>거래처코드</label>	<input name="company_no" id="company_no" class="form-control" style="width: 250px; display: inline;"> <span id="company_name"></span>
+			   						<button type="button" value="거래처선택" id="btnFindCompany" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" width="30px" height="30px"></button><br/>
+		<label>배송상태</label>	<select name="del_status" class="form-control" style="width: 250px; display: inline;">
+								 	  <option value="배송준비중" selected>배송준비중</option>
+									  <option value="배송중">배송중</option>
+									  <option value="배송완료" >배송완료</option>
+								</select><br/>
+		<label>담당자</label>	<%-- <select name="emp_id" class="form-control" style="width: 250px; display: inline;" onchange="emp_select_value(this);">
+								<option value="" selected>==사원 선택==</option>
+								<c:forEach items="${emps}" var="emp"> 
+								<option value="${emp.emp_id}">${emp.name}</option>
+								</c:forEach>
+								</select>
+								<span id="emp_name"></span> --%>
+								<input name="name" value="${login.name}" class="form-control" style="width: 250px; display: inline;" readonly><br>
+		<label>담당자 사번</label>	<input name="emp_id" value="${login.emp_id}" class="form-control" style="width: 250px; display: inline;" readonly> 
+									<br/>
+		<label>품목</label>		<input name="item_no" id="item_no" class="form-control" style="width: 100px; display: inline;"><span name="item_name" id="item_name" ></span>
+									<button type="button" value="품목선택" id="btnFindItem" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" width="30px" height="30px"></button><br/>
+		<label>수량</label> 		<input name="sorder_qty" id="sorder_qty" type="number" class="form-control" style="width: 250px; display: inline;"> <br>
 		
-		거래처코드: <input name="company_no" id="company_no" class="form-control" style="width: 250px; display: inline;"> <span id="company_name"></span>
-			    <button type="button" value="거래처선택" id="btnFindCompany" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" width="30px" height="30px"></button><br/>
-			    
-		판매합계: 	<input name="sale_sum" class="form-control" style="width: 250px; display: inline;"><br/>
+		<label>단가</label>		<input name="item_price" id="item_price" type="number" class="form-control" style="width: 250px; display: inline;"><br>
+		<label>판매합계</label> 	<input name="sale_sum" class="form-control" style="width: 250px; display: inline;"><br/><br/>
 		
-		배송상태:	<select name="del_status" class="form-control" style="width: 250px; display: inline;">
-				  <option value="배송준비중" selected>배송준비중</option>
-				  <option value="배송중">배송중</option>
-				  <option value="배송완료" >배송완료</option>
-				</select><br/>
-				
-		담당사원:	<%-- <select name="emp_id" class="form-control" style="width: 250px; display: inline;" onchange="emp_select_value(this);">
-					<option value="" selected>==사원 선택==</option>
-					<c:forEach items="${emps}" var="emp"> 
-					<option value="${emp.emp_id}">${emp.name}</option>
-					</c:forEach>
-				</select>
-				<span id="emp_name"></span> --%>
-				<input name="emp_id" value="${login.emp_id}" class="form-control" style="width: 250px; display: inline;"> 
-				<input name="name" value="${login.name}" class="form-control" style="width: 250px; display: inline;"><br>
-				<br/>
-				
-		품목:		<input name="item_no" id="item_no" class="form-control" style="width: 100px; display: inline;"><span name="item_name" id="item_name" ></span>
-				<button type="button" value="품목선택" id="btnFindItem" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" width="30px" height="30px"></button><br/>
-				
-		수량: 	<input name="sorder_qty" id="sorder_qty" type="number" class="form-control" style="width: 250px; display: inline;"> <br>
-		
-		단가:		<input name="item_price" id="item_price" type="number" class="form-control" style="width: 250px; display: inline;"><br><br>
-		
-	<button type="button" onclick="addOrder()" class="btn btn-primary">추가</button>
-	<button type="button" id="resetBtn" class="btn btn-warning">초기화</button><br>
+	<div>
+		<button type="button" onclick="addOrder()" class="btn btn-primary">추가</button>
+		<button type="button" id="resetBtn" class="btn btn-warning">초기화</button>
+	</div><br/>
 	
 	<!-- 판매상세주문 테이블 -->
 	<table border="1" id="buyTable" class="table table-bordered" style="width: 40%;">
