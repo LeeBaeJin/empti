@@ -60,6 +60,13 @@ public class StoragesServiceImpl implements StoragesService{
 	public List<Map<String, Object>> getStoragesExcelMap(StoragesVO vo) {
 		return storagesMapper.getStoragesExcelMap(vo);
 	}
+
+	//창고번호 msx
+	@Override
+	public StoragesVO strgNoMax(StoragesVO storagesVO) {
+		return storagesMapper.strgNoMax(storagesVO);
+	}
+	
 	
 	
 }

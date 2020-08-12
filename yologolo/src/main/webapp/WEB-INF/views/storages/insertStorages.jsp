@@ -6,23 +6,28 @@
 	label{display:inline-block; width:80px;}
 </style>
 <script>
+var emp_select_value = function(select_obj) {
+	if($("#emp_name").text() == ""){
+	$("#emp_name").append(select_obj.value);
+	}
+	else {
+	$("#emp_name").empty();
+	$("#emp_name").append(select_obj.value);
+	}	
+}
+
 	function check() {
-		if(frm.strg_no.value ==""){
-			alert("창고번호를 입력해주세요.");
-			frm.strg_no.focus();
-			return;
-		}
 		if(frm.strg_category.value == ""){
 			alert("창고유형을 입력해주세요.");
 			frm.strg_category.focus();
 			return;
 		}
 		if(frm.emp_id.value == ""){
-			alert("담당사원을 입력해주세요.");
+			alert("담당사원을 선택해주세요.");
 			frm.emp_id.focus();
 			return;
 		}
-
+		frm.submit();
 	}
 </script>
 <div align="center">
@@ -30,17 +35,17 @@
 		<hr class="sidebar-divider d-none d-md-block" style="width: 15%;"> 
 			<form action="setInsertStorages" id="frm" class="from-group">
 				<div class="col-sm-2" align="left" >
-				<label>창고번호</label>	<input name="strg_no" id="strg_no" class="form-control"><br/>
+				<label>창고번호</label>	<input name="strg_no" id="strg_no" value="${strgNo.strg_no}" class="form-control"><br/>
 				<label>창고유형</label>	<input name="strg_category" id="strg_category" class="form-control"><br/>
 				<label>담당사원</label>	
-						<select name="emp_id" id="emp_id" class="form-control">
+						<select name="emp_id" id="emp_id" onchange="emp_select_value(this);"  class="form-control">
 							<option value="" selected>=======사원 선택========</option>
 							<c:forEach items="${emps}" var="emps"> 
 							<option value="${emps.emp_id}">${emps.name}</option>
 							</c:forEach>
-						</select><br/>
+						</select><span id="emp_name"></span>
 			<div align="center">
-				<button class="btn btn-success" type="submit" onclick="check()">등록</button>
+				<button class="btn btn-success" type="button" onclick="check()">등록</button>
 			</div>
 		</div>
 			</form>
