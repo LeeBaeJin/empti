@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.hein.empti.buyorders.BuyordersVO;
+import com.hein.empti.saleorders.SaleordersVO;
 
 public interface BuyordersMapper {
 	//public List<BuyordersVO> getBuyordersList(BuyordersVO buyordersVO);
@@ -33,4 +34,6 @@ public interface BuyordersMapper {
 	//수정처리(배송상태만)
 	public void setUpdateBuyDel(List<BuyordersVO> bList);
 	
+	//'미수령'인 주문 건수
+	public String getReadyBuyorders(BuyordersVO vo);
 }

@@ -39,12 +39,13 @@ function check() {
 </script>    
     
 <div align="center" >
-	<h2 class="display-4 text-dark"  style=font-size:35px;>부서등록</h2><br/>
+	<h2 class="display-4 text-dark"  style=font-size:35px;>부서등록</h2>
+	<hr class="sidebar-divider d-none d-md-block" style="width: 15%;"> 
 	<form class="form form-group" action="setInsertDept" id="frm" >
 			 <div class="col-sm-2" align="left" >
 			<label>부서번호 </label>	 <input name="dept_id" id="dept_id"  class="form-control"> <br/>
 			<label>부서이름 </label>	 <input name="dept_name" id="dept_name" class="form-control"> <br/>
-			<label>부서장  </label>	 <select name="emp_id" id="emp_id"onchange="emp_select_value(this);" class="form-control" > 
+			<label>부서장  </label>	 <select name="emp_id" id="emp_id" onchange="emp_select_value(this);" class="form-control" > 
 										<option value=""  selected> =======선택하세요======= </option>
 										<c:forEach items="${emp}" var="emp" >
 											<option value="${emp.emp_id}" align="center">${emp.name}</option>

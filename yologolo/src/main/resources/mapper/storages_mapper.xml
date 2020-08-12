@@ -29,12 +29,14 @@
 		ORDER BY 	s.strg_no
 	</select>
 	
+	<!-- 폐기불량에서 창고 찾기 -->
 	<select id="getDisposalCount" parameterType="StoragesVO" resultType="int">
 		SELECT   count(*) "cnt"
 		FROM     disposal
 		WHERE    strg_no = #{strg_no}
 	</select>
 	
+	<!-- 입출고에서 창고 찾기 -->
 	<select id="getStocksCount" parameterType="StoragesVO" resultType="int">
 		SELECT   count(*) "cnt"
 		FROM     stocks
@@ -86,4 +88,9 @@
 		AND	  	s.strg_no = #{strg_no}
 	</select>
 
+	<!-- 창고번호 MAX -->
+	<select id="strgNoMax" resultType="StoragesVO">
+		SELECT nvl(max(strg_no)+1, 0) "strg_no"
+		FROM   STORAGES
+	</select>
 </mapper>

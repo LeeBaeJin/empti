@@ -60,6 +60,7 @@
 	
 </script>
 		<h1>폐기불량 입력</h1>
+		<hr class="sidebar-divider d-none d-md-block" style="width: 15%;"> 
 			<form action="setInsertDisposal">
 				
 				<label>폐기/불량 번호</label>	<input name="disposal_no" id="disposal_no"><br/>

@@ -70,6 +70,7 @@ function execPostCode() {
 </script>
 <div class="col-sm-12 my-auto">
 	<h3>거래처수정</h3>
+	<hr class="sidebar-divider d-none d-md-block" width="43%" align="left"> 
 	<form id="cpFrm" action="setUpdateCompany" class="from-group">
 		<label>회사코드</label> <input class="form-control" name="company_no" style="width: 250px; display: inline;" value="${company.company_no}" readonly="readonly"> <br/>
 		<label>회사명</label> <input class="form-control"name="company_name" style="width: 250px; display: inline;" value="${company.company_name}"> <br/>

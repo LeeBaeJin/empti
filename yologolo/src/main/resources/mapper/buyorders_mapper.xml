@@ -111,4 +111,11 @@
 		DELETE FROM	BUYORDERS
 		WHERE border_no = #{border_no}
 	</delete>
+	
+	<!-- '수령중'인 주문 건수 -->
+	<select id="getReadyBuyorders" resultType="string" parameterType="BuyordersVO">
+		SELECT COUNT(*) "count" 
+		FROM buyorders
+		WHERE status = '수령중'
+	</select>
 </mapper>

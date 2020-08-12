@@ -31,7 +31,7 @@ a.role {
 		<div class="table-responsive">
 			<table class="table table-bordered" id="dataTable" style="width: 100%;">
 				<thead>
-					<tr>
+					<tr style="text-align: center;">
 						<th style="width: 100px;">사원번호</th>
 						<th>이름</th>
 						<th>입사일</th>
@@ -50,7 +50,7 @@ a.role {
 							<td>${emp.position}</td>
 							<td>${emp.dept_name}</td>
 							<td>${emp.manager}</td>
-							<td><a class="btn btn-info role" onclick="openRole(${emp.emp_id});">권한부여</a></td>
+							<td style="text-align:center;"><a class="btn btn-info role" onclick="openRole(${emp.emp_id});">권한부여</a></td>
 						</tr>
 					</c:forEach>
 				</tbody>

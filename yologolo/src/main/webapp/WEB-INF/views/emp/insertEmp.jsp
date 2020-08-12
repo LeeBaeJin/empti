@@ -89,11 +89,6 @@ $(function(){
 
 
 function check() {
-	if(frm.emp_id.value ==""){
-		alert("사원아이디를 입력해주세요.");
-		frm.emp_id.focus();
-		return;
-	}
 	if(frm.name.value == ""){
 		alert("이름을 입력해주세요.");
 		frm.name.focus();
@@ -174,11 +169,13 @@ function check() {
 		frm.uploadFile.focus();
 		return;
 	}
+		frm.submit();
 }
 </script>    
     
 <div class="col-sm-12 my-auto">
 	<h2 class="display-4 text-dark"  style=font-size:30px;>사원등록</h2>
+	<hr class="sidebar-divider d-none d-md-block" width="43%" align="left"> 
 	<form action="setInsertEmp" id="frm" method="post" enctype="multipart/form-data" class="from-group">
 		<label>사원아이디</label>	<input name="emp_id" id="emp_id" class="form-control" value="${empId.emp_id}" style="width: 250px; display: inline;"> <br/>
 		<label>이름</label>		<input name="name" id="name"class="form-control" style="width: 250px; display: inline;"> <br/>
@@ -217,7 +214,7 @@ function check() {
 								</select>
 								<span id="dept_name"></span>
 								<br/>
-		<label>이미지</label>     <input type="file" name="uploadFile" id="uploadFile" class="form-control" style="width: 250px; display: inline;"><br/>
-	<button class="btn btn-success" type="submit" onclick="check()" >등록</button>
+		<label>이미지</label>     <input type="file" name="uploadFile" id="uploadFile" class="form-control" style="width: 250px; display: inline;"><br>
+	<button class="btn btn-success" type="button" onclick="check()" >등록</button>
 	</form>
 </div>

@@ -28,4 +28,7 @@ public interface SaleordersMapper {
 	
 	//수정처리(배송상태만)
 	public void setUpdateSaleDel(List<SaleordersVO> sList);
+	
+	//'배송준비중'인 주문 건수
+	public String getReadySaleorders(SaleordersVO vo);
 }

@@ -21,6 +21,7 @@ import com.hein.empti.buyorderdetails.service.BuyorderdetailsService;
 import com.hein.empti.buyorders.BuyordersVO;
 import com.hein.empti.buyorders.OrderMasterVO;
 import com.hein.empti.buyorders.service.BuyordersService;
+import com.hein.empti.saleorders.SaleordersVO;
 
 @Controller
 public class BuyordersController {
@@ -36,24 +37,12 @@ public class BuyordersController {
 		return "admin/buyorders/buyordersList";
 	}
 	
-	/*
-	 * //join문 map 전체 조회.
-	 * 
-	 * @RequestMapping(value= "/getBuyordersListMap", method=RequestMethod.GET)
-	 * 
-	 * @ResponseBody public List<Map<String, Object>>
-	 * getBuyordersListMap(BuyordersVO buyordersVO, Model model) { return
-	 * buyordersService.getBuyordersListMap(buyordersVO); }
-	 */
-	
 	// 구매주문 전체조회 Map
 	@RequestMapping("/getBuyordersListMap")
 	public String getSaleordersListMap(Model model, BuyordersVO buyordersVO) {
 		model.addAttribute("buyordersMap", buyordersService.getBuyordersListMap(buyordersVO));
 		return "admin/buyorders/buyordersList";
 	}
-	
-	
 
 	// 구매주문 단건조회
 	@RequestMapping("/getBuyorders")
@@ -103,19 +92,6 @@ public class BuyordersController {
 		buyordersService.setUpdateBuyorders(buyordersVO);
 		return "redirect:getBuyordersListMap";
 	}
-
-	//삭제처리(구매주문)
-	/*
-	 * @RequestMapping(value = "/setDeleteBuyorders/{order_no}",
-	 * method=RequestMethod.DELETE)
-	 * 
-	 * @ResponseBody public Map setDeleteBuyorders(@PathVariable String
-	 * order_no,BuyordersVO buyordersVO,BuyorderdetailsVO buyorderdetailsVO) {
-	 * buyorderdetailsVO.setBorder_no(order_no); buyordersVO.setBorder_no(order_no);
-	 * buyorderdetailsService.setBuyorderdetailDelete(buyorderdetailsVO);
-	 * buyordersService.setDeleteBuyorders(buyordersVO); Map map = new
-	 * HashMap<String, Object>(); map.put("result", Boolean.TRUE); return map; }
-	 */
 	
 	// 삭제처리
 	@RequestMapping("/setDeleteBuyorders")
@@ -131,16 +107,6 @@ public class BuyordersController {
 		model.addAttribute("findBuyorderNo", buyordersService.getBuyordersListMap(buyordersVO));
 		return "common/findBuyorderNo";
 	}
-	
-	
-	/*
-	 * //반품리스트(구매주문)
-	 * 
-	 * @RequestMapping("/getReturnBuyordersList")
-	 * 
-	 * @ResponseBody public List<BuyordersVO> getReturnBuyordersList(BuyordersVO
-	 * buyordersVO) { return buyordersService.getReturnBuyordersList(buyordersVO); }
-	 */
 	
 	// 반품목록 조회
 	@RequestMapping("/getReturnBuyordersList")
@@ -163,7 +129,6 @@ public class BuyordersController {
 		buyordersService.setUpdateBuyDel(bList);
 	}
 	
-	
 	// view resolver 방식 pdf 출력
 	@RequestMapping("buyorders_list.do")
 	public ModelAndView getBuyorderListReport(HttpServletRequest request, HttpServletResponse response)
@@ -185,39 +150,10 @@ public class BuyordersController {
 		return mv;    //구매일자/품목/ 단가/주문수량/합계/담당사원/거래처/상태
 	}
 	
-	
-	
-	/*
-	 * //반품
-	 * 
-	 * @RequestMapping(value= "/setUpdateBuyordersRetrun/{order_no}",
-	 * method=RequestMethod.PUT)
-	 * 
-	 * @ResponseBody public BuyordersVO setUpdateBuyordersRetrun(@PathVariable
-	 * String order_no, BuyordersVO buyordersVO, Model model) {
-	 * buyordersVO.setBorder_no(order_no);
-	 * buyordersService.setUpdateBuyordersRetrun(buyordersVO); return buyordersVO; }
-	 */
-
-	
-	/*
-	 * // pdf 출력 및 인쇄
-	 * 
-	 * @RequestMapping("/buyordersPdf.do") public void report(HttpServletRequest
-	 * request, HttpServletResponse response) throws Exception { Connection conn =
-	 * datasource.getConnection(); // InputStream stream =
-	 * getClass().getResourceAsStream("/reports/companyPdf.jasper"); // JasperReport
-	 * jasperReport = (JasperReport) JRLoader.loadObject(stream); InputStream stream
-	 * = getClass().getResourceAsStream("/reports/buyorders_list_pdf.jrxml");
-	 * JasperReport jasperReport = JasperCompileManager.compileReport(stream);
-	 * 
-	 * HashMap<String, Object> map = new HashMap<>(); map.put("p_buyorder",
-	 * request.getParameter("buyo"));
-	 * 
-	 * JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, map,
-	 * conn); JasperExportManager.exportReportToPdfStream(jasperPrint,
-	 * response.getOutputStream()); }
-	 */
-	
-
+	// '배송준비중'인 주문 건수
+	@RequestMapping("getReadyBuyorders")
+	@ResponseBody
+	public String getReadyBuyorders(BuyordersVO vo, Model model) {
+		return buyordersService.getReadyBuyorders(vo);
+	}
 }

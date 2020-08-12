@@ -36,11 +36,34 @@ public class ItemsServiceImpl implements ItemsService {
 		itemsMapper.setUpdateItems(itemsVO);
 	}
 
+
 	@Override
 	public List<Map<String, Object>> getItemsMap(ItemsVO vo) {
 		return itemsMapper.getItemsMap(vo);
 	}
 
+	//삭제
+	@Override
+	public void setDeleteItems(ItemsVO itemsVO) {
+		itemsMapper.setDeleteItems(itemsVO);
+	}
 
+	//삭제 조건
+	@Override
+	public int getDisposalCount(ItemsVO itemsVO) {
+		return itemsMapper.getDisposalCount(itemsVO);
+	}
+
+	@Override
+	public int getBuyDetailCount(ItemsVO itemsVO) {
+		return itemsMapper.getBuyDetailCount(itemsVO);
+	}
+
+	@Override
+	public int getSaleDetailCount(ItemsVO itemsVO) {
+		return itemsMapper.getSaleDetailCount(itemsVO);
+	}
+	
+	
 
 }

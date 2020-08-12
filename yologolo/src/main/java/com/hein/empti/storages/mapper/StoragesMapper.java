@@ -22,4 +22,7 @@ public interface StoragesMapper {
 	
 	//창고 (map)엑셀
 	public List<Map<String,Object>> getStoragesExcelMap(StoragesVO vo);
+	
+	//창고번호 max
+	public StoragesVO strgNoMax(StoragesVO storagesVO);
 }

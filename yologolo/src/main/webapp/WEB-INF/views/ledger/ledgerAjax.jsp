@@ -209,18 +209,18 @@ $(function(){
 				$('#order_no').empty();
 				$('#order_no')
 				.append($('<label>').text("구매주문번호"))
-				.append($('<input id=\'border_no\' name=\'border_no\'>'))
-				.append($('<input id=\'sorder_no\' name=\'sorder_no\' hidden>'))
 				.append($('<button type="button" id=\'btnFindOrderNo\'>')
 				.append('<img src="resources/images/Glass.png" width="30px" height="30px">'))
+				.append($('<input id=\'border_no\' name=\'border_no\' class=\'form-control\'>'))
+				.append($('<input id=\'sorder_no\' name=\'sorder_no\' hidden><br>'))
 			} else if (status == "매출"){
 				$('#order_no').empty();
 				$('#order_no')
 				.append($('<label>').text("판매주문번호"))
-				.append($('<input id=\'sorder_no\' name=\'sorder_no\'>'))
-				.append($('<input id=\'border_no\' name=\'border_no\' hidden>'))
 				.append($('<button type="button" id=\'btnFindOrderNo\'>')
 				.append('<img src="resources/images/Glass.png" width="30px" height="30px">'))
+				.append($('<input id=\'sorder_no\' name=\'sorder_no\' class=\'form-control\'>'))
+				.append($('<input id=\'border_no\' name=\'border_no\' hidden><br>'))
 
 			} else {
 				$('#order_no').empty();
@@ -235,7 +235,8 @@ $(function(){
 <div class="row">
 	<!-- 목록 시작 -->
 	<div class="col-lg-9 col-md-12">
-		<h2>장부목록</h2>
+		<h2 style="text-align:center">장부 목록</h2>
+		<hr class="sidebar-divider d-none d-md-block">
 			<form id="searchForm">
 				 <input type="radio"  name="radioStatus" value="" checked><span> 전체조회</span>
 				 <input type="radio"  name="radioStatus" value="매입"><span> 매입</span>
@@ -243,7 +244,7 @@ $(function(){
 				 <input type="date" name="startDate" value="start" data-date-format='yyyy-MM-dd'>  ~  <input type="date" name="endDate" value="end" data-date-format='yyyy-MM-dd'>
 				 <input type="button" class="btn btn-secondary" value="검색" id="btnSearch" /> 
 				 <input type="reset"  class="btn btn-warning" value="초기화" /> 
-		 	</form>
+		 	</form><br/>
 		<table class="table text-center">
 			<thead>
 				<tr>
@@ -266,6 +267,8 @@ $(function(){
 	<!-- 등록수정 폼 시작 -->
 	<div class="col-lg-3 col-md-12 ">
 		<div id="ledgerDiv" class="ml-5">
+			<h2 style="text-align:center">장부 등록</h2>
+			<hr class="sidebar-divider d-none d-md-block">
 			<form id="ledgerForm">  
 				<label>장부번호</label>	<input class="form-control" name="ldgr_no" id="ldgr_no" readonly><br> 
 				<label>날짜</label> 		<input class="form-control" name="ldgr_date" id="ldgr_date" type="datetime-local"> <br> 

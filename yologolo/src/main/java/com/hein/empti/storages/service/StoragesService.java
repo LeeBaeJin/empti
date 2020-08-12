@@ -21,4 +21,7 @@ public interface StoragesService {
 	public List<Map<String, Object>> getStoragesListMap(StoragesVO storagesVO);
 	
 	public List<Map<String, Object>> getStoragesExcelMap(StoragesVO vo);
+	
+	//창고번호 max
+	public StoragesVO strgNoMax(StoragesVO storagesVO);
 }

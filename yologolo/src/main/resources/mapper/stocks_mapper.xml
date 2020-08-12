@@ -70,7 +70,8 @@
 			<if test="note != null">note=#{note},</if>
 			<if test="stock_price != null">stock_price=#{stock_price},</if>
 			<if test="stock_category != null">stock_category=#{stock_category},</if>
-			<if test="detail_no != null">detail_no=#{detail_no},</if>
+			<if test="borderdetail_no != null">borderdetail_no=#{borderdetail_no},</if>
+			<if test="sorderdetail_no != null">sorderdetail_no=#{sorderdetail_no},</if>
 			<if test="item_no != null">item_no=#{item_no},</if>
 			<if test="strg_no != null">strg_no=#{strg_no}</if>
 		</set>

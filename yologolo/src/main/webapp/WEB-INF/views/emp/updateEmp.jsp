@@ -94,6 +94,7 @@ $(function(){
 </script>  
 <div class="col-sm-12 my-auto">
 	<h2 class="display-4 text-dark"  style=font-size:30px;>사원수정</h2>
+	<hr class="sidebar-divider d-none d-md-block" width="43%" align="left"> 
 	<form action="setUpdateEmp" method="post" enctype="multipart/form-data" class="form form-group">
 		<label>사원아이디 </label>	 <input name="emp_id" value="${empUp.emp_id}" readonly> <br/>
 		<label>이름 </label>		 <input name="name" value="${empUp.name}"> <br/>
@@ -123,7 +124,7 @@ $(function(){
 								<span id="dept_name"></span>
 								<br/>
 		<label>이미지 </label>    <input type="file" name="uploadFile" />${empUp.profile}<br>
-								<input type="hidden" name="uploadFile" value="${empUp.profile}">
+								<input type="hidden" name="uploadFile" value="${empUp.profile}"><br>
 	<button type="submit" class="btn btn-primary">수정</button>
 	</form>
 </div>

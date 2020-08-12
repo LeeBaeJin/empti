@@ -31,11 +31,13 @@
 			frm.item_price.focus();
 			return;
 		}
+		frm.submit();
 	}
 
 </script>
 <div align="center" >
-	<h2 class="display-4 text-dark"  style=font-size:35px;>품목 등록</h2><br/>
+	<h2 class="display-4 text-dark"  style=font-size:35px;>품목 등록</h2>
+	<hr class="sidebar-divider d-none d-md-block" style="width: 15%;"> 
 	<form action="setInsertItems" name="frm" class="from-group">
 		<div class="col-sm-2" align="left" >
 		<label>품목코드</label>	<input name="item_no" id="item_no" class="form-control"><br/>
@@ -51,7 +53,7 @@
 		<label>유통기한(일)</label>	<input name="exp_date" id="exp_date" class="form-control"><br/>
 		<label>단가</label>	<input name="item_price" id="item_price" class="form-control"><br/>
 	<div align="center">
-		<button class="btn btn-success" type="submit" onclick="validCheck()">등록</button>
+		<button class="btn btn-success" type="button" onclick="validCheck()">등록</button>
 	</div><br/>
 	</div>
 	</form>

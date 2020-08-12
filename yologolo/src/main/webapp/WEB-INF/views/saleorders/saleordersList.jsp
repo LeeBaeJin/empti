@@ -44,13 +44,50 @@
 		});
 	});
 	
-$(function() {
-	var delStatus = $('[name=del_status] option:selected');
+	
+$(document).ready(function() {
+	$('#dataTable').on('order.dt', function() {
+		var delStatus =$('[name=del_status] option:selected');
+		$.each(delStatus, function(idx, item) {
+			console.log(item.value);
+			if(item.value == "배송완료"){
+				$(item).parent().attr('disabled', 'true');
+			}
+		});	
+	})
+
+}); 
+
+/* $(function() {
+	$('#dataTable').on('order.dt', function() {
+		var delStatus =$('[name=del_status] option:selected');
+		$.each(delStatus, function(idx, item) {
+			console.log(item.value);
+			if(item.value == "배송완료"){
+				$(item).parent().attr('disabled', 'true');
+			}
+		});	
+	}) */
+	
+		/* var table = $('#dataTable').DataTable();
+		var delStatus = table.rows($('[name=del_status] option:selected')).data().selector.rows;
+		console.log(delStatus)
+		$.each(delStatus, function(idx, item) {
+			console.log(item);
+			if(item.value == "배송완료"){
+				$(item).parent().attr('disabled', 'true');
+			}
+		}); */	
+			var delStatus =$('[name=del_status] option:selected');
 	$.each(delStatus, function(idx, item) {
+		console.log(item.value);
 		if(item.value == "배송완료"){
 			$(item).parent().attr('disabled', 'true');
 		}
+	});	
 	});
+
+	
 	
 	$('.spanReturn').parent().prev().css({
         color: "red"
@@ -60,9 +97,8 @@ $(function() {
 	});
 	$('.spanReturn').closest('tr').find('.returnTd').empty();
 	$('.spanReturn').closest('tr').find('.deleteTd').empty();
-	
-	
-});
+		
+
 
 </script>
 
@@ -84,7 +120,7 @@ $(function() {
 			<a href="getReturnSaleordersList" class="btn btn-outline-primary">반품내역</a> <br><br>
 			<table class="table table-bordered" id="dataTable" style="width: 100%; cellspacing=0;">
 				<thead id="tblHead">
-					<tr>
+					<tr style="text-align: center;">
 						<th>주문일자</th>
 						<th>판매합계</th>
 						<th style="width: 200px;">배송상태&nbsp;
@@ -112,7 +148,7 @@ $(function() {
 								
 								<td class="returnStatus">
 								<c:if test="${sale.del_status != '반품'}" >
-								<select id="del_status" name="del_status" onchange="selChk(${sale.sorder_no}, this)">
+								<select id="del_status" class="del_status" name="del_status" onchange="selChk(${sale.sorder_no}, this)">
 									<option value="배송준비중" <c:if test="${fn:contains(sale.del_status,'배송준비중')}">selected="selected"</c:if>>배송준비중</option>
 									<option value="배송중" <c:if test="${fn:contains(sale.del_status,'배송중')}">selected="selected"</c:if>>배송중</option>
 									<option value="배송완료" <c:if test="${fn:contains(sale.del_status,'배송완료')}">selected="selected"</c:if>>배송완료</option>
@@ -126,10 +162,10 @@ $(function() {
 								<td>${sale.name}</td>
 								<td>${sale.company_name}</td>
 								
-								<td class="returnTd">
+								<td class="returnTd" style="text-align: center;">
 								<a id="returnBtn" class="btn btn-outline-dark" href="#" onclick="reSorder(${sale.sorder_no});">반품</a>
 								</td>
-								<td class="deleteTd">
+								<td class="deleteTd" style="text-align: center;">
 								<a id="deleteBtn" class="btn btn-outline-danger" href="#" onclick="delSorder(${sale.sorder_no});">삭제</a>
 								</td>
 								

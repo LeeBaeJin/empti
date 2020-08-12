@@ -14,5 +14,4 @@ public class ItemsVO {
 		String	exp_date;
 		String	item_price;
 
-	
 }
