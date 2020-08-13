@@ -10,6 +10,52 @@
 //페이지 로드
 $(function(){
 	$('#subBtn').on('click', function() {
+		if(cpFrm.company_name.value == ""){
+			alert("회사명을 입력해주세요.");
+			cpFrm.company_name.focus();
+			return;
+		}
+		if(cpFrm.phone.value == ""){
+			alert("대표 전화번호를 입력해주세요.");
+			cpFrm.phone.focus();
+			return;
+		}
+		if(cpFrm.ceo_name.value ==""){
+			alert("대표 이름을 입력해주세요.");
+			cpFrm.ceo_name.focus();
+			return;
+		}
+		if(cpFrm.addr1.value == ""){
+			alert("우편번호를 선택해주세요.");
+			cpFrm.addr1.focus();
+			return;
+		}
+		if(cpFrm.addr3.value == ""){
+			alert("상세주소를 입력해주세요.");
+			cpFrm.addr3.focus();
+			return;
+		}
+		if(cpFrm.dealer_phone.value == ""){
+			alert("담당자 전화번호를 입력해주세요.");
+			cpFrm.dealer_phone.focus();
+			return;
+		}
+		if(cpFrm.dealer_name.value == ""){
+			alert("담당자 이름을 입력해주세요.");
+			cpFrm.dealer_name.focus();
+			return;
+		}
+		if(cpFrm.bank_name.value == ""){
+			alert("거래은행을 선택해주세요.");
+			cpFrm.bank_name.focus();
+			return;
+		}
+		if(cpFrm.account_no.value == ""){
+			alert("은행계좌를 입력해주세요.");
+			cpFrm.account_no.focus();
+			return;
+		}
+		
 		var result = confirm("거래처 등록을 하시겠습니까?");
 		if (result) {
 			cpFrm.submit();
@@ -17,6 +63,11 @@ $(function(){
 		} else {
 			return false;
 		}
+	});
+	
+	$('#btnFindBank').on('click', function() {
+		var wo = window.open('findBank','item', 'width=800, hight=800');
+		return wo;
 	});
 });
 
@@ -67,19 +118,22 @@ function execPostCode() {
 	<h2 class="display-4 text-dark"  style=font-size:30px;>거래처등록</h2>
 	<hr class="sidebar-divider d-none d-md-block" width="43%" align="left"> 
 		<form id="cpFrm" action="setInsertCompany" class="from-group">
-		<label>회사코드</label>	 <input class="form-control" name="company_no" style="width: 250px; display: inline;"> <br/>
-		<label>회사명</label> 	<input class="form-control"name="company_name" style="width: 250px; display: inline;"> <br/>
-		<label>대표 전화번호</label> <input class="form-control" name="phone" style="width: 250px; display: inline;"> <br/>
-		<label>대표 이름</label> 	<input class="form-control" name="ceo_name" style="width: 250px; display: inline;"> <br/>
-		<label></label>			<input class="form-control" name="zip_code" id="addr1" readonly="readonly" style="width: 10%; display: inline;" placeholder="우편번호">
+		<label>회사코드</label>	 <input class="form-control" name="company_no" style="width: 250px; display: inline;" value="${maxCom.company_no}" readonly> <br/>
+		<label>회사명</label> 	<input class="form-control"name="company_name" id="company_name" style="width: 250px; display: inline;" required="required"> <br/>
+		<label>대표 전화번호</label> <input class="form-control" name="phone" id="phone" style="width: 250px; display: inline;"> <br/>
+		<label>대표 이름</label> 	<input class="form-control" name="ceo_name" id="ceo_name" style="width: 250px; display: inline;"> <br/>
+		<label>주소</label>			<input class="form-control" name="zip_code" id="addr1" readonly="readonly" style="width: 10%; display: inline;" placeholder="우편번호">
 		<label></label>			<button class="btn btn-default" type="button"  onclick="execPostCode();"><i class="fa fa-search"></i> 우편번호 찾기</button><br/>                             
 		<label></label>			<input class="form-control" name="address" id="addr2" readonly="readonly" style="top: 5px; width: 35%; display: inline;" placeholder="도로명 주소"><br/>
 		<label></label>			<input class="form-control" name="address_detail" id="addr3" style="width: 35%; display: inline;" placeholder="상세주소">
 							<br/>
-		<label>담당자 전화번호</label>	<input class="form-control" name="dealer_phone" style="width: 250px; display: inline;"> <br/>
-		<label>담당자 이름</label>	<input class="form-control" name="dealer_name" style="width: 250px; display: inline;"> <br/>
-		<label>은행</label> <input class="form-control" name="bank_name" style="width: 250px; display: inline;"> <br/>
-		<label>계좌</label> <input class="form-control" name="account_no" style="width: 250px; display: inline;"> <br/>
+		<label>담당자 이름</label>	<input class="form-control" name="dealer_name" id="dealer_name" style="width: 250px; display: inline;"> <br/>
+		<label>담당자 전화번호</label>	<input class="form-control" name="dealer_phone" id="dealer_phone" style="width: 250px; display: inline;"> <br/>
+
+		<label>거래은행</label>	<input name="bank_name" id="bank_name" type="text" class="form-control" style="width: 250px; display: inline;">
+								<button type="button" value="은행선택" id="btnFindBank" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" width="30px" height="30px"></button>
+								<br/>
+		<label>은행계좌</label>	<input name="account_no" id="account_no" class="form-control" style="width: 250px; display: inline;"> <br/>
 		<label>비고</label> <input class="form-control" name="note" style="width: 250px; display: inline;"> <br/>
 	<button class="btn btn-success" id="subBtn" type="button">등록</button>
 	</form>

@@ -29,6 +29,12 @@
 		ORDER BY company_no
 	</select>
 	
+	<!-- 거래처 번호 max값 -->
+	<select id="comNoMax" resultType="companyVO">
+		SELECT nvl(max(company_no)+1, 0) "company_no"
+		FROM   companies
+	</select>
+	
 	<select id="getBuyCount" parameterType="companyVO" resultType="int">
 		SELECT   count(*) "cnt"
 		FROM     buyorders

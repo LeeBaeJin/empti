@@ -14,17 +14,14 @@ $(function(){
 		ledgerSelect();
 		init();
 		fnc_findOrderNo();
-		fnc_selectOrderNo();
-		inputNumberFormat();
-		comma();
-		uncomma();
+		fnc_selectOrderNo();s
 		$('#searchForm').on('click','#btnSearch',function() {
 		ledgerList()			 
 		});
 	});
 	
 //커ㅁ머 포맽팅
-function inputNumberFormat(obj) {
+function ledgerVO(obj) {
 	if(obj !=null)
 obj.value = comma(uncomma(obj.value));
 }
@@ -100,6 +97,9 @@ return str.replace(/[^\d]+/g, '');
 			    	if(response.result == true) {
 			    	alert("등록되었습니다.");
 			    		ledgerList();
+						$('#ledgerForm').each(function(){
+							this.reset();
+						});
 			    	}
 			    }, 
 			    error:function(xhr, status, message) { 
@@ -115,7 +115,8 @@ return str.replace(/[^\d]+/g, '');
 		$('#ledgerForm').on('click', '#btnUpdate', function(){
 			var ledgerNo = $('#ledgerDiv').find('#ldgr_no').val();
 			var ldgrDate = $('[name="ldgr_date"]').val();
-			var totalAmnt = $('[name="total_amount"]').val();
+			var totalAmount = $('[name="total_amount"]').val();
+			var amt = totalAmount.replace(/\,/g,"");
 			var sts = $('[id="status"]').val();
 			var borderNo = $('[id="border_no"]').val();
 			var sorderNo = $('[id="sorder_no"]').val();
@@ -125,12 +126,16 @@ return str.replace(/[^\d]+/g, '');
 			    url: "ledgers", 
 			    type: 'PUT', 
 			    dataType: 'json', 
-			    data : JSON.stringify({ldgr_no:ledgerNo, ldgr_date: ldgrDate, total_amount:totalAmnt, status: sts, 
+			    data : JSON.stringify({ldgr_no:ledgerNo, ldgr_date: ldgrDate, total_amount:amt, status: sts, 
 		    							border_no: borderNo, sorder_no : sorderNo, condition: con, note: note}),
 			    contentType:'application/json;charset=utf-8',
 			    success: function(data) { 
+			    	alert("수정되었습니다.");
 			    	console.log(data);
 			    	ledgerList();
+					$('#ledgerForm').each(function(){
+						this.reset();
+					});
 			    },
 			    error:function(xhr, status, message) { 
 			        alert(" status: "+status+" 에러:"+message);
@@ -309,7 +314,7 @@ return str.replace(/[^\d]+/g, '');
 										</select><br>
 				
 				<div id="order_no"></div>
-				<label>금액</label> 		<input class="form-control" name="total_amount" id="total_amount"> <br>  <!-- 콤마포맽onkeyup="inputNumberFormat(this)" -->
+				<label>금액</label> 		<input class="form-control" name="total_amount" id="total_amount" onkeyup="inputNumberFormat(this)"> <br>  
 				<label>상태</label> 		<select class="form-control" name="condition" id="condition">
 											<option value="" selected>==선택하세요==</option>
 											<option value="완납">완납</option>
