@@ -21,7 +21,13 @@
 		$.each(tr, function(idx , item) {
 			var obj = {};
 			obj['border_no'] = $(item).children().eq(7).children().val();
-			obj['status'] = $(item).children().eq(2).children().val();  
+			var staTus = $(item).children().eq(2).children().val();
+			if (staTus == null || staTus == "") {
+				staTus = $(item).children().eq(2).children().text();
+				obj['status'] = staTus;
+			} else {
+				obj['status'] = staTus;
+			}
 			buyDel.push(obj);
 		});
 /* 		$('#tblHead').on('click', '#delUpdate', function() {
@@ -58,7 +64,7 @@ $(function() {
 				contentType : "application/json",
 				success: function() {
 				alert("성공적으로 수정하였습니다.");
-					
+				location.href = "getBuyordersListMap";
 				},  error: function() {
 				alert("수정을 실패하였습니다.");
 				}
