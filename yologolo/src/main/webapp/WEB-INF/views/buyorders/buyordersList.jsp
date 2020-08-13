@@ -30,28 +30,8 @@
 			}
 			buyDel.push(obj);
 		});
-/* 		$('#tblHead').on('click', '#delUpdate', function() {
-			var result = confirm("배송상태를 수정하시겠습니까?\n수령완료 시 수정이 불가능합니다.");
-			var delStatus = $('[name=status] option:selected');
-			if (result) {
-				$.ajax ({
-					url: "setUpdateBuyDel",
-					type: "POST",
-					data: JSON.stringify(buyDel),
-					contentType : "application/json",
-					success: function() {
-					alert("성공적으로 수정하였습니다.");
-					
-						
-				},  error: function() {
-					alert("수정을 실패하였습니다.");
-				}
-			});
-			} else {
-				return false;
-			}
-		}); */
 	});
+	
 $(function() {
 	delUpdate.addEventListener("click",function() {
 		var result = confirm("배송상태를 수정하시겠습니까?\n수령완료 시 수정이 불가능합니다.");
@@ -63,7 +43,6 @@ $(function() {
 				data: JSON.stringify(buyDel),
 				contentType : "application/json",
 				success: function() {
-				alert("성공적으로 수정하였습니다.");
 				location.href = "getBuyordersListMap";
 				},  error: function() {
 				alert("수정을 실패하였습니다.");
@@ -136,11 +115,11 @@ $(function() {
 							<td>${buy.name}</td>
 							<td>${buy.company_name}</td>
 							
-							<td class="returnTd" style="text-align: center;">
-							<a id="returnBtn" class="btn btn-outline-dark" href="#" onclick="reBorder(${buy.border_no});">반품</a>
+							<td class="returnTd" style="text-align: center;" >
+							<a id="returnBtn" class="btn btn-outline-dark" href="#" onclick="reBorder(${buy.border_no});" <c:if test="${buy.status == '반품'}">style="display:none"</c:if>>반품</a>
 							</td>
 							<td class="deleteTd" style="text-align: center;">
-							<a id="deleteBtn" class="btn btn-outline-danger" href="#" onclick="delBorder(${buy.border_no});">삭제</a>
+							<a id="deleteBtn" class="btn btn-outline-danger" href="#" onclick="delBorder(${buy.border_no});" <c:if test="${buy.status == '반품'}">style="display:none"</c:if>>삭제</a>
 							</td>
 							
 							<!--다중 업데이트의 조건을 받기위한 히든 데이터 -->
@@ -186,7 +165,7 @@ function delBorder(borderNo) {
 }
 function reBorder(borderNo) {
 	var result = confirm("반품하시겠습니까?");
-	if (result) {
+	if (result) {		
 		window.location.href = "setInsertBuyordersRetrun?return_no="+borderNo;
 	} else {
 		return false;

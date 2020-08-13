@@ -21,38 +21,36 @@
 		$.each(tr, function(idx , item) {
 			var obj = {};
 			obj['sorder_no'] = $(item).children().eq(7).children().val();
-			obj['del_status'] = $(item).children().eq(2).children().val();  
+			var staTus = $(item).children().eq(2).children().val(); 
+			if (staTus == null || staTus == "") {
+				staTus = $(item).children().eq(2).children().text();
+				obj['del_status'] = staTus;
+			} else {
+				obj['del_status'] = staTus;
+			}
 			selDel.push(obj);
 		});
-		$('#tblHead').on('click', '#delUpdate', function() {
-			var result = confirm("배송상태를 수정하시겠습니까?\n배송완료 시 수정이 불가능합니다.");
-			if (result) {
-				$.ajax ({
-					url: "setUpdateSaleDel",
-					type: "POST",
-					data: JSON.stringify(selDel),
-					contentType : "application/json",
-					success: function() {
-					alert("성공적으로 수정하였습니다.");
-				},  error: function() {
-					alert("수정을 실패하였습니다.");
-				}
-			});
-			} else {
-				return false;
-			}
-		});
 	});
-
-
-
-	
-
-
-	
-	
 		
-
+$(function() {
+	delUpdate.addEventListener("click",function() {
+	var result = confirm("배송상태를 수정하시겠습니까?\n배송완료 시 수정이 불가능합니다.");
+		if (result) {
+			$.ajax ({
+				url: "setUpdateSaleDel",
+				type: "POST",
+				data: JSON.stringify(selDel),
+				contentType : "application/json",
+				success: function() {
+				location.href = "getSaleordersListMap";					
+			},  error: function() {
+				alert("수정을 실패하였습니다.");
+			}
+			});
+	window.event.stopPropagation();
+		} 
+	});
+});
 
 </script>
 
@@ -117,10 +115,10 @@
 								<td>${sale.company_name}</td>
 								
 								<td class="returnTd" style="text-align: center;">
-								<a id="returnBtn" class="btn btn-outline-dark" href="#" onclick="reSorder(${sale.sorder_no});">반품</a>
+								<a id="returnBtn" class="btn btn-outline-dark" href="#" onclick="reSorder(${sale.sorder_no});" <c:if test="${sale.del_status == '반품'}">style="display:none"</c:if>>반품</a>
 								</td>
 								<td class="deleteTd" style="text-align: center;">
-								<a id="deleteBtn" class="btn btn-outline-danger" href="#" onclick="delSorder(${sale.sorder_no});">삭제</a>
+								<a id="deleteBtn" class="btn btn-outline-danger" href="#" onclick="delSorder(${sale.sorder_no});" <c:if test="${sale.del_status == '반품'}">style="display:none"</c:if>>삭제</a>
 								</td>
 								
 								<!--다중 업데이트의 조건을 받기위한 히든 데이터 -->
