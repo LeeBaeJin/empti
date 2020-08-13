@@ -76,11 +76,12 @@ return str.replace(/[^\d]+/g, '');
 			if(ledgerForm.total_amount.value == ""){
 				alert("금액을 입력해주세요.");
 				ledgerForm.total_amount.focus();
-				ledgerForm.total_amount.value.replace(",","");
+				var amt = ledgerForm.total_amount.value;
+				amt.replace(/\,/g,"");
 				return ;
 			}
 			if(ledgerForm.status.value ==""){
-				alert("구분를 선택해주세요.");
+				alert("구분을 선택해주세요.");
 				frm.status.focus();
 				return;
 			}
@@ -96,8 +97,8 @@ return str.replace(/[^\d]+/g, '');
 			    dataType: 'json', 
 			    data : $("#ledgerForm").serialize(),			    
 			    success: function(response) {
-			    	console.log(response.kkk)
 			    	if(response.result == true) {
+			    	alert("등록되었습니다..");
 			    		ledgerList();
 			    	}
 			    }, 
@@ -301,7 +302,6 @@ return str.replace(/[^\d]+/g, '');
 			<form id="ledgerForm">  
 				<label>장부번호</label>	<input class="form-control" name="ldgr_no" id="ldgr_no" readonly><br> 
 				<label>날짜</label> 		<input class="form-control" name="ldgr_date" id="ldgr_date" type="datetime-local"> <br> 
-				<label>금액</label> 		<input class="form-control" name="total_amount" id="total_amount" >  <br>  <!-- 콤마포맽onkeyup="inputNumberFormat(this)" -->
 				<label>구분</label> 		<select class="form-control" name="status" id="status">
 											<option value="" selected>== 매출/매입 선택 ==</option>
 											<option value="매입">매입</option>
@@ -309,7 +309,8 @@ return str.replace(/[^\d]+/g, '');
 										</select><br>
 				
 				<div id="order_no"></div>
-					<label>상태</label> 	<select class="form-control" name="condition" id="condition">
+				<label>금액</label> 		<input class="form-control" name="total_amount" id="total_amount"> <br>  <!-- 콤마포맽onkeyup="inputNumberFormat(this)" -->
+				<label>상태</label> 		<select class="form-control" name="condition" id="condition">
 											<option value="" selected>==선택하세요==</option>
 											<option value="완납">완납</option>
 											<option value="미수">미수</option>
