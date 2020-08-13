@@ -98,7 +98,7 @@ return str.replace(/[^\d]+/g, '');
 			    data : $("#ledgerForm").serialize(),			    
 			    success: function(response) {
 			    	if(response.result == true) {
-			    	alert("등록되었습니다..");
+			    	alert("등록되었습니다.");
 			    		ledgerList();
 			    	}
 			    }, 
