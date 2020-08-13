@@ -79,4 +79,6 @@ public class BuyordersServiceImpl implements BuyordersService{
 	public String getReadyBuyorders(BuyordersVO vo) {
 		return buyordersMapper.getReadyBuyorders(vo);
 	}
+
+	
 }

@@ -20,7 +20,7 @@
 <table class="table table-hover">
 	 <thead class="thead-dark">
 		<tr style="text-align:center">
-			<th>주문번호</th><th>주문날짜</th><th>구매금액</th><th>거래처명</th>
+			<th>주문번호</th><th>주문날짜</th><th>구매금액</th><th>잔금</th><th>거래처명</th>
 		</tr>
 	</thead>
 		<c:forEach items="${findBuyorderNo}" var="orders">
@@ -29,8 +29,12 @@
 				<td><input type="button" class="clickNo" value="${orders.border_no}"></td>
 				<td>${orders.border_date}</td>
 				<td>
-				<fmt:parseNumber value="${orders.buy_sum}" var="fmt"/>
-				<fmt:formatNumber type="number" maxFractionDigits="3" value="${fmt}"/>원
+					<fmt:parseNumber value="${orders.buy_sum}" var="fmt"/>
+					<fmt:formatNumber type="number" maxFractionDigits="3" value="${fmt}"/>원
+				</td>
+				<td>
+					<fmt:parseNumber value="${orders.balance}" var="fmt"/>
+					<fmt:formatNumber type="number" maxFractionDigits="3" value="${fmt}"/>원
 				</td>
 				<td>${orders.company_name}</td>
 			</c:if>

@@ -4,18 +4,24 @@
 <mapper	namespace="com.hein.empti.buyorders.mapper.BuyordersMapper">
 	<!-- 구매주문 전체조회 -->
 		<select id="getBuyordersListMap" resultType="map">
-		SELECT      TO_CHAR(border_date, 'yyyy-MM-dd hh24:mi') "border_date",
-					buy_sum 			"buy_sum",
-					name				"name", 	
-					company_name		"company_name",
-					border_no			"border_no",
-					bo.return_no		"return_no",
-					bo.status			"status"
-		FROM 		buyorders bo
-		JOIN        companies p ON(bo.company_no = p.company_no)
-		JOIN		employees e ON(bo.emp_id 	  = e.emp_id)					
-		ORDER BY	1 desc		
+	    SELECT  TO_CHAR(border_date, 'yyyy-MM-dd hh24:mi')	 "border_date",
+                buy_sum							 			 "buy_sum",
+                name										 "name", 	
+                company_name							     "company_name",
+                b.border_no									 "border_no",
+                b.return_no									 "return_no",
+                b.status								     "status",
+                b.buy_sum - l.total_amount					 "balance"
+    FROM        buyorders b ,
+                companies p ,
+                employees e ,
+                ledger    l
+    WHERE       b.company_no = p.company_no AND
+                b.emp_id     = e.emp_id     AND
+                b.border_no  = l.border_no
 	</select>
+	
+	
 	
 	<!-- 구매주문 단건조회 -->
 	<select id="getBuyorders" resultType="BuyordersVO">

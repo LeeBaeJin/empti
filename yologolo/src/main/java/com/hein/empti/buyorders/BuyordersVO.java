@@ -24,4 +24,8 @@ public class BuyordersVO {
 	
 	//count
 	String count;
+	
+	// 잔금
+	String balance;
+	
 }

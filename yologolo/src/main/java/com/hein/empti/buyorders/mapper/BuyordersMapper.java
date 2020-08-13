@@ -13,6 +13,7 @@ public interface BuyordersMapper {
 	public void setUpdateBuyorders(BuyordersVO buyordersVO);
 	public void setDeleteBuyorders(BuyordersVO buyordersVO);
 	
+
 	//시퀀스 조회
 	public String getBuySeq();
 	
