@@ -60,6 +60,11 @@ return str.replace(/[^\d]+/g, '');
 			    	console.log(response.kkk)
 			    	if(response.result == true) {
 			    		disposalList();
+			    		$('#disposalForm').each(function(){
+							this.reset();
+						});
+			    		$('#storages_no').empty();
+			    		
 			    	}
 			    },
 			    error:function(xhr, status, message) { 
@@ -90,6 +95,10 @@ return str.replace(/[^\d]+/g, '');
 			    success: function(data) { 
 			    	console.log(data);
 			    	disposalList();
+		    		$('#disposalForm').each(function(){
+						this.reset();
+					});
+		    		$('#storages_no').empty();
 			    },
 			    error:function(xhr, status, message) { 
 			        alert(" status: "+status+" 에러:"+message);
@@ -255,13 +264,17 @@ return str.replace(/[^\d]+/g, '');
 			<hr class="sidebar-divider d-none d-md-block">
 			<form id="disposalForm">
 				<label>폐기/불량 번호</label>	<input class="form-control" name="disposal_no" id="disposal_no" readonly><br/>
-				<label>폐기/불량 수량</label>		<input class="form-control" name="disposal_qty"  ><br/>
-				<label>처리비용</label>			<input class="form-control" name="price" onkeyup="inputNumberFormat(this)" ><br/>
 				<label>날짜</label>			<input class="form-control" name="disposal_date" type="datetime-local"><br/>
 				<label>구분</label>			<select class="form-control" name="category">
 														<option value="폐기">폐기</option>
 														<option value="불량">불량</option>
 											</select><br/>
+				<label>품목코드</label>		<button type="button" value="품목선택" id="btnFindItem"><img src="resources/images/Glass.png" width="30px" height="30px"></button>
+											<input class="form-control" name="item_no" id="item_no" > <span id="item_name" name="item_name"></span><br/><br/>
+				<label>폐기/불량 수량</label>		<input class="form-control" name="disposal_qty"  ><br/>
+				<label>처리비용</label>			<input class="form-control" name="price" onkeyup="inputNumberFormat(this)" ><br/>
+				
+				
 				
 				<label>창고</label>			<select class="form-control" name="strg_no" class="selectBox" onchange="storages_select_value(this);">
 												<option value="" selected> ==선택하세요== </option>
@@ -270,8 +283,7 @@ return str.replace(/[^\d]+/g, '');
 													</c:forEach>
 											</select><span id="storages_no"></span><br/>
 				
-				<label>품목코드</label>		<button type="button" value="품목선택" id="btnFindItem"><img src="resources/images/Glass.png" width="30px" height="30px"></button>
-											<input class="form-control" name="item_no" id="item_no" > <span id="item_name" name="item_name"></span><br/><br/>
+				
 				<div class="btn-group">
 					<input type="button" class="btn btn-success" value="등록" id="btnInsert" /> 
 					<input type="button" class="btn btn-primary" value="수정" id="btnUpdate" /> 

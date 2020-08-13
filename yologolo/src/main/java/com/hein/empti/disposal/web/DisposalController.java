@@ -57,6 +57,7 @@ public class DisposalController {
 	// 요청헤더
 	@ResponseBody
 	public DisposalVO setUpdateDisposal(@RequestBody DisposalVO disposalVO, Model model) {
+		disposalVO.setPrice(disposalVO.getPrice().replace(",", ""));
 		disposalService.setUpdateDisposal(disposalVO);
 		return disposalVO;
 	}
