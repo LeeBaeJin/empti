@@ -13,9 +13,7 @@
 
 	<!-- emp Map(Excel) -->
 	<select id="getEmpMap" resultType="map" parameterType="EmpVO">
-		SELECT *
-		FROM empexcel_view
-		order by 사원번호
+		select*from emplist_excel
 	</select>
 
 	<select id="getEmpList" resultType="EmpVO" parameterType="EmpVO">
