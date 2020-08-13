@@ -20,7 +20,7 @@
 	<select id="getSaleOrdersExcelMap" resultType="map"
 		parameterType="SaleordersVO">
 		select*from saleorderlist_view
-		order by 판매일자
+		order by 판매날짜
 	</select>
 
 	<!-- 판매주문전체조회 Map -->
