@@ -162,7 +162,7 @@ public class EmpController {
 	public ModelAndView getSaleLedgerListReport(HttpServletRequest request, HttpServletResponse response) throws Exception{
 	ModelAndView mv = new ModelAndView();
 	mv.setViewName("pdfView");
-	mv.addObject("filename", "/reports/employees_list.jrxml");
+	mv.addObject("filename", "/reports/emplist_view2.jrxml");
 	return mv;
 	}
 	
@@ -179,7 +179,7 @@ public class EmpController {
 		mv.setViewName("commonExcelView");
 		mv.addObject("datas", empService.getEmpMap(vo));// Map객체를 조회해서 시트를 생성한다.
 		mv.addObject("filename", "emplist");// 파일이름을 바꿔준다.
-		mv.addObject("headers", new String[] { "사원번호","성명","부서명","전화번호","계좌번호","이메일","구분"}); // 헤더의 값만 출력된다.
+		mv.addObject("headers", new String[] { "사원번호","성명","부서명","전화번호","주소","이메일","구분"}); // 헤더의 값만 출력된다.
 		return mv;
 	}
 	
