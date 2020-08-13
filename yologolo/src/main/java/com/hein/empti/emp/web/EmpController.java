@@ -64,6 +64,7 @@ public class EmpController {
 	//등록처리
 	@RequestMapping("/setInsertEmp")
 	public String setInsertEmp(EmpVO empVO,Model model) throws IOException {
+		empVO.setSalary(empVO.getSalary().replace(",", ""));
 		MultipartFile file = empVO.getUploadFile();
 		String filename = file.getOriginalFilename();
 		if (file != null && file.getSize() > 0) {

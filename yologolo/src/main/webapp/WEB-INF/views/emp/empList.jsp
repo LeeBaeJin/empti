@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <style>
 a.role {
  color: white;
@@ -38,7 +39,9 @@ a.role {
 						<th>구분</th>
 						<th>부서명</th>
 						<th>부서매니저</th>
+						<sec:authorize access="hasRole('ROLE_ADMIN')">
 						<th>권한부여</th>
+						</sec:authorize>
 						<th>수정</th>
 					</tr>
 				</thead>
@@ -51,7 +54,9 @@ a.role {
 							<td>${emp.position}</td>
 							<td>${emp.dept_name}</td>
 							<td>${emp.manager}</td>
-							<td style="text-align:center;"><a class="btn btn-info role" onclick="openRole(${emp.emp_id});">권한부여</a></td> 
+							<sec:authorize access="hasRole('ROLE_ADMIN')">
+							<td style="text-align:center;"><a class="btn btn-info role" onclick="openRole(${emp.emp_id});">권한부여</a></td>
+							</sec:authorize> 
 							<td style="text-align:center;"><a href="setUpdateFormEmp?emp_id=${emp.emp_id}" type="button" class="btn btn-primary">수정</a></td>
 						</tr>
 					</c:forEach>

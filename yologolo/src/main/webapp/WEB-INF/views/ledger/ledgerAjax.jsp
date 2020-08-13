@@ -14,17 +14,14 @@ $(function(){
 		ledgerSelect();
 		init();
 		fnc_findOrderNo();
-		fnc_selectOrderNo();
-		inputNumberFormat();
-		comma();
-		uncomma();
+		fnc_selectOrderNo();s
 		$('#searchForm').on('click','#btnSearch',function() {
 		ledgerList()			 
 		});
 	});
 	
 //커ㅁ머 포맽팅
-function inputNumberFormat(obj) {
+function ledgerVO(obj) {
 	if(obj !=null)
 obj.value = comma(uncomma(obj.value));
 }
@@ -100,6 +97,9 @@ return str.replace(/[^\d]+/g, '');
 			    	if(response.result == true) {
 			    	alert("등록되었습니다.");
 			    		ledgerList();
+						$('#ledgerForm').each(function(){
+							this.reset();
+						});
 			    	}
 			    }, 
 			    error:function(xhr, status, message) { 
@@ -133,6 +133,9 @@ return str.replace(/[^\d]+/g, '');
 			    	alert("수정되었습니다.");
 			    	console.log(data);
 			    	ledgerList();
+					$('#ledgerForm').each(function(){
+						this.reset();
+					});
 			    },
 			    error:function(xhr, status, message) { 
 			        alert(" status: "+status+" 에러:"+message);
@@ -269,6 +272,8 @@ return str.replace(/[^\d]+/g, '');
 	<div class="col-lg-9 col-md-12">
 		<h2 style="text-align:center">장부 목록</h2>
 		<hr class="sidebar-divider d-none d-md-block">
+		<a href= "ledger_list.do" onclick="window.open(this.href, 'width=800', 'height=1200', 'toolbars=no', 'scrollbars=yes'); return false">PDF</a> |
+		<a href="LdgrExcel.do">EXCEL</a>
 			<form id="searchForm">
 				 <input type="radio"  name="radioStatus" value="" checked><span> 전체조회</span>
 				 <input type="radio"  name="radioStatus" value="매입"><span> 매입</span>

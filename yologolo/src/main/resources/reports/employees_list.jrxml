@@ -14,7 +14,7 @@
 	<style name="속성값스타일" hTextAlign="Center" vTextAlign="Middle" markup="none" fontSize="10"/>
 	<queryString language="SQL">
 		<![CDATA[select e.emp_id, e.name, d.dept_name, e.phone, e.account_no, e.email, e.position
-from employees e join departments d on e.dept_id=d.dept_id order by e.emp_id]]>
+		from employees e left outer join departments d on e.dept_id=d.dept_id order by e.emp_id]]>
 	</queryString>
 	<field name="EMP_ID" class="java.math.BigDecimal">
 		<property name="com.jaspersoft.studio.field.label" value="EMP_ID"/>

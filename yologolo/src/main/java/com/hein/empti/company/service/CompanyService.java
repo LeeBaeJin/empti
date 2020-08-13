@@ -12,6 +12,9 @@ public interface CompanyService {
 	public void setUpdateCompany(CompanyVO companyVO);
 	public void setDeleteCompany(CompanyVO companyVO);
 	
+	// 거래처 번호 MAX 
+	public CompanyVO comNoMax(CompanyVO companyVO);
+	
 	//삭제 count
 	public int getBuyCount(CompanyVO companyVO);
 	public int getSaleCount(CompanyVO companyVO);
