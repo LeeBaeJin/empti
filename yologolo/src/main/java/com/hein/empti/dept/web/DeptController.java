@@ -92,7 +92,7 @@ public class DeptController {
 			throws Exception {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("pdfView");
-		mv.addObject("filename", "/reports/department_list.jrxml");
+		mv.addObject("filename", "/reports/dept_view.jrxml");
 		return mv;
 	}
 
