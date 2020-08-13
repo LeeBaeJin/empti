@@ -17,16 +17,12 @@
 	</select>
 
 	<!-- 판매주문 전체조회 Map(Excel) -->
-<<<<<<< HEAD
+
 	<select id="getSaleOrdersExcelMap" resultType="map"
 		parameterType="SaleordersVO">
 		select*from saleorderlist_view
 		order by 판매날짜
-=======
-	<select id="getSaleOrdersExcelMap" resultType="map"	parameterType="SaleordersVO">
-		SELECT * FROM saleorderlist_view
-		ORDER BY 1 DESC
->>>>>>> branch 'master' of https://github.com/LeeBaeJin/EMPTI.git
+
 	</select>
 
 	<!-- 판매주문전체조회 Map -->
