@@ -4,7 +4,7 @@
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="hein"/>
 	<queryString language="SQL">
-		<![CDATA[select*from buyordersexcel_view order by 구매일자]]>
+		<![CDATA[select * from buyordersexcel_view order by 구매일자 DESC]]>
 	</queryString>
 	<field name="구매일자" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="구매일자"/>
