@@ -230,6 +230,8 @@ return str.replace(/[^\d]+/g, '');
 	<div class="col-lg-7 col-md-12">
 		<h2 style="text-align:center">폐기/불량 목록</h2>
 		<hr class="sidebar-divider d-none d-md-block">
+		<a href= "disposal_list.do" onclick="window.open(this.href, 'width=800', 'height=1200', 'toolbars=no', 'scrollbars=yes'); return false">PDF</a> |
+		<a href="disposal_excel.do">EXCEL</a>
 			<form id="searchForm">
 		 		<input type="radio"  name="radioCategory" value="" checked><span> 전체조회</span>
 			 	<input type="radio"  name="radioCategory" value="폐기"><span> 폐기</span>

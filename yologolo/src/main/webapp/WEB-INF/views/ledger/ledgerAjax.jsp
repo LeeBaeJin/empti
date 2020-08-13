@@ -272,6 +272,8 @@ return str.replace(/[^\d]+/g, '');
 	<div class="col-lg-9 col-md-12">
 		<h2 style="text-align:center">장부 목록</h2>
 		<hr class="sidebar-divider d-none d-md-block">
+		<a href= "ledger_list.do" onclick="window.open(this.href, 'width=800', 'height=1200', 'toolbars=no', 'scrollbars=yes'); return false">PDF</a> |
+		<a href="LdgrExcel.do">EXCEL</a>
 			<form id="searchForm">
 				 <input type="radio"  name="radioStatus" value="" checked><span> 전체조회</span>
 				 <input type="radio"  name="radioStatus" value="매입"><span> 매입</span>
