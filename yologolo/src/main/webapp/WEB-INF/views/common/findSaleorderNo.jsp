@@ -7,7 +7,7 @@
 <script>
 	$(function(){
 		$('.clickNo').on('click', function(){
-			opener.document.getElementById("sorder_no").value = $(this).val();
+			opener.document.getElementById("sorder_no").value = $(this).find('.td1').text();
 			window.close();
 		});
 	});
@@ -24,15 +24,15 @@
 		</tr>
 	</thead>
 		<c:forEach items="${findSaleorderNo}" var="orders">
-			<tr style="text-align:center">
+			<tr  class="clickNo" style="text-align:center">
 			<c:if test="${orders.sale_sum > 0 and orders.del_status ne '반품'}">
-				<td><input type="button" class="clickNo" value="${orders.sorder_no}"></td>
-				<td>${orders.sorder_date}</td>
-				<td>
+				<td class="td1">${orders.sorder_no}</td>
+				<td class="td2">${orders.sorder_date}</td>
+				<td class="td3">
 				<fmt:parseNumber value="${orders.sale_sum}" var="fmt"/>
 				<fmt:formatNumber type="number" maxFractionDigits="3" value="${fmt}"/>원
 				</td>
-				<td>${orders.company_name}</td>
+				<td class="td4">${orders.company_name}</td>
 			</c:if>
 			</tr>
 		</c:forEach>

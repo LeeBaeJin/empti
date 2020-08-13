@@ -86,6 +86,17 @@ public class EmpController {
 	 * deptService.getDeptList(deptVO)); return "admin/emp/updateEmp"; }
 	 */
 	
+	//session login 수정 폼
+	@RequestMapping("/mySetUpdateFormEmp")
+	public String setUpdateFormEmp(EmpVO empVO, Model model, DeptVO deptVO,HttpSession session) {
+
+		EmpVO login =(EmpVO) session.getAttribute("login");
+		empVO.setEmp_id(login.getEmp_id());
+		empVO = empService.getEmp(empVO);
+		model.addAttribute("empUp", empService.getEmp(empVO));
+		model.addAttribute("deptList", deptService.getDeptList(deptVO));
+		return "admin/emp/updateEmp";
+	}
 	//수정폼
 	@RequestMapping("/setUpdateFormEmp")
 	public String setUpdateFormEmp(Model model, EmpVO empVO, DeptVO deptVO) {
@@ -95,22 +106,11 @@ public class EmpController {
 		return "admin/emp/updateEmp";
 	}
 	
-	//session login 수정 폼
-	@RequestMapping("/mySetUpdateFormEmp")
-	public String setUpdateFormEmp(EmpVO empVO, Model model, DeptVO deptVO,HttpSession session) {
 
-		//Object login = session.getAttribute("login");
-		EmpVO login =(EmpVO) session.getAttribute("login");
-		empVO.setEmp_id(login.getEmp_id());
-		empVO = empService.getEmp(empVO);
-		model.addAttribute("empUp", empService.getEmp(empVO));
-		model.addAttribute("deptList", deptService.getDeptList(deptVO));
-		return "admin/emp/updateEmp";
-	}
 	
 	//수정처리
-	@RequestMapping("/setUpdateEmp")
-	public String setUpdateEmp(EmpVO empVO, Model model, HttpSession session) throws IOException {
+	@RequestMapping("/mySetUpdateEmp")
+	public String mySetUpdateEmp(EmpVO empVO, Model model, HttpSession session) throws IOException {
 		MultipartFile file = empVO.getUploadFile();
 		String filename = file.getOriginalFilename();
 		if (file != null && file.getSize() > 0) {
@@ -123,6 +123,23 @@ public class EmpController {
 		session.setAttribute("login", empService.getEmp(empVO));
 		return "redirect:main";
 	}
+	
+	//수정 처리
+	@RequestMapping("/setUpdateEmp")
+	public String setUpdateEmp(EmpVO empVO, Model model, HttpSession session) throws IOException {
+		MultipartFile file = empVO.getUploadFile();
+		String filename = file.getOriginalFilename();
+		if (file != null && file.getSize() > 0) {
+			File upFile = FileRenamePolicy.rename(new File("D:/upload",filename));
+			filename = upFile.getName();
+			file.transferTo(upFile);
+			empVO.setProfile(filename);
+		}
+		empService.setUpdateEmp(empVO);
+		return "redirect:getEmpList";
+	}
+	
+
 	
 	//삭제처리
 	@RequestMapping("/setDeleteEmp")

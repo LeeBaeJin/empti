@@ -7,7 +7,7 @@
 <script>
 	$(function(){
 		$('.clickNo').on('click', function(){
-			opener.document.getElementById("border_no").value = $(this).val();
+			opener.document.getElementById("border_no").value = $(this).find('.td1').text();
 			window.close();
 		});
 	});
@@ -24,15 +24,15 @@
 		</tr>
 	</thead>
 		<c:forEach items="${findBuyorderNo}" var="orders">
-			<tr style="text-align:center">
+			<tr class="clickNo" style="text-align:center">
 			<c:if test="${orders.buy_sum > 0 and orders.status ne '반품'}">
-				<td><input type="button" class="clickNo" value="${orders.border_no}"></td>
-				<td>${orders.border_date}</td>
-				<td>
+				<td class="td1">${orders.border_no}</td>
+				<td class="td2">${orders.border_date}</td>
+				<td class="td3">
 				<fmt:parseNumber value="${orders.buy_sum}" var="fmt"/>
 				<fmt:formatNumber type="number" maxFractionDigits="3" value="${fmt}"/>원
 				</td>
-				<td>${orders.company_name}</td>
+				<td class="td4">${orders.company_name}</td>
 			</c:if>
 			</tr>
 		</c:forEach>
