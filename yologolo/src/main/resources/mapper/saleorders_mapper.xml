@@ -17,9 +17,9 @@
 	</select>
 
 	<!-- 판매주문 전체조회 Map(Excel) -->
-	<select id="getSaleOrdersExcelMap" resultType="map"
-		parameterType="SaleordersVO">
-		select*from saleorderlist_view
+	
+	<select id="getSaleOrdersExcelMap" resultType="map"	parameterType="SaleordersVO">
+		select * from saleorderlist_view
 		order by 판매날짜 
 	</select>
 

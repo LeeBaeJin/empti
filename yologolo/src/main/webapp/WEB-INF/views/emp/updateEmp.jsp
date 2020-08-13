@@ -18,6 +18,20 @@ var dept_select_value = function(select_obj) {
 	}	
 }
 
+
+	//콤머 포맽팅
+	function inputNumberFormat(obj) {
+	obj.value = comma(uncomma(obj.value));
+	}
+	function comma(str) {
+	str = String(str);
+	return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+	}
+	function uncomma(str) {
+	str = String(str);
+	return str.replace(/[^\d]+/g, '');
+	}
+
 //비밀번호 유효성 검사
 $(function (){
 	$('.pw').focusout(function() {
@@ -109,7 +123,7 @@ $(function(){
 								 <br/>
 		<label>이메일 </label>		 <input name="email" value="${empUp.email}"> <br/>
 		<label>입사일 </label>		 <input name="hire_date" value="${empUp.hire_date}" type="date"> <br/>
-		<label>급여 </label>		 <input name="salary" value="${empUp.salary}"> <br/>
+		<label>급여 </label>		 <input name="salary" value="${empUp.salary}"   onkeyup="inputNumberFormat(this)"> <br/>
 		<label>계약유형 </label>	 <input name="position" value="${empUp.position}"> <br/>
 		<label>상태 </label>		 <input name="status" value="${empUp.status}"> <br/>
 		<label>거래은행 </label>	 <input name="bank_name" value="${empUp.bank_name}"> <br/>

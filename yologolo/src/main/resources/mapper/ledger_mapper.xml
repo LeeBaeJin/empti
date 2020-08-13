@@ -27,7 +27,7 @@
 			]]>
 	</if>
 	</where>
-		ORDER BY ldgr_no
+		ORDER BY ldgr_no desc
 	</select>
 	
 	<!-- 장부 전체조회 Map(Excel) -->
