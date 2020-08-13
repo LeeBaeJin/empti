@@ -31,6 +31,11 @@ public class CompanyServiceImpl implements CompanyService {
 	}
 
 	@Override
+	public CompanyVO comNoMax(CompanyVO companyVO) {
+		return companyMapper.comNoMax(companyVO);
+	}
+
+	@Override
 	public void setInsertCompany(CompanyVO companyVO) {
 		companyMapper.setInsertCompany(companyVO);
 	}

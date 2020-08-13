@@ -43,6 +43,7 @@ public class DisposalController {
 	@RequestMapping(value = "/disposals", method = RequestMethod.POST)
 	@ResponseBody
 	public Map setInsertDisposal(DisposalVO disposalVO, Model model) {
+		disposalVO.setPrice(disposalVO.getPrice().replace(",", ""));
 		disposalService.setInsertDisposal(disposalVO);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("result", true);

@@ -15,10 +15,8 @@ $(function(){
 		disposalList();
 		init();
 		fnc_btnfindItem();
-		inputNumberFormat();
-		comma();
-		uncomma();
 		$('#searchForm').on('click','#btnSearch',function() {
+			disposalList();
 		});
 	});
 	
