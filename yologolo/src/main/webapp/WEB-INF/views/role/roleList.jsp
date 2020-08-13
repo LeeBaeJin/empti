@@ -29,8 +29,8 @@
 	
 	function roleCheck() {
 		// 체크박스 체크 시
-		$('[name="roleChk"]').change(function() {
-			if($('[name="roleChk"]').is(":checked")){
+		$('[name="roleChk"]').on('click', function() {
+			if ( $(this).prop('checked') ) {
 				roleId = $(this).closest('tr').children().eq(1).text();
 				console.log(roleId);
 				$.ajax ({
@@ -39,10 +39,8 @@
 				    dataType : 'json',
 				    data : JSON.stringify({role_id : roleId, emp_id : empId}),
 				    contentType:'application/json; charset=utf-8',
-				    success: function(response) {
-				    	if(response.result == true) {
-				    		alert("권한 부여 성공");
-				    	}
+				    success: function() {
+				    	alert("권한 부여 성공");
 				    }, error : function(xhr, status, message) {
 				    	alert("권한 부여 실패");
 					}
@@ -56,10 +54,8 @@
 				    dataType : 'json',
 				    data : JSON.stringify({role_id : roleId, emp_id : empId}),
 				    contentType:'application/json; charset=utf-8',
-				    success: function(response) {
-				    	if(response.result == true) {
-				    		alert("권한 삭제 성공");
-				    	}
+				    success: function() {
+				    	alert("권한 삭제 성공");
 				    }, error : function(xhr, status, message) {
 				    	alert("권한 삭제 실패");
 					}
