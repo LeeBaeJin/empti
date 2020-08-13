@@ -11,6 +11,7 @@ $(function(){
 		disposalInsert();
 		disposalUpdate();  
 		disposalSelect();
+		disposalDelete();
 		init();
 		fnc_btnfindItem();
 		
@@ -90,6 +91,7 @@ $(function(){
 		//조회 버튼 클릭
 		$('body').on('click','#btnSelect',function(){
 			var disposalNo = $(this).closest('tr').find('#hidden_disposal_no').val();
+			console.log(disposalNo)
 			//특정 사용자 조회
 			$.ajax({
 				url:'disposals/' + disposalNo, 
@@ -102,6 +104,28 @@ $(function(){
 				success:disposalSelectResult
 			});
 		}); //조회 버튼 클릭
+	}
+	function disposalDelete(){
+		$('body').on('click', '#btnDelete', function() {
+			var disposalNo = $(this).closest('tr').find('#hidden_disposal_no').val();
+			console.log(disposalNo);
+			var result = confirm("폐기/불량 내역을 삭제하시겠습니까?");
+			if(result){
+			$.ajax({
+				url:'disposals/'+ disposalNo,  
+	               type:'DELETE',
+	               contentType:'application/json;charset=utf-8',
+	               cache: false,
+	               dataType:'json',
+	               error:function(xhr,status,msg){
+	                  console.log("상태값 :" + status + " Http에러메시지 :"+msg);
+	               }, success:function(xhr) {
+	                  console.log(xhr.result);
+	                  disposalList();
+					}
+				});
+			}
+		});
 	}
 	
 	// 조회 응답
@@ -133,6 +157,10 @@ $(function(){
 			});
 		}
 	
+	//가격 포맽팅
+	function numberWithCommas(x) {
+	    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
 	
 	// 폐기불량 리스트 뿌려줌
 	function disposalListResult(data) {
@@ -141,12 +169,13 @@ $(function(){
 			$('<tr>')
 			.append($('<td>').html(item.disposal_no))
 			.append($('<td>').html(item.disposal_qty))
-			.append($('<td>').html(item.price))
+			.append($('<td>').html(numberWithCommas(item.price)))
 			.append($('<td>').html(item.disposal_date))
 			.append($('<td>').html(item.category))
 			.append($('<td>').html(item.strg_no))
 			.append($('<td>').html(item.item_no))
 			.append($('<td>').html('<button id=\'btnSelect\' class=\'btn btn-info\'>조회</button>'))
+			.append($('<td>').html('<button id=\'btnDelete\' class=\'btn btn-danger\'>삭제</button>'))
 			.append($('<input type=\'hidden\' id=\'hidden_disposal_no\'>').val(item.disposal_no))
 			.appendTo('tbody');
 		});//each
@@ -198,6 +227,7 @@ $(function(){
 					<th class="text-center">창고번호</th>
 					<th class="text-center">품목코드</th>
 					<th class="text-center">조회</th>
+					<th class="text-center">삭제</th>
 				</tr>
 			</thead>
 			<tbody></tbody>
@@ -228,7 +258,7 @@ $(function(){
 											</select><span id="storages_no"></span><br/>
 				
 				<label>품목코드</label>		<button type="button" value="품목선택" id="btnFindItem"><img src="resources/images/Glass.png" width="30px" height="30px"></button>
-											<input class="form-control" name="item_no" id="item_no" > <span id="item_name" name="item_name"></span><br/>
+											<input class="form-control" name="item_no" id="item_no" > <span id="item_name" name="item_name"></span><br/><br/>
 				<div class="btn-group">
 					<input type="button" class="btn btn-success" value="등록" id="btnInsert" /> 
 					<input type="button" class="btn btn-primary" value="수정" id="btnUpdate" /> 

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
@@ -19,21 +20,20 @@
 <table class="table table-hover">
 	 <thead class="thead-dark">
 		<tr style="text-align:center">
-			<th>주문번호</th><th>주문날짜</th><th>반품주문 유무</th>
+			<th>주문번호</th><th>주문날짜</th><th>구매금액</th><th>거래처명</th>
 		</tr>
 	</thead>
 		<c:forEach items="${findBuyorderNo}" var="orders">
 			<tr style="text-align:center">
+			<c:if test="${orders.buy_sum > 0 and orders.status ne '반품'}">
 				<td><input type="button" class="clickNo" value="${orders.border_no}"></td>
 				<td>${orders.border_date}</td>
-				<c:choose>
-					<c:when test="${orders.return_no eq null}">
-						<td>X</td>
-					</c:when>
-					<c:otherwise>
-						<td>O</td>
-					</c:otherwise>
-				</c:choose>
+				<td>
+				<fmt:parseNumber value="${orders.buy_sum}" var="fmt"/>
+				<fmt:formatNumber type="number" maxFractionDigits="3" value="${fmt}"/>원
+				</td>
+				<td>${orders.company_name}</td>
+			</c:if>
 			</tr>
 		</c:forEach>
 </table>

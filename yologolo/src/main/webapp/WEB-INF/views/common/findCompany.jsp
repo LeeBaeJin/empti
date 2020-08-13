@@ -6,8 +6,8 @@
 <script>
     $(function(){
 		$('.findCompany').on('click', function(){
-			opener.document.getElementById("company_no").value = $(this).val();
-			opener.document.getElementById("company_name").innerHTML = $(this).parent().next().html();
+			opener.document.getElementById("company_no").value = $(this).find('.td1').text();
+			opener.document.getElementById("company_name").innerHTML = $(this).find('.td2').html();
 			window.close();
 		});
 	});
@@ -22,9 +22,9 @@
 			</tr>
 		</thead>
 		<c:forEach items="${findCompanyList}" var="findCompany">
-				<tr style="text-align:center">
-					<td><input type="button" class="findCompany" value="${findCompany.company_no}"/></td>
-					<td>${findCompany.company_name}</td>
+				<tr style="text-align:center" class="findCompany">
+					<td class="td1">${findCompany.company_no}</td>
+					<td class="td2">${findCompany.company_name}</td>
 				</tr>
 		</c:forEach>
 	</table>

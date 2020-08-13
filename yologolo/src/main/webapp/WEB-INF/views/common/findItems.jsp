@@ -6,12 +6,12 @@
 <script>
 	$(function(){
 		$('.clickItem').on('click', function(){
-			opener.document.getElementById("item_no").value = $(this).val();
+			opener.document.getElementById("item_no").value = $(this).find('.td1').text();
 			//opener.document.getElementById("item_name").value = $(this).parent().next().html();
-			opener.document.getElementById("item_name").innerHTML = $(this).parent().next().html();
+			opener.document.getElementById("item_name").innerHTML = $(this).find('.td2').html();
 		
 			if(opener.document.getElementById("item_price")){
-				opener.document.getElementById("item_price").value = $(this).parent().next().next().html();
+				opener.document.getElementById("item_price").value = $(this).find('.td3').html();
 			}
 			window.close();
 		});
@@ -30,10 +30,10 @@
 	</tr>
 	</thead>
 <c:forEach items="${findItems}" var="items">
-		<tr>
-			<td><input type="button" class="clickItem" value="${items.item_no}"></td>
-			<td>${items.item_name}</td>
-			<td>${items.item_price}</td>
+		<tr class="clickItem">
+			<td class="td1">${items.item_no}</td>
+			<td class="td2">${items.item_name}</td>
+			<td class="td3">${items.item_price}</td>
 		</tr>
 </c:forEach>
 	</table>

@@ -21,52 +21,38 @@
 		$.each(tr, function(idx , item) {
 			var obj = {};
 			obj['border_no'] = $(item).children().eq(7).children().val();
-			obj['status'] = $(item).children().eq(2).children().val();  
+			var staTus = $(item).children().eq(2).children().val();
+			if (staTus == null || staTus == "") {
+				staTus = $(item).children().eq(2).children().text();
+				obj['status'] = staTus;
+			} else {
+				obj['status'] = staTus;
+			}
 			buyDel.push(obj);
 		});
-		$('#tblHead').on('click', '#delUpdate', function() {
-			var result = confirm("배송상태를 수정하시겠습니까?\n수령완료 시 수정이 불가능합니다.");
-			var delStatus = $('[name=status] option:selected');
-			if (result) {
-				$.ajax ({
-					url: "setUpdateBuyDel",
-					type: "POST",
-					data: JSON.stringify(buyDel),
-					contentType : "application/json",
-					success: function() {
-					alert("성공적으로 수정하였습니다.");
-										
-				},  error: function() {
-					alert("수정을 실패하였습니다.");
-				}
-			});
-			} else {
-				return false;
-			}
-		});
 	});
-	
 	
 $(function() {
-	var delStatus = $('[name=status] option:selected');
-	console.log(delStatus)
-	$.each(delStatus, function(idx, item) {
-		if(item.value == "수령완료"){
-		$(item).parent().attr('disabled', 'true');
+	delUpdate.addEventListener("click",function() {
+		var result = confirm("배송상태를 수정하시겠습니까?\n수령완료 시 수정이 불가능합니다.");
+		var delStatus = $('[name=status] option:selected');
+		if (result) {
+			$.ajax ({
+				url: "setUpdateBuyDel",
+				type: "POST",
+				data: JSON.stringify(buyDel),
+				contentType : "application/json",
+				success: function() {
+				location.href = "getBuyordersListMap";
+				},  error: function() {
+				alert("수정을 실패하였습니다.");
+				}
+			
+			});
+		window.event.stopPropagation();
 		}
 	});
-	
-	$('.spanReturn').parent().prev().css({
-        color: "red"
-	});
-	$('.spanReturn').css({
-        color: "red"
-	});
-	$('.spanReturn').closest('tr').find('.returnTd').empty();
-	$('.spanReturn').closest('tr').find('.deleteTd').empty();
-	
 });
-
 </script>
 
 </head>
@@ -108,7 +94,7 @@ $(function() {
 							 <a href="javascript:void(0);" onclick="orderDetails(${buy.border_no});">${buy.border_date}</a>
 							</td>
 							
-							<td align="right">
+							<td align="right" <c:if test="${buy.status == '반품'}">style="color:red"</c:if>>
 							<fmt:parseNumber value="${buy.buy_sum}" var="fmt"/>
 							<fmt:formatNumber type="number" maxFractionDigits="3" value="${fmt}"/>&nbsp;원
 							</td>
@@ -116,24 +102,24 @@ $(function() {
 							
 							<td class="returnStatus">
 							<c:if test="${buy.status != '반품'}" >
-							<select id="status" name="status" onchange="buyChk(${buy.border_no}, this)">
+							<select id="status" name="status" onchange="buyChk(${buy.border_no}, this)" <c:if test="${buy.status == '수령완료'}">disabled="disabled"</c:if>>
 								<option value="수령중" <c:if test="${fn:contains(buy.status,'수령중')}">selected="selected"</c:if>>수령중</option>
 								<option value="수령완료" <c:if test="${fn:contains(buy.status,'수령완료')}">selected="selected"</c:if>>수령완료</option>
 							</select>
 							</c:if>
 							<c:if test="${buy.status == '반품'}">
-									<span class="spanReturn">반품</span>
+									<span class="spanReturn" style="color:red">반품</span>
 								</c:if>
 							</td>
 							
 							<td>${buy.name}</td>
 							<td>${buy.company_name}</td>
 							
-							<td class="returnTd" style="text-align: center;">
-							<a id="returnBtn" class="btn btn-outline-dark" href="#" onclick="reBorder(${buy.border_no});">반품</a>
+							<td class="returnTd" style="text-align: center;" >
+							<a id="returnBtn" class="btn btn-outline-dark" href="#" onclick="reBorder(${buy.border_no});" <c:if test="${buy.status == '반품'}">style="display:none"</c:if>>반품</a>
 							</td>
 							<td class="deleteTd" style="text-align: center;">
-							<a id="deleteBtn" class="btn btn-outline-danger" href="#" onclick="delBorder(${buy.border_no});">삭제</a>
+							<a id="deleteBtn" class="btn btn-outline-danger" href="#" onclick="delBorder(${buy.border_no});" <c:if test="${buy.status == '반품'}">style="display:none"</c:if>>삭제</a>
 							</td>
 							
 							<!--다중 업데이트의 조건을 받기위한 히든 데이터 -->
@@ -177,14 +163,14 @@ function delBorder(borderNo) {
 		return false;
 	}
 }
-function reBorder(border_no) {
+function reBorder(borderNo) {
 	var result = confirm("반품하시겠습니까?");
-	if (result) {
-		alert("반품하였습니다.");
-		window.location.href = "setInsertBuyordersRetrun?return_no="+border_no;
+	if (result) {		
+		window.location.href = "setInsertBuyordersRetrun?return_no="+borderNo;
 	} else {
 		return false;
 	}
+
 }
 </script>
 </body>

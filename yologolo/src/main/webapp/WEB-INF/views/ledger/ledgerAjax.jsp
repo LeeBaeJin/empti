@@ -27,11 +27,11 @@ $(function(){
 			var status = $('#status option:selected').val();
 			
 			if(status == '매입'){
-			var bwo = window.open('findBuyorderNo','item', 'width=400, height=600, left=950, top=200');
+			var bwo = window.open('findBuyorderNo','item', 'width=800, height=1000, left=800');
 			//var wo = window.open('findBuyorderNo/status','item', 'width=800, height=800');
 			return bwo;
 			} else {     
-			var swo = window.open('findSaleorderNo','item', 'width=400, height=600, left=950, top=200');
+			var swo = window.open('findSaleorderNo','item', 'width=800, height=1000, left=800');
 			return swo;
 			
 			}
@@ -145,7 +145,7 @@ $(function(){
 	function ledgerSelectResult(ledgers) {
 		$('input:text[name="ldgr_no"]').val(ledgers.ldgr_no);
 		$('[name="ldgr_date"]').val(ledgers.ldgr_date);
-		$('input:text[name="total_amount"]').val(ledgers.total_amount);
+		$('input:text[name="total_amount"]').val(numberWithCommas(ledgers.total_amount));
 		$('select[id="status"]').val(ledgers.status).attr("selected", "selected");
 		if(ledgers.status == "매입") {
 			$('#order_no').empty();
@@ -186,7 +186,11 @@ $(function(){
 			success:ledgerListResult
 		});
 	};
-
+	
+	//가격 포맽팅
+	function numberWithCommas(x) {
+	    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
 	// 조회 응답 . 리스트 뿌려줌.
 	function ledgerListResult(data) {
 		$("tbody").empty();
@@ -194,7 +198,7 @@ $(function(){
 			$('<tr>')
 			.append($('<td>').html(item.ldgr_no))
 			.append($('<td>').html(item.ldgr_date))
-			.append($('<td>').html(item.total_amount))
+			.append($('<td>').html(numberWithCommas(item.total_amount)))
 			.append($('<td>').html(item.status))
 			.append($('<td>').html(item.border_no))
 			.append($('<td>').html(item.sorder_no))

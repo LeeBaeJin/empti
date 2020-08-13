@@ -79,6 +79,17 @@ public class DisposalController {
 	public List<Map<String, Object>> disposalList(Model model, DisposalVO disposalVO) {
 		return disposalService.getDisposalList(disposalVO);
 	}
+	
+	//삭제처리
+	@RequestMapping(value="/disposals/{disposal_no}", method=RequestMethod.DELETE)
+	@ResponseBody
+	public Map<String, Object> setDeleteDisposal(@PathVariable String disposal_no,DisposalVO disposalVO, Model model) {
+		disposalVO.setDisposal_no(disposal_no);
+		disposalService.setDeleteDisposal(disposalVO);
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("result", Boolean.TRUE);
+		return result;
+	}
 
 	// 내역 조회
 	@RequestMapping("/getDisposalList")

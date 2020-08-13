@@ -12,32 +12,29 @@ $(function(){
 		init();
 		fnc_btnfindItem();
 		
+		//검색버튼
 		$('#searchForm').on('click','#btnSearch',function() {
 			stocksList();
 		});
 	});
-	
+		//품목코드 검색
 		function fnc_btnfindItem(){
 		$('#btnFindItem').on('click', function() {
 			var wo = window.open('findItems','item', 'width=500, height=700, left=950, top=50');
 			return wo;
 		});
 	};
-	
-	
 
-	/* 창고번호를 선택했을때 옆에 창고이름이 나오는 '그 자리'를 찾아가는 함수   */
+	// 창고번호를 선택했을때 옆에 창고이름이 나오는 '그 자리'를 찾아가는 함수
 	var storages_select_value = function(select_obj) {
 	if($("#storages_name").text() == ""){	/* id값이 storage_name인 자리의 text가 공백이면 */
 		$("#storages_name").append(select_obj.value);	<%-- 그 곳을 찾아가서 select_obj.value값, value="${storages.strg_category}"를 그 자리에 넣음. --%>
-		}else {
+		} else {
 			$("#storages_name").empty();			/* 그 자리가 공백이 아니면, 일단 비운다. */
 			$("#storages_name").append(select_obj.value); /* 그리고 다시 채워넣는다. ㅇㅋ */
-				}
+		}
 	
-		}	
-	
-		
+	}	
 	
 	//초기화
 	function init() {
@@ -97,8 +94,6 @@ $(function(){
 		});//등록 버튼 클릭
 	}
 	
-	
-	
 	// 조회 요청
 	function stocksSelect() {
 		//조회 버튼 클릭
@@ -124,7 +119,7 @@ $(function(){
 		$('input:text[name="stock_no"]').val(stocks.stock_no);
 		$('input:text[name="item_no"]').val(stocks.item_no);
 		$('span[name="item_name"]').text(stocks.item_name);
-		$('select[name="stock_category"]').val(stocks.stock_category).attr("selected", "selected","selected","selected");
+		$('select[name="stock_category"]').val(stocks.stock_category).attr("selected", "selected");
 		$('input:text[name="stock_qty"]').val(stocks.stock_qty);
 		$('input:text[name="stock_price"]').val(stocks.stock_price);
 		$('[name="stock_date"]').val(stocks.stock_date);
@@ -132,7 +127,6 @@ $(function(){
 		$('input:text[name="detail_no"]').val(stocks.detail_no);
 		$('input:text[name="note"]').val(stocks.note);
 	}
-	
 	
 	//수정 요청
 	function stocksUpdate() {
@@ -165,7 +159,6 @@ $(function(){
 		});//수정 버튼 클릭
 	}
 	
-	
 	//목록 조회 요청
 	function stocksList() {
 		console.log($("#searchForm").serialize());
@@ -180,17 +173,13 @@ $(function(){
 			success:stocksListResult
 		});
 	}// 리스트 조회
-
-	//가격 포맽팅
-	function numberWithCommas(x) {
-	    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-	}
 	
 	// 입출고 내역 목록 뿌려줌
 	function stocksListResult(data) {
 		$("tbody").empty();
 		$.each(data,function(idx,item){
 			$('<tr>')
+			.append($('<td>').html('<input type=\'checkbox\' class=\'chkStock\'>'))
 			.append($('<td>').html(item.stock_no))
 			.append($('<td>').html(item.item_no))
 			.append($('<td>').html(item.stock_category))
@@ -214,27 +203,26 @@ $(function(){
 				<form id="searchForm">
 					<label>거래유형</label>	<select name="selectCategory">
 											  <option value="" selected>전체</option>
-											  <option value="원자재">원자재</option>
-											  <option value="가공품">가공품</option>
 											  <option value="입고" >입고</option>
 											  <option value="출고" >출고</option>
 											</select><br/>
-					 <input type="date" name="startDate" value="start" data-date-format='yyyy-MM-dd'>  ~  <input type="date" name="endDate" value="end" data-date-format='yyyy-MM-dd'>
+					 <input type="date" name="startDate" value="start" data-date-format='yyyy-MM-dd'>  ~  
+					 <input type="date" name="endDate" value="end" data-date-format='yyyy-MM-dd'>
 					 <input type="button" class="btn btn-secondary" value="검색" id="btnSearch" /> 
 					 <input type="reset"  class="btn btn-warning" value="초기화" /> 
 		 		</form><br/>
 			<table class="table text-center">
 				<thead>
-				<tr>				
+				<tr>
+					<th class="text-center"><input type="checkbox" class="chkAll"></th>				
 					<th class="text-center">입출고번호</th>
+					<th class="text-center">입출고날짜</th>
+					<th class="text-center">주문번호</th>
 					<th class="text-center">품목코드</th>
-					<th class="text-center">거래유형</th>
+					<th class="text-center">유형</th>
 					<th class="text-center">수량</th>
-					<th class="text-center">거래가</th>
-					<th class="text-center">거래일자</th>
 					<th class="text-center">창고</th>
-					<th class="text-center">상세번호</th>
-					<th class="text-center">비고</th>
+					<th class="text-center">상태</th>
 					<th class="text-center">조회</th>
 				</tr>
 				</thead>
@@ -248,36 +236,38 @@ $(function(){
 		<div id="storckDiv" class="ml-5">
 			<h2 style="text-align:center">입출고 입력</h2>
 			<hr class="sidebar-divider d-none d-md-block">
-			<form id="stocksform">
-										<input class="form-control" name="stock_no" id="stock_no" type="hidden"><br/>
-				<label>품목코드</label>	<button type="button" value="품목선택" id="btnFindItem" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" width="30px" height="30px"></button>
-										<input class="form-control" name="item_no" id="item_no" type="text"> <span name="item_name" id="item_name" ></span>
-										<br/><br/>
-				<label>거래유형</label>	<select class="form-control" name="stock_category">
-										  <option value="원자재" selected>원자재</option>
-										  <option value="가공품">가공품</option>
-										  <option value="입고" >입고</option>
-										  <option value="출고" >출고</option>
-										</select><br/>
-				<label>수량</label>		<input class="form-control" name="stock_qty" id="stock_qty"><br/>
-				<label>거래가</label>		<input class="form-control" name="stock_price" id="stock_price"><br/>
-				<label>거래일자</label>	<input class="form-control" name="stock_date" id="stock_date" type="datetime-local"><br/>
-				
-				<label>창고</label>		<select class="form-control" name="strg_no" class="selectBox" id="strg_no" onchange="storages_select_value(this);">
-											<option value="" selected> ==선택하세요== </option>
-												<c:forEach items="${storages}" var="storages">
-													<option value="${storages.strg_no}">${storages.strg_category}</option>
-												</c:forEach>
-											</select>
-										<span id="storages_name"></span><br/>	<!-- 창고번호 선택했을때 옆에 창고이름이 나올 자리. -->
-										
-				<label>상세번호</label>	<input class="form-control" name="detail_no" id="detail_no"><br/>
-				<label>비고	</label>	<input class="form-control" name="note" id="note"><br/>
-							<div class="btn-group " >      
-								<input type="button"  class="btn btn-success" value="등록"  id="btnInsert" /> 
-								<input type="button"  class="btn btn-primary" value="수정"  id="btnUpdate" />
-								<input type="button"  class="btn btn-warning" value="초기화" id="btnInit" />		
-				</div>
+			<form id="stocksform" class="form form-group">
+									<input class="form-control" name="stock_no" id="stock_no" type="hidden"><br/>
+			<label>구매주문번호</label>	<input class="form-control" name="border_no" id="border_no"><br/>
+			<label>판매주문번호</label>	<input class="form-control" name="sorder_no" id="sorder_no"><br/>
+			<label>품목코드</label>	<button type="button" value="품목선택" id="btnFindItem" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" width="30px" height="30px"></button>
+									<input class="form-control" name="item_no" id="item_no" type="text"> <span name="item_name" id="item_name" ></span>
+									<br/><br/>
+			<label>유형</label>	<select class="form-control" name="stock_category">
+									  <option value="입고" >입고</option>
+									  <option value="출고" >출고</option>
+									</select><br/>
+			<label>수량</label>		<input class="form-control" name="stock_qty" id="stock_qty"><br/>
+			<label>거래일자</label>	<input class="form-control" name="stock_date" id="stock_date" type="datetime-local"><br/>
+			
+			<label>창고</label>		<select class="form-control" name="strg_no" class="selectBox" id="strg_no" onchange="storages_select_value(this);">
+										<option value="" selected="selected"> ==선택하세요== </option>
+											<c:forEach items="${storages}" var="storages">
+												<option value="${storages.strg_no}">${storages.strg_category}</option>
+											</c:forEach>
+										</select>
+									<span id="storages_name"></span><br/>	<!-- 창고번호 선택했을때 옆에 창고이름이 나올 자리. -->
+									
+			<label>상태</label>	<select class="form-control" name="stock_status">
+									  <option value="재고" selected="selected">재고</option>
+									  <option value="소진">소진</option>
+									  <option value="폐기">폐기</option>
+									</select><br/>
+			<div class="btn-group" >      
+				<input type="button"  class="btn btn-success" value="등록"  id="btnInsert"/> 
+				<input type="button"  class="btn btn-primary" value="수정"  id="btnUpdate"/>
+				<input type="button"  class="btn btn-warning" value="초기화" id="btnInit"/>		
+			</div>
 			</form>
 		</div>
 	</div>	

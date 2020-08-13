@@ -8,17 +8,16 @@
 	<select id="getStocksList" parameterType="StocksVO" resultType="StocksVO">
 		SELECT *
 		FROM stocks
-	
 	<where>
-	<if test="selectCategory !=null and selectCategory !='' ">	
+	<if test="selectCategory != null and selectCategory != '' ">	
 		stock_category = #{selectCategory}
 	</if>
-	<if test="startDate !=null and startDate != '' ">	
+	<if test="startDate != null and startDate != '' ">	
 		<![CDATA[
 		  AND   trunc(stock_date) >= to_date(#{startDate}, 'YYYY-MM-DD' )
 			]]>
 	</if>
-		<if test="endDate !=null and endDate != '' ">	
+		<if test="endDate != null and endDate != '' ">	
 		<![CDATA[
 		  AND	trunc(stock_date) <= to_date(#{endDate}, 'YYYY-MM-DD')
 			]]>
@@ -28,54 +27,53 @@
 	</select>
 
 	<!-- stockexcel_view 전체조회 Map(Excel) -->
-	<select id="getStocksMap" resultType="map"
-		parameterType="StocksVO">
-		select*from stockexcel_view
+	<select id="getStocksMap" resultType="map"	parameterType="StocksVO">
+		SELECT * FROM stockexcel_view
 	</select>
 
 	<!-- 입출고 등록 -->
 	<insert id="setInsertStocks" parameterType="StocksVO">
-		INSERT INTO STOCKS ( stock_no,
-		item_no,
-		stock_category,
-		stock_qty,
-		stock_price,
+		INSERT INTO STOCKS ( 
+		stock_no,
 		stock_date,
+		stock_qty,
+		stock_category,
 		strg_no,
-		detail_no,
-		note
+		item_no,
+		stock_status,
+		sorder_no,
+		border_no
 		)
 		VALUES(
-		#{stock_no},
-		#{item_no},
-		#{stock_category},
+		( SELECT NVL(MAX(stock_no), 0)+1 FROM stocks ),
+		TO_DATE(#{stock_date}, 'yyyy-MM-dd hh24:mi:ss'),
 		#{stock_qty},
-		#{stock_price},
-		To_date(#{stock_date},'yyyy-MM-dd hh24:mi:ss'),
+		#{stock_category},
 		#{strg_no},
-		#{detail_no},
-		#{note}
+		#{item_no},
+		#{stock_status},
+		#{sorder_no},
+		#{border_no}
 		)
 	</insert>
 
 	<!-- 입출고 내역 수정 -->
 	<update id="setUpdateStocks" parameterType="StocksVO">
 		<!-- null체크 후 변경 . 동적 쿼리 -->
-
 		UPDATE stocks
 		<set>
-			<if test="stock_qty != null">stock_qty=#{stock_qty},</if>
-			<if test="stock_date != null">stock_date=To_date(#{stock_date},'yyyy-MM-dd hh24:mi'),
+			<if test="stock_date != null">
+			stock_date = TO_DATE(#{stock_date},'yyyy-MM-dd hh24:mi'),
 			</if>
-			<if test="note != null">note=#{note},</if>
-			<if test="stock_price != null">stock_price=#{stock_price},</if>
-			<if test="stock_category != null">stock_category=#{stock_category},</if>
-			<if test="borderdetail_no != null">borderdetail_no=#{borderdetail_no},</if>
-			<if test="sorderdetail_no != null">sorderdetail_no=#{sorderdetail_no},</if>
+			<if test="stock_qty != null">stock_qty = #{stock_qty},</if>
+			<if test="stock_category != null">stock_category = #{stock_category},</if>
 			<if test="item_no != null">item_no=#{item_no},</if>
-			<if test="strg_no != null">strg_no=#{strg_no}</if>
+			<if test="strg_no != null">strg_no=#{strg_no},</if>
+			<if test="stock_status != null">stock_status = #{stock_status},</if>
+			<if test="sorder_no != null">sorder_no = #{sorder_no},</if>
+			<if test="border_no != null">border_no = #{border_no}</if>
 		</set>
-		WHERE stock_no=#{stock_no}
+		WHERE stock_no = #{stock_no}
 	</update>
 
 	<!-- 입출고 단건조회 -->
@@ -83,10 +81,7 @@
 		parameterType="StocksVO">
 		SELECT 		s.*, i.*
 		FROM		stocks s, items i
-		WHERE 		s.item_no=i.item_no and
+		WHERE 		s.item_no = i.item_no and
 					s.stock_no = #{stock_no}
 	</select>
-
-
-
 </mapper>

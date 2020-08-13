@@ -47,10 +47,10 @@
 	<!-- 창고 등록 -->
 	<insert id="setInsertStorages" parameterType="StoragesVO">
 		INSERT INTO
-		Storages ( strg_no,
+		Storages ( 
+		strg_no,
 		strg_category,
 		emp_id
-
 		)
 		VALUES(
 		#{strg_no},

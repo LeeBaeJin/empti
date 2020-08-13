@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
@@ -30,7 +31,7 @@
 	}
 </script>
 <div class="alert alert-primary" role="alert" style="text-align:center; font-size:2.5em" >
-  주문 합계
+  구매주문 상세 내역
 </div>
 <body>
 	<table class="table table-hover">
@@ -49,6 +50,7 @@
 				<td>${detail.item_name}</td>
 				<td>${detail.border_qty}</td>
 				<td>${detail.item_price}</td>
+				
 			</tr>
 			</c:forEach>
 		</tbody>
@@ -56,7 +58,7 @@
 	<div class="form-inline form-group">
     	&nbsp;&nbsp;<label for="total" style="font-size: 20px; font-weight: normal;" >합계:</label> &nbsp;&nbsp;&nbsp;&nbsp;
     		
-    			<input type="text" class="form-control" id="total" style="font-size: 13px;"  readonly="readonly">
+    			<input type="text" class="form-control" id="total" style="font-size: 13px; text-align:right"  readonly="readonly">
     			<label for="total" style="font-size: 20px; font-weight: normal;" >원</label>
     		
     </div>
