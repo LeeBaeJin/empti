@@ -15,11 +15,27 @@ $(function(){
 		init();
 		fnc_findOrderNo();
 		fnc_selectOrderNo();
-		
+		inputNumberFormat();
+		comma();
+		uncomma();
 		$('#searchForm').on('click','#btnSearch',function() {
-			ledgerList() 
+		ledgerList()			 
 		});
 	});
+	
+//커ㅁ머 포맽팅
+function inputNumberFormat(obj) {
+	if(obj !=null)
+obj.value = comma(uncomma(obj.value));
+}
+function comma(str) {
+str = String(str);
+return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+}
+function uncomma(str) {
+str = String(str);
+return str.replace(/[^\d]+/g, '');
+}	
 	
 	//주문번호 조회
 	function fnc_findOrderNo()	{
@@ -198,7 +214,7 @@ $(function(){
 			$('<tr>')
 			.append($('<td>').html(item.ldgr_no))
 			.append($('<td>').html(item.ldgr_date))
-			.append($('<td>').html(numberWithCommas(item.total_amount)))
+			.append($('<td align="right">').html(numberWithCommas(item.total_amount)))
 			.append($('<td>').html(item.status))
 			.append($('<td>').html(item.border_no))
 			.append($('<td>').html(item.sorder_no))
@@ -262,7 +278,7 @@ $(function(){
 				<tr>
 					<th class="text-center">장부번호</th>
 					<th class="text-center">날짜</th>
-					<th class="text-center">금액</th>
+					<th class="text-center">금액(원)</th>
 					<th class="text-center">구분</th>
 					<th class="text-center">구매주문번호</th>
 					<th class="text-center">판매주문번호</th>
@@ -284,7 +300,7 @@ $(function(){
 			<form id="ledgerForm">  
 				<label>장부번호</label>	<input class="form-control" name="ldgr_no" id="ldgr_no" readonly><br> 
 				<label>날짜</label> 		<input class="form-control" name="ldgr_date" id="ldgr_date" type="datetime-local"> <br> 
-				<label>금액</label> 		<input class="form-control" name="total_amount" id="total_amount"> <br> 
+				<label>금액</label> 		<input class="form-control" name="total_amount" id="total_amount"  onkeyup="inputNumberFormat(this)"> <br> 
 				<label>구분</label> 		<select class="form-control" name="status" id="status">
 											<option value="" selected>== 매출/매입 선택 ==</option>
 											<option value="매입">매입</option>

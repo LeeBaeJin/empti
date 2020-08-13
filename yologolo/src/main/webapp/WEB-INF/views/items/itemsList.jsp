@@ -14,6 +14,8 @@ function itemsDelete(itemNo) {
 		location.href="setDeleteItems?item_no=" + itemNo;
 	}
 }
+
+
 </script>
 
 

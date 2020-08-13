@@ -38,6 +38,21 @@ $(function (){
 		}
 	});
 });
+
+		//콤머 포맽팅
+		function inputNumberFormat(obj) {
+		obj.value = comma(uncomma(obj.value));
+		}
+		function comma(str) {
+		str = String(str);
+		return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+		}
+		function uncomma(str) {
+		str = String(str);
+		return str.replace(/[^\d]+/g, '');
+		}
+
+
 function execPostCode() {
     new daum.Postcode({
         oncomplete: function(data) {
@@ -190,8 +205,8 @@ function check() {
 								 <br/>
 		<label>이메일</label>		<input name="email" type="email" class="form-control" style="width: 250px; display: inline;"> <br/>
 		<label>입사일</label>		<input name="hire_date" id="hire_date"type="date" class="form-control" style="width: 250px; display: inline;"> <br/>
-		<label>급여</label>		<input name="salary" id="salary" type="number" class="form-control" style="width: 250px; display: inline;"> <br/>
-		<label>계약유형</label>	<select name="position" ijd="position" class="form-control" style="width: 250px; display: inline;"> 
+		<label>급여</label>		<input name="salary" id="salary"  class="form-control" style="width: 250px; display: inline;" value="" onkeyup="inputNumberFormat(this)"> <br/>
+		<label>계약유형</label>	<select name="position" id="position" class="form-control" style="width: 250px; display: inline;"> 
 									<option value="" selected> ======선택하세요====== </option>
 									<option>정직원</option>
 									<option>계약직</option>

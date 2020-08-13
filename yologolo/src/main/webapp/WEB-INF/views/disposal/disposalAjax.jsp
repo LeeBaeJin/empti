@@ -12,14 +12,29 @@ $(function(){
 		disposalUpdate();  
 		disposalSelect();
 		disposalDelete();
+		disposalList();
 		init();
 		fnc_btnfindItem();
-		
+		inputNumberFormat();
+		comma();
+		uncomma();
 		$('#searchForm').on('click','#btnSearch',function() {
-			disposalList()
 		});
 	});
 	
+	
+//커ㅁ머 포맽팅
+function inputNumberFormat(obj) {
+obj.value = comma(uncomma(obj.value));
+}
+function comma(str) {
+str = String(str);
+return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+}
+function uncomma(str) {
+str = String(str);
+return str.replace(/[^\d]+/g, '');
+}
 	
 	
 	//초기화
@@ -132,7 +147,7 @@ $(function(){
 	function disposalSelectResult(disposals) {
 		$('[name="disposal_no"]').val(disposals.disposal_no);
 		$('[name="disposal_qty"]').val(disposals.disposal_qty);
-		$('[name="price"]').val(disposals.price);
+		$('[name="price"]').val(numberWithCommas(disposals.price));
 		$('[name="disposal_date"]').val(disposals.disposal_date);
 		$('[name="category"]').val(disposals.category);
 		$('[name="strg_no"]').val(disposals.strg_no);
@@ -169,7 +184,7 @@ $(function(){
 			$('<tr>')
 			.append($('<td>').html(item.disposal_no))
 			.append($('<td>').html(item.disposal_qty))
-			.append($('<td>').html(numberWithCommas(item.price)))
+			.append($('<td align="right">').html(numberWithCommas(item.price)))
 			.append($('<td>').html(item.disposal_date))
 			.append($('<td>').html(item.category))
 			.append($('<td>').html(item.strg_no))
@@ -221,7 +236,7 @@ $(function(){
 				<tr>
 					<th class="text-center">폐기/불량 번호</th>
 					<th class="text-center">폐기/불량 수량</th>
-					<th class="text-center">처리비용</th>
+					<th class="text-center">처리비용(원)</th>
 					<th class="text-center">날짜</th>
 					<th class="text-center">구분</th>
 					<th class="text-center">창고번호</th>
@@ -243,7 +258,7 @@ $(function(){
 			<form id="disposalForm">
 				<label>폐기/불량 번호</label>	<input class="form-control" name="disposal_no" id="disposal_no" readonly><br/>
 				<label>폐기/불량 수량</label>		<input class="form-control" name="disposal_qty"  ><br/>
-				<label>처리비용</label>			<input class="form-control" name="price"  ><br/>
+				<label>처리비용</label>			<input class="form-control" name="price" onkeyup="inputNumberFormat(this)" ><br/>
 				<label>날짜</label>			<input class="form-control" name="disposal_date" type="datetime-local"><br/>
 				<label>구분</label>			<select class="form-control" name="category">
 														<option value="폐기">폐기</option>
