@@ -26,4 +26,6 @@ public class SaleordersVO {
 	String item_no;
 	String item_name;
 	
+	//잔금
+	String balance;
 }
