@@ -14,7 +14,7 @@
 		FROM 		buyorders bo
 		JOIN        companies p ON(bo.company_no = p.company_no)
 		JOIN		employees e ON(bo.emp_id 	  = e.emp_id)					
-		ORDER BY	bo.border_date desc		
+		ORDER BY	1 desc		
 	</select>
 	
 	<!-- 구매주문 단건조회 -->

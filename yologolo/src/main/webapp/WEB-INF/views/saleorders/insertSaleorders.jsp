@@ -69,6 +69,7 @@
 				sum = sum + multi;
 			});
 			$('[name=sale_sum]').val(sum);
+			$('[name=item_name]').text(" ");
 		}
 		
 	}
