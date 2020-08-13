@@ -23,7 +23,7 @@
 <table class="table table-hover">
 	 <thead class="thead-dark">
 		<tr style="text-align:center">
-			<th>주문번호</th><th>주문날짜</th><th>판매금액</th><th>잔금</th><th>거래처명</th>
+			<th>주문번호</th><th>주문날짜</th><th>판매원금</th><th>잔금</th><th>거래처명</th>
 		</tr>
 	</thead>
 		<c:forEach items="${findSaleorderNo}" var="orders">
