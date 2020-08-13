@@ -29,6 +29,7 @@ var emp_select_value = function(select_obj) {
 									<select name="emp_id" onchange="emp_select_value(this);" class="form-control" >
 										<option value="${deptUp.emp_id}" selected> ${deptUp.name}</option>
 										<option >--------------</option>
+										<option value=''></option>
 										<c:forEach items="${empList}" var="emp">
 											<option value="${emp.emp_id}">${emp.name}</option>
 										</c:forEach>
