@@ -26,14 +26,6 @@ public class StocksController {
 	@Autowired ItemsService itemsService;
 	@Autowired StoragesService storagesService;
 
-	// 등록폼
-	@RequestMapping("/setInsertStocks")
-	public String setInsertFormStocks(Model model, ItemsVO itemsVO, StoragesVO storagesVO) {
-		model.addAttribute("storages", storagesService.getStoragesList(storagesVO));
-		model.addAttribute("items", itemsService.getItemsList(itemsVO));
-		return "admin/stocks/insertStocks";
-	}
-
 	// 등록
 	@RequestMapping(value = "/adminStocks", method = RequestMethod.POST)
 	@ResponseBody
@@ -74,6 +66,13 @@ public class StocksController {
 		return "admin/stocks/stocksList";
 	}
 	
+	// 등록폼
+	@RequestMapping("/setInsertStocks")
+	public String setInsertFormStocks(Model model, ItemsVO itemsVO, StoragesVO storagesVO) {
+		model.addAttribute("storages", storagesService.getStoragesList(storagesVO));
+		model.addAttribute("items", itemsService.getItemsList(itemsVO));
+		return "admin/stocks/insertStocks";
+	}
 	
 	@RequestMapping("findStockBorderNo")
 	public String findStockBorderNo(Model model, StocksVO stocksVO) {
