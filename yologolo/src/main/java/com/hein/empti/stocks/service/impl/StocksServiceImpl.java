@@ -54,6 +54,9 @@ public class StocksServiceImpl implements StocksService {
 		return stocksMapper.findStockBorderNo(stocksVO);
 	}
 	
-	
-
+	//다중 Insert
+	@Override
+	public void setInsertStockBorders(List<StocksVO> list) {
+		stocksMapper.setInsertStockBorders(list);
+	}
 }

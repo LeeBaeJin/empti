@@ -1,6 +1,7 @@
 package com.hein.empti.stocks.web;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hein.empti.items.ItemsVO;
 import com.hein.empti.items.service.ItemsService;
+import com.hein.empti.saleorderdetails.SaleorderdetailsVO;
 import com.hein.empti.stocks.StocksVO;
 import com.hein.empti.stocks.service.StocksService;
 import com.hein.empti.storages.StoragesVO;
@@ -78,5 +80,16 @@ public class StocksController {
 		model.addAttribute("storages", storagesService.getStoragesList(storagesVO));
 		model.addAttribute("findStcBo", stocksService.findStockBorderNo(stocksVO));
 		return "common/findStockBorderNo";
+	}
+	
+	//다중 Insert
+	//판매상세주문 다중 Insert
+	@RequestMapping("/setInsertStockBorders")
+	@ResponseBody
+	public Map setInsertStockBorders(@RequestBody List<StocksVO> list) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("success", true);
+		stocksService.setInsertStockBorders(list);
+		return map;
 	}
 }
