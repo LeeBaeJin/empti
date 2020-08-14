@@ -10,8 +10,8 @@
 		<h6 class="m-0 font-weight-bold text-primary">
 			<a href="getStocksList">입출고 목록</a> | 
 			<a href="setInsertStocks">입출고내역 입력</a> |
-			<a href= "" onclick="window.open(this.href, 'width=800', 'height=1200', 'toolbars=no', 'scrollbars=yes'); return false">PDF</a> |
-			<a href="">EXCEL</a> 
+			<a href= "stockslist.do" onclick="window.open(this.href, 'width=800', 'height=1200', 'toolbars=no', 'scrollbars=yes'); return false">PDF</a> |
+			<a href="stocksexcell.do">EXCEL</a> 
 		</h6>
 	</div>
 	<div class="card-body">
@@ -19,7 +19,7 @@
 			<a href="" class="btn btn-outline-primary">전체내역</a> | 
 			<a href="" class="btn btn-outline-primary">입고내역</a> |
 			<a href="" class="btn btn-outline-primary">출고내역</a> <br><br>
-			<table class="table table-bordered" id="dataTable" style="width: 100%; cellspacing=0;">
+			<table class="table table-bordered stockTbl" id="dataTable" style="width: 100%; cellspacing=0;">
 				<thead id="tblHead">
 					<tr style="text-align: center;">
 						<th><input type="checkbox" class="chkAll"></th>
@@ -62,3 +62,4 @@
 		</div>
 	</div>
 </div>
+<button type="button" class="btn btn-success">출고</button>

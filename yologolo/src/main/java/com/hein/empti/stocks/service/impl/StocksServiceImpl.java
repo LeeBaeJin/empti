@@ -41,10 +41,19 @@ public class StocksServiceImpl implements StocksService {
 		stocksVO.setStock_date(stocksVO.getStock_date().replace('T', ' '));
 			stocksMapper.setUpdateStocks(stocksVO);
 	}
-
+	//pdf
 	@Override
 	public List<Map<String, Object>> getStocksMap(StocksVO vo) {
 		return stocksMapper.getStocksMap(vo);
 	}
+
+	//0814부터
+	//findStockBorderNo, 구매 조회
+	@Override
+	public List<StocksVO> findStockBorderNo(StocksVO stocksVO) {
+		return stocksMapper.findStockBorderNo(stocksVO);
+	}
+	
+	
 
 }

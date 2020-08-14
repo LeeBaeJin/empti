@@ -62,8 +62,7 @@
 	
 	<!-- 장부 전체조회 Map(Excel) -->
 	<select id="getLdgrExcelMap" resultType="map" parameterType="LedgerVO">
-		select *from ldgrexcel_view
-		order by 장부번호
+		select*from ldgr_view
 	</select>
 
 	<!-- 장부등록 -->

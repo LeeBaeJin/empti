@@ -12,10 +12,39 @@
                        JOIN storages sg ON (st.strg_no = sg.strg_no)
                        JOIN companies c ON (b.company_no = c.company_no)
 	</select>
+	
+	
+	<select id="findStockBorderNo" parameterType="StocksVO" resultType="StocksVO">
+		SELECT   bd.*, b.border_date, c.company_no, c.company_name, i.item_name
+		FROM     buyorders b, buyorderdetails bd, items i ,companies c
+		WHERE    b.border_no = bd.border_no
+		AND      i.item_no = bd.item_no
+		AND      b.COMPANY_NO = c.COMPANY_NO
+		ORDER BY b.border_no
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	<!-- stockexcel_view 전체조회 Map(Excel) -->
 	<select id="getStocksMap" resultType="map"	parameterType="StocksVO">
-		SELECT * FROM stockexcel_view
+		select*from stocks_view
 	</select>
 
 	<!-- 입출고 등록 -->
