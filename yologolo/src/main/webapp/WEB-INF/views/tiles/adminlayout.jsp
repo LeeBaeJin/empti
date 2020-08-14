@@ -91,7 +91,7 @@
             <a class="collapse-item" href="getCompanyList">거래처관리</a>
             <a class="collapse-item" href="getItemsList">품목관리</a>
             <a class="collapse-item" href="getStoragesListMap">창고관리</a>
-            <a class="collapse-item" href="setStocksForm">입/출고관리</a>
+            <a class="collapse-item" href="getStocksList">입/출고관리</a>
             <a class="collapse-item" href="setDisposalForm">폐기/불량</a>
           </div>
         </div>

@@ -1,29 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
- "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<!-- empti_mapper.xml -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hein.empti.stocks.mapper.StocksMapper">
-
 	<!-- 전체조회 -->
 	<select id="getStocksList" parameterType="StocksVO" resultType="StocksVO">
-		SELECT *
-		FROM stocks
-	<where>
-	<if test="selectCategory != null and selectCategory != '' ">	
-		stock_category = #{selectCategory}
-	</if>
-	<if test="startDate != null and startDate != '' ">	
-		<![CDATA[
-		  AND   trunc(stock_date) >= to_date(#{startDate}, 'YYYY-MM-DD' )
-			]]>
-	</if>
-		<if test="endDate != null and endDate != '' ">	
-		<![CDATA[
-		  AND	trunc(stock_date) <= to_date(#{endDate}, 'YYYY-MM-DD')
-			]]>
-	</if>
-	</where>	
-		ORDER BY stock_no
+		SELECT  st.*,
+	            i.item_name, 
+	            c.company_name, 
+	            sg.strg_category
+		FROM stocks st JOIN items i ON (st.item_no = i.item_no)
+                       JOIN buyorders b ON (st.border_no = b.border_no)
+                       JOIN storages sg ON (st.strg_no = sg.strg_no)
+                       JOIN companies c ON (b.company_no = c.company_no)
 	</select>
 
 	<!-- stockexcel_view 전체조회 Map(Excel) -->
