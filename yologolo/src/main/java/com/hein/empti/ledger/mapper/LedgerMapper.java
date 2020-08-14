@@ -17,6 +17,8 @@ public interface LedgerMapper {
 	//월별 매출 통계 차트
 	public List<Map<String,Object>> getMonthlySaleAmount();
 	
+	public List<LedgerVO> getLedgerPdfList(LedgerVO ledgerVO);
+	
 	//영업이익
 	public String getProfits(LedgerVO vo);
 }
