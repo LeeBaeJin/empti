@@ -2,6 +2,7 @@ package com.hein.empti.common;
 
 import java.io.InputStream;
 import java.sql.Connection;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,6 +38,11 @@ public class PdfView extends AbstractView {
 		InputStream jasperStream = getClass().getResourceAsStream(reportFile);
 		//JasperReport jasperReport = (JasperReport) JRLoader.loadObject(jasperStream);
 		JasperReport jasperReport = JasperCompileManager.compileReport(jasperStream);
+		
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("", request.getParameter(""));
+		
+		
 		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, conn);
 		JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream()); }
 
