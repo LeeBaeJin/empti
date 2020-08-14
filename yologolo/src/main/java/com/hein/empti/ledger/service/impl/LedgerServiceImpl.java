@@ -59,4 +59,11 @@ public class LedgerServiceImpl implements LedgerService {
 	public String getProfits(LedgerVO vo) {
 		return ledgerMapper.getProfits(vo);
 	}
+
+	@Override
+	public List<LedgerVO> getLedgerPdfList(LedgerVO ledgerVO) {
+		return ledgerMapper.getLedgerPdfList(ledgerVO);
+	}
+	
+	
 }

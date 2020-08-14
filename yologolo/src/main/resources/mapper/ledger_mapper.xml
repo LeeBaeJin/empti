@@ -30,10 +30,39 @@
 		ORDER BY ldgr_no desc
 	</select>
 	
+	
+		<!-- pdf -->    
+	<select id="getLedgerPdfList" parameterType="LedgerVO" resultType="LedgerVO">
+	SELECT 	   ldgr_no 										"LDGR_NO",
+			   ldgr_date 									"LDGR_DATE",
+			   status										"STATUS",
+			   border_no									"BORDER_NO",
+			   sorder_no									"SORDER_NO",
+			   to_char(total_amount, '999,999,999,999')  	"TOTAL_AMOUNT",
+			   condition									"CONDITION",
+			   note											"NOTE"
+		FROM ledger
+	<where>
+	<if test="radioStatus !=null and radioStatus !='' ">	
+		STATUS = #{radioStatus}
+	</if>
+	<if test="startDate !=null and startDate != '' ">	
+		<![CDATA[
+		  AND   trunc(LDGR_DATE) >= to_date(#{startDate}, 'YYYY-MM-DD' )
+			]]>
+	</if>
+		<if test="endDate !=null and endDate != '' ">	
+		<![CDATA[
+		  AND	trunc(LDGR_DATE) <= to_date(#{endDate}, 'YYYY-MM-DD')
+			]]>
+	</if>
+	</where>
+		ORDER BY ldgr_no desc
+	</select>
+	
 	<!-- 장부 전체조회 Map(Excel) -->
 	<select id="getLdgrExcelMap" resultType="map" parameterType="LedgerVO">
-		select *from ldgrexcel_view
-		order by 장부번호
+		select*from ldgr_view
 	</select>
 
 	<!-- 장부등록 -->

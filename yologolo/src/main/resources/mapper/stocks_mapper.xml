@@ -44,7 +44,7 @@
 
 	<!-- stockexcel_view 전체조회 Map(Excel) -->
 	<select id="getStocksMap" resultType="map"	parameterType="StocksVO">
-		SELECT * FROM stockexcel_view
+		select*from stocks_view
 	</select>
 
 	<!-- 입출고 등록 -->
