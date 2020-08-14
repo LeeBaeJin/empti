@@ -25,7 +25,7 @@
 								<button type="button" value="주문조회" id="orderBtn" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" width="30px" height="30px"></button>
 								<br/><br/>
 								
-		<table border="1" id="orderTable" class="table table-bordered" style="width: 40%;">
+		<table border="1" id="orderTable" class="table table-bordered" style="width: 70%;">
 			<thead>
 				<tr>
 					<th>#</th>

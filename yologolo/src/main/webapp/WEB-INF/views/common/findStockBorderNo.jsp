@@ -30,6 +30,7 @@ $(function() {
 			<th>거래처명</th>
 			<th>품목명</th>
 			<th>수량</th>
+			<th>창고</th>
 			<th><input type="checkbox" class="chkAll"/></th>
 			<th style="display:none;">주문번호</th>
 			<th style="display:none;">주문상세번호</th>
@@ -40,16 +41,23 @@ $(function() {
 	<tbody>
 		<c:forEach items="${findStcBo}" var="fsb" varStatus="status">
 				<tr class="findStockBN">
-					<th>${status.count}</th>
-					<th>${fsb.border_date}</th>
-					<th>${fsb.company_name}</th>
-					<th>${fsb.item_name}</th>
-					<th>${fsb.border_qty}</th>
-					<th><input type="checkbox" class="checkbox" value="${fsb.border_no}"/></th>
-					<th style="display:none;">${fsb.border_no}</th>
-					<th style="display:none;">${fsb.borderdetail_no}</th>
-					<th style="display:none;">${fsb.item_no}</th>
-					<th style="display:none;">${fsb.company_no}</th>
+					<td>${status.count}</td>
+					<td>${fsb.border_date}</td>
+					<td>${fsb.company_name}</td>
+					<td>${fsb.item_name}</td>
+					<td>${fsb.border_qty}</td>
+					<td><select name="strg_category" class="form-control" style="width: 260px; display: inline;">
+                           <option value="">===선택하세요===</option>
+                           <c:forEach items="${storages}" var="strg">
+                              <option value="${strg.strg_no}">${strg.strg_category}</option>
+                           </c:forEach>
+                        </select><br/>
+                    </td>
+					<td><input type="checkbox" class="checkbox" value="${fsb.border_no}"/></td>
+					<td style="display:none;">${fsb.border_no}</td>
+					<td style="display:none;">${fsb.borderdetail_no}</td>
+					<td style="display:none;">${fsb.item_no}</td>
+					<td style="display:none;">${fsb.company_no}</td>
 				</tr>
 		</c:forEach>
 	</tbody>

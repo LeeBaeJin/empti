@@ -69,13 +69,13 @@ public class StocksController {
 	// 등록폼
 	@RequestMapping("/setInsertStocks")
 	public String setInsertFormStocks(Model model, ItemsVO itemsVO, StoragesVO storagesVO) {
-		model.addAttribute("storages", storagesService.getStoragesList(storagesVO));
 		model.addAttribute("items", itemsService.getItemsList(itemsVO));
 		return "admin/stocks/insertStocks";
 	}
 	
 	@RequestMapping("findStockBorderNo")
-	public String findStockBorderNo(Model model, StocksVO stocksVO) {
+	public String findStockBorderNo(Model model, StocksVO stocksVO, StoragesVO storagesVO) {
+		model.addAttribute("storages", storagesService.getStoragesList(storagesVO));
 		model.addAttribute("findStcBo", stocksService.findStockBorderNo(stocksVO));
 		return "common/findStockBorderNo";
 	}
