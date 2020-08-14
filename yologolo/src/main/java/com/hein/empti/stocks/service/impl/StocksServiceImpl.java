@@ -41,7 +41,7 @@ public class StocksServiceImpl implements StocksService {
 		stocksVO.setStock_date(stocksVO.getStock_date().replace('T', ' '));
 			stocksMapper.setUpdateStocks(stocksVO);
 	}
-
+	//pdf
 	@Override
 	public List<Map<String, Object>> getStocksMap(StocksVO vo) {
 		return stocksMapper.getStocksMap(vo);

@@ -106,9 +106,10 @@ public class DisposalController {
 	{
 	ModelAndView mv = new ModelAndView();
 	mv.setViewName("pdfView");
-	mv.addObject("filename", "/reports/disposal_list.jrxml");
+	mv.addObject("filename", "/reports/disposal_list2.jrxml");
 	return mv;
 	}
+	
 	
 	// excel 출력
 	@RequestMapping("disposal_excel.do")
@@ -117,7 +118,7 @@ public class DisposalController {
 		mv.setViewName("commonExcelView");
 		mv.addObject("datas", disposalService.getDisposalMap(vo));// Map객체를 조회해서 시트를 생성한다.
 		mv.addObject("filename", "diposallist");// 파일이름을 바꿔준다.
-		mv.addObject("headers", new String[] { "폐기/불량번호", "품목명","수량","단가","손실금액","폐기일","창고번호","구분"}); // 헤더의 값만 출력된다.
+		mv.addObject("headers", new String[] { "날짜", "수량","가격","구분","제품번호","창고번호"}); // 헤더의 값만 출력된다.
 		return mv;
 	}
 }

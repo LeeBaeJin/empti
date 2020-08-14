@@ -10,8 +10,8 @@
 		<h6 class="m-0 font-weight-bold text-primary">
 			<a href="getStocksList">입출고 목록</a> | 
 			<a href="setInsertStocks">입출고내역 입력</a> |
-			<a href= "" onclick="window.open(this.href, 'width=800', 'height=1200', 'toolbars=no', 'scrollbars=yes'); return false">PDF</a> |
-			<a href="">EXCEL</a> 
+			<a href= "stockslist.do" onclick="window.open(this.href, 'width=800', 'height=1200', 'toolbars=no', 'scrollbars=yes'); return false">PDF</a> |
+			<a href="stocksexcell.do">EXCEL</a> 
 		</h6>
 	</div>
 	<div class="card-body">
