@@ -78,20 +78,19 @@ public class StocksController {
 		model.addAttribute("stocks", stocksService.getStocksList(vo));
 		return "admin/stocks/stocksList";
 	}
-	
-	
+
 	@RequestMapping("findStockBorderNo")
 	public String findStockBorderNo(Model model, StocksVO stocksVO) {
 		model.addAttribute("findStcBo", stocksService.findStockBorderNo(stocksVO));
 		return "common/findStockBorderNo";
 	}
-}
+
+
 
 	// view resolver 방식
 
 	@RequestMapping("stockslist.do")
-	public ModelAndView getStocksListReport(HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
+	public ModelAndView getStocksListReport(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("pdfView");
 		mv.addObject("filename", "/reports/stocks_view2.jrxml");

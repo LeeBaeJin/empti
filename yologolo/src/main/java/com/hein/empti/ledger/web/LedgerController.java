@@ -24,12 +24,22 @@ import com.hein.empti.ledger.service.LedgerService;
 import com.hein.empti.saleorders.SaleordersVO;
 import com.hein.empti.saleorders.service.SaleordersService;
 
+import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+
 @Controller
 public class LedgerController {
 
-	@Autowired	LedgerService ledgerService;
-	@Autowired	SaleordersService saleordersService; 
-	@Autowired	BuyordersService buyordersService;
+	@Autowired
+	LedgerService ledgerService;
+	@Autowired
+	SaleordersService saleordersService;
+	@Autowired
+	BuyordersService buyordersService;
 
 	// 등록폼
 	@RequestMapping("/setLedgerForm")
@@ -74,14 +84,14 @@ public class LedgerController {
 		ledgerVO.setLdgr_date(ledgerVO.getLdgr_date().substring(0, 16));
 		return ledgerVO;
 	}
-	
+
 	// 전체조회
 	@RequestMapping(value = "/ledgers", method = RequestMethod.GET)
 	@ResponseBody
 	public List<LedgerVO> LedgerList(Model model, LedgerVO ledgerVO) {
 		return ledgerService.getLedgerList(ledgerVO);
 	}
-	
+
 	// 내역 조회
 	@RequestMapping("/getLedgerList")
 	public String getLedgerList(Model model, LedgerVO VO) {
@@ -89,15 +99,29 @@ public class LedgerController {
 		return "admin/ledger/ledgerList";
 	}
 
-	// view resolver 방식
-	@RequestMapping("ledger_list.do")
-	public ModelAndView getLedgerListReport(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("pdfView");
-		mv.addObject("filename", "/reports/ledgerList.jrxml");
-		return mv;
-	}
 	
+	  // view resolver 방식
+	  
+	 @RequestMapping("ledger_list.do") public ModelAndView
+	  getLedgerListReport(HttpServletRequest request, HttpServletResponse response)
+	  throws Exception { ModelAndView mv = new ModelAndView();
+	  mv.setViewName("pdfView"); mv.addObject("filename",
+	  "/reports/ldgr_view2.jrxml"); return mv; }
+	 
+
+	// pdf 파라미터 지정
+	/*
+	 * @RequestMapping("ledger_list.do") public ModelAndView
+	 * getLedgerListReport(HttpServletRequest request, HttpServletResponse response)
+	 * throws Exception { // jrxml 소스 지정 String path =
+	 * request.getSession().getServletContext().getRealPath("filename",
+	 * "/reports/ldgr_view2.jrxml"); JasperReport jasperReport =
+	 * JasperCompileManager.compileReport(path); JRDataSource JRdataSource = new
+	 * JRBeanCollectionDataSource(userService.getListMap(null)); JasperPrint
+	 * jasperPrint = JasperFillManager.fillReport(jasperReport, map, JRdataSource);
+	 * }
+	 */
+
 	// excel 출력
 	@RequestMapping("LdgrExcel.do")
 	public ModelAndView ldgrexcel(LedgerVO vo) {
@@ -105,21 +129,22 @@ public class LedgerController {
 		mv.setViewName("commonExcelView");
 		mv.addObject("datas", ledgerService.getLdgrExcelMap(vo));// Map객체를 조회해서 시트를 생성한다.
 		mv.addObject("filename", "ledgerlist");// 파일이름을 바꿔준다.
-		mv.addObject("headers", new String[] { "장부번호", "날짜", "금액", "상태", "주문번호", "비고"}); // 헤더의 값만 출력된다.
-		return mv;    //장부번호, 날짜, 금액, 상태, 주문번호, 비고
+		mv.addObject("headers", new String[] { "장부번호", "날짜", "구분", "구매주문번호", "판매주문번호", "금액", "상태", "비고" }); // 헤더의 값만
+																											// 출력된다.
+		return mv; // 장부번호, 날짜, 금액, 상태, 주문번호, 비고
 	}
-	
-	//월별 매출 통계 차트
+
+	// 월별 매출 통계 차트
 	@RequestMapping("getMonthlySaleAmount")
-	public @ResponseBody List<Map<String,Object>> getMonthlySaleAmount(){
-		return ledgerService.getMonthlySaleAmount(); 
+	public @ResponseBody List<Map<String, Object>> getMonthlySaleAmount() {
+		return ledgerService.getMonthlySaleAmount();
 	}
-	
-	//영업이익
+
+	// 영업이익
 	@RequestMapping("getProfits")
 	@ResponseBody
 	public String getProfits(LedgerVO ledgerVO) {
 		return ledgerService.getProfits(ledgerVO);
 	}
-	
+
 }
