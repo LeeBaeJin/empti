@@ -47,4 +47,13 @@ public class StocksServiceImpl implements StocksService {
 		return stocksMapper.getStocksMap(vo);
 	}
 
+	//0814부터
+	//findStockBorderNo, 구매 조회
+	@Override
+	public StocksVO findStockBorderNo(StocksVO stocksVO) {
+		return stocksMapper.findStockBorderNo(stocksVO);
+	}
+	
+	
+
 }

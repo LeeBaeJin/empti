@@ -65,10 +65,19 @@ public class StocksController {
 		return stocksVO;
 	}
 	
+	
+	//0814 부터
 	// 입출고내역 조회
 	@RequestMapping("/getStocksList")
 	public String getStocksList(Model model, StocksVO vo) {
 		model.addAttribute("stocks", stocksService.getStocksList(vo));
 		return "admin/stocks/stocksList";
+	}
+	
+	
+	@RequestMapping("findStockBorderNo")
+	public String findStockBorderNo(Model model, StocksVO stocksVO) {
+		model.addAttribute("findStcBo", stocksService.findStockBorderNo(stocksVO));
+		return "common/findStockBorderNo";
 	}
 }
