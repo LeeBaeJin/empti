@@ -14,7 +14,7 @@ $(function(){
 		ledgerSelect();
 		init();
 		fnc_findOrderNo();
-		fnc_selectOrderNo();s
+		fnc_selectOrderNo();
 		$('#searchForm').on('click','#btnSearch',function() {
 		ledgerList()			 
 		});
@@ -316,7 +316,7 @@ return str.replace(/[^\d]+/g, '');
 										</select><br>
 				
 				<div id="order_no"></div>
-				<label>금액</label> 		<input class="form-control" name="total_amount" id="total_amount" onkeyup="inputNumberFormat(this)"> <br>  
+				<label>금액(원)</label> 		<input class="form-control" name="total_amount" id="total_amount" onkeyup="inputNumberFormat(this)"> <br>  
 				<label>상태</label> 		<select class="form-control" name="condition" id="condition">
 											<option value="" selected>==선택하세요==</option>
 											<option value="완납">완납</option>

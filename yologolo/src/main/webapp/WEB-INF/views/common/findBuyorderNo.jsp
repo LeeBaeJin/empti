@@ -26,7 +26,7 @@
 			<th>주문번호</th><th>주문날짜</th><th>구매원금</th><th>잔금</th><th>거래처명</th>
 		</tr>
 	</thead>
-		<c:forEach items="${findBuyorderNo}" var="orders">   
+		<c:forEach items="${findBuyorderNo}" var="orders">  
 			<tr class="clickNo" style="text-align:center">
 			<c:if test="${orders.balance < 0}">
 			<c:if test="${orders.buy_sum > 0 and orders.status ne '반품'}">
