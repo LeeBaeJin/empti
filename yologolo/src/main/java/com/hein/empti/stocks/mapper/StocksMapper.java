@@ -14,7 +14,7 @@ public interface StocksMapper {
 	
 	
 	//findStockBorderNo, 구매 조회
-	public StocksVO findStockBorderNo(StocksVO stocksVO);
+	public List<StocksVO> findStockBorderNo(StocksVO stocksVO);
 	
 	
 	//stock_view (Map)엑셀

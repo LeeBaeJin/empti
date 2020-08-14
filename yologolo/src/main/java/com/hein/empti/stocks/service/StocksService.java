@@ -14,7 +14,7 @@ public interface StocksService {
 	public void setUpdateStocks(StocksVO stocksVO);
 	
 	//findStockBorderNo, 구매 조회
-	public StocksVO findStockBorderNo(StocksVO stocksVO);
+	public List<StocksVO> findStockBorderNo(StocksVO stocksVO);
 	
 	//stock_view (Map) 엑셀
 	public List<Map<String, Object>> getStocksMap(StocksVO vo);
