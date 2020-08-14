@@ -19,8 +19,6 @@ public class StocksServiceImpl implements StocksService {
 	//단건조회
 	@Override
 	public StocksVO getStocks(StocksVO stocksVO) {
-		
-
 		return stocksMapper.getStocks(stocksVO);
 	}
 	

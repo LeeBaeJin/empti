@@ -19,7 +19,7 @@
 	<!-- 전체조회 Map (Excel) -->
 	<select id="getCompanyMap" parameterType="CompanyVO" resultType="map">
 		select*from companyexcel_view
-		order by 회사번호
+		
 	</select>
 
 	<!-- 회사코드, 회사명만 조회. -->

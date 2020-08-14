@@ -88,7 +88,7 @@ public class StoragesController {
 			throws Exception {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("pdfView");
-		mv.addObject("filename", "/reports/storages.jrxml");
+		mv.addObject("filename", "/reports/storage_view.jrxml");
 		return mv;
 	}
 

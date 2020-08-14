@@ -93,7 +93,7 @@ public class CompanyController {
 			throws Exception {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("pdfView");
-		mv.addObject("filename", "/reports/companyPdf.jrxml");
+		mv.addObject("filename", "/reports/companyPdf_view.jrxml");
 		return mv;
 	}
 
@@ -104,7 +104,7 @@ public class CompanyController {
 		mv.setViewName("commonExcelView");
 		mv.addObject("datas", companyService.getCompanyMap(vo));// Map객체를 조회해서 시트를 생성한다.
 		mv.addObject("filename", "companylist");// 파일이름을 바꿔준다.
-		mv.addObject("headers", new String[] { "회사번호", "회사명", "전화번호", "주소", "대표자명", "거래은행", "계좌번호", "담당자명", "담당자전화번호","비고" }); // 헤더의 값만 출력된다.
+		mv.addObject("headers", new String[] {  "회사명", "전화번호", "주소", "대표자명", "거래은행", "계좌번호", "담당자명", "담당자전화번호" }); // 헤더의 값만 출력된다.
 		return mv;
 	}
 	
