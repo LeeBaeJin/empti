@@ -20,19 +20,19 @@ $(function(){
 		});
 	});
 	
-//커ㅁ머 포맽팅
-function ledgerVO(obj) {
-	if(obj !=null)
-obj.value = comma(uncomma(obj.value));
-}
-function comma(str) {
-str = String(str);
-return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
-}
-function uncomma(str) {
-str = String(str);
-return str.replace(/[^\d]+/g, '');
-}	
+	//커ㅁ머 포맽팅
+	function ledgerVO(obj) {
+		if(obj !=null)
+		obj.value = comma(uncomma(obj.value));
+	}
+	function comma(str) {
+		str = String(str);
+		return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+	}
+	function uncomma(str) {
+		str = String(str);
+		return str.replace(/[^\d]+/g, '');
+	}	
 	
 	//주문번호 조회
 	function fnc_findOrderNo()	{
@@ -40,13 +40,12 @@ return str.replace(/[^\d]+/g, '');
 			var status = $('#status option:selected').val();
 			
 			if(status == '매입'){
-			var bwo = window.open('findBuyorderNo','item', 'width=800, height=1000, left=800');
-			//var wo = window.open('findBuyorderNo/status','item', 'width=800, height=800');
-			return bwo;
+				var bwo = window.open('findBuyorderNo','item', 'width=800, height=1000, left=800');
+				//var wo = window.open('findBuyorderNo/status','item', 'width=800, height=800');
+				return bwo;
 			} else {     
-			var swo = window.open('findSaleorderNo','item', 'width=800, height=1000, left=800');
-			return swo;
-			
+				var swo = window.open('findSaleorderNo','item', 'width=800, height=1000, left=800');
+				return swo;
 			}
 		});		
 	};
