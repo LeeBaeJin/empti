@@ -78,6 +78,14 @@ public class StocksController {
 		model.addAttribute("stocks", stocksService.getStocksList(vo));
 		return "admin/stocks/stocksList";
 	}
+	
+	
+	@RequestMapping("findStockBorderNo")
+	public String findStockBorderNo(Model model, StocksVO stocksVO) {
+		model.addAttribute("findStcBo", stocksService.findStockBorderNo(stocksVO));
+		return "common/findStockBorderNo";
+	}
+}
 
 	// view resolver 방식
 

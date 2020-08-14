@@ -20,6 +20,8 @@ public class StocksVO {
 		String item_name;
 		String company_name;
 		String strg_category;
+		String border_date;
+		String border_qty;
 
 		//검색
 		/*
