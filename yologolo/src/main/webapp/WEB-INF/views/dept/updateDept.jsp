@@ -25,7 +25,7 @@ var emp_select_value = function(select_obj) {
 		<div class="col-sm-2" align="left" >
 			<label>부서번호</label>	 <input name="dept_id" value="${deptUp.dept_id}" class="form-control"  readonly> <br/>
 			<label>부서이름</label>	 <input name="dept_name" value="${deptUp.dept_name}" class="form-control" > <br/>
-			<label>매니저</label>	 	<%-- <input name="emp_id" value="${deptUp.name}"> <br/> --%>
+			<label>부서장</label>	 	<%-- <input name="emp_id" value="${deptUp.name}"> <br/> --%>
 									<select name="emp_id" onchange="emp_select_value(this);" class="form-control" >
 										<option value="${deptUp.emp_id}" selected> ${deptUp.name}</option>
 										<option >--------------</option>
@@ -34,7 +34,7 @@ var emp_select_value = function(select_obj) {
 											<option value="${emp.emp_id}">${emp.name}</option>
 										</c:forEach>
 									</select><br/>
-			<label>사번</label>		 <input id="emp_id" class="form-control" value="${deptUp.emp_id}"> <br/> 
+			<label>사번</label>		 <input id="emp_id" class="form-control" value="${deptUp.emp_id}" readonly="readonly"> <br/> 
 			<div align="center">
 				<button class="btn btn-primary"type="submit">수정</button>
 			</div>

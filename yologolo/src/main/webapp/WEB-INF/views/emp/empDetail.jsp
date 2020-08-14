@@ -11,9 +11,9 @@
 </div>
 <table class="table table-hover">
 	<thead class="thead-dark">
-			<tr>
+			<tr style="text-align: center">
 			<th>프로필</th> <td><img src="download?name=${getEmp.profile}" 
-			style="width:500px" onerror="this.src='resources/images/profile.jpg'"/></td>
+			style="width:200px" onerror="this.src='resources/images/profile.jpg'"/></td>
 			</tr>
 			<tr>
 			<th>사원번호</th><td>${getEmp.emp_id}	</td>
