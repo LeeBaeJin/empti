@@ -68,10 +68,7 @@
 		<label>입고 일자</label>	<input value="${serverTime}" type="datetime-local" name="stock_date" class="form-control" style="width: 260px; display: inline;"><br/>
 
 		<label>유형</label>		<input value="입고" name="stock_category" class="form-control" style="width: 80px; display: inline;" readonly="readonly"><br/>
-		<label>주문 조회</label>	<input name="border_no" id="border_no" class="form-control" style="width: 100px; display: inline;">
-								<button type="button" value="주문조회" id="orderBtn" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" width="30px" height="30px"></button>
-								<br/><br/>
-								
+		<label>주문 조회</label>									
 		<table border="1" id="orderTable" class="table table-bordered" style="width: 70%;">
 			<thead>
 				<tr>
