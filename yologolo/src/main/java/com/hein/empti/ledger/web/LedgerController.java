@@ -43,6 +43,7 @@ public class LedgerController {
 	@RequestMapping(value = "/ledgers", method = RequestMethod.POST)
 	@ResponseBody
 	public Map setInsertLedger(LedgerVO ledgerVO, Model model) {
+		ledgerVO.setTotal_amount(ledgerVO.getTotal_amount().replace(",", ""));
 		ledgerService.setInsertLedger(ledgerVO);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("result", true);
@@ -56,6 +57,7 @@ public class LedgerController {
 	// 요청헤더
 	@ResponseBody
 	public LedgerVO setUpdateLedger(@RequestBody LedgerVO ledgerVO, Model model) {
+		ledgerVO.setTotal_amount(ledgerVO.getTotal_amount().replace(",", ""));
 		ledgerService.setUpdateLedger(ledgerVO);
 		return ledgerVO;
 	}

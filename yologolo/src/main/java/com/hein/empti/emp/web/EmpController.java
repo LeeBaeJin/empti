@@ -46,6 +46,13 @@ public class EmpController {
 		model.addAttribute("getEmp", empService.getEmp(empVO));
 		return "emp/empDetail";
 	}
+	
+	//상세정보
+	@RequestMapping("/getEmpDetail")
+	public String getEmpDetail(EmpVO empVO, Model model) {
+		model.addAttribute("getEmp", empService.getEmp(empVO));
+		return "emp/empDetail";
+	}
 		
 	//전체조회
 	@RequestMapping("/getEmpList")
@@ -64,6 +71,7 @@ public class EmpController {
 	//등록처리
 	@RequestMapping("/setInsertEmp")
 	public String setInsertEmp(EmpVO empVO,Model model) throws IOException {
+		empVO.setSalary(empVO.getSalary().replace(",", ""));
 		MultipartFile file = empVO.getUploadFile();
 		String filename = file.getOriginalFilename();
 		if (file != null && file.getSize() > 0) {
@@ -151,9 +159,15 @@ public class EmpController {
 	//다운로드
 	@RequestMapping("/download")
 	public ModelAndView download(@RequestParam String name) {
+
+		File file = new File("D:/upload");
+		if(!file.exists())
+			file.mkdir();
+		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("download");
+		mv.setViewName("download");		
 		mv.addObject("downloadFile", new File("D:/upload", name));
+		
 		return mv;
 	}
 	

@@ -11,20 +11,28 @@ $(function(){
 		stocksUpdate(); 
 		init();
 		fnc_btnfindItem();
+		findOrderNo();
 		
 		//검색버튼
 		$('#searchForm').on('click','#btnSearch',function() {
 			stocksList();
 		});
 	});
-		//품목코드 검색
+		<%-- //품목코드 검색
 		function fnc_btnfindItem(){
 		$('#btnFindItem').on('click', function() {
 			var wo = window.open('findItems','item', 'width=500, height=700, left=950, top=50');
 			return wo;
-		});
+		}); 
+	}; --%>
+	//주문번호 조회 기능
+	function findOrderNo()	{
+		$('#stocksform').on('click', '#btnFindOrderNo', function() {
+			var bwo = window.open('findBuyorderNo','item', 'width=800, height=1000, left=800');
+			return bwo;
+		});		
 	};
-
+	
 	// 창고번호를 선택했을때 옆에 창고이름이 나오는 '그 자리'를 찾아가는 함수
 	var storages_select_value = function(select_obj) {
 	if($("#storages_name").text() == ""){	/* id값이 storage_name인 자리의 text가 공백이면 */
@@ -238,11 +246,13 @@ $(function(){
 			<hr class="sidebar-divider d-none d-md-block">
 			<form id="stocksform" class="form form-group">
 									<input class="form-control" name="stock_no" id="stock_no" type="hidden"><br/>
-			<label>구매주문번호</label>	<input class="form-control" name="border_no" id="border_no"><br/>
+			<label>구매주문번호</label>	<button type="button" id="btnFindOrderNo" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" width="30px" height="30px"></button>
+									<input class="form-control" name="border_no" id="border_no"><br/>
+				
 			<label>판매주문번호</label>	<input class="form-control" name="sorder_no" id="sorder_no"><br/>
-			<label>품목코드</label>	<button type="button" value="품목선택" id="btnFindItem" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" width="30px" height="30px"></button>
+			<!-- <label>품목코드</label>	<button type="button" value="품목선택" id="btnFindItem" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" width="30px" height="30px"></button>
 									<input class="form-control" name="item_no" id="item_no" type="text"> <span name="item_name" id="item_name" ></span>
-									<br/><br/>
+									<br/><br/> -->
 			<label>유형</label>	<select class="form-control" name="stock_category">
 									  <option value="입고" >입고</option>
 									  <option value="출고" >출고</option>

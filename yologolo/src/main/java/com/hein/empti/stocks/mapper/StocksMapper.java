@@ -11,6 +11,7 @@ public interface StocksMapper {
 	public List<StocksVO> getStocksList(StocksVO stocksVO);
 	public void setInsertStocks(StocksVO stocksVO);
 	public void setUpdateStocks(StocksVO stocksVO);
+	
 	//stock_view (Map)엑셀
 	public List<Map<String, Object>> getStocksMap(StocksVO vo);
 }

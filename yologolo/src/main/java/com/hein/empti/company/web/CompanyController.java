@@ -48,7 +48,8 @@ public class CompanyController {
 	
 	// 등록폼
 	@RequestMapping("/setInsertFormCompany")
-	public String setInsertFormCompany(CompanyVO companyVO) {
+	public String setInsertFormCompany(CompanyVO companyVO, Model model) {
+		model.addAttribute("maxCom", companyService.comNoMax(companyVO));
 		return "admin/company/insertCompany";
 	}
 

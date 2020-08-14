@@ -26,6 +26,9 @@ public class DownloadView extends  AbstractView{
 	            HttpServletResponse response) throws Exception {
 	        // TODO Auto-generated method stub
 	        File file = (File) model.get("downloadFile");
+	        if(file.isDirectory())
+	        	return;
+	        
 	        System.out.println(file);
 	        // 모델 데이터로 보낸 파일을 get.
 	        // jsp에서는 EL로 꺼낼 수 있었지만 여기는 jsp페이지가아니므로 .get으로꺼내야함을 기억

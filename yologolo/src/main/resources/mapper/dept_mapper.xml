@@ -23,6 +23,7 @@
 		ON     d.emp_id = e.emp_id
 	</select>
 	
+	<!-- 부서삭제를 위한 count -->
 	<select id="getDeptCount" parameterType="DeptVO" resultType="int">
 		SELECT   count(*) "cnt"
 		FROM     employees

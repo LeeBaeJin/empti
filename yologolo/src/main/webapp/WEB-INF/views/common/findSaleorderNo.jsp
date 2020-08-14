@@ -8,6 +8,9 @@
 	$(function(){
 		$('.clickNo').on('click', function(){
 			opener.document.getElementById("sorder_no").value = $(this).find('.td1').text();
+			var amt = $(this).find('.sp1').text();
+ 			opener.document.getElementById("total_amount").value = amt.substring(1);
+ 			opener.document.getElementById("condition").value = "완납";
 			window.close();
 		});
 	});
@@ -20,19 +23,25 @@
 <table class="table table-hover">
 	 <thead class="thead-dark">
 		<tr style="text-align:center">
-			<th>주문번호</th><th>주문날짜</th><th>판매금액</th><th>거래처명</th>
+			<th>주문번호</th><th>주문날짜</th><th>판매원금</th><th>잔금</th><th>거래처명</th>
 		</tr>
 	</thead>
 		<c:forEach items="${findSaleorderNo}" var="orders">
 			<tr  class="clickNo" style="text-align:center">
+			<c:if test="${orders.balance <0 }">
 			<c:if test="${orders.sale_sum > 0 and orders.del_status ne '반품'}">
 				<td class="td1">${orders.sorder_no}</td>
 				<td class="td2">${orders.sorder_date}</td>
 				<td class="td3">
-				<fmt:parseNumber value="${orders.sale_sum}" var="fmt"/>
-				<fmt:formatNumber type="number" maxFractionDigits="3" value="${fmt}"/>원
+					<fmt:parseNumber value="${orders.sale_sum}" var="fmt"/>
+					<fmt:formatNumber type="number" maxFractionDigits="3" value="${fmt}"/>원
 				</td>
-				<td class="td4">${orders.company_name}</td>
+				<td class="td4">
+					<fmt:parseNumber value="${orders.balance}" var="fmt"/>
+					<span class="sp1"><fmt:formatNumber type="number" maxFractionDigits="3" value="${fmt}"/></span>원
+				</td>
+				<td class="td5">${orders.company_name}</td>
+			</c:if>
 			</c:if>
 			</tr>
 		</c:forEach>

@@ -18,9 +18,11 @@ public class StocksVO {
 		
 		//JOIN
 		String item_name;
+		String company_name;
+		String strg_category;
 
 		//검색
-		String selectCategory;
-		String startDate;
-		String endDate;
+		/*
+		 * String selectCategory; String startDate; String endDate;
+		 */
 }

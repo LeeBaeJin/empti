@@ -25,16 +25,21 @@
 
 	<!-- 판매주문전체조회 Map -->
 	<select id="getSaleordersListMap" parameterType="SaleordersVO" resultType="map">
-		SELECT  s.sorder_no "sorder_no",
-				TO_CHAR(s.sorder_date, 'yyyy-MM-dd hh24:mi') "sorder_date",
-				s.sale_sum "sale_sum",
-				s.del_status "del_status",
-				e.name "name",
-				c.company_name "company_name",
-				s.return_no "return_no"
-		FROM employees e
-		JOIN saleorders s ON (e.emp_id = s.emp_id)
-		JOIN companies c ON (s.company_no = c.company_no)
+		SELECT 	   s.sorder_no                                 			"sorder_no",
+         		   TO_CHAR(s.sorder_date, 'yyyy-MM-dd hh24:mi') 		"sorder_date",
+            	   s.sale_sum                                    		"sale_sum",
+            	   s.del_status                                  		"del_status",
+            	   e.name                                         		"name",
+            	   c.company_name                                  		"company_name",
+            	   s.return_no                                       	"return_no",
+            	   (s.sale_sum - sp.sum)  	                            "balance"
+		FROM       employees e  ,
+              	   saleorders s ,
+                   companies c  ,
+            	  (select sorder_no, sum(total_amount) sum from ledger group by sorder_no) sp         
+    	WHERE      e.emp_id = s.emp_id AND
+        	       s.company_no = c.company_no AND
+            	   s.sorder_no = sp.sorder_no
 		ORDER BY 2 DESC
 	</select>
 
