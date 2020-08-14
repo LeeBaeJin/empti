@@ -93,7 +93,7 @@ public class ItemsController {
 			throws Exception {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("pdfView");
-		mv.addObject("filename", "/reports/items_list.jrxml");
+		mv.addObject("filename", "/reports/itemlist_view.jrxml");
 		return mv;
 	}
 
