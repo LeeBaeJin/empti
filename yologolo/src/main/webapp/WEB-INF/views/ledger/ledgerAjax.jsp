@@ -288,8 +288,8 @@ $(function(){
 					<th class="text-center">날짜</th>
 					<th class="text-center">구분</th>
 					<th class="text-center">구매주문번호</th>
-					<th class="text-center">판매주문번호</th>
 					<th class="text-center">금액(원)</th>
+					<th class="text-center">판매주문번호</th>
 					<th class="text-center">상태</th>
 					<th class="text-center">비고</th>
 					<th class="text-center">조회</th>
