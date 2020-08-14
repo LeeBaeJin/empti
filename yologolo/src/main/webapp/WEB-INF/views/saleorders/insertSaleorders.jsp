@@ -25,8 +25,6 @@
 			tr.remove();
 		});
 		
-
-		
 	});
 	//담당 사원 사번 표시 기능
 	var emp_select_value = function(select_obj) {
