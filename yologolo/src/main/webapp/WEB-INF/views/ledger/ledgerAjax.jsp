@@ -14,7 +14,7 @@ $(function(){
 		ledgerSelect();
 		init();
 		fnc_findOrderNo();
-		fnc_selectOrderNo();s
+		fnc_selectOrderNo();
 		$('#searchForm').on('click','#btnSearch',function() {
 		ledgerList()			 
 		});
@@ -209,7 +209,7 @@ $(function(){
 		});
 	};
 	
-	//가격 포맽팅
+	//금액 포맽팅
 	function numberWithCommas(x) {
 	    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	}
@@ -220,10 +220,10 @@ $(function(){
 			$('<tr>')
 			.append($('<td>').html(item.ldgr_no))
 			.append($('<td>').html(item.ldgr_date))
-			.append($('<td align="right">').html(numberWithCommas(item.total_amount)))
 			.append($('<td>').html(item.status))
 			.append($('<td>').html(item.border_no))
 			.append($('<td>').html(item.sorder_no))
+			.append($('<td align="right">').html(numberWithCommas(item.total_amount)))
 			.append($('<td>').html(item.condition))
 			.append($('<td>').html(item.note))
 			.append($('<td>').html('<button id=\'btnSelect\' class=\'btn btn-info\'>조회</button>'))
@@ -286,10 +286,10 @@ $(function(){
 				<tr>
 					<th class="text-center">장부번호</th>
 					<th class="text-center">날짜</th>
-					<th class="text-center">금액(원)</th>
 					<th class="text-center">구분</th>
 					<th class="text-center">구매주문번호</th>
 					<th class="text-center">판매주문번호</th>
+					<th class="text-center">금액(원)</th>
 					<th class="text-center">상태</th>
 					<th class="text-center">비고</th>
 					<th class="text-center">조회</th>
@@ -315,7 +315,7 @@ $(function(){
 										</select><br>
 				
 				<div id="order_no"></div>
-				<label>금액</label> 		<input class="form-control" name="total_amount" id="total_amount" onkeyup="inputNumberFormat(this)"> <br>  
+				<label>금액(원)</label> 		<input class="form-control" name="total_amount" id="total_amount" onkeyup="inputNumberFormat(this)"> <br>  
 				<label>상태</label> 		<select class="form-control" name="condition" id="condition">
 											<option value="" selected>==선택하세요==</option>
 											<option value="완납">완납</option>

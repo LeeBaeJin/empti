@@ -113,6 +113,7 @@ function btnUpdate(empId, loginId) {
 	}
 }
 
+
 </script>  
 <div class="col-sm-12 my-auto">
 	<h2 class="display-4 text-dark"  style=font-size:30px;>사원수정</h2>
@@ -131,7 +132,7 @@ function btnUpdate(empId, loginId) {
 								 <br/>
 		<label>이메일 </label>		 <input name="email" value="${empUp.email}"> <br/>
 		<label>입사일 </label>		 <input name="hire_date" value="${empUp.hire_date}" type="date"> <br/>
-		<label>급여 </label>		 <input name="salary" value="${empUp.salary}"   onkeyup="inputNumberFormat(this)"> <br/>
+		<label>급여 </label>		 <input name="salary" value="${empUp.salary}" onkeyup="inputNumberFormat(this)"> <br/>
 		<label>계약유형 </label>	 <input name="position" value="${empUp.position}"> <br/>
 		<label>상태 </label>		 <input name="status" value="${empUp.status}"> <br/>
 		<label>거래은행 </label>	 <input name="bank_name" value="${empUp.bank_name}"> <br/>

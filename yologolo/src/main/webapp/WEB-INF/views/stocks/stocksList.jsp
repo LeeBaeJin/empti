@@ -19,7 +19,7 @@
 			<a href="" class="btn btn-outline-primary">전체내역</a> | 
 			<a href="" class="btn btn-outline-primary">입고내역</a> |
 			<a href="" class="btn btn-outline-primary">출고내역</a> <br><br>
-			<table class="table table-bordered" id="dataTable" style="width: 100%; cellspacing=0;">
+			<table class="table table-bordered stockTbl" id="dataTable" style="width: 100%; cellspacing=0;">
 				<thead id="tblHead">
 					<tr style="text-align: center;">
 						<th><input type="checkbox" class="chkAll"></th>
@@ -62,3 +62,4 @@
 		</div>
 	</div>
 </div>
+<button type="button" class="btn btn-success">출고</button>
