@@ -17,7 +17,7 @@
 	<div class="card-body">
 		<div class="table-responsive">
 			<a href="" class="btn btn-outline-primary">전체내역</a> | 
-			<a href="" class="btn btn-outline-primary">입고내역</a>
+			<a href="" class="btn btn-outline-primary">입고내역</a> |
 			<a href="" class="btn btn-outline-primary">출고내역</a> <br><br>
 			<table class="table table-bordered" id="dataTable" style="width: 100%; cellspacing=0;">
 				<thead id="tblHead">
@@ -37,17 +37,20 @@
 				<tbody id="tblBody">
 					<c:forEach items="${stocks}" var="stc">
 						<tr>
-							<td><input type="checkbox" value="${stc.stock_no}"></td>
-							<td>${stc.stock_date}</td>
+							<td align="center"><input type="checkbox" value="${stc.stock_no}"></td>
+							<td>
+								<fmt:parseDate value="${stc.stock_date}" var="fmtDate" pattern="yyyy-MM-dd HH:mm:ss"/>
+								<fmt:formatDate value="${fmtDate}" pattern="yyyy-MM-dd HH:mm"/>
+							</td>
 							<td>${stc.stock_category}</td>
-							<c:if test="${stc.stock_category} == '입고'">
-							<td>${stc.border_no}</td>
+							<c:if test="${stc.stock_category eq '입고'}">
+								<td>B_${stc.border_no}</td>
 							</c:if>
-							<c:if test="${stc.stock_category} == '출고'">
-							<td>${stc.sorder_no}</td>
+							<c:if test="${stc.stock_category eq '출고'}">
+								<td>S_${stc.sorder_no}</td>
 							</c:if>
 							<td>${stc.item_name}</td>
-							<td>${stc.stock_qty}</td>
+							<td align="right">${stc.stock_qty}</td>
 							<td>${stc.company_name}</td>
 							<td>${stc.strg_category }</td>
 							<td>${stc.stock_status}</td>
