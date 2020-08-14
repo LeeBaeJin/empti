@@ -37,7 +37,7 @@
 		SELECT stockBorder_seq.nextval, A.*
 		from (
 		<foreach collection="list" item="item" separator="UNION ALL">
-			select #{stock_date}, #{stock_category}, #{stock_status},
+			select #{stock_date}, #{stock_category}, '재고',
 			#{item.border_no}, #{item.stock_qty}, #{item.strg_no}, #{item.item_no}
 			from dual
 		</foreach>

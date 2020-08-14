@@ -11,8 +11,19 @@
 		findStockBorderList();	
 		strgList();
 		
-	});
-	
+		$('#insertBtn').on('click', function() {
+			$('.checkbox:checked').each(function(idx, item) {
+				var item_no = $(this).closest('tr').find('.td').text()
+			});
+		});
+		
+	    $(".chkAll").click(function(){
+	        var chk = $(this).is(":checked");//.attr('checked');
+	        if(chk) $(".checkbox ").prop('checked', true);
+	        else  $(".checkbox ").prop('checked', false);
+	    });
+		
+	});	
 	function findStockBorderList() {
 	      $.ajax({
 	          url:'findStockBorderNo',
@@ -59,6 +70,8 @@
 	         .appendTo('tbody');	
 		});
 	}
+	
+
 </script>
 <div class="col-sm-12 my-auto">
 	<h2 class="display-4 text-dark" style=font-size:35px;>입고 입력</h2>
@@ -68,7 +81,8 @@
 		<label>입고 일자</label>	<input value="${serverTime}" type="datetime-local" name="stock_date" class="form-control" style="width: 260px; display: inline;"><br/>
 
 		<label>유형</label>		<input value="입고" name="stock_category" class="form-control" style="width: 80px; display: inline;" readonly="readonly"><br/>
-		<label>주문 조회</label>									
+		<label>주문 조회</label>	
+								
 		<table border="1" id="orderTable" class="table table-bordered" style="width: 70%;">
 			<thead>
 				<tr>
