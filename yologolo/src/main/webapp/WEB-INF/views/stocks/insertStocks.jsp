@@ -6,12 +6,59 @@
 	label{display:inline-block; width:100px;}
 </style>
 <script>
+	var option="";
 	$(function() {
-		$('#orderBtn').on('click', function() {
-			window.open('findStockBorderNo', 'dddd', 'width=800px, height=800, left=200px, top=200px');
-		});
+		findStockBorderList();	
+		strgList();
 		
 	});
+	
+	function findStockBorderList() {
+	      $.ajax({
+	          url:'findStockBorderNo',
+	          type:'GET',         
+	          dataType:'json',
+	          error:function(xhr,status,msg){
+	             alert("상태값 :" + status + " 에러 메세지:"+msg);
+	          },
+	          success:findListResult
+	       });	
+	}
+	
+	function strgList() {
+		$.ajax({
+			url: 'strgList',
+			type: 'GET',
+			dataType: 'json',
+			success: findStrgList	
+		});
+	}
+	
+	function findStrgList(data){
+		$.each(data, function(idx,item){
+			option += '<option value="' + item.strg_no +'">' +item.strg_category+ '</option>'
+		});
+		
+	}
+	
+	function findListResult(data) {
+		$("tbody").empty();
+		$.each(data,function(idx,item){
+			 $('<tr>')
+	   		 .append($('<td>').html(idx+1))
+	         .append($('<td>').html(item.border_date))
+	         .append($('<td>').html(item.company_name))      
+	         .append($('<td>').html(item.item_name))
+	         .append($('<td>').html(item.border_qty))
+	         .append($('<td>').append($('<select>').html(option)))
+	         .append($('<td>').html('<input type="checkbox" class="checkbox" value="'+ item.border_no + '"/>'))
+	         .append($('<td>').html(item.border_no).css("display", "none"))
+	         .append($('<td>').html(item.borderdetail_no).css("display", "none"))
+    	     .append($('<td>').html(item.item_no).css("display", "none"))
+    	     .append($('<td>').html(item.company_no).css("display", "none"))
+	         .appendTo('tbody');	
+		});
+	}
 </script>
 <div class="col-sm-12 my-auto">
 	<h2 class="display-4 text-dark" style=font-size:35px;>입고 입력</h2>
@@ -30,12 +77,15 @@
 				<tr>
 					<th>#</th>
 					<th>주문날짜</th>
-					<th>거래처</th>
+					<th>거래처명</th>
 					<th>품목명</th>
 					<th>수량</th>
 					<th>창고</th>
-					<th>선택</th>
-					<th style="display: none;">주문번호</th>
+					<th><input type="checkbox" class="chkAll"/></th>
+					<th style="display:none;">주문번호</th>
+					<th style="display:none;">주문상세번호</th>
+					<th style="display:none;">품목코드</th>
+					<th style="display:none;">거래처번호</th>
 				</tr>
 			</thead>
 			<tbody id="tblBody">

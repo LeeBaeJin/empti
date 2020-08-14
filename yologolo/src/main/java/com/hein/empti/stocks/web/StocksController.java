@@ -1,6 +1,7 @@
 package com.hein.empti.stocks.web;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,10 +74,9 @@ public class StocksController {
 		return "admin/stocks/insertStocks";
 	}
 	
-	@RequestMapping("findStockBorderNo")
-	public String findStockBorderNo(Model model, StocksVO stocksVO, StoragesVO storagesVO) {
-		model.addAttribute("storages", storagesService.getStoragesList(storagesVO));
-		model.addAttribute("findStcBo", stocksService.findStockBorderNo(stocksVO));
-		return "common/findStockBorderNo";
+	@RequestMapping(value="/findStockBorderNo", method=RequestMethod.GET)
+	@ResponseBody
+	public List<StocksVO> findStockBorderNo(Model model, StocksVO stocksVO) {
+		return stocksService.findStockBorderNo(stocksVO);
 	}
 }
