@@ -27,11 +27,11 @@ public class StocksController {
 	@Autowired StoragesService storagesService;
 
 	// 등록폼
-	@RequestMapping("/setStocksForm")
+	@RequestMapping("/setInsertStocks")
 	public String setInsertFormStocks(Model model, ItemsVO itemsVO, StoragesVO storagesVO) {
 		model.addAttribute("storages", storagesService.getStoragesList(storagesVO));
 		model.addAttribute("items", itemsService.getItemsList(itemsVO));
-		return "admin/stocks/insertStocksAjax";
+		return "admin/stocks/insertStocks";
 	}
 
 	// 등록
@@ -47,8 +47,6 @@ public class StocksController {
 
 	// 수정
 	@RequestMapping(value = "/adminStocks", method = RequestMethod.PUT, consumes = "application/json")
-	// ,headers = {"Content-type=application/json"})
-	// 요청헤더
 	@ResponseBody
 	public StocksVO setUpdateStocks(@RequestBody StocksVO stocksVO, Model model) {
 		stocksService.setUpdateStocks(stocksVO);

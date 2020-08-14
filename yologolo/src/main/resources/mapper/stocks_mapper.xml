@@ -64,8 +64,7 @@
 	</update>
 
 	<!-- 입출고 단건조회 -->
-	<select id="getStocks" resultType="StocksVO"
-		parameterType="StocksVO">
+	<select id="getStocks" resultType="StocksVO" parameterType="StocksVO">
 		SELECT 		s.*, i.*
 		FROM		stocks s, items i
 		WHERE 		s.item_no = i.item_no and
