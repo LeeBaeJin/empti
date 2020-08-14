@@ -16,6 +16,13 @@ a.role {
 		
 		return false;
 	}
+	
+function empDetails(empId) {
+	window.open('getEmpDetail?emp_id=' + empId,
+			'empDetail',
+			'width=800, height=500, left=200, top=200, location=no, status=no, scrollbars=yes');
+return false;
+} 
 </script>
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
@@ -33,7 +40,7 @@ a.role {
 			<table class="table table-bordered" id="dataTable" style="width: 100%;">
 				<thead>
 					<tr style="text-align: center;">
-						<th style="width: 100px;">사원번호</th>
+						<th style="width: 100px;">사원번호</a></th>
 						<th>이름</th>
 						<th>입사일</th>
 						<th>구분</th>
@@ -48,7 +55,7 @@ a.role {
 				<tbody id="tblBody">
 					<c:forEach items="${empList}" var="emp">
 						<tr>
-							<td>${emp.emp_id}</td>
+							<td> <a href="javascript:void(0);" onclick="empDetails(${emp.emp_id});">${emp.emp_id}</a></td>
 							<td>${emp.name}</td>
 							<td>${emp.hire_date}</td>
 							<td>${emp.position}</td>
