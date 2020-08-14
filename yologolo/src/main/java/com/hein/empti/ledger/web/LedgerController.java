@@ -94,7 +94,7 @@ public class LedgerController {
 	public ModelAndView getLedgerListReport(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("pdfView");
-		mv.addObject("filename", "/reports/ledger_list.jrxml");
+		mv.addObject("filename", "/reports/ledgerList.jrxml");
 		return mv;
 	}
 	
