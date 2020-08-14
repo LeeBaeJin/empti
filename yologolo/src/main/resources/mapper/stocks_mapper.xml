@@ -13,7 +13,6 @@
                        JOIN companies c ON (b.company_no = c.company_no)
 	</select>
 	
-	
 	<select id="findStockBorderNo" parameterType="StocksVO" resultType="StocksVO">
 		SELECT   bd.*, b.border_date, c.company_no, c.company_name, i.item_name
 		FROM     buyorders b, buyorderdetails bd, items i ,companies c
@@ -23,24 +22,27 @@
 		ORDER BY b.border_no
 	</select>
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	<!-- 판매주문 배송상태 수정 -->
+	<insert id="setInsertStockBorders" parameterType="java.util.List">
+		INSERT INTO stocks (
+			stock_no,
+			stock_date,
+			stock_category,
+			stock_status,
+			border_no,
+			stock_qty,
+			strg_no,
+			item_no
+		)
+		SELECT stockBorder_seq.nextval, A.*
+		from (
+		<foreach collection="list" item="item" separator="UNION ALL">
+			select #{stock_date}, #{stock_category}, #{stock_status},
+			#{item.border_no}, #{item.stock_qty}, #{item.strg_no}, #{item.item_no}
+			from dual
+		</foreach>
+		) "A"
+	</insert>
 
 	<!-- stockexcel_view 전체조회 Map(Excel) -->
 	<select id="getStocksMap" resultType="map"	parameterType="StocksVO">

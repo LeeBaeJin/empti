@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.hein.empti.items.ItemsVO;
 import com.hein.empti.items.service.ItemsService;
+import com.hein.empti.saleorderdetails.SaleorderdetailsVO;
 import com.hein.empti.stocks.StocksVO;
 import com.hein.empti.stocks.service.StocksService;
 import com.hein.empti.storages.StoragesVO;
@@ -106,5 +107,16 @@ public class StocksController {
 																														// 값만
 																														// 출력된다.
 		return mv;
+	}
+	
+	//다중 Insert
+	//판매상세주문 다중 Insert
+	@RequestMapping("/setInsertStockBorders")
+	@ResponseBody
+	public Map setInsertStockBorders(@RequestBody List<StocksVO> list) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("success", true);
+		stocksService.setInsertStockBorders(list);
+		return map;
 	}
 }

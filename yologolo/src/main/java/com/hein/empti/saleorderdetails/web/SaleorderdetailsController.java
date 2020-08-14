@@ -28,5 +28,4 @@ public class SaleorderdetailsController {
 		service.setSaleorderdetailInsert(list);
 		return map;
 	}
-
 }

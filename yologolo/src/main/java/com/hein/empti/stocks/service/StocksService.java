@@ -18,4 +18,7 @@ public interface StocksService {
 	
 	//stock_view (Map) 엑셀
 	public List<Map<String, Object>> getStocksMap(StocksVO vo);
+	
+	//다중 Insert
+	public void setInsertStockBorders(List<StocksVO> list);
 }
