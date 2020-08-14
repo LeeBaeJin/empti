@@ -79,7 +79,7 @@ public class LedgerController {
 	@RequestMapping(value = "/ledgers", method = RequestMethod.GET)
 	@ResponseBody
 	public List<LedgerVO> LedgerList(Model model, LedgerVO ledgerVO) {
-		return ledgerService.getLedgerList(ledgerVO);
+		return ledgerService.getLedgerPdfList(ledgerVO);
 	}
 	
 	// 내역 조회

@@ -213,17 +213,19 @@ $(function(){
 	function numberWithCommas(x) {
 	    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	}
+	
 	// 조회 응답 . 리스트 뿌려줌.
 	function ledgerListResult(data) {
 		$("tbody").empty();
 		$.each(data,function(idx,item){
+			var amount = numberWithCommas(item.total_amount) +"&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
 			$('<tr>')
 			.append($('<td>').html(item.ldgr_no))
 			.append($('<td>').html(item.ldgr_date))
 			.append($('<td>').html(item.status))
 			.append($('<td>').html(item.border_no))
 			.append($('<td>').html(item.sorder_no))
-			.append($('<td align="right">').html(numberWithCommas(item.total_amount)))
+			.append($('<td align="right">').html(amount))
 			.append($('<td>').html(item.condition))
 			.append($('<td>').html(item.note))
 			.append($('<td>').html('<button id=\'btnSelect\' class=\'btn btn-info\'>조회</button>'))
@@ -288,8 +290,8 @@ $(function(){
 					<th class="text-center">날짜</th>
 					<th class="text-center">구분</th>
 					<th class="text-center">구매주문번호</th>
-					<th class="text-center">금액(원)</th>
 					<th class="text-center">판매주문번호</th>
+					<th class="text-center">금액(원)</th>
 					<th class="text-center">상태</th>
 					<th class="text-center">비고</th>
 					<th class="text-center">조회</th>
