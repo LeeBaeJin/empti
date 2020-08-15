@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<script src="https://code.jquery.com/jquery-3.5.1.js"
-	integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <style>
 	label{display:inline-block; width:100px;}
 </style>
@@ -33,6 +32,19 @@
 		}
 		frm.submit();
 	}
+	
+	//콤마 포맷팅
+    function inputNumberFormat(obj) {
+        obj.value = comma(uncomma(obj.value));
+    }
+    function comma(str) {
+        str = String(str);
+        return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+    }
+    function uncomma(str) {
+        str = String(str);
+        return str.replace(/[^\d]+/g, '');
+    }
 
 </script>
 <div align="center" >
@@ -51,7 +63,7 @@
 								<br/>
 		<label>단위</label>		<input name="unit" id="unit" class="form-control"><br/>
 		<label>유통기한(일)</label>	<input name="exp_date" id="exp_date" class="form-control"><br/>
-		<label>단가</label>	<input name="item_price" id="item_price" class="form-control"><br/>
+		<label>단가</label>	<input name="item_price" id="item_price" class="form-control" onkeyup="inputNumberFormat(this)"><br/>
 	<div align="center">
 		<button class="btn btn-success" type="button" onclick="validCheck()">등록</button>
 	</div><br/>

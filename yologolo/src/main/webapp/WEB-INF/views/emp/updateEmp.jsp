@@ -119,7 +119,7 @@ function btnUpdate(empId, loginId) {
 	<h2 class="display-4 text-dark"  style=font-size:30px;>사원수정</h2>
 	<hr class="sidebar-divider d-none d-md-block" width="43%" align="left"> 
 	<form id="setUpdateEmp" method="post" enctype="multipart/form-data" class="form form-group">
-		<label>사원아이디 </label>	 <input name="emp_id" value="${empUp.emp_id}" readonly> <br/>
+		<label>사원아이디 </label>	 <input name="emp_id" value="${empUp.emp_id}" readonly="readonly"> <br/>
 		<label>이름 </label>		 <input name="name" value="${empUp.name}"> <br/>
 		<label>패스워드 </label>	 <input type="password" name="pwd" id="pwd" class="pw" value="${empUp.pwd}"> <br/>
 		<label>패스워드 확인 </label> <input type="password" name="pwd2" id="pwd2" class="pw" value="${empUp.pwd2}"> <br/>

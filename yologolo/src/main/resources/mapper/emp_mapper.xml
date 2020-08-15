@@ -8,7 +8,6 @@
 		FROM   employees e LEFT OUTER JOIN departments d
 		ON 	  e.emp_id = d.emp_id 
 		WHERE e.emp_id = #{emp_id}
-		ORDER BY emp_id
 	</select>
 
 	<!-- emp Map(Excel) -->
