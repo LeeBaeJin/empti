@@ -1,6 +1,7 @@
 package com.hein.empti.stocks.web;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.hein.empti.items.ItemsVO;
 import com.hein.empti.items.service.ItemsService;
+import com.hein.empti.saleorderdetails.SaleorderdetailsVO;
 import com.hein.empti.stocks.StocksVO;
 import com.hein.empti.stocks.service.StocksService;
 import com.hein.empti.storages.StoragesVO;
@@ -26,12 +28,9 @@ import com.hein.empti.storages.service.StoragesService;
 @Controller
 public class StocksController {
 
-	@Autowired
-	StocksService stocksService;
-	@Autowired
-	ItemsService itemsService;
-	@Autowired
-	StoragesService storagesService;
+	@Autowired StocksService stocksService;
+	@Autowired ItemsService itemsService;
+	@Autowired StoragesService storagesService;
 
 	// 등록
 	@RequestMapping(value = "/adminStocks", method = RequestMethod.POST)
@@ -63,28 +62,29 @@ public class StocksController {
 		stocksVO.setStock_date(stocksVO.getStock_date().substring(0, 16));
 		return stocksVO;
 	}
-
-	// 0814 부터
+	
+	
+	//0814 부터
 	// 입출고내역 조회
 	@RequestMapping("/getStocksList")
 	public String getStocksList(Model model, StocksVO vo) {
 		model.addAttribute("stocks", stocksService.getStocksList(vo));
 		return "admin/stocks/stocksList";
 	}
-
+	
 	// 등록폼
 	@RequestMapping("/setInsertStocks")
 	public String setInsertFormStocks(Model model, ItemsVO itemsVO, StoragesVO storagesVO) {
 		model.addAttribute("items", itemsService.getItemsList(itemsVO));
 		return "admin/stocks/insertStocks";
 	}
-
-	@RequestMapping("findStockBorderNo")
-	public String findStockBorderNo(Model model, StocksVO stocksVO, StoragesVO storagesVO) {
-		model.addAttribute("storages", storagesService.getStoragesList(storagesVO));
-		model.addAttribute("findStcBo", stocksService.findStockBorderNo(stocksVO));
-		return "common/findStockBorderNo";
+	
+	@RequestMapping(value="/findStockBorderNo", method=RequestMethod.GET)
+	@ResponseBody
+	public List<StocksVO> findStockBorderNo(Model model, StocksVO stocksVO) {
+		return stocksService.findStockBorderNo(stocksVO);
 	}
+	
 	// view resolver 방식
 
 	@RequestMapping("stockslist.do")
@@ -107,5 +107,16 @@ public class StocksController {
 																														// 값만
 																														// 출력된다.
 		return mv;
+	}
+	
+	//다중 Insert
+	//판매상세주문 다중 Insert
+	@RequestMapping("/setInsertStockBorders")
+	@ResponseBody
+	public Map setInsertStockBorders(@RequestBody List<StocksVO> list) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("success", true);
+		stocksService.setInsertStockBorders(list);
+		return map;
 	}
 }
