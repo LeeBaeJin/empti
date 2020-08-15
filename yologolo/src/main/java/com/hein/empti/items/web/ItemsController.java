@@ -29,8 +29,7 @@ public class ItemsController {
 	// 등록 처리
 	@RequestMapping("/setInsertItems")
 	public String setInsertItems(ItemsVO vo) {// 1.커맨드객체는 자동으로 모델에 저장됨. model.addAttribute
-		// model.addAttribute("evo", vo);
-		// 서비스호출
+		vo.setItem_price(vo.getItem_price().replace(",", ""));
 		itemsService.setInsertItems(vo);
 		return "redirect:getItemsList";
 	}

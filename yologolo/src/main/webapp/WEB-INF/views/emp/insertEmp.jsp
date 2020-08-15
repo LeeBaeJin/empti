@@ -215,8 +215,8 @@ function check() {
 		<label>상태</label>		<select name="status" id="status" class="form-control" style="width: 250px; display: inline;">
 									<option value="" selected> ======선택하세요====== </option>
 									<option>재직</option>
-									<option>퇴직</option>
 									<option>휴가</option>
+									<option>퇴직</option>
 								</select> <br/>
 		<label>거래은행</label>	<input name="bank_name" id="bank_name" type="text" class="form-control" style="width: 250px; display: inline;">
 								<button type="button" value="은행선택" id="btnFindBank" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" width="30px" height="30px"></button>
