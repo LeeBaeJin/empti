@@ -55,10 +55,11 @@ public class ItemsController {
 		System.out.println(vo);
 		return "admin/items/updateItems";
 	}
-
+	
 	// 수정처리
 	@RequestMapping("/setUpdateItems")
 	public String setUpdateItems(ItemsVO vo) {
+		vo.setItem_price(vo.getItem_price().replace(",", ""));
 		itemsService.setUpdateItems(vo);
 		return "redirect:getItemsList";
 	}

@@ -30,7 +30,7 @@ function uncomma(str) {
 	<hr class="sidebar-divider d-none d-md-block" style="width: 15%;"> 
 		<form action="setUpdateItems" class="form form-group">
 			<div class="col-sm-2" align="left">
-				<label>품목코드</label>	<input  class="form-control" name="item_no" value="${updateList.item_no}" readonly><br/>
+				<label>품목코드</label>	<input  class="form-control" name="item_no" value="${updateList.item_no}" readonly="readonly"><br/>
 				<label>품목명</label>		<input  class="form-control" name="item_name" value="${updateList.item_name}"><br/>
 				<label>품목유형</label>	<input  class="form-control" name="category" value="${updateList.category}"><br/>
 				<label>단위</label>		<input  class="form-control" name="unit" value="${updateList.unit}" ><br/>
