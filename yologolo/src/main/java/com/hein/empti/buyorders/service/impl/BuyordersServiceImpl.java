@@ -23,6 +23,12 @@ public class BuyordersServiceImpl implements BuyordersService{
 	public List<Map<String, Object>> getBuyordersListMap(BuyordersVO buyordersVO) {
 		return buyordersMapper.getBuyordersListMap(buyordersVO);
 	}
+	
+	//잔여금
+	@Override
+	public List<Map<String, Object>> getBuyordersBalMap(BuyordersVO buyordersVO) {
+		return buyordersMapper.getBuyordersBalMap(buyordersVO);
+	}
 
 	@Override
 	public BuyordersVO getBuyorders(BuyordersVO buyordersVO) {
