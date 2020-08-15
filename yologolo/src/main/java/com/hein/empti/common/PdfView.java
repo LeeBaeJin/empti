@@ -37,6 +37,7 @@ public class PdfView extends AbstractView {
 		String reportFile = (String)model.get("filename");
 		InputStream jasperStream = getClass().getResourceAsStream(reportFile);
 		JasperReport jasperReport = JasperCompileManager.compileReport(jasperStream);
+		
 		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, conn);
 		JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream()); }
 

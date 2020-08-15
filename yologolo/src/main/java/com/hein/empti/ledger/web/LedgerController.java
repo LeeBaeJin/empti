@@ -24,13 +24,6 @@ import com.hein.empti.ledger.service.LedgerService;
 import com.hein.empti.saleorders.SaleordersVO;
 import com.hein.empti.saleorders.service.SaleordersService;
 
-import net.sf.jasperreports.engine.JRDataSource;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-
 @Controller
 public class LedgerController {
 
@@ -102,23 +95,26 @@ public class LedgerController {
 	
 	  // view resolver 방식
 	  
-	 @RequestMapping("ledger_list.do") public ModelAndView
-	  getLedgerListReport(HttpServletRequest request, HttpServletResponse response)
-	  throws Exception { ModelAndView mv = new ModelAndView();
-	  mv.setViewName("pdfView"); mv.addObject("filename",
-	  "/reports/ldgr_view2.jrxml"); return mv; }
+	 @RequestMapping("ledger_list.do") 
+	 public ModelAndView getLedgerListReport (HttpServletRequest request, HttpServletResponse response)
+			 								throws Exception { 
+			  ModelAndView mv = new ModelAndView();
+			  mv.setViewName("pdfView"); 
+			  mv.addObject("filename", "/reports/ldgr_view2.jrxml"); 
+			  return mv; 
+	  }
 	 
 
 	// pdf 파라미터 지정
 	/*
-	 * @RequestMapping("ledger_list.do") public ModelAndView
-	 * getLedgerListReport(HttpServletRequest request, HttpServletResponse response)
-	 * throws Exception { // jrxml 소스 지정 String path =
-	 * request.getSession().getServletContext().getRealPath("filename",
-	 * "/reports/ldgr_view2.jrxml"); JasperReport jasperReport =
-	 * JasperCompileManager.compileReport(path); JRDataSource JRdataSource = new
-	 * JRBeanCollectionDataSource(userService.getListMap(null)); JasperPrint
-	 * jasperPrint = JasperFillManager.fillReport(jasperReport, map, JRdataSource);
+	 * @RequestMapping("ledger_list.do") 
+	 * public ModelAndView getLedgerListReport(HttpServletRequest request, HttpServletResponse response)
+	 * throws Exception { 
+	 * // jrxml 소스 지정
+	 * String path =request.getSession().getServletContext().getRealPath("filename", "/reports/ldgr_view2.jrxml"); 
+	 * JasperReport jasperReport = JasperCompileManager.compileReport(path); 
+	 * JRDataSource JRdataSource = new JRBeanCollectionDataSource(userService.getListMap(null)); 
+	 * JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, map, JRdataSource);
 	 * }
 	 */
 
