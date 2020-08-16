@@ -160,6 +160,6 @@ function btnUpdate(empId, loginId) {
 								<br/>
 		<label>이미지 </label>    <input type="file" name="uploadFile" / class="form-control" style="width: 250px; display: inline;">${empUp.profile}<br>
 								<input type="hidden" name="uploadFile" value="${empUp.profile}"><br>
-		<button type="button" onclick="btnUpdate(${empUp.emp_id},${login.emp_id})" class="btn btn-success">수정</button>
+		<button type="button" onclick="btnUpdate(${empUp.emp_id},${login.emp_id})" class="btn btn-primary">수정</button>
 	</form>
 </div>

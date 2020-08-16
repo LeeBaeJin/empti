@@ -34,6 +34,10 @@ function check() {
 		frm.emp_id.focus();
 		return;
 	}
+	var conf = confirm("부서를 등록하시겠습니까?");
+	if (conf) {
+		frm.submit();
+	}
 }
 
 </script>    
@@ -54,7 +58,7 @@ function check() {
 									 <span id="emp_name"></span>
 									 <br/>
 			 <div align="center">
-				<button type="submit" onclick="check()"  class="btn btn-success">등록</button>
+				<button type="button" onclick="check()"  class="btn btn-success">등록</button>
 			 </div>
 		 </div>						 
 	</form>
