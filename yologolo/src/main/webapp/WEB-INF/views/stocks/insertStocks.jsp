@@ -28,6 +28,7 @@
 					obj['border_no'] = borderNo;
 					obj['item_no'] = $(this).closest('tr').children().eq(9).text();		
 					obj['strg_no'] = $(this).closest('tr').find('.strgNo').val();
+					obj['real_qty'] = $(this).closest('tr').children().eq(4).text();
 					console.log(borderNo)
 					td.push(obj);
 					});

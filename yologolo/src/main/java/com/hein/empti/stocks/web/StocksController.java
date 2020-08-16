@@ -132,4 +132,29 @@ public class StocksController {
 		stocksService.setInsertStockBorders(list);
 		return "jhi";
 	}
+	
+	//출고 처리
+	@RequestMapping(value = "/setInsertStockRelease", method = RequestMethod.POST)
+	@ResponseBody
+	public String setInsertStockRelease(@RequestBody List<StocksVO> list) {
+		stocksService.setInsertStockRelease(list);
+		stocksService.setUpdateReal(list);
+		return "jhi";
+	}
+	
+	
+	
+	//입고 조회
+	@RequestMapping("/getWarehousingList")
+	public String getWarehousingList(StocksVO stocksVO, Model model) {
+		model.addAttribute("wareList", stocksService.getWarehousingList(stocksVO)) ;
+		return "admin/stocks/wareList";
+	}
+	
+	//출고 조회
+	@RequestMapping("/getReleaseList")
+	public String getReleaseList(StocksVO stocksVO, Model model) {
+		model.addAttribute("releList", stocksService.getReleaseList(stocksVO));
+		return "admin/stocks/releList";
+	}
 }
