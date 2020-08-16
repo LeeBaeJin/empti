@@ -33,7 +33,7 @@ function uncomma(str) {
 				<label>품목유형</label>	<input  class="form-control" name="category" value="${updateList.category}"><br/>
 				<label>단위</label>		<input  class="form-control" name="unit" value="${updateList.unit}" ><br/>
 				<label>유통기한</label>	<input  class="form-control" name="exp_date" value="${updateList.exp_date}"><br/>
-				<label>가공품 원가</label>	<input  class="form-control" name="item_price" value="${updateList.item_price}" onkeyup="inputNumberFormat(this)"> <br/>
+				<label>단가</label>	<input  class="form-control" name="item_price" value="${updateList.item_price}" onkeyup="inputNumberFormat(this)"> <br/>
 		
 				<div align="center">
 					<button class="btn btn-primary" type="submit">수정</button>
