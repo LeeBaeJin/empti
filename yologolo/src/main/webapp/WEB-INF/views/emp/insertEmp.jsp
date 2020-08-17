@@ -194,8 +194,8 @@ function check() {
 	<form action="setInsertEmp" id="frm" method="post" enctype="multipart/form-data" class="from-group">
 		<label>사원아이디</label>	<input name="emp_id" id="emp_id" value="${empId.emp_id}" class="form-control" style="width: 250px; display: inline;"> <br/>
 		<label>이름</label>		<input name="name" id="name"class="form-control" style="width: 250px; display: inline;"> <br/>
-		<label>패스워드</label>	<input type="password" name="pwd" id="pwd" class="form-control pw" style="width: 250px; display: inline;"> <br/>
-		<label>패스워드 확인</label>	<input type="password" name="pwd2" id="pwd2" class="form-control pw" style="width: 250px; display: inline;"> <br/>
+		<label>패스워드</label>	<input type="password" id="pwd"  class="form-control pw" name="pwd" style="width: 250px; display: inline;"> <br/>
+		<label>패스워드 확인</label>	<input type="password" id="pwd2" class="form-control pw" name="pwd2"style="width: 250px; display: inline;"> <br/>
 		<div id="pw"></div>
 		<label>전화번호</label>	<input name="phone" id="phone" class="form-control" style="width: 250px; display: inline;"> <br/>
 		<label>주소</label>			<input class="form-control" name="zip_code" id="addr1" readonly="readonly" style="width: 10%; display: inline;" placeholder="우편번호">

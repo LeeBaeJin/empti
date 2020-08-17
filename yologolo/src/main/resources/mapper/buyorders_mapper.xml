@@ -27,14 +27,15 @@
                 b.border_no										"border_no",
                 b.return_no										"return_no",
                 b.status										"status",
-                (b.buy_sum - s.sum ) 							"balance"
+                (b.buy_sum - nvl(s.sum,0) ) 					"balance"
     FROM        buyorders b ,
                 companies p ,
                 employees e ,
                 (select border_no, sum(total_amount) sum from ledger group by border_no) s
     WHERE       b.company_no = p.company_no AND
                 b.emp_id     = e.emp_id     AND
-                b.border_no  = s.border_no
+                b.border_no  = s.border_no(+)  AND
+                (b.buy_sum - nvl(s.sum,0) )>0  
 	</select>
 	
 	
