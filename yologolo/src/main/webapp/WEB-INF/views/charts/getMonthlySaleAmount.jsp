@@ -21,7 +21,7 @@
 			  for(i=0; i<result.length; i++){
 				  chartdata.push([
 					  			result[i].ldgr_date,
-					  			parseInt(result[i].total_amount)/1000000, 
+					  			parseInt(result[i].total_amount)/100000, 
 					  			parseInt(result[i].count)]); //push : data담음
 			  }
 		  }
@@ -30,7 +30,7 @@
 	  
       var options = {
         title : '월별 매출액 및 건수',
-        vAxis: {title: '매출액(백만원)'},
+        vAxis: {title: '매출액(십만원)'},
         hAxis: {title: '날짜'},
         seriesType: 'bars',
         series: {1: {type: 'line'}}        };
