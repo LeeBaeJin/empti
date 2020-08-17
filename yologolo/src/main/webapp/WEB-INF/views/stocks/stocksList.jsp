@@ -7,6 +7,13 @@
 
 <script>
 $(function() {
+	//데이터 테이블 입출고일자 역 정렬
+	$('#dataTable').DataTable({
+		  order: [[1, 'desc']],
+		  ordering: true,
+		  serverSide: false
+	});
+	
 	$("#releBtn").on('click', function(){
 		var td = [];
 		var inputQty;
@@ -57,7 +64,7 @@ $(function() {
 	<div class="card-header py-3">
 		<h6 class="m-0 font-weight-bold text-primary">
 			<a href="getStocksList">입출고 목록</a> | 
-			<a href="setInsertStocks">입출고내역 입력</a> |
+			<a href="setInsertStocks">입고 입력</a> |
 			<a href= "stockslist.do" onclick="window.open(this.href, 'width=800', 'height=1200', 'toolbars=no', 'scrollbars=yes'); return false">PDF</a> |
 			<a href="stocksexcell.do">EXCEL</a> 
 		</h6>
