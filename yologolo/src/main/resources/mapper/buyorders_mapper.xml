@@ -36,6 +36,7 @@
                 b.emp_id     = e.emp_id     AND
                 b.border_no  = s.border_no(+)  AND
                 (b.buy_sum - nvl(s.sum,0) )>0  
+    ORDER BY	b.border_no DESC
 	</select>
 	
 	
