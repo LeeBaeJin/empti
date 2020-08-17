@@ -30,6 +30,10 @@
 	<title>
 		<band height="180" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<image>
+				<reportElement x="-20" y="-20" width="595" height="190" uuid="cfc1c6d4-9bfc-4863-9f77-bc33418e0b3a"/>
+				<imageExpression><![CDATA["images/pdf_image05.jpg"]]></imageExpression>
+			</image>
 			<staticText>
 				<reportElement mode="Opaque" x="267" y="93" width="235" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="dd4294ee-d215-422f-b296-71cb5a1ff344">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7ab5b1f5-f07b-46d5-8af7-32249693c294"/>
@@ -46,10 +50,6 @@
 				</textElement>
 				<text><![CDATA[부서현황]]></text>
 			</staticText>
-			<image>
-				<reportElement x="-20" y="-20" width="595" height="190" uuid="cfc1c6d4-9bfc-4863-9f77-bc33418e0b3a"/>
-				<imageExpression><![CDATA["images/pdf_image05.jpg"]]></imageExpression>
-			</image>
 		</band>
 	</title>
 	<columnHeader>
@@ -119,8 +119,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="나눔고딕" size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{부서번호}== null ? "" : $F{부서번호}
-]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{부서번호}== null ? "" : $F{부서번호}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="185" y="0" width="185" height="30" uuid="e6983400-d45b-42f3-80bf-9343ffa66f4d">
@@ -136,8 +135,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="나눔고딕" size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{부서명}== null ? "" : $F{부서명}
-]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{부서명}== null ? "" : $F{부서명}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="370" y="0" width="185" height="30" uuid="1c07df45-dc80-4946-b17c-869796fbcfb4">
