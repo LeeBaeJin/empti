@@ -72,7 +72,7 @@ $(function() {
 				<thead id="tblHead">
 					<tr style="text-align: center;">
 						<th>주문일자</th>
-						<th>판매합계</th>
+						<th>구매합계</th>
 						<th style="width: 200px;">배송상태&nbsp;
 						<button class="btn btn-success btn-sm" type="button" id="delUpdate" style="">수정</button>
 						</th>
