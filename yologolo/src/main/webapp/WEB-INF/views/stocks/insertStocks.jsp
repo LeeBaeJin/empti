@@ -143,6 +143,5 @@
 			</tbody>
 		</table>						
 		<button type="button" id="insertBtn" class="btn btn-success">입력</button>
-		<button type="button" id="resetBtn" class="btn btn-warning">초기화</button>								
 	</form>
 </div>

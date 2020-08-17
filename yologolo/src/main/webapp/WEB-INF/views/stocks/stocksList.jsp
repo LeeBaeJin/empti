@@ -13,6 +13,7 @@ $(function() {
     	$('.checkBox:checked').each(function(idx, item) {
     		var obj = {};
     		var inputQty = prompt("출고 수량을 입력해주세요.", "");
+    		//var itemName = $(this).closest('tr').children().eq(4).text();
     		var realQty = $(this).closest('tr').children().eq(6).text();
     		obj['stock_no'] = $(this).closest('tr').children().eq(10).text();
     		obj['strg_no'] = $(this).closest('tr').children().eq(11).text();
@@ -89,7 +90,9 @@ $(function() {
 					<c:forEach items="${stocks}" var="stc">
 						<tr>
 							
-							<td align="center"><input type="checkbox" class="checkBox" value="${stc.stock_no}" <c:if test="${stc.real_qty == 0}">disabled</c:if>></td>
+							<td align="center"><input type="checkbox" class="checkBox" value="${stc.stock_no}" <c:if test="${stc.real_qty == 0}">disabled</c:if>
+							<c:if test="${stc.stock_category eq '출고'}">disabled</c:if>
+							></td>
 							
 							<td>
 								<fmt:parseDate value="${stc.stock_date}" var="fmtDate" pattern="yyyy-MM-dd HH:mm:ss"/>
