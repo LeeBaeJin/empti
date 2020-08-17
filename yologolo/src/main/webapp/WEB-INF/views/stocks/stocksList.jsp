@@ -7,6 +7,13 @@
 
 <script>
 $(function() {
+	//데이터 테이블 입출고일자 역 정렬
+	$('#dataTable').DataTable({
+		  order: [[1, 'desc']],
+		  ordering: true,
+		  serverSide: false
+	});
+	
 	$("#releBtn").on('click', function(){
 		var td = [];
 		var inputQty;
