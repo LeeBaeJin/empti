@@ -32,14 +32,14 @@
             	   e.name                                         		"name",
             	   c.company_name                                  		"company_name",
             	   s.return_no                                       	"return_no",
-            	   (s.sale_sum - sp.sum)  	                            "balance"
+            	   (s.sale_sum - nvl(sp.sum,0))  	                            "balance"
 		FROM       employees e  ,
               	   saleorders s ,
                    companies c  ,
             	  (select sorder_no, sum(total_amount) sum from ledger group by sorder_no) sp         
     	WHERE      e.emp_id = s.emp_id AND
         	       s.company_no = c.company_no AND
-            	   s.sorder_no = sp.sorder_no
+            	   s.sorder_no = sp.sorder_no(+)
 		ORDER BY 2 DESC
 	</select>
 

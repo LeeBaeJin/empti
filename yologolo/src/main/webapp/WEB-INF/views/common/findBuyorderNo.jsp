@@ -9,7 +9,7 @@
 		$('.clickNo').on('click', function(){
 			opener.document.getElementById("border_no").value = $(this).find('.td1').text();
  			var amt = $(this).find('.sp1').text();
- 			opener.document.getElementById("total_amount").value = amt.substring(1);
+ 			opener.document.getElementById("total_amount").value = amt;
  			opener.document.getElementById("condition").value = "완납";
  			window.close(); 
 		});
@@ -28,7 +28,7 @@
 	</thead>
 		<c:forEach items="${findBuyorderNo}" var="orders">  
 			<tr class="clickNo" style="text-align:center">
-			<c:if test="${orders.balance < 0}">
+			
 			<c:if test="${orders.buy_sum > 0 and orders.status ne '반품'}">
 				<td class="td1">${orders.border_no}</td>
 				<td class="td2">${orders.border_date}</td>
@@ -41,7 +41,7 @@
 					<span class="sp1"><fmt:formatNumber type="number" maxFractionDigits="3" value="${fmt}"/></span>원
 				</td>
 				<td class="td5">${orders.company_name}</td>
-			</c:if>
+			
 			</c:if>
 			</tr>
 		</c:forEach>

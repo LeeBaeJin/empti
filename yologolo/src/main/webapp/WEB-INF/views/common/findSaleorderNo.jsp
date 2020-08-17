@@ -9,7 +9,7 @@
 		$('.clickNo').on('click', function(){
 			opener.document.getElementById("sorder_no").value = $(this).find('.td1').text();
 			var amt = $(this).find('.sp1').text();
- 			opener.document.getElementById("total_amount").value = amt.substring(1);
+ 			opener.document.getElementById("total_amount").value = amt;
  			opener.document.getElementById("condition").value = "완납";
 			window.close();
 		});
@@ -28,7 +28,7 @@
 	</thead>
 		<c:forEach items="${findSaleorderNo}" var="orders">
 			<tr  class="clickNo" style="text-align:center">
-			<c:if test="${orders.balance <0 }">
+			<c:if test="${orders.balance >0 }">
 			<c:if test="${orders.sale_sum > 0 and orders.del_status ne '반품'}">
 				<td class="td1">${orders.sorder_no}</td>
 				<td class="td2">${orders.sorder_date}</td>
