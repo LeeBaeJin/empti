@@ -38,7 +38,7 @@
 				<tbody id="tblBody">
 					<c:forEach items="${releList}" var="list">
 						<tr>
-							<td align="center"><input type="checkbox" value="${list.stock_no}"></td>
+							<td align="center"><input type="checkbox" value="${list.stock_no}" <c:if test="${list.stock_category eq '출고'}">disabled</c:if>></td>
 							<td>
 								<fmt:parseDate value="${list.stock_date}" var="fmtDate" pattern="yyyy-MM-dd HH:mm:ss"/>
 								<fmt:formatDate value="${fmtDate}" pattern="yyyy-MM-dd HH:mm"/>

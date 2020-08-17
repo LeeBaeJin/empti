@@ -7,7 +7,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,9 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.hein.empti.buyorders.BuyordersVO;
 import com.hein.empti.buyorders.service.BuyordersService;
-import com.hein.empti.items.ItemsVO;
 import com.hein.empti.items.service.ItemsService;
-import com.hein.empti.saleorderdetails.SaleorderdetailsVO;
 import com.hein.empti.stocks.StocksVO;
 import com.hein.empti.stocks.service.StocksService;
 import com.hein.empti.storages.StoragesVO;

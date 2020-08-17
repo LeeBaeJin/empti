@@ -54,6 +54,10 @@
 	<title>
 		<band height="180" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<image>
+				<reportElement x="-20" y="-20" width="595" height="190" uuid="58861c13-ee9d-45f4-b7f8-29e174e0a7ea"/>
+				<imageExpression><![CDATA["images/pdf_image05.jpg"]]></imageExpression>
+			</image>
 			<staticText>
 				<reportElement mode="Opaque" x="263" y="93" width="235" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="283d4673-d9f2-4115-ad4e-7011db1b245a">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7ab5b1f5-f07b-46d5-8af7-32249693c294"/>
@@ -70,10 +74,6 @@
 				</textElement>
 				<text><![CDATA[사원현황]]></text>
 			</staticText>
-			<image>
-				<reportElement x="-20" y="-20" width="595" height="190" uuid="58861c13-ee9d-45f4-b7f8-29e174e0a7ea"/>
-				<imageExpression><![CDATA["images/pdf_image05.jpg"]]></imageExpression>
-			</image>
 		</band>
 	</title>
 	<columnHeader>

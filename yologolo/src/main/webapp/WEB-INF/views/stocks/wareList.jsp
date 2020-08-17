@@ -5,6 +5,50 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
+<script>
+$(function() {
+	$("#releBtn").on('click', function(){
+		var td = [];
+		var inputQty;
+    	$('.checkBox:checked').each(function(idx, item) {
+    		var obj = {};
+    		var inputQty = prompt("출고 수량을 입력해주세요.", "");
+    		//var itemName = $(this).closest('tr').children().eq(4).text();
+    		var realQty = $(this).closest('tr').children().eq(6).text();
+    		obj['stock_no'] = $(this).closest('tr').children().eq(10).text();
+    		obj['strg_no'] = $(this).closest('tr').children().eq(11).text();
+    		obj['item_no'] = $(this).closest('tr').children().eq(12).text();	
+    		obj['stock_qty'] = $(this).closest('tr').children().eq(5).text();
+    		obj['real_qty'] = realQty - inputQty;
+    		obj['input_qty'] = inputQty;
+    		td.push(obj)
+    		
+    		console.log(obj);
+    		console.log(realQty);		
+		});
+  
+    		var result = confirm("출고하시겠습니까?")
+    		if(result) {
+    			$.ajax ({
+    				url: "setInsertStockRelease",
+    				type: "POST",
+    				contentType : "application/json",
+    				data:  JSON.stringify(td),
+    				success: function() {
+    					alert("출고 성공")
+    					window.location.href="getStocksList"
+    				}, error : function() {
+    					alert("출고 실패")
+    				}
+    			}); //ajax
+    		} else { 
+    			return false;
+    		}	
+	});//button
+});//load
+
+</script>
+
 <div class="card shadow mb-4">
 	<div class="card-header py-3">
 		<h6 class="m-0 font-weight-bold text-primary">
@@ -38,7 +82,7 @@
 				<tbody id="tblBody">
 					<c:forEach items="${wareList}" var="list">
 						<tr>
-							<td align="center"><input type="checkbox" value="${list.stock_no}"></td>
+							<td align="center"><input type="checkbox" class="checkBox" value="${list.stock_no}"></td>
 							<td>
 								<fmt:parseDate value="${list.stock_date}" var="fmtDate" pattern="yyyy-MM-dd HH:mm:ss"/>
 								<fmt:formatDate value="${fmtDate}" pattern="yyyy-MM-dd HH:mm"/>
@@ -64,4 +108,4 @@
 		</div>
 	</div>
 </div>
-<button type="button" class="btn btn-success">출고</button>
+<button type="button" class="btn btn-success" id="releBtn">출고</button>

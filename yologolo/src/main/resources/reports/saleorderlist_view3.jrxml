@@ -54,6 +54,10 @@
 	<title>
 		<band height="180" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<image>
+				<reportElement key="" x="-20" y="-20" width="595" height="190" uuid="35baf357-cf31-4aae-b9b0-090a54838cdf"/>
+				<imageExpression><![CDATA["images/pdf_image05.jpg"]]></imageExpression>
+			</image>
 			<staticText>
 				<reportElement mode="Opaque" x="263" y="93" width="235" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="c654de77-e667-44d0-9d12-94f89d25993d">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7ab5b1f5-f07b-46d5-8af7-32249693c294"/>
@@ -70,10 +74,6 @@
 				</textElement>
 				<text><![CDATA[판매관리]]></text>
 			</staticText>
-			<image>
-				<reportElement key="" x="-20" y="-20" width="595" height="190" uuid="35baf357-cf31-4aae-b9b0-090a54838cdf"/>
-				<imageExpression><![CDATA["images/pdf_image05.jpg"]]></imageExpression>
-			</image>
 		</band>
 	</title>
 	<columnHeader>
@@ -306,8 +306,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="나눔고딕" size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{상태}== null ? "" : $F{상태}
-]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{상태}== null ? "" : $F{상태}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
