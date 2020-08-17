@@ -25,6 +25,8 @@
 	       });	
 	}
 	
+	
+	
 	function strgList() {
 		$.ajax({
 			url: 'strgList',
