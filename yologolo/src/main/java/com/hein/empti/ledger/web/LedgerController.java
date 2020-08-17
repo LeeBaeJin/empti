@@ -95,26 +95,23 @@ public class LedgerController {
 	
 	  // view resolver 방식
 	  
-	 @RequestMapping("ledger_list.do") 
-	 public ModelAndView getLedgerListReport (HttpServletRequest request, HttpServletResponse response)
-			 								throws Exception { 
-			  ModelAndView mv = new ModelAndView();
-			  mv.setViewName("pdfView"); 
-			  mv.addObject("filename", "/reports/ldgr_view2.jrxml"); 
-			  return mv; 
-	  }
+	 @RequestMapping("ledger_list.do") public ModelAndView
+	  getLedgerListReport(HttpServletRequest request, HttpServletResponse response)
+	  throws Exception { ModelAndView mv = new ModelAndView();
+	  mv.setViewName("pdfView"); mv.addObject("filename",
+	  "/reports/ldgr_view2.jrxml"); return mv; }
 	 
 
 	// pdf 파라미터 지정
 	/*
-	 * @RequestMapping("ledger_list.do") 
-	 * public ModelAndView getLedgerListReport(HttpServletRequest request, HttpServletResponse response)
-	 * throws Exception { 
-	 * // jrxml 소스 지정
-	 * String path =request.getSession().getServletContext().getRealPath("filename", "/reports/ldgr_view2.jrxml"); 
-	 * JasperReport jasperReport = JasperCompileManager.compileReport(path); 
-	 * JRDataSource JRdataSource = new JRBeanCollectionDataSource(userService.getListMap(null)); 
-	 * JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, map, JRdataSource);
+	 * @RequestMapping("ledger_list.do") public ModelAndView
+	 * getLedgerListReport(HttpServletRequest request, HttpServletResponse response)
+	 * throws Exception { // jrxml 소스 지정 String path =
+	 * request.getSession().getServletContext().getRealPath("filename",
+	 * "/reports/ldgr_view2.jrxml"); JasperReport jasperReport =
+	 * JasperCompileManager.compileReport(path); JRDataSource JRdataSource = new
+	 * JRBeanCollectionDataSource(userService.getListMap(null)); JasperPrint
+	 * jasperPrint = JasperFillManager.fillReport(jasperReport, map, JRdataSource);
 	 * }
 	 */
 
