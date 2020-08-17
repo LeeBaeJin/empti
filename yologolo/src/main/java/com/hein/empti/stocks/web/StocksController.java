@@ -1,11 +1,13 @@
 package com.hein.empti.stocks.web;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.hein.empti.buyorders.BuyordersVO;
+import com.hein.empti.buyorders.service.BuyordersService;
 import com.hein.empti.items.ItemsVO;
 import com.hein.empti.items.service.ItemsService;
 import com.hein.empti.saleorderdetails.SaleorderdetailsVO;
@@ -31,6 +35,7 @@ public class StocksController {
 	@Autowired StocksService stocksService;
 	@Autowired ItemsService itemsService;
 	@Autowired StoragesService storagesService;
+	@Autowired BuyordersService buyordersService;
 
 	// 등록
 	@RequestMapping(value = "/adminStocks", method = RequestMethod.POST)
@@ -74,8 +79,11 @@ public class StocksController {
 	
 	// 등록폼
 	@RequestMapping("/setInsertStocks")
-	public String setInsertFormStocks(Model model, ItemsVO itemsVO, StoragesVO storagesVO) {
-		model.addAttribute("items", itemsService.getItemsList(itemsVO));
+	public String setInsertFormStocks(Model model, StoragesVO storagesVO) {		
+		LocalDateTime currentDateTime = LocalDateTime.now(); 
+		String currentTime =currentDateTime.toString().replace(" ", "T");
+		int loc = currentTime.lastIndexOf(":");
+		model.addAttribute("serverTime", currentTime.substring(0,loc));
 		return "admin/stocks/insertStocks";
 	}
 	
@@ -111,12 +119,42 @@ public class StocksController {
 	
 	//다중 Insert
 	//판매상세주문 다중 Insert
-	@RequestMapping("/setInsertStockBorders")
+	@RequestMapping("/setInsertStockBorders/{border_no}")
 	@ResponseBody
-	public Map setInsertStockBorders(@RequestBody List<StocksVO> list) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("success", true);
+	public String setInsertStockBorders(@RequestBody List<StocksVO> list, BuyordersVO buyordersVO, @PathVariable String border_no) {
+		for (StocksVO vo : list) {
+			vo.setStock_date(vo.getStock_date().replace("T", " "));
+			buyordersVO.setBorder_no(vo.getBorder_no());
+			BuyordersVO bvo = buyordersService.getBuyorders(buyordersVO);
+			bvo.setStatus("수령완료");
+			buyordersService.setUpdateBuyorders(bvo);
+		}
 		stocksService.setInsertStockBorders(list);
-		return map;
+		return "jhi";
+	}
+	
+	//출고 처리
+	@RequestMapping(value = "/setInsertStockRelease", method = RequestMethod.POST)
+	@ResponseBody
+	public String setInsertStockRelease(@RequestBody List<StocksVO> list) {
+		stocksService.setInsertStockRelease(list);
+		stocksService.setUpdateReal(list);
+		return "jhi";
+	}
+	
+	
+	
+	//입고 조회
+	@RequestMapping("/getWarehousingList")
+	public String getWarehousingList(StocksVO stocksVO, Model model) {
+		model.addAttribute("wareList", stocksService.getWarehousingList(stocksVO)) ;
+		return "admin/stocks/wareList";
+	}
+	
+	//출고 조회
+	@RequestMapping("/getReleaseList")
+	public String getReleaseList(StocksVO stocksVO, Model model) {
+		model.addAttribute("releList", stocksService.getReleaseList(stocksVO));
+		return "admin/stocks/releList";
 	}
 }

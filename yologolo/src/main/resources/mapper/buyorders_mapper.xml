@@ -3,15 +3,31 @@
 
 <mapper	namespace="com.hein.empti.buyorders.mapper.BuyordersMapper">
 	<!-- 구매주문 전체조회 -->
-		<select id="getBuyordersListMap" resultType="map">
-    SELECT      TO_CHAR(b.border_date, 'yyyy-MM-dd hh24:mi') 									"border_date",
-                b.buy_sum 																		"buy_sum",
-                e.name																			"name", 	
-                p.company_name																	"company_name",
-                b.border_no																		"border_no",
-                b.return_no																		"return_no",
-                b.status																		"status",
-                (b.buy_sum - s.sum ) 															"balance"
+	<select id="getBuyordersListMap" resultType="map">
+    SELECT      TO_CHAR(b.border_date, 'yyyy-MM-dd hh24:mi') 	"border_date",
+                b.buy_sum 										"buy_sum",
+                e.name											"name", 	
+                p.company_name									"company_name",
+                b.border_no										"border_no",
+                b.return_no										"return_no",
+                b.status										"status"
+    FROM        buyorders b ,
+                companies p ,
+                employees e 
+    WHERE       b.company_no = p.company_no AND
+                b.emp_id     = e.emp_id     AND
+                <![CDATA[ buy_sum > 0 ]]>
+	</select>
+	
+	<select id="getBuyordersBalMap" resultType="map">
+    SELECT      TO_CHAR(b.border_date, 'yyyy-MM-dd hh24:mi') 	"border_date",
+                b.buy_sum 										"buy_sum",
+                e.name											"name", 	
+                p.company_name									"company_name",
+                b.border_no										"border_no",
+                b.return_no										"return_no",
+                b.status										"status",
+                (b.buy_sum - s.sum ) 							"balance"
     FROM        buyorders b ,
                 companies p ,
                 employees e ,
@@ -87,11 +103,12 @@
 	<update id="setUpdateBuyorders" parameterType="BuyordersVO">
 		UPDATE BUYORDERS
 		<set>
-			<if test="border_date != null">border_date = To_date(#{border_date},'yyyy-MM-dd hh24:mi'),
+			<if test="border_date != null">border_date = To_date(#{border_date},'yyyy-MM-dd hh24:mi:ss'),
 			</if>
 			<if test="buy_sum != null">buy_sum = #{buy_sum},</if>
 			<if test="company_no != null">company_no = #{company_no},</if>
-			<if test="emp_id != null">emp_id = #{emp_id}</if>
+			<if test="emp_id != null">emp_id = #{emp_id},</if>
+			<if test="status != null">status = #{status}</if>
 		</set>
 		WHERE border_no = #{border_no}
 	</update>

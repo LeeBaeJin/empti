@@ -8,11 +8,77 @@
 <script>
 	var option="";
 	$(function() {
-		findStockBorderList();	
 		strgList();
-		
+		findStrgList();
+		insertStocks();
+		findStockBorderList();	
+		checkAll();
 	});
+
+		function insertStocks() {
+		$('#insertBtn').on('click', function(){
+			var stockDate = $('[name=stock_date]').val();
+			var borderNo;
+			var td = [];
+				$('.checkbox:checked').each(function(idx, item) {					
+					var obj = {};
+					borderNo = $(this).closest('tr').children().eq(7).text();
+					obj['stock_date'] = stockDate;
+					obj['stock_qty'] = $(this).closest('tr').children().eq(4).text();
+					obj['border_no'] = borderNo;
+					obj['item_no'] = $(this).closest('tr').children().eq(9).text();		
+					obj['strg_no'] = $(this).closest('tr').find('.strgNo').val();
+					obj['real_qty'] = $(this).closest('tr').children().eq(4).text();
+					console.log(borderNo)
+					td.push(obj);
+					});
+		//구매주문의 데이터는 vo객체에, 구매상세주문의 데이터는 List에 담아서 
+					var result = confirm("입고하시겠습니까?");
+						if (result) {
+							$.ajax ({
+								url: "setInsertStockBorders/" + borderNo,
+								type: "POST",
+								data: JSON.stringify(td),
+								contentType : "application/json",
+								success: function() {
+								alert("성공적으로 입고하였습니다.");
+								window.location.href="getStocksList"
+								}, error: function() {
+								alert("입고를 실패하였습니다.");
+								}
+							});
+						}else {
+							return false;
+						} 			  
+				});
+		}
+		function checkAll() {		
+	    $(".chkAll").click(function(){
+	        var chk = $(this).is(":checked");//.attr('checked');
+	        if(chk) $(".checkbox ").prop('checked', true);
+	        else  $(".checkbox ").prop('checked', false);
+	    });
+		}
 	
+	/* 창고 조회 */
+	function strgList() {
+		$.ajax({
+			url: 'strgList',
+			type: 'GET',
+			dataType: 'json',
+			success: findStrgList	
+		});
+	}
+	
+	/* 창고리스트 select 넣기 */
+	function findStrgList(data){
+		$.each(data, function(idx,item){
+			option += '<option value="' + item.strg_no +'">' +item.strg_category+ '</option>'
+		});
+		
+	}
+	
+	/* 구매주문 리스트 */
 	function findStockBorderList() {
 	      $.ajax({
 	          url:'findStockBorderNo',
@@ -25,24 +91,7 @@
 	       });	
 	}
 	
-	
-	
-	function strgList() {
-		$.ajax({
-			url: 'strgList',
-			type: 'GET',
-			dataType: 'json',
-			success: findStrgList	
-		});
-	}
-	
-	function findStrgList(data){
-		$.each(data, function(idx,item){
-			option += '<option value="' + item.strg_no +'">' +item.strg_category+ '</option>'
-		});
-		
-	}
-	
+
 	function findListResult(data) {
 		$("tbody").empty();
 		$.each(data,function(idx,item){
@@ -52,8 +101,8 @@
 	         .append($('<td>').html(item.company_name))      
 	         .append($('<td>').html(item.item_name))
 	         .append($('<td>').html(item.border_qty))
-	         .append($('<td>').append($('<select>').html(option)))
-	         .append($('<td>').html('<input type="checkbox" class="checkbox" value="'+ item.border_no + '"/>'))
+	         .append($('<td>').append($('<select class="strgNo">').html(option)))
+	         .append($('<td>').html('<input type="checkBox" class="checkbox" value="'+ item.border_no + '"/>'))
 	         .append($('<td>').html(item.border_no).css("display", "none"))
 	         .append($('<td>').html(item.borderdetail_no).css("display", "none"))
     	     .append($('<td>').html(item.item_no).css("display", "none"))
@@ -61,6 +110,8 @@
 	         .appendTo('tbody');	
 		});
 	}
+	
+
 </script>
 <div class="col-sm-12 my-auto">
 	<h2 class="display-4 text-dark" style=font-size:35px;>입고 입력</h2>
@@ -70,9 +121,7 @@
 		<label>입고 일자</label>	<input value="${serverTime}" type="datetime-local" name="stock_date" class="form-control" style="width: 260px; display: inline;"><br/>
 
 		<label>유형</label>		<input value="입고" name="stock_category" class="form-control" style="width: 80px; display: inline;" readonly="readonly"><br/>
-		<label>주문 조회</label>	<input name="border_no" id="border_no" class="form-control" style="width: 100px; display: inline;">
-								<button type="button" value="주문조회" id="orderBtn" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" width="30px" height="30px"></button>
-								<br/><br/>
+		<label>주문 조회</label>	
 								
 		<table border="1" id="orderTable" class="table table-bordered" style="width: 70%;">
 			<thead>
