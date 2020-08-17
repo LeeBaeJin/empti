@@ -81,7 +81,9 @@ public class StocksServiceImpl implements StocksService {
 	//출고 후 실수량 수정
 	@Override
 	public void setUpdateReal(List<StocksVO> list) {
-		stocksMapper.setUpdateReal(list);
+		for(StocksVO vo : list) {
+			stocksMapper.setUpdateReal(vo);
+		}
 	}
 	
 	
