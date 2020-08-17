@@ -91,14 +91,12 @@
 	</insert>
 	
 	<!-- 출고 후 실수량  수정 -->
-	<update id="setUpdateReal" parameterType="java.util.List">
-		<foreach collection="list" item="item" separator=";"
-			open="DECLARE BEGIN" close="; END;">
+	<update id="setUpdateReal" parameterType="StocksVO">
 			UPDATE stocks
-			SET real_qty = real_qty - #{item.input_qty}
-			<if test="item.real_qty == 0 ">stock_status = '출고'</if>
-			WHERE stock_no = #{item.stock_no}
-		</foreach>
+			SET real_qty = real_qty - #{input_qty}
+			<if test="real_qty lte 0 ">,stock_status = '출고'</if>
+			WHERE stock_no = #{stock_no}
+
 	</update>
 
 	<!-- stockexcel_view 전체조회 Map(Excel) -->
