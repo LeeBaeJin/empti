@@ -32,5 +32,5 @@ public interface StocksMapper {
 	public void setInsertStockRelease(List<StocksVO> list);
 	
 	//출고 후 실수량 수정
-	public void setUpdateReal(List<StocksVO> list);
+	public void setUpdateReal(StocksVO stocksVO);
 }
