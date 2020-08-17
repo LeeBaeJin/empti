@@ -104,7 +104,7 @@ public class BuyordersController {
 	// 주문번호조회
 	@RequestMapping("/findBuyorderNo")
 	public String findBuyorderNo(BuyordersVO buyordersVO, Model model) {
-		model.addAttribute("findBuyorderNo", buyordersService.getBuyordersListMap(buyordersVO));
+		model.addAttribute("findBuyorderNo", buyordersService.getBuyordersBalMap(buyordersVO));
 		return "common/findBuyorderNo";
 	}
 	

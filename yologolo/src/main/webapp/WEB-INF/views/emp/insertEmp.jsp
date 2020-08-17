@@ -192,7 +192,7 @@ function check() {
 	<h2 class="display-4 text-dark"  style=font-size:30px;>사원등록</h2>
 	<hr class="sidebar-divider d-none d-md-block" width="43%" align="left"> 
 	<form action="setInsertEmp" id="frm" method="post" enctype="multipart/form-data" class="from-group">
-		<label>사원아이디</label>	<input name="emp_id" id="emp_id" class="form-control" value="${empId.emp_id}" style="width: 250px; display: inline;"> <br/>
+		<label>사원아이디</label>	<input name="emp_id" id="emp_id" value="${empId.emp_id}" class="form-control" style="width: 250px; display: inline;"> <br/>
 		<label>이름</label>		<input name="name" id="name"class="form-control" style="width: 250px; display: inline;"> <br/>
 		<label>패스워드</label>	<input type="password" id="pwd"  class="form-control pw" name="pwd" style="width: 250px; display: inline;"> <br/>
 		<label>패스워드 확인</label>	<input type="password" id="pwd2" class="form-control pw" name="pwd2"style="width: 250px; display: inline;"> <br/>
@@ -215,8 +215,8 @@ function check() {
 		<label>상태</label>		<select name="status" id="status" class="form-control" style="width: 250px; display: inline;">
 									<option value="" selected> ======선택하세요====== </option>
 									<option>재직</option>
-									<option>퇴직</option>
 									<option>휴가</option>
+									<option>퇴직</option>
 								</select> <br/>
 		<label>거래은행</label>	<input name="bank_name" id="bank_name" type="text" class="form-control" style="width: 250px; display: inline;">
 								<button type="button" value="은행선택" id="btnFindBank" style="background-color: rgba(0,0,0,0); border:0px;"><img src="resources/images/Glass.png" width="30px" height="30px"></button>

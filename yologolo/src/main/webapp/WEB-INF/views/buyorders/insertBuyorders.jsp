@@ -102,13 +102,13 @@
 		
 		//구매상세주문의 데이터
 		var tr = $('#tblBody').children();
-		var td = [];
+		var td = []; //list
 		$.each(tr, function(idx , item) {
-			var obj = {};
+			var obj = {}; //vo
 			obj['border_no'] = result;
 			obj['item_no'] = $(item).children().eq(0).text(); 
 			obj['border_qty'] = $(item).children().eq(2).text();
-			console.log($(item).children().eq(0).text());
+			console.log(obj);
 			td.push(obj);
 		})
 		//구매주문의 데이터는 vo객체에, 구매상세주문의 데이터는 List에 담아서 Insert

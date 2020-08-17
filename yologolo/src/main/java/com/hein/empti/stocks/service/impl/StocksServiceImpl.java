@@ -28,6 +28,18 @@ public class StocksServiceImpl implements StocksService {
 		return stocksMapper.getStocksList(stocksVO);
 	}
 	
+	//입고 조회
+	@Override
+	public List<StocksVO> getWarehousingList(StocksVO stocksVO) {
+		return stocksMapper.getWarehousingList(stocksVO);
+	}
+
+	//출고조회
+	@Override
+	public List<StocksVO> getReleaseList(StocksVO stocksVO) {
+		return stocksMapper.getReleaseList(stocksVO);
+	}
+
 	//등록
 	@Override
 	public void setInsertStocks(StocksVO stocksVO) {
@@ -59,4 +71,21 @@ public class StocksServiceImpl implements StocksService {
 	public void setInsertStockBorders(List<StocksVO> list) {
 		stocksMapper.setInsertStockBorders(list);
 	}
+
+	//출고 insert
+	@Override
+	public void setInsertStockRelease(List<StocksVO> list) {
+		stocksMapper.setInsertStockRelease(list);
+	}
+
+	//출고 후 실수량 수정
+	@Override
+	public void setUpdateReal(List<StocksVO> list) {
+		for(StocksVO vo : list) {
+			stocksMapper.setUpdateReal(vo);
+		}
+	}
+	
+	
+	
 }

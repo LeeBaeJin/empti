@@ -29,8 +29,7 @@ public class ItemsController {
 	// 등록 처리
 	@RequestMapping("/setInsertItems")
 	public String setInsertItems(ItemsVO vo) {// 1.커맨드객체는 자동으로 모델에 저장됨. model.addAttribute
-		// model.addAttribute("evo", vo);
-		// 서비스호출
+		vo.setItem_price(vo.getItem_price().replace(",", ""));
 		itemsService.setInsertItems(vo);
 		return "redirect:getItemsList";
 	}
@@ -55,10 +54,11 @@ public class ItemsController {
 		System.out.println(vo);
 		return "admin/items/updateItems";
 	}
-
+	
 	// 수정처리
 	@RequestMapping("/setUpdateItems")
 	public String setUpdateItems(ItemsVO vo) {
+		vo.setItem_price(vo.getItem_price().replace(",", ""));
 		itemsService.setUpdateItems(vo);
 		return "redirect:getItemsList";
 	}

@@ -13,8 +13,12 @@ public class StocksVO {
 		String strg_no;
 		String item_no;
 		String stock_status;
-		String sorder_no;
+		String release_no;
 		String border_no;
+		String real_qty;
+		
+		//입력값
+		String input_qty;
 		
 		//JOIN
 		String item_name;

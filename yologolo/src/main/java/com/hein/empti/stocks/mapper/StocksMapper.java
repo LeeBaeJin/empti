@@ -13,6 +13,12 @@ public interface StocksMapper {
 	public void setInsertStocks(StocksVO stocksVO);
 	public void setUpdateStocks(StocksVO stocksVO);
 	
+	//입고 조회
+	public List<StocksVO> getWarehousingList(StocksVO stocksVO);
+	//출고 조회
+	public List<StocksVO> getReleaseList(StocksVO stocksVO);
+	
+	
 	//findStockBorderNo, 구매 조회
 	public List<StocksVO> findStockBorderNo(StocksVO stocksVO);
 	
@@ -21,4 +27,10 @@ public interface StocksMapper {
 	
 	//다중 Insert
 	public void setInsertStockBorders(List<StocksVO> list);
+	
+	//출고 insert
+	public void setInsertStockRelease(List<StocksVO> list);
+	
+	//출고 후 실수량 수정
+	public void setUpdateReal(StocksVO stocksVO);
 }

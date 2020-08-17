@@ -13,7 +13,9 @@ public interface BuyordersMapper {
 	public void setUpdateBuyorders(BuyordersVO buyordersVO);
 	public void setDeleteBuyorders(BuyordersVO buyordersVO);
 	
-
+	//잔여금
+	public List<Map<String, Object>> getBuyordersBalMap(BuyordersVO buyordersVO);
+	
 	//시퀀스 조회
 	public String getBuySeq();
 	
