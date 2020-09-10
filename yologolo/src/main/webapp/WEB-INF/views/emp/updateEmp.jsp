@@ -138,9 +138,9 @@ function btnUpdate(empId, loginId) {
 									<option value="일용직" <c:if test="${fn:contains(empUp.position,'일용직')}">selected="selected"</c:if>>일용직</option>
 									<option value="계약직" <c:if test="${fn:contains(empUp.position,'계약직')}">selected="selected"</c:if>>계약직</option>
 									<option value="정직원" <c:if test="${fn:contains(empUp.position,'정직원')}">selected="selected"</c:if>>정직원</option>
-									<option value="일용직" <c:if test="${fn:contains(empUp.position,'과장')}">selected="selected"</c:if>>과장</option>
-									<option value="일용직" <c:if test="${fn:contains(empUp.position,'부사장')}">selected="selected"</c:if>>부사장</option>
-									<option value="일용직" <c:if test="${fn:contains(empUp.position,'사장')}">selected="selected"</c:if>>사장</option>
+									<option value="과장" <c:if test="${fn:contains(empUp.position,'과장')}">selected="selected"</c:if>>과장</option>
+									<option value="부사장" <c:if test="${fn:contains(empUp.position,'부사장')}">selected="selected"</c:if>>부사장</option>
+									<option value="사장" <c:if test="${fn:contains(empUp.position,'사장')}">selected="selected"</c:if>>사장</option>
 								</select><br/>
 		<label>상태</label>		<select name="status" id="status" class="form-control" style="width: 250px; display: inline;">
 									<option value="재직" <c:if test="${fn:contains(empUp.status,'재직')}">selected="selected"</c:if>>재직</option>
