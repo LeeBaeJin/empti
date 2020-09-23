@@ -1,2 +1,1 @@
-# EMPTI
-욜로골로
+# EMPTI (YoloGolo)
